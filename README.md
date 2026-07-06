@@ -65,8 +65,23 @@ python scripts/03_chunk.py
 # 4. Embeddingi + baza wektorowa
 python scripts/04_build_vectordb.py
 
-# 5. Zapytanie (retrieval z cytowaniem stron)
+# 5. Zapytanie z terminala (retrieval z cytowaniem stron)
 python scripts/05_query.py "jak działa parowanie ciosu?" -k 5
 ```
+
+## Wyszukiwarka w przeglądarce (okno HTML)
+
+Graficzne okno zapytań do bazy — serwer ładuje model i bazę raz, strona
+odpytuje go przez `fetch`:
+
+```bash
+. .venv/bin/activate
+python scripts/webapp.py            # domyślnie port 8000, baza data/chroma
+# potem otwórz w przeglądarce:  http://localhost:8000
+```
+
+Pliki: `scripts/webapp.py` (serwer, tylko stdlib + chromadb + fastembed) oraz
+`web/index.html` (interfejs). Wpisujesz pytanie po polsku, dostajesz fragmenty
+z numerami stron i podobieństwem.
 
 Dane (PDF, tekst OCR, baza wektorowa) są poza gitem — patrz `.gitignore`.
