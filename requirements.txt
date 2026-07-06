@@ -1,0 +1,8 @@
+# --- Ekstrakcja i OCR (krok 1-2) ---
+pymupdf>=1.24        # odczyt PDF, warstwa tekstowa, render stron do obrazów
+pytesseract>=0.3.10  # wrapper na tesseract OCR (wymaga systemowego tesseract-ocr + pol/eng)
+pillow>=10.0
+
+# --- Baza wektorowa (krok 4+, dokładamy po zatwierdzeniu OCR) ---
+# chromadb>=0.5
+# sentence-transformers>=3.0

@@ -1,0 +1,16 @@
+# Duże pliki źródłowe i dane generowane — NIE trzymamy w gicie
+data/raw/*.pdf
+data/text/
+data/chroma/
+data/images/
+
+# Python
+__pycache__/
+*.pyc
+.venv/
+venv/
+.env
+
+# Modele/cache embeddingów
+.cache/
+models/
