@@ -161,59 +161,89 @@
 <script>
 const DATA = __DATA__;
 
-// normalizacja: małe litery + usunięcie polskich ogonków (odporność na OCR)
+// zwijanie polskich ogonków — odporność na literówki OCR (może/moze itd.)
 const MAP = {'ą':'a','ć':'c','ę':'e','ł':'l','ń':'n','ó':'o','ś':'s','ż':'z','ź':'z'};
-function norm(s){
-  return s.toLowerCase().replace(/[ąćęłńóśżź]/g, c => MAP[c] || c)
-          .replace(/[^a-z0-9\s]/g,' ').replace(/\s+/g,' ').trim();
-}
-const STOP = new Set(['i','w','na','do','z','za','o','a','the','of','jak','czy','co','sie','się','jest','po','od','to','dla']);
+function fold(s){ return s.toLowerCase().replace(/[ąćęłńóśżź]/g, c => MAP[c] || c); }
+function norm(s){ return fold(s).replace(/[^a-z0-9\s]/g,' ').replace(/\s+/g,' ').trim(); }
 
-// pre-normalizacja korpusu (raz)
-const NORM = DATA.map(d => norm(d.t));
+// słowa pomijane (zbyt częste, nie niosą treści)
+const STOP = new Set(('i w na do z ze za o a u the of and jak jaka jakie jaki czy co ile gdzie kiedy '
+  + 'jest sa są po od to ta te ten dla ma mam masz maja mają sie się jego jej ich lub albo oraz '
+  + 'nie tak być byl była było przez pod nad przy oraz albo').split(' '));
+
+// prekomputacja: mapa częstości słów + nagłówek (pierwsze słowa) każdego fragmentu
+const N = DATA.length;
+const FREQ = new Array(N);
+const HEAD = new Array(N);   // pierwsze słowa — jeśli tu pada termin, to strona jest „o tym"
+for(let i=0;i<N;i++){
+  const words = norm(DATA[i].t).split(' ');
+  const m = Object.create(null);
+  for(const w of words){ if(w) m[w] = (m[w]||0)+1; }
+  FREQ[i] = m;
+  HEAD[i] = words.slice(0, 8);
+}
 
 const q = document.getElementById('q'), meta = document.getElementById('meta'),
       results = document.getElementById('results'), form = document.getElementById('f');
 
 function esc(s){return s.replace(/[&<>]/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;'}[c]));}
 
-function search(query){
-  const nq = norm(query);
-  const terms = nq.split(' ').filter(t => t.length>1);
-  const core = terms.filter(t => !STOP.has(t));
-  const useTerms = core.length ? core : terms;
-  if(!useTerms.length){ meta.textContent=''; results.innerHTML=''; return; }
+// czy słowo dokumentu pasuje do terminu (z lekkim stemmingiem po prefiksie,
+// żeby łapać odmiany: akolita / akolitą / akolici)
+function wordHit(w, t){
+  if(w === t) return true;
+  if(t.length >= 4 && w.startsWith(t)) return true;          // akolita -> akolitami
+  if(t.length >= 5 && w.startsWith(t.slice(0,-1))) return true; // akolita ~ akolici
+  return false;
+}
+// suma trafień terminu w mapie częstości fragmentu
+function tfOf(t, freq){
+  let tf = 0;
+  for(const w in freq){ if(wordHit(w, t)) tf += freq[w]; }
+  return tf;
+}
 
-  const scored = [];
-  for(let i=0;i<NORM.length;i++){
-    const doc = NORM[i];
-    let score = 0, present = 0;
-    for(const t of useTerms){
-      let idx = doc.indexOf(t), c = 0;
-      while(idx !== -1){ c++; idx = doc.indexOf(t, idx + t.length); }
-      if(c){ present++; score += 1 + Math.log(1 + c); }
-    }
-    if(!present) continue;
-    if(present === useTerms.length) score += 3;             // wszystkie słowa
-    if(useTerms.length > 1 && doc.includes(nq)) score += 4; // dokładna fraza
-    score -= Math.log(1 + doc.length) * 0.15;               // lekka normalizacja długości
-    scored.push({i, score, present});
+function search(query){
+  const rawWords = norm(query).split(' ').filter(Boolean);
+  let terms = [...new Set(rawWords.filter(t => t.length>=3 && !STOP.has(t)))];
+  if(!terms.length) terms = [...new Set(rawWords.filter(t => t.length>=2))];
+  if(!terms.length){ meta.textContent=''; results.innerHTML=''; return; }
+
+  // 1) częstości + liczba fragmentów z terminem (do IDF)
+  const df = {}; for(const t of terms) df[t]=0;
+  const cand = [];
+  for(let i=0;i<N;i++){
+    const per = {}; let any=false;
+    for(const t of terms){ const tf = tfOf(t, FREQ[i]); if(tf>0){ per[t]=tf; df[t]++; any=true; } }
+    if(any) cand.push({i, per});
   }
-  scored.sort((x,y) => y.score - x.score || y.present - x.present);
-  const top = scored.slice(0, 8);
+  // 2) IDF: rzadkie słowa (np. „akolita") ważą znacznie więcej niż częste („postać")
+  const idf = {}; for(const t of terms) idf[t] = Math.log(1 + N/(df[t] || N));
+  for(const d of cand){
+    let s=0, p=0;
+    for(const t of terms){ const tf=d.per[t]; if(tf){ s += (1+Math.log(tf))*idf[t]; p++; } }
+    if(terms.length>1 && p===terms.length) s *= 1.25;  // bonus: wszystkie słowa obecne
+    // premia: termin w nagłówku fragmentu -> strona jest „o tym" (np. „Akolita —")
+    let hb=0;
+    for(const t of terms){ if(HEAD[d.i].some(w => wordHit(w, t))) hb += idf[t]; }
+    s += hb * 2.2;
+    d.s = s; d.p = p;
+  }
+  cand.sort((x,y) => y.s - x.s || y.p - x.p);
+  const top = cand.slice(0, 8);
 
   if(!top.length){
     meta.textContent='';
-    results.innerHTML = `<div class="empty">Brak trafień dla „<b>${esc(query)}</b>".<br>Spróbuj innych słów albo pojedynczego terminu (np. <b>inicjatywa</b>, <b>zbroja</b>).</div>`;
+    results.innerHTML = `<div class="empty">Brak trafień dla „<b>${esc(query)}</b>".<br>Spróbuj pojedynczego, konkretnego słowa (np. <b>akolita</b>, <b>inicjatywa</b>, <b>zbroja</b>).</div>`;
     return;
   }
-  const maxS = top[0].score;
-  meta.textContent = `Znaleziono ${scored.length} fragment${scored.length===1?'':'ów'} · pokazuję ${top.length} najlepszych`;
+  const maxS = top[0].s;
+  meta.textContent = `Znaleziono ${cand.length} fragment${cand.length===1?'':'ów'} · pokazuję ${top.length} najlepszych`;
 
   results.innerHTML = top.map(r => {
     const d = DATA[r.i];
     const pages = d.a === d.b ? ('str. ' + d.a) : ('str. ' + d.a + '–' + d.b);
-    const rel = Math.max(8, Math.round(100 * r.score / maxS));
+    const rel = Math.max(8, Math.round(100 * r.s / maxS));
     return `<div class="card">
       <div class="head">
         <span class="seal">${pages}</span>
@@ -222,33 +252,36 @@ function search(query){
           <span class="relval">${rel}%</span>
         </div>
       </div>
-      <div class="passage">${snippet(d.t, useTerms)}</div>
+      <div class="passage">${snippet(d.t, terms)}</div>
     </div>`;
   }).join('');
   window.scrollTo({top:0});
 }
 
-// wycina okno wokół pierwszego trafienia i podświetla terminy
+// podświetla całe słowa (bezpiecznie — tokenizuje, nie psuje tagów <mark>)
+function markPart(p, terms){
+  if(/^\s+$/.test(p) || p==='') return p;
+  const m = p.match(/^([^0-9a-zążśźęćńół]*)([\s\S]*?)([^0-9a-zążśźęćńół]*)$/i);
+  const pre=m[1], core=m[2], post=m[3];
+  const nc = fold(core).replace(/[^0-9a-z]/g,'');
+  const hit = core && terms.some(t => wordHit(nc, t));
+  return esc(pre) + (hit ? '<mark>'+esc(core)+'</mark>' : esc(core)) + esc(post);
+}
+// wycina czytelne okno wokół pierwszego trafienia + podświetla
 function snippet(text, terms){
-  const nText = norm(text);
-  let first = Infinity;
-  for(const t of terms){ const k = nText.indexOf(t); if(k!==-1 && k<first) first=k; }
-  let start = 0, body = text;
-  const WIN = 460;
-  if(first !== Infinity && text.length > WIN){
-    start = Math.max(0, first - 130);
-    body = (start>0?'… ':'') + text.slice(start, start + WIN) + (start+WIN<text.length?' …':'');
-  } else if(text.length > WIN){
-    body = text.slice(0, WIN) + ' …';
+  const parts = text.split(/(\s+)/);
+  let hit = -1;
+  for(let i=0;i<parts.length;i++){
+    if(/^\s+$/.test(parts[i])) continue;
+    const nc = fold(parts[i]).replace(/[^0-9a-z]/g,'');
+    if(nc && terms.some(t => wordHit(nc, t))){ hit = i; break; }
   }
-  // podświetlenie: buduj regex z terminów (na oryginale, ale terminy są bez ogonków —
-  // dopasuj tolerancyjnie zamieniając a->[aą] itd.)
-  let html = esc(body);
-  const back = {a:'[aąA]',c:'[cćC]',e:'[eęE]',l:'[lłL]',n:'[nńN]',o:'[oóO]',s:'[sśS]',z:'[zżźZ]'};
-  for(const t of [...new Set(terms)].sort((a,b)=>b.length-a.length)){
-    const pat = t.split('').map(ch => back[ch] || (/[a-z0-9]/.test(ch)? '['+ch+ch.toUpperCase()+']' : ch)).join('');
-    try{ html = html.replace(new RegExp('('+pat+')','gi'), '<mark>$1</mark>'); }catch(e){}
-  }
+  let start = hit >= 0 ? Math.max(0, hit - 24) : 0;
+  let len = 0, end = start;
+  for(; end < parts.length && len < 460; end++) len += parts[end].length;
+  let html = parts.slice(start, end).map(p => markPart(p, terms)).join('');
+  if(start > 0) html = '… ' + html;
+  if(end < parts.length) html = html + ' …';
   return html;
 }
 

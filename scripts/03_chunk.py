@@ -40,10 +40,20 @@ def paragraphs(out_dir):
             txt = clean_page(f.read())
         if not txt:
             continue
+        pending = ""  # krótkie linie (nagłówki np. „Akolita —") doklejamy do następnego akapitu
         for p in txt.split("\n\n"):
             p = p.strip()
-            if len(p) >= 15:  # pomijamy śmieciowe okruchy (numery stron itp.)
-                paras.append((page, p))
+            if not p or p.isdigit():        # pomijamy puste i czyste numery stron
+                continue
+            if len(p) < 15:                 # krótka linia = zwykle nagłówek/etykieta
+                pending = (pending + " " + p).strip()
+                continue
+            if pending:
+                p = pending + " " + p       # nagłówek + treść razem (kluczowe dla wyszukiwania)
+                pending = ""
+            paras.append((page, p))
+        if pending:                         # nagłówek na końcu strony bez treści
+            paras.append((page, pending))
     return paras
 
 

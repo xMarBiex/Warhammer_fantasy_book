@@ -39,10 +39,27 @@ def main():
     data = json.dumps(rows, ensure_ascii=False, separators=(",", ":"))
 
     tpl = open(tpl_path, encoding="utf-8").read()
-    html = tpl.replace("__DATA__", data)
-    open(out_path, "w", encoding="utf-8").write(html)
-    print(f"OK: {len(rows)} fragmentów -> {out_path} "
-          f"({len(html.encode('utf-8'))/1e6:.2f} MB)")
+    content = tpl.replace("__DATA__", data)
+
+    # 1) wersja dla Artifacta (bez <head> — Artifact sam dokłada nagłówek)
+    open(out_path, "w", encoding="utf-8").write(content)
+
+    # 2) samodzielna wersja dla Cloudflare/telefonu — pełny dokument HTML
+    #    z <meta charset="utf-8"> (bez tego polskie znaki się sypią)
+    dist_dir = os.path.join(ROOT, "dist")
+    os.makedirs(dist_dir, exist_ok=True)
+    full = (
+        '<!doctype html>\n<html lang="pl">\n<head>\n'
+        '<meta charset="utf-8">\n'
+        '<meta name="viewport" content="width=device-width, initial-scale=1">\n'
+        '</head>\n<body>\n' + content + '\n</body>\n</html>\n'
+    )
+    dist_path = os.path.join(dist_dir, "index.html")
+    open(dist_path, "w", encoding="utf-8").write(full)
+
+    print(f"OK: {len(rows)} fragmentów")
+    print(f"  Artifact  -> {out_path} ({len(content.encode('utf-8'))/1e6:.2f} MB)")
+    print(f"  Cloudflare-> {dist_path} ({len(full.encode('utf-8'))/1e6:.2f} MB)")
 
 
 if __name__ == "__main__":
