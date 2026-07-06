@@ -1081,5 +1081,246 @@
   "trappings": "lekki pancerz (skórzany kaftan), 1k10 zk",
   "entries": "chłop, ciura obozowa, cyrulik, mieszczanin, strażnik",
   "exits": "fanatyk, inżynier, kupiec, mistrz rzemiosła, ochotnik, rzecznik rodu"
+ },
+ {
+  "name": "Rzezimieszek",
+  "type": "podstawowa",
+  "page": 50,
+  "main": {
+   "WW": "+10",
+   "US": "—",
+   "K": "+10",
+   "Odp": "—",
+   "Zr": "+10",
+   "Int": "—",
+   "SW": "+10",
+   "Ogd": "—"
+  },
+  "secondary": {
+   "A": "+1",
+   "Żyw": "+2",
+   "S": "—",
+   "Wt": "—",
+   "Sz": "—",
+   "Mag": "—",
+   "PO": "—",
+   "PP": "—"
+  },
+  "skills": "jeździectwo, plotkowanie albo targowanie, unik, zastraszanie",
+  "talents": "bijatyka, groźny albo charyzmatyczny, morderczy atak, ogłuszanie, rozbrajanie albo szybkie wyciągnięcie, silny cios",
+  "trappings": "średni pancerz (kaftan kolczy i skórzana kurta), tarcza, koń z siodłem i uprzężą",
+  "entries": "gladiator, łowca nagród, ochroniarz, szermierz estalijski, zarządca",
+  "exits": "gladiator, oprych, reketer, złodziej, zwadźca"
+ },
+ {
+  "name": "Skryba",
+  "type": "podstawowa",
+  "page": 50,
+  "main": {
+   "WW": "—",
+   "US": "—",
+   "K": "—",
+   "Odp": "—",
+   "Zr": "+10",
+   "Int": "+10",
+   "SW": "+10",
+   "Ogd": "+5"
+  },
+  "secondary": {
+   "A": "—",
+   "Żyw": "+2",
+   "S": "—",
+   "Wt": "—",
+   "Sz": "—",
+   "Mag": "—",
+   "PO": "—",
+   "PP": "—"
+  },
+  "skills": "czytanie i pisanie, nauka (dowolna), rzemiosło (kaligrafia), sekretny język (gildii), spostrzegawczość, wiedza (Imperium) albo plotkowanie, znajomość języka (bretoński), znajomość języka (klasyczny), znajomość języka (staroświatowy albo tileański)",
+  "talents": "poliglota",
+  "trappings": "nóż, dwie świece woskowe, 5 zapałek, ilustrowana księga, przybory do pisania, wosk do pieczęci",
+  "entries": "akolita, uczeń czarodzieja",
+  "exits": "akolita, nawigator, podżegacz, uczeń czarodzieja, uczony"
+ },
+ {
+  "name": "Sługa",
+  "type": "podstawowa",
+  "page": 51,
+  "main": {
+   "WW": "+5",
+   "US": "—",
+   "K": "+5",
+   "Odp": "—",
+   "Zr": "+10",
+   "Int": "+5",
+   "SW": "+10",
+   "Ogd": "+5"
+  },
+  "secondary": {
+   "A": "—",
+   "Żyw": "+2",
+   "S": "—",
+   "Wt": "—",
+   "Sz": "—",
+   "Mag": "—",
+   "PO": "—",
+   "PP": "—"
+  },
+  "skills": "czytanie i pisanie albo zwinne palce, gadanina, opieka nad zwierzętami albo rzemiosło (gotowanie), plotkowanie, powożenie albo przeszukiwanie, spostrzegawczość, targowanie albo wycena, unik",
+  "talents": "bardzo wytrzymały albo szybki refleks, czuły słuch albo chodu!, etykieta albo twardziel",
+  "trappings": "ubranie dobrej jakości, manierka, krzesiwo i hubka, latarnia sztormowa, olej do latarni",
+  "entries": "chłop, ciura obozowa, kanciarz",
+  "exits": "ciura obozowa, karczmarz, mieszczanin, paź, podżegacz, posłaniec, szpieg, złodziej"
+ },
+ {
+  "name": "Strażnik",
+  "type": "podstawowa",
+  "page": 51,
+  "main": {
+   "WW": "+10",
+   "US": "+5",
+   "K": "+5",
+   "Odp": "—",
+   "Zr": "+5",
+   "Int": "+10",
+   "SW": "—",
+   "Ogd": "+5"
+  },
+  "secondary": {
+   "A": "—",
+   "Żyw": "+2",
+   "S": "—",
+   "Wt": "—",
+   "Sz": "—",
+   "Mag": "—",
+   "PO": "—",
+   "PP": "—"
+  },
+  "skills": "nauka (prawo), plotkowanie, przeszukiwanie, spostrzegawczość, tropienie, unik, zastraszanie",
+  "talents": "ogłuszanie, opanowanie albo błyskotliwość, rozbrajanie albo bijatyka, silny cios",
+  "trappings": "lekki pancerz (skórzana kurta), mundur, latarnia na drągu, olej do latarni",
+  "entries": "strażnik więzienny, żołnierz",
+  "exits": "najemnik, reketer, rzemieślnik, sierżant, strażnik dróg, żołnierz"
+ },
+ {
+  "name": "Strażnik dróg",
+  "type": "podstawowa",
+  "page": 52,
+  "main": {
+   "WW": "+10",
+   "US": "+10",
+   "K": "+5",
+   "Odp": "—",
+   "Zr": "+10",
+   "Int": "+5",
+   "SW": "+5",
+   "Ogd": "—"
+  },
+  "secondary": {
+   "A": "—",
+   "Żyw": "+2",
+   "S": "—",
+   "Wt": "—",
+   "Sz": "—",
+   "Mag": "—",
+   "PO": "—",
+   "PP": "—"
+  },
+  "skills": "jeździectwo, nawigacja, opieka nad zwierzętami, powożenie, przeszukiwanie, spostrzegawczość, sztuka przetrwania, tropienie albo sekretne znaki (zwiadowców), wiedza (Imperium) albo plotkowanie",
+  "talents": "broń specjalna (palna), szybkie wyciągnięcie albo błyskawiczne przeładowanie",
+  "trappings": "pistolet z 10 kulami i zapasem prochu, średni pancerz (kaftan kolczy i skórzana kurta), tarcza, lekki koń bojowy z siodłem i uprzężą (albo kuc dla niziołka), 10 metrów liny",
+  "entries": "posłaniec, przepatrywacz, przewoźnik, strażnik, woźnica",
+  "exits": "banita, mytnik, posłaniec, przepatrywacz, rozbójnik, sierżant, zwiadowca"
+ },
+ {
+  "name": "Strażnik pól",
+  "type": "podstawowa",
+  "page": 52,
+  "main": {
+   "WW": "+5",
+   "US": "+10",
+   "K": "—",
+   "Odp": "+5",
+   "Zr": "+10",
+   "Int": "—",
+   "SW": "+10",
+   "Ogd": "—"
+  },
+  "secondary": {
+   "A": "—",
+   "Żyw": "+2",
+   "S": "—",
+   "Wt": "—",
+   "Sz": "—",
+   "Mag": "—",
+   "PO": "—",
+   "PP": "—"
+  },
+  "skills": "nauka (nekromancja) albo wiedza (Imperium), przeszukiwanie, skradanie się, spostrzegawczość, sztuka przetrwania, tropienie, ukrywanie się",
+  "talents": "bardzo szybki albo błyskotliwość, strzał precyzyjny albo błyskawiczne przeładowanie, wędrowiec albo szybkie wyciągnięcie",
+  "trappings": "proca z amunicją, kuc z siodłem i uprzężą, latarnia, olej do latarni, łopata",
+  "entries": "łowca, mytnik, ochotnik",
+  "exits": "łowca nagród, łowca wampirów, najemnik, włóczykij, zwiadowca",
+  "note": "Tylko niziołki."
+ },
+ {
+  "name": "Strażnik więzienny",
+  "type": "podstawowa",
+  "page": 53,
+  "main": {
+   "WW": "+10",
+   "US": "—",
+   "K": "+10",
+   "Odp": "+10",
+   "Zr": "—",
+   "Int": "—",
+   "SW": "+5",
+   "Ogd": "—"
+  },
+  "secondary": {
+   "A": "—",
+   "Żyw": "+3",
+   "S": "—",
+   "Wt": "—",
+   "Sz": "—",
+   "Mag": "—",
+   "PO": "—",
+   "PP": "—"
+  },
+  "skills": "dowodzenie, leczenie albo zwinne palce, mocna głowa, przeszukiwanie, spostrzegawczość, unik, zastraszanie",
+  "talents": "broń specjalna (unieruchamiająca), odporność na choroby, odporność na trucizny, zapasy",
+  "trappings": "jedna broń do wyboru spośród: bolas, sieć albo arkan, butelka podłego wina, manierka",
+  "entries": "ochroniarz, szczurołap",
+  "exits": "ochroniarz, oprawca, strażnik, szczurołap, zarządca"
+ },
+ {
+  "name": "Szczurołap",
+  "type": "podstawowa",
+  "page": 53,
+  "main": {
+   "WW": "+5",
+   "US": "+10",
+   "K": "—",
+   "Odp": "+5",
+   "Zr": "+10",
+   "Int": "—",
+   "SW": "+10",
+   "Ogd": "—"
+  },
+  "secondary": {
+   "A": "—",
+   "Żyw": "+2",
+   "S": "—",
+   "Wt": "—",
+   "Sz": "—",
+   "Mag": "—",
+   "PO": "—",
+   "PP": "—"
+  },
+  "skills": "opieka nad zwierzętami, przeszukiwanie, skradanie się, spostrzegawczość, tresura, ukrywanie się, zastawianie pułapek",
+  "talents": "broń specjalna (proca), grotołaz, odporność na choroby, odporność na trucizny",
+  "trappings": "proca z amunicją, 4 pułapki na szczury, drąg z martwymi szczurami (1k10), mały ale zajadły pies",
+  "entries": "goniec, hiena cmentarna, porywacz zwłok, strażnik więzienny",
+  "exits": "porywacz zwłok, strażnik więzienny, śmieciarz, tarczownik, włamywacz, złodziej"
  }
 ]
