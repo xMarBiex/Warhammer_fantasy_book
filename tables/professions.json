@@ -2197,5 +2197,246 @@
   "trappings": "rapier, średni pancerz (skórzana kurta), luneta, żaglowiec",
   "entries": "arystokrata, bosman, nawigator, odkrywca",
   "exits": "arystokrata, odkrywca, szpieg, uczony"
+ },
+ {
+  "name": "Książę złodziei",
+  "type": "zaawansowana",
+  "page": 70,
+  "main": {
+   "WW": "+20",
+   "US": "+20",
+   "K": "+15",
+   "Odp": "+15",
+   "Zr": "+20",
+   "Int": "+25",
+   "SW": "+20",
+   "Ogd": "+30"
+  },
+  "secondary": {
+   "A": "+1",
+   "Żyw": "+6",
+   "S": "—",
+   "Wt": "—",
+   "Sz": "—",
+   "Mag": "—",
+   "PO": "—",
+   "PP": "—"
+  },
+  "skills": "dowodzenie, plotkowanie, przekonywanie, sekretne znaki (złodziei), sekretny język (złodziejski), spostrzegawczość, targowanie, torturowanie, unik, wiedza (Imperium), wycena, zastraszanie",
+  "talents": "broń specjalna (kusze albo parująca), groźny, łotrzyk, odporność na trucizny, przemawianie, szósty zmysł, żyłka handlowa albo intrygant",
+  "trappings": "kusza pistoletowa i 10 bełtów albo łamacz mieczy, ubranie najlepszej jakości, odtrutki, 100 zk, organizacja przestępcza",
+  "entries": "demagog, herszt banitów, majordomus, mistrz cieni, mistrz gildii, paser, urzędnik, włamywacz",
+  "exits": "demagog, herszt banitów, mistrz cieni, urzędnik"
+ },
+ {
+  "name": "Kupiec",
+  "type": "zaawansowana",
+  "page": 70,
+  "main": {
+   "WW": "+10",
+   "US": "+10",
+   "K": "+5",
+   "Odp": "+5",
+   "Zr": "+10",
+   "Int": "+25",
+   "SW": "+20",
+   "Ogd": "+20"
+  },
+  "secondary": {
+   "A": "—",
+   "Żyw": "+4",
+   "S": "—",
+   "Wt": "—",
+   "Sz": "—",
+   "Mag": "—",
+   "PO": "—",
+   "PP": "—"
+  },
+  "skills": "czytanie i pisanie, jeździectwo, plotkowanie, powożenie, przekonywanie, rzemiosło (handel), sekretny język (gildii), targowanie, wiedza (dowolne dwie), wycena, znajomość języka (bretoński, estalijski, kislevski albo norski), znajomość języka (staroświatowy)",
+  "talents": "geniusz arytmetyczny, żyłka handlowa albo łotrzyk",
+  "trappings": "dom w mieście, magazyn, tysiąc zk w monecie lub towarach",
+  "entries": "bosman, karczmarz, majordomus, mieszczanin, mistrz rzemiosła, odkrywca, oficer, rybak, rzecznik rodu, rzemieślnik, uczony",
+  "exits": "mistrz gildii, ochotnik, reketer, szpieg, urzędnik"
+ },
+ {
+  "name": "Leśny duch",
+  "type": "zaawansowana",
+  "page": 71,
+  "main": {
+   "WW": "+20",
+   "US": "+30",
+   "K": "+15",
+   "Odp": "+15",
+   "Zr": "+25",
+   "Int": "+20",
+   "SW": "+20",
+   "Ogd": "—"
+  },
+  "secondary": {
+   "A": "+2",
+   "Żyw": "+6",
+   "S": "—",
+   "Wt": "—",
+   "Sz": "—",
+   "Mag": "—",
+   "PO": "—",
+   "PP": "—"
+  },
+  "skills": "czytanie z warg, nawigacja, sekretne znaki (łowców), sekretny język (łowców), skradanie się, spostrzegawczość, sztuka przetrwania, śledzenie, tropienie, ukrywanie się, unik, zastawianie pułapek, zastraszanie",
+  "talents": "błyskawiczne przeładowanie, błyskawiczny blok, strzał precyzyjny, strzał przebijający, szybkie wyciągnięcie, twardziel albo bardzo szybki",
+  "trappings": "elfi łuk i 10 strzał, lekki pancerz (skórznia najlepszej jakości)",
+  "entries": "zwiadowca",
+  "exits": "herszt banitów, łowca wampirów, oficer, strzelec",
+  "note": "Tylko elfy."
+ },
+ {
+  "name": "Łowca czarownic",
+  "type": "zaawansowana",
+  "page": 71,
+  "main": {
+   "WW": "+30",
+   "US": "+30",
+   "K": "+15",
+   "Odp": "+15",
+   "Zr": "+15",
+   "Int": "+15",
+   "SW": "+35",
+   "Ogd": "+20"
+  },
+  "secondary": {
+   "A": "+2",
+   "Żyw": "+6",
+   "S": "—",
+   "Wt": "—",
+   "Sz": "—",
+   "Mag": "—",
+   "PO": "—",
+   "PP": "—"
+  },
+  "skills": "dowodzenie, jeździectwo, nauka (magia), nauka (nekromancja), nauka (teologia), plotkowanie, przekonywanie, przeszukiwanie, skradanie się, spostrzegawczość, wiedza (Imperium), zastraszanie, znajomość języka (dowolny)",
+  "talents": "błyskawiczny blok, broń specjalna (kusze), broń specjalna (rzucana), broń specjalna (unieruchamiająca), groźny, odwaga, przemawianie, silny cios, szósty zmysł, szybki refleks albo strzelec wyborowy",
+  "trappings": "kusza pistoletowa i 10 bełtów, broń jednoręczna najlepszej jakości, 4 noże albo gwiazdki do rzucania, ciężki pancerz (zbroja płytowa), 10 metrów liny",
+  "entries": "arcykapłan, fechtmistrz, łowca wampirów, mistrz zakonny, skrytobójca, szampierz, wybraniec boży",
+  "exits": "akolita, demagog, fechtmistrz, mistrz zakonny, oficer"
+ },
+ {
+  "name": "Łowca wampirów",
+  "type": "zaawansowana",
+  "page": 72,
+  "main": {
+   "WW": "+20",
+   "US": "+20",
+   "K": "+10",
+   "Odp": "+20",
+   "Zr": "+15",
+   "Int": "+15",
+   "SW": "+20",
+   "Ogd": "—"
+  },
+  "secondary": {
+   "A": "+1",
+   "Żyw": "+4",
+   "S": "—",
+   "Wt": "—",
+   "Sz": "—",
+   "Mag": "—",
+   "PO": "—",
+   "PP": "—"
+  },
+  "skills": "nauka (historia albo nekromancja), przeszukiwanie, skradanie się, spostrzegawczość, śledzenie, tropienie, ukrywanie się, unik, wiedza (Imperium), wspinaczka, znajomość języka (klasyczny)",
+  "talents": "broń specjalna (kusze), grotołaz, morderczy atak, odwaga, silny cios, strzał precyzyjny albo błyskawiczne przeładowanie",
+  "trappings": "kusza samopowtarzalna i 10 bełtów, średni pancerz (kolcza zbroja), woda święcona, 4 kołki",
+  "entries": "hiena cmentarna, leśny duch, łowca nagród, rycerz, strażnik pól, zwiadowca",
+  "exits": "akolita, demagog, łowca czarownic, rycerz, strzelec"
+ },
+ {
+  "name": "Majordomus",
+  "type": "zaawansowana",
+  "page": 72,
+  "main": {
+   "WW": "+10",
+   "US": "+10",
+   "K": "+10",
+   "Odp": "+10",
+   "Zr": "—",
+   "Int": "+30",
+   "SW": "+20",
+   "Ogd": "+25"
+  },
+  "secondary": {
+   "A": "—",
+   "Żyw": "+4",
+   "S": "—",
+   "Wt": "—",
+   "Sz": "—",
+   "Mag": "—",
+   "PO": "—",
+   "PP": "—"
+  },
+  "skills": "czytanie i pisanie, dowodzenie, jeździectwo, nauka (prawo), plotkowanie, przekonywanie, przeszukiwanie, rzemiosło (handel), spostrzegawczość, targowanie, wiedza (Imperium), wycena, zastraszanie, znajomość języka (staroświatowy)",
+  "talents": "geniusz arytmetyczny, przemawianie",
+  "trappings": "2 stroje szlacheckie najlepszej jakości, przybory do pisania",
+  "entries": "dworzanin, kapłan, paź, uczony, urzędnik",
+  "exits": "książę złodziei, kupiec, paser, szlachcic"
+ },
+ {
+  "name": "Medyk",
+  "type": "zaawansowana",
+  "page": 73,
+  "main": {
+   "WW": "—",
+   "US": "—",
+   "K": "+10",
+   "Odp": "+10",
+   "Zr": "+15",
+   "Int": "+30",
+   "SW": "+20",
+   "Ogd": "+15"
+  },
+  "secondary": {
+   "A": "—",
+   "Żyw": "+4",
+   "S": "—",
+   "Wt": "—",
+   "Sz": "—",
+   "Mag": "—",
+   "PO": "—",
+   "PP": "—"
+  },
+  "skills": "czytanie i pisanie, leczenie, nauka (anatomia), plotkowanie, rzemiosło (aptekarstwo), spostrzegawczość, warzenie trucizn, znajomość języka (klasyczny)",
+  "talents": "chirurgia, odporność na choroby, ogłuszanie",
+  "trappings": "4 mikstury leczenia, narzędzia (instrumenty medyczne)",
+  "entries": "cyrulik, oprawca, uczony, żak",
+  "exits": "mistrz gildii, szpieg, uczony, zakonnik"
+ },
+ {
+  "name": "Mistrz cieni",
+  "type": "zaawansowana",
+  "page": 73,
+  "main": {
+   "WW": "+20",
+   "US": "+20",
+   "K": "+10",
+   "Odp": "+10",
+   "Zr": "+40",
+   "Int": "+25",
+   "SW": "+20",
+   "Ogd": "+25"
+  },
+  "secondary": {
+   "A": "+1",
+   "Żyw": "+6",
+   "S": "—",
+   "Wt": "—",
+   "Sz": "—",
+   "Mag": "—",
+   "PO": "—",
+   "PP": "—"
+  },
+  "skills": "charakteryzacja, czytanie i pisanie, hazard albo czytanie z warg, otwieranie zamków, plotkowanie, pływanie, przekonywanie, przeszukiwanie, sekretne znaki (złodziei), sekretny język (złodziejski), skradanie się, spostrzegawczość, ukrywanie się, unik, wspinaczka, wycena, zwinne palce",
+  "talents": "bijatyka albo brawura, broń specjalna (kusze), broń specjalna (rzucana), łotrzyk, wykrywanie pułapek",
+  "trappings": "kusza pistoletowa i 10 bełtów, 2 topory/młoty do rzucania albo 3 noże/gwiazdki do rzucania, wytrychy najlepszej jakości, płaszcz z kapturem, worek, 10 metrów liny najlepszej jakości",
+  "entries": "książę złodziei, paser, reketer, rozbójnik, szpieg, włamywacz",
+  "exits": "herszt banitów, książę złodziei, odkrywca, strzelec"
  }
 ]
