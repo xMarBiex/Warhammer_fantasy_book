@@ -38,8 +38,13 @@ def main():
             })
     data = json.dumps(rows, ensure_ascii=False, separators=(",", ":"))
 
+    # spis treści (mapa temat->strona) jako najwyższa waga wyszukiwarki
+    toc_path = os.path.join(ROOT, "data", "text", "toc.json")
+    toc = json.load(open(toc_path, encoding="utf-8")) if os.path.exists(toc_path) else []
+    toc_js = json.dumps(toc, ensure_ascii=False, separators=(",", ":"))
+
     tpl = open(tpl_path, encoding="utf-8").read()
-    content = tpl.replace("__DATA__", data)
+    content = tpl.replace("__DATA__", data).replace("__TOC__", toc_js)
 
     # 1) wersja dla Artifacta (bez <head> — Artifact sam dokłada nagłówek)
     open(out_path, "w", encoding="utf-8").write(content)

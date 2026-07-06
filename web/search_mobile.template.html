@@ -160,6 +160,7 @@
 
 <script>
 const DATA = __DATA__;
+const TOC = __TOC__;   // spis treści: [{t: tytuł, p: strona PDF}] — najwyższa waga
 
 // zwijanie polskich ogonków — odporność na literówki OCR (może/moze itd.)
 const MAP = {'ą':'a','ć':'c','ę':'e','ł':'l','ń':'n','ó':'o','ś':'s','ż':'z','ź':'z'};
@@ -182,6 +183,10 @@ for(let i=0;i<N;i++){
   FREQ[i] = m;
   HEAD[i] = words.slice(0, 8);
 }
+
+// spis treści -> znormalizowane słowa tytułów + strona
+const TOCN = TOC.map(e => ({ w: norm(e.t).split(' ').filter(x => x.length >= 4 && !STOP.has(x)), p: e.p }))
+               .filter(e => e.w.length);
 
 const q = document.getElementById('q'), meta = document.getElementById('meta'),
       results = document.getElementById('results'), form = document.getElementById('f');
@@ -213,20 +218,35 @@ function search(query){
   const df = {}; for(const t of terms) df[t]=0;
   const cand = [];
   for(let i=0;i<N;i++){
+    if(DATA[i].a <= 3) continue;             // pomijamy okładkę/stopkę/spis treści
     const per = {}; let any=false;
     for(const t of terms){ const tf = tfOf(t, FREQ[i]); if(tf>0){ per[t]=tf; df[t]++; any=true; } }
     if(any) cand.push({i, per});
   }
   // 2) IDF: rzadkie słowa (np. „akolita") ważą znacznie więcej niż częste („postać")
   const idf = {}; for(const t of terms) idf[t] = Math.log(1 + N/(df[t] || N));
+
+  // WAGA NAJWYŻSZA: spis treści. Trafienie w tytuł sekcji -> mocna premia dla jej strony.
+  const tocBoost = {};                       // strona PDF -> siła premii
+  for(const e of TOCN){
+    let sc=0, hit=0;
+    for(const t of terms){ if(e.w.some(w => wordHit(w, t))){ sc += idf[t]; hit++; } }
+    if(!hit) continue;
+    const strength = sc * (0.5 + hit/terms.length);   // pełniejsze pokrycie tytułu = silniej
+    for(let pg=e.p-1; pg<=e.p+1; pg++) tocBoost[pg] = Math.max(tocBoost[pg]||0, strength);
+  }
+
   for(const d of cand){
+    const dd = DATA[d.i];
     let s=0, p=0;
     for(const t of terms){ const tf=d.per[t]; if(tf){ s += (1+Math.log(tf))*idf[t]; p++; } }
     if(terms.length>1 && p===terms.length) s *= 1.25;  // bonus: wszystkie słowa obecne
-    // premia: termin w nagłówku fragmentu -> strona jest „o tym" (np. „Akolita —")
+    // premia (2): termin w nagłówku fragmentu -> strona jest „o tym" (np. „Akolita —")
     let hb=0;
     for(const t of terms){ if(HEAD[d.i].some(w => wordHit(w, t))) hb += idf[t]; }
     s += hb * 2.2;
+    // premia (1, najwyższa): strona wskazana przez spis treści
+    s += Math.max(tocBoost[dd.a]||0, tocBoost[dd.b]||0) * 5.0;
     d.s = s; d.p = p;
   }
   cand.sort((x,y) => y.s - x.s || y.p - x.p);
