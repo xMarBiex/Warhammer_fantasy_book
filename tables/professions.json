@@ -2438,5 +2438,125 @@
   "trappings": "kusza pistoletowa i 10 bełtów, 2 topory/młoty do rzucania albo 3 noże/gwiazdki do rzucania, wytrychy najlepszej jakości, płaszcz z kapturem, worek, 10 metrów liny najlepszej jakości",
   "entries": "książę złodziei, paser, reketer, rozbójnik, szpieg, włamywacz",
   "exits": "herszt banitów, książę złodziei, odkrywca, strzelec"
+ },
+ {
+  "name": "Mistrz gildii",
+  "type": "zaawansowana",
+  "page": 74,
+  "main": {
+   "WW": "+10",
+   "US": "+10",
+   "K": "—",
+   "Odp": "+10",
+   "Zr": "+15",
+   "Int": "+30",
+   "SW": "+20",
+   "Ogd": "+35"
+  },
+  "secondary": {
+   "A": "+1",
+   "Żyw": "+5",
+   "S": "—",
+   "Wt": "—",
+   "Sz": "—",
+   "Mag": "—",
+   "PO": "—",
+   "PP": "—"
+  },
+  "skills": "dowodzenie, nauka (historia), plotkowanie, przekonywanie, rzemiosło (dowolne dwa), sekretny język (gildii), spostrzegawczość, targowanie, wiedza (Imperium), wycena, znajomość języka (bretoński, estalijski, kislevski albo norski), znajomość języka (staroświatowy)",
+  "talents": "etykieta, poliglota, żyłka handlowa",
+  "trappings": "przybory do pisania, 100 zk, gildia kupiecka albo złodziei",
+  "entries": "arcymag, inżynier, kupiec, medyk, mistrz rzemiosła",
+  "exits": "książę złodziei, reketer, urzędnik"
+ },
+ {
+  "name": "Mistrz magii",
+  "type": "zaawansowana",
+  "page": 74,
+  "main": {
+   "WW": "+10",
+   "US": "+10",
+   "K": "—",
+   "Odp": "+10",
+   "Zr": "+15",
+   "Int": "+30",
+   "SW": "+35",
+   "Ogd": "+15"
+  },
+  "secondary": {
+   "A": "—",
+   "Żyw": "+4",
+   "S": "—",
+   "Wt": "—",
+   "Sz": "—",
+   "Mag": "+3",
+   "PO": "—",
+   "PP": "—"
+  },
+  "skills": "czytanie i pisanie, język tajemny (demoniczny albo tajemny elfi), język tajemny (magiczny), nauka (dowolne dwie), nauka (magia), plotkowanie albo jeździectwo, przekonywanie albo zastraszanie, splatanie magii, wiedza (dowolne dwie), wykrywanie magii, znajomość języka (dowolne trzy)",
+  "talents": "czarnoksięstwo albo odporność psychiczna, dotyk mocy albo morderczy pocisk, magia powszechna (dowolne dwie), zmysł magii albo medytacja",
+  "trappings": "narzędzia (alchemiczne), 2 przedmioty magiczne",
+  "entries": "wędrowny czarodziej",
+  "exits": "arcymag, odkrywca, uczony"
+ },
+ {
+  "name": "Mistrz rzemiosła",
+  "type": "zaawansowana",
+  "page": 75,
+  "main": {
+   "WW": "—",
+   "US": "—",
+   "K": "+10",
+   "Odp": "+10",
+   "Zr": "+20",
+   "Int": "+10",
+   "SW": "+10",
+   "Ogd": "+10"
+  },
+  "secondary": {
+   "A": "—",
+   "Żyw": "+3",
+   "S": "—",
+   "Wt": "—",
+   "Sz": "—",
+   "Mag": "—",
+   "PO": "—",
+   "PP": "—"
+  },
+  "skills": "plotkowanie, powożenie, rzemiosło (dowolne trzy), sekretny język (gildii), spostrzegawczość, targowanie, wycena, znajomość języka (bretoński, khazalid albo tileański)",
+  "talents": "talent artystyczny albo etykieta",
+  "trappings": "narzędzia (rzemieślnika) najlepszej jakości, 15 zk",
+  "entries": "inżynier, nawigator, ochotnik, rzemieślnik",
+  "exits": "demagog, inżynier, kupiec, mistrz gildii, ochotnik"
+ },
+ {
+  "name": "Mistrz zakonny",
+  "type": "zaawansowana",
+  "page": 75,
+  "main": {
+   "WW": "+35",
+   "US": "+10",
+   "K": "+20",
+   "Odp": "+20",
+   "Zr": "+20",
+   "Int": "+15",
+   "SW": "+25",
+   "Ogd": "+15"
+  },
+  "secondary": {
+   "A": "+2",
+   "Żyw": "+8",
+   "S": "—",
+   "Wt": "—",
+   "Sz": "—",
+   "Mag": "—",
+   "PO": "—",
+   "PP": "—"
+  },
+  "skills": "czytanie i pisanie, dowodzenie, jeździectwo, nauka (genealogia/heraldyka albo teologia), nauka (strategia/taktyka), przekonywanie, sekretne znaki (zwiadowców albo rycerzy zakonnych), sekretny język (bitewny), spostrzegawczość, tresura, unik, wiedza (dowolne trzy), znajomość języka (bretoński, estalijski, kislevski albo tileański)",
+  "talents": "błyskawiczny blok, broń specjalna (parująca), broń specjalna (szermiercza), etykieta, morderczy atak, obieżyświat, odwaga, ogłuszanie",
+  "trappings": "rapier albo szpada, puklerz albo lewak, ciężki pancerz (zbroja płytowa najlepszej jakości), symbol religijny, 50 zk",
+  "entries": "łowca czarownic, rycerz",
+  "exits": "arystokrata, fechtmistrz, łowca czarownic, oficer"
  }
 ]
