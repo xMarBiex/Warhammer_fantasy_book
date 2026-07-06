@@ -1565,5 +1565,246 @@
   "entries": "łowca, posłaniec",
   "exits": "łowca, przepatrywacz, weteran, włóczykij, zwiadowca",
   "note": "Tylko Leśne Elfy."
+ },
+ {
+  "name": "Woźnica",
+  "type": "podstawowa",
+  "page": 58,
+  "main": {
+   "WW": "+5",
+   "US": "+10",
+   "K": "—",
+   "Odp": "—",
+   "Zr": "+10",
+   "Int": "—",
+   "SW": "+5",
+   "Ogd": "+5"
+  },
+  "secondary": {
+   "A": "—",
+   "Żyw": "+2",
+   "S": "—",
+   "Wt": "—",
+   "Sz": "—",
+   "Mag": "—",
+   "PO": "—",
+   "PP": "—"
+  },
+  "skills": "leczenie albo jeździectwo, nawigacja, opieka nad zwierzętami, plotkowanie albo targowanie, powożenie, sekretne znaki (łowców), spostrzegawczość, znajomość języka (bretoński, kislevski albo tileański)",
+  "talents": "broń specjalna (palna), szybkie wyciągnięcie albo obieżyświat",
+  "trappings": "garłacz z zapasem amunicji na 10 strzałów, średni pancerz (kaftan kolczy i skórzana kurta), instrument muzyczny (róg woźnicy)",
+  "entries": "posłaniec, przepatrywacz",
+  "exits": "banita, mytnik, przemytnik, przewoźnik, rozbójnik, strażnik dróg, zwiadowca"
+ },
+ {
+  "name": "Zabójca trolli",
+  "type": "podstawowa",
+  "page": 58,
+  "main": {
+   "WW": "+10",
+   "US": "—",
+   "K": "+5",
+   "Odp": "+5",
+   "Zr": "+5",
+   "Int": "—",
+   "SW": "+10",
+   "Ogd": "—"
+  },
+  "secondary": {
+   "A": "+1",
+   "Żyw": "+3",
+   "S": "—",
+   "Wt": "—",
+   "Sz": "—",
+   "Mag": "—",
+   "PO": "—",
+   "PP": "—"
+  },
+  "skills": "mocna głowa, unik, zastraszanie",
+  "talents": "bijatyka, broń specjalna (dwuręczna), rozbrajanie albo szybkie wyciągnięcie, silny cios, szybki refleks albo niezwykle odporny, twardziel",
+  "trappings": "broń dwuręczna, lekki pancerz (skórzany kaftan), butelka spirytusu lub gorzałki kiepskiej jakości",
+  "entries": "gladiator",
+  "exits": "zabójca olbrzymów",
+  "note": "Tylko krasnoludy."
+ },
+ {
+  "name": "Zarządca",
+  "type": "podstawowa",
+  "page": 59,
+  "main": {
+   "WW": "+5",
+   "US": "+5",
+   "K": "+5",
+   "Odp": "—",
+   "Zr": "—",
+   "Int": "+10",
+   "SW": "+5",
+   "Ogd": "+10"
+  },
+  "secondary": {
+   "A": "—",
+   "Żyw": "+2",
+   "S": "—",
+   "Wt": "—",
+   "Sz": "—",
+   "Mag": "—",
+   "PO": "—",
+   "PP": "—"
+  },
+  "skills": "czytanie i pisanie, dowodzenie albo nawigacja, jeździectwo, nauka (prawo), opieka nad zwierzętami albo plotkowanie, przekonywanie, spostrzegawczość, zastraszanie albo wiedza (Imperium)",
+  "talents": "etykieta albo geniusz arytmetyczny, przemawianie",
+  "trappings": "lekki pancerz (skórzana kurta i skórzany hełm), ubranie dobrej jakości, koń z siodłem i uprzężą",
+  "entries": "ochroniarz, strażnik więzienny",
+  "exits": "mytnik, ochotnik, przemytnik, reketer, rzezimieszek, urzędnik"
+ },
+ {
+  "name": "Złodziej",
+  "type": "podstawowa",
+  "page": 59,
+  "main": {
+   "WW": "+5",
+   "US": "+5",
+   "K": "—",
+   "Odp": "—",
+   "Zr": "+15",
+   "Int": "+5",
+   "SW": "—",
+   "Ogd": "+10"
+  },
+  "secondary": {
+   "A": "—",
+   "Żyw": "+2",
+   "S": "—",
+   "Wt": "—",
+   "Sz": "—",
+   "Mag": "—",
+   "PO": "—",
+   "PP": "—"
+  },
+  "skills": "czytanie i pisanie albo zwinne palce, hazard albo otwieranie zamków, przekonywanie albo wspinaczka, przeszukiwanie, sekretny język (złodziejski) albo sekretne znaki (złodziei), skradanie się, spostrzegawczość, ukrywanie się, wycena albo charakteryzacja",
+  "talents": "geniusz arytmetyczny albo wykrywanie pułapek, ulicznik albo łotrzyk",
+  "trappings": "lekki pancerz (skórzany kaftan), worek, wytrychy, 10 metrów liny",
+  "entries": "banita, cyrkowiec, hiena cmentarna, kanciarz, mytnik, ochotnik, oprawca, porywacz zwłok, przemytnik, rzezimieszek, sługa, szczurołap, włóczykij",
+  "exits": "cyrkowiec, hiena cmentarna, kanciarz, paser, szarlatan, włamywacz"
+ },
+ {
+  "name": "Żak",
+  "type": "podstawowa",
+  "page": 60,
+  "main": {
+   "WW": "—",
+   "US": "—",
+   "K": "—",
+   "Odp": "—",
+   "Zr": "+10",
+   "Int": "+10",
+   "SW": "+5",
+   "Ogd": "+10"
+  },
+  "secondary": {
+   "A": "—",
+   "Żyw": "+2",
+   "S": "—",
+   "Wt": "—",
+   "Sz": "—",
+   "Mag": "—",
+   "PO": "—",
+   "PP": "—"
+  },
+  "skills": "czytanie i pisanie, leczenie albo przeszukiwanie, nauka (dowolna), nauka (dowolna) albo plotkowanie, przekonywanie albo mocna głowa, spostrzegawczość, znajomość języka (klasyczny), znajomość języka (staroświatowy)",
+  "talents": "błyskotliwość albo charyzmatyczny, etykieta albo poliglota, obieżyświat albo geniusz arytmetyczny",
+  "trappings": "dwie księgi związane z wybraną dziedziną nauki, przybory do pisania",
+  "entries": "bard, paź, porywacz zwłok, rzecznik rodu, szlachcic",
+  "exits": "akolita, cyrulik, inżynier, medyk, podżegacz, rzecznik rodu, uczeń czarodzieja, uczony"
+ },
+ {
+  "name": "Żeglarz",
+  "type": "podstawowa",
+  "page": 60,
+  "main": {
+   "WW": "+10",
+   "US": "+5",
+   "K": "+10",
+   "Odp": "—",
+   "Zr": "+10",
+   "Int": "—",
+   "SW": "—",
+   "Ogd": "—"
+  },
+  "secondary": {
+   "A": "+1",
+   "Żyw": "+2",
+   "S": "—",
+   "Wt": "—",
+   "Sz": "—",
+   "Mag": "—",
+   "PO": "—",
+   "PP": "—"
+  },
+  "skills": "mocna głowa albo spostrzegawczość, pływanie, unik, wiedza (Bretonia, Norska, Tilea albo Jałowa Kraina), wioślarstwo, wspinaczka, znajomość języka (bretoński, norski albo tileański), żeglarstwo",
+  "talents": "obieżyświat, silny cios albo brawura, twardziel albo bijatyka",
+  "trappings": "lekki pancerz (skórzany kaftan), butelka gorzałki kiepskiej jakości",
+  "entries": "berserker z Norski, flisak, przemytnik, przewoźnik, rybak, rzecznik rodu",
+  "exits": "bosman, kanciarz, nawigator, przemytnik, żołnierz okrętowy"
+ },
+ {
+  "name": "Żołnierz",
+  "type": "podstawowa",
+  "page": 61,
+  "main": {
+   "WW": "+10",
+   "US": "+10",
+   "K": "—",
+   "Odp": "—",
+   "Zr": "+10",
+   "Int": "—",
+   "SW": "+5",
+   "Ogd": "—"
+  },
+  "secondary": {
+   "A": "+1",
+   "Żyw": "+2",
+   "S": "—",
+   "Wt": "—",
+   "Sz": "—",
+   "Mag": "—",
+   "PO": "—",
+   "PP": "—"
+  },
+  "skills": "hazard albo plotkowanie, opieka nad zwierzętami albo leczenie, powożenie albo jeździectwo, unik, wiedza (Imperium) albo spostrzegawczość, zastraszanie",
+  "talents": "broń specjalna (palna albo dwuręczna), morderczy atak albo błyskawiczne przeładowanie, ogłuszanie albo strzał precyzyjny, rozbrajanie albo szybkie wyciągnięcie, strzał mierzony albo silny cios",
+  "trappings": "broń dwuręczna (halabarda) albo rusznica z amunicją na 10 strzałów, lekki pancerz (skórznia), mundur, tarcza",
+  "entries": "biczownik, łowca, mytnik, posłaniec, strażnik",
+  "exits": "najemnik, przepatrywacz, sierżant, strażnik, weteran, włóczykij"
+ },
+ {
+  "name": "Żołnierz okrętowy",
+  "type": "podstawowa",
+  "page": 61,
+  "main": {
+   "WW": "+10",
+   "US": "+10",
+   "K": "+10",
+   "Odp": "—",
+   "Zr": "+5",
+   "Int": "—",
+   "SW": "+5",
+   "Ogd": "—"
+  },
+  "secondary": {
+   "A": "+1",
+   "Żyw": "+3",
+   "S": "—",
+   "Wt": "—",
+   "Sz": "—",
+   "Mag": "—",
+   "PO": "—",
+   "PP": "—"
+  },
+  "skills": "mocna głowa, plotkowanie albo sekretny język (bitewny), pływanie, unik, wiedza (Jałowa Kraina) albo hazard, wioślarstwo, zastraszanie",
+  "talents": "ogłuszanie, rozbrajanie albo szybkie wyciągnięcie, silny cios",
+  "trappings": "łuk albo kusza i 10 strzał albo bełtów, lekki pancerz (skórzana kurta), tarcza, 10 metrów liny z kotwiczką",
+  "entries": "flisak, rybak, żeglarz",
+  "exits": "banita, bosman, oprych, przemytnik, sierżant"
  }
 ]
