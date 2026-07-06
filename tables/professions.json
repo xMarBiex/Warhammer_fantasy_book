@@ -359,5 +359,246 @@
   "entries": "tarczownik",
   "exits": "hiena cmentarna, szczurołap, tarczownik, weteran, zwiadowca",
   "note": "Tylko krasnoludy."
+ },
+ {
+  "name": "Górnik",
+  "type": "podstawowa",
+  "page": 38,
+  "main": {
+   "WW": "+5",
+   "US": "+5",
+   "K": "+10",
+   "Odp": "+5",
+   "Zr": "—",
+   "Int": "+5",
+   "SW": "+5",
+   "Ogd": "—"
+  },
+  "secondary": {
+   "A": "—",
+   "Żyw": "+2",
+   "S": "—",
+   "Wt": "—",
+   "Sz": "—",
+   "Mag": "—",
+   "PO": "—",
+   "PP": "—"
+  },
+  "skills": "nawigacja, opieka nad zwierzętami, rzemiosło (górnictwo albo górnictwo odkrywkowe), spostrzegawczość, ukrywanie się albo powożenie, wspinaczka, wycena albo sztuka przetrwania",
+  "talents": "bardzo wytrzymały albo urodzony wojownik, broń specjalna (dwuręczna), wyczucie kierunku",
+  "trappings": "broń dwuręczna (dwuręczny kilof), lekki pancerz (skórzana kurta), kilof, łopata, latarnia sztormowa, olej do latarni",
+  "entries": "łowca, węglarz",
+  "exits": "inżynier, najemnik, przemytnik, tarczownik, węglarz, zwiadowca"
+ },
+ {
+  "name": "Guślarz",
+  "type": "podstawowa",
+  "page": 38,
+  "main": {
+   "WW": "—",
+   "US": "—",
+   "K": "—",
+   "Odp": "+5",
+   "Zr": "+5",
+   "Int": "+5",
+   "SW": "+10",
+   "Ogd": "+10"
+  },
+  "secondary": {
+   "A": "—",
+   "Żyw": "+2",
+   "S": "—",
+   "Wt": "—",
+   "Sz": "—",
+   "Mag": "+1",
+   "PO": "—",
+   "PP": "—"
+  },
+  "skills": "leczenie albo hipnoza, opieka nad zwierzętami albo targowanie, oswajanie albo rzemiosło (aptekarstwo), przekonywanie albo zastraszanie, przeszukiwanie, splatanie magii, spostrzegawczość, wykrywanie magii",
+  "talents": "gusła, magia prosta (gusła)",
+  "trappings": "mikstura lecznicza, płaszcz z kapturem",
+  "entries": "brak",
+  "exits": "akolita, banita, szarlatan, uczeń czarodzieja, włóczykij",
+  "note": "Magia. Nie krasnoludy ani niziołki."
+ },
+ {
+  "name": "Hiena cmentarna",
+  "type": "podstawowa",
+  "page": 39,
+  "main": {
+   "WW": "+10",
+   "US": "—",
+   "K": "—",
+   "Odp": "—",
+   "Zr": "+10",
+   "Int": "+10",
+   "SW": "+10",
+   "Ogd": "+5"
+  },
+  "secondary": {
+   "A": "—",
+   "Żyw": "+2",
+   "S": "—",
+   "Wt": "—",
+   "Sz": "—",
+   "Mag": "—",
+   "PO": "—",
+   "PP": "—"
+  },
+  "skills": "czytanie i pisanie, otwieranie zamków albo skradanie się, przeszukiwanie, spostrzegawczość, ukrywanie się albo sztuka przetrwania, wiedza (Imperium) albo sekretne znaki (złodziei), wspinaczka, wycena, znajomość języka (eltharin, khazalid albo klasyczny)",
+  "talents": "szczęście albo szósty zmysł, wykrywanie pułapek albo grotołaz",
+  "trappings": "lekki pancerz (skórzana kurta), łom, latarnia, olej do latarni, 10 metrów liny, 2 worki",
+  "entries": "goniec, tarczownik, złodziej",
+  "exits": "łowca wampirów, paser, szczurołap, tarczownik, złodziej"
+ },
+ {
+  "name": "Kanciarz",
+  "type": "podstawowa",
+  "page": 39,
+  "main": {
+   "WW": "+5",
+   "US": "+5",
+   "K": "—",
+   "Odp": "—",
+   "Zr": "+10",
+   "Int": "+5",
+   "SW": "+5",
+   "Ogd": "+10"
+  },
+  "secondary": {
+   "A": "—",
+   "Żyw": "+2",
+   "S": "—",
+   "Wt": "—",
+   "Sz": "—",
+   "Mag": "—",
+   "PO": "—",
+   "PP": "—"
+  },
+  "skills": "gadanina, hazard albo sekretne znaki (złodziei), kuglarstwo (aktorstwo albo gawędziarstwo), plotkowanie albo targowanie, przekonywanie, przeszukiwanie albo sekretny język (złodziejski), spostrzegawczość, wycena, znajomość języka (staroświatowy)",
+  "talents": "chodu! albo łotrzyk, przemawianie, szczęście albo szósty zmysł",
+  "trappings": "ubranie najlepszej jakości albo zestaw kości do gry albo talia kart, 1k10 zk",
+  "entries": "cyrkowiec, paź, podżegacz, rzecznik rodu, skrytobójca, szermierz estalijski, szlachcic, złodziej, zwadźca, żeglarz",
+  "exits": "banita, cyrkowiec, demagog, sługa, szarlatan, złodziej"
+ },
+ {
+  "name": "Kozak kislevski",
+  "type": "podstawowa",
+  "page": 40,
+  "main": {
+   "WW": "+10",
+   "US": "+10",
+   "K": "—",
+   "Odp": "+10",
+   "Zr": "—",
+   "Int": "—",
+   "SW": "+10",
+   "Ogd": "—"
+  },
+  "secondary": {
+   "A": "—",
+   "Żyw": "+2",
+   "S": "—",
+   "Wt": "—",
+   "Sz": "—",
+   "Mag": "—",
+   "PO": "—",
+   "PP": "—"
+  },
+  "skills": "hazard albo targowanie, mocna głowa, przeszukiwanie, spostrzegawczość, sztuka przetrwania, unik, wiedza (Kislev), znajomość języka (kislevski)",
+  "talents": "broń specjalna (dwuręczna), morderczy atak",
+  "trappings": "łuk i 10 strzał, broń dwuręczna (dwuręczny topór), średni pancerz (kolczuga, skórzana kurta i skórzane nogawice)",
+  "entries": "brak",
+  "exits": "łowca nagród, najemnik, sierżant, tarczownik, weteran"
+ },
+ {
+  "name": "Leśnik",
+  "type": "podstawowa",
+  "page": 40,
+  "main": {
+   "WW": "+10",
+   "US": "—",
+   "K": "+10",
+   "Odp": "—",
+   "Zr": "+5",
+   "Int": "—",
+   "SW": "+10",
+   "Ogd": "—"
+  },
+  "secondary": {
+   "A": "—",
+   "Żyw": "+3",
+   "S": "—",
+   "Wt": "—",
+   "Sz": "—",
+   "Mag": "—",
+   "PO": "—",
+   "PP": "—"
+  },
+  "skills": "sekretne znaki (łowców), sekretny język (łowców), skradanie się, spostrzegawczość, tropienie albo zastawianie pułapek, ukrywanie się, wspinaczka",
+  "talents": "bardzo szybki albo niezwykle odporny, broń specjalna (dwuręczna), wędrowiec",
+  "trappings": "broń dwuręczna (dwuręczny topór), lekki pancerz (skórzana kurta), odtrutki",
+  "entries": "węglarz, włóczykij",
+  "exits": "banita, łowca, ochotnik, włóczykij, zwiadowca"
+ },
+ {
+  "name": "Łowca",
+  "type": "podstawowa",
+  "page": 41,
+  "main": {
+   "WW": "—",
+   "US": "+15",
+   "K": "—",
+   "Odp": "+5",
+   "Zr": "+10",
+   "Int": "+5",
+   "SW": "—",
+   "Ogd": "—"
+  },
+  "secondary": {
+   "A": "—",
+   "Żyw": "+3",
+   "S": "—",
+   "Wt": "—",
+   "Sz": "—",
+   "Mag": "—",
+   "PO": "—",
+   "PP": "—"
+  },
+  "skills": "przeszukiwanie albo pływanie, sekretne znaki (łowców), skradanie się albo zastawianie pułapek, spostrzegawczość, sztuka przetrwania, tropienie, ukrywanie się",
+  "talents": "błyskawiczne przeładowanie, strzelec wyborowy albo wędrowiec, szybki refleks albo niezwykle odporny, twardziel albo broń specjalna (długi łuk)",
+  "trappings": "długi łuk i 10 strzał, 2 potrzaski albo wnyki na zwierzęta, odtrutki",
+  "entries": "leśnik, węglarz, wojownik klanowy",
+  "exits": "górnik, łowca nagród, strażnik pól, strzelec, węglarz, wojownik klanowy, zwiadowca, żołnierz"
+ },
+ {
+  "name": "Łowca nagród",
+  "type": "podstawowa",
+  "page": 41,
+  "main": {
+   "WW": "+5",
+   "US": "+10",
+   "K": "+5",
+   "Odp": "—",
+   "Zr": "+10",
+   "Int": "—",
+   "SW": "+5",
+   "Ogd": "—"
+  },
+  "secondary": {
+   "A": "—",
+   "Żyw": "+2",
+   "S": "—",
+   "Wt": "—",
+   "Sz": "—",
+   "Mag": "—",
+   "PO": "—",
+   "PP": "—"
+  },
+  "skills": "przeszukiwanie, skradanie się, spostrzegawczość, sztuka przetrwania, śledzenie, tropienie, zastraszanie",
+  "talents": "broń specjalna (unieruchamiająca), strzał mierzony albo silny cios, strzelec wyborowy albo ogłuszanie, wędrowiec",
+  "trappings": "kusza i 10 bełtów, sieć, lekki pancerz (skórzany kaftan i skórzany hełm), kajdany, 10 metrów liny",
+  "entries": "gladiator, kozak kislevski, łowca, najemnik, ochroniarz, strażnik pól",
+  "exits": "łowca wampirów, najemnik, rzezimieszek, strzelec, zwiadowca"
  }
 ]
