@@ -1,56 +1,72 @@
-# Warhammer Fantasy — książka (PDF) → baza wektorowa
+# Warhammer Fantasy — Księga Zasad (PDF) → baza wektorowa
 
-Pipeline zamieniający książkę w PDF (z grafikami i ozdobnikami, ~150 MB)
-na przeszukiwalną **bazę wektorową** (RAG). Budujemy **małymi krokami** i
-po każdym sprawdzamy jakość — szczególnie OCR.
+Pipeline zamieniający zeskanowaną książkę w PDF (266 stron, ~143 MB, pełną
+grafik i ozdobników) na przeszukiwalną **bazę wektorową** (RAG). Budowany
+**małymi krokami**, z weryfikacją jakości po każdym — szczególnie OCR.
 
-## Plan (krok po kroku)
+## Status
 
 | Krok | Co robimy | Status |
 |------|-----------|--------|
-| 0 | Wgranie PDF (Google Drive → `data/raw/`) | ⏳ czeka na plik |
-| 1 | **Inspekcja PDF + test OCR** — ile stron, czy jest warstwa tekstowa, jakość OCR na próbkach (`scripts/01_inspect.py`) | ✅ narzędzie gotowe |
-| 2 | Ekstrakcja tekstu z całości (warstwa tekstowa lub OCR pol+eng) → `data/text/` | ⬜ |
-| 3 | Czyszczenie + podział na fragmenty (chunking) z metadanymi (strona, rozdział) | ⬜ |
-| 4 | Embeddingi + zapis do bazy wektorowej (ChromaDB, standard, lokalnie) | ⬜ |
-| 5 | Zapytania testowe (retrieval) + ocena trafności | ⬜ |
+| 0 | Wgranie PDF → `data/raw/` (przez GitHub Release, patrz niżej) | ✅ pobrany, checksum OK |
+| 1 | Inspekcja PDF + test OCR (`scripts/01_inspect.py`) | ✅ 0% warstwy tekstowej → skan; OCR pol+eng czytelny |
+| 2 | OCR całości → `data/text/pages/` (`scripts/02_extract.py`) | ⏳ w toku |
+| 3 | Czyszczenie + chunking z metadanymi stron (`scripts/03_chunk.py`) | ✅ |
+| 4 | Embeddingi + baza wektorowa ChromaDB (`scripts/04_build_vectordb.py`) | ✅ (przetestowane na 10 stronach) |
+| 5 | Zapytania testowe / retrieval (`scripts/05_query.py`) | ✅ (przetestowane) |
 
-Rozbudowujemy pipeline dopiero po zatwierdzeniu poprzedniego kroku —
-nie chcemy OCR-ować 150 MB na złych ustawieniach.
+**Test na 10 stronach** przeszedł: retrieval trafnie odpowiada na pytania po
+polsku z cytowaniem stron. Pełną bazę budujemy po zakończeniu OCR całości.
 
-## Jak wgrać PDF, żebym go widział
-
-Plik ma 150 MB — **za duży dla gita** (GitHub odrzuca >100 MB i nie należy
-trzymać binariów w repo). Najprościej przez **Google Drive** (podłączony):
-
-1. Wrzuć PDF na swój Dysk Google (gdziekolwiek).
-2. Napisz mi nazwę pliku **albo** wklej link `drive.google.com/file/d/.../view`.
-3. Pobiorę go do `data/raw/` i odpalę krok 1 (inspekcja + próbki OCR).
-
-Alternatywy, jeśli wolisz: publiczny link (Dropbox / WeTransfer / S3) —
-wtedy ściągnę przez `curl`.
-
-## Stack (proponowany, „zgodnie ze standardami")
+## Stack (finalny, dobrany pod ograniczenia środowiska)
 
 - **Ekstrakcja / render:** PyMuPDF (fitz)
-- **OCR:** Tesseract 5 (`pol+eng`) — tylko dla stron bez warstwy tekstowej
-- **Baza wektorowa:** ChromaDB (lokalna, trwała, standard dla RAG)
-- **Embeddingi:** model wielojęzyczny (np. `intfloat/multilingual-e5`)
-  lokalnie przez `sentence-transformers` — bez kluczy API i offline.
-  Do ustalenia w kroku 4 (lokalnie vs API).
+- **OCR:** Tesseract 5 (`pol+eng`), render 300 DPI (eksperyment: 300 DPI surowe
+  = optimum; binaryzacja pogarsza polskie znaki diakrytyczne)
+- **Embeddingi:** `intfloat/multilingual-e5-large` (dim 1024) przez **fastembed**
+  (ONNX, bez torcha). Model pobierany z **Google Cloud Storage**, bo HuggingFace
+  jest w tym środowisku zablokowany — szczegóły w `scripts/embedder.py`.
+- **Baza wektorowa:** **ChromaDB** (lokalna, trwała, metryka cosine)
+
+Uwaga o jakości: skan generuje literówki OCR (gubione ż/ć/ń, ligatura „fi"→h),
+ale e5-large jest na taki szum odporny — retrieval działa poprawnie mimo błędów.
+
+## Jak dostarczono PDF (150 MB)
+
+Plik jest za duży dla gita (>100 MB) i dla pobrania przez MCP (base64 do
+kontekstu). Google Drive i Dropbox są zablokowane przez egress proxy. Zadziałał
+**GitHub Release**: PDF wgrany jako *release asset* (host `objects.githubusercontent.com`
+jest dostępny), a skrypt pobiera go z `browser_download_url`.
 
 ## Instalacja
 
 ```bash
-pip install -r requirements.txt
-# OCR systemowy:
+# OCR systemowy
 sudo apt-get install -y tesseract-ocr tesseract-ocr-pol tesseract-ocr-eng
+# Python w venv (unika konfliktu z systemowym PyYAML)
+python3 -m venv .venv && . .venv/bin/activate
+pip install -r requirements.txt
 ```
 
-## Użycie (krok 1)
+## Użycie (cały pipeline)
 
 ```bash
-python scripts/01_inspect.py data/raw/ksiazka.pdf
-# konkretne strony do OCR + wyższe DPI:
-python scripts/01_inspect.py data/raw/ksiazka.pdf --ocr 1,50,120 --dpi 400
+. .venv/bin/activate
+
+# 1. Inspekcja + próbki OCR
+python scripts/01_inspect.py data/raw/ksiega_zasad.pdf
+
+# 2. OCR całości (wznawialny — można przerwać i wznowić)
+python scripts/02_extract.py data/raw/ksiega_zasad.pdf
+
+# 3. Chunking z metadanymi stron
+python scripts/03_chunk.py
+
+# 4. Embeddingi + baza wektorowa
+python scripts/04_build_vectordb.py
+
+# 5. Zapytanie (retrieval z cytowaniem stron)
+python scripts/05_query.py "jak działa parowanie ciosu?" -k 5
 ```
+
+Dane (PDF, tekst OCR, baza wektorowa) są poza gitem — patrz `.gitignore`.

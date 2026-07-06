@@ -3,6 +3,9 @@ pymupdf>=1.24        # odczyt PDF, warstwa tekstowa, render stron do obrazów
 pytesseract>=0.3.10  # wrapper na tesseract OCR (wymaga systemowego tesseract-ocr + pol/eng)
 pillow>=10.0
 
-# --- Baza wektorowa (krok 4+, dokładamy po zatwierdzeniu OCR) ---
-# chromadb>=0.5
-# sentence-transformers>=3.0
+# --- Baza wektorowa (krok 4-5) ---
+chromadb>=1.5        # trwała baza wektorowa (cosine)
+fastembed>=0.8       # embeddingi ONNX (bez torcha); model multilingual-e5-large
+# Uwaga: HuggingFace bywa niedostępny; model E5-large pobierany jest z
+# Google Cloud Storage (patrz scripts/embedder.py). Instaluj w venv,
+# by uniknąć konfliktu z systemowym PyYAML (Debian).

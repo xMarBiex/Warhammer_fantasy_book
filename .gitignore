@@ -1,8 +1,9 @@
-# Duże pliki źródłowe i dane generowane — NIE trzymamy w gicie
-data/raw/*.pdf
-data/text/
-data/chroma/
-data/images/
+# Dane i artefakty generowane — NIE trzymamy w gicie
+# (trzymamy tylko strukturę katalogów przez .gitkeep)
+data/*
+!data/raw/
+data/raw/*
+!data/**/.gitkeep
 
 # Python
 __pycache__/
@@ -11,6 +12,6 @@ __pycache__/
 venv/
 .env
 
-# Modele/cache embeddingów
+# Modele / cache embeddingów
 .cache/
 models/

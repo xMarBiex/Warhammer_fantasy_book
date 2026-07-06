@@ -1,13 +1,20 @@
 #!/usr/bin/env python3
 """Krok 5: zapytanie do bazy wektorowej (retrieval) z cytowaniem stron.
 
+Model E5 -> zapytanie z prefiksem "query: ". Zwraca top-k fragmentów z numerami
+stron i podobieństwem kosinusowym.
+
     python scripts/05_query.py "jak działa parowanie ciosu?"
-    python scripts/05_query.py "zasady inicjatywy" -k 5
+    python scripts/05_query.py "zasady inicjatywy" -k 5 --db data/chroma_test --collection test
 """
 import argparse
+import os
+import sys
 
 import chromadb
-from sentence_transformers import SentenceTransformer
+
+sys.path.insert(0, os.path.dirname(os.path.abspath(__file__)))
+from embedder import load_embedder, embed_query
 
 
 def main():
@@ -20,13 +27,9 @@ def main():
 
     client = chromadb.PersistentClient(path=args.db)
     col = client.get_collection(args.collection)
-    meta = col.metadata or {}
-    model_name = meta.get("model", "intfloat/multilingual-e5-base")
-    is_e5 = meta.get("is_e5", "e5" in model_name.lower())
 
-    model = SentenceTransformer(model_name)
-    q = ("query: " + args.query) if is_e5 else args.query
-    qemb = model.encode([q], normalize_embeddings=True)[0].tolist()
+    model = load_embedder()
+    qemb = embed_query(model, args.query).tolist()
 
     res = col.query(query_embeddings=[qemb], n_results=args.k,
                     include=["documents", "metadatas", "distances"])
@@ -35,8 +38,7 @@ def main():
     for doc, m, dist in zip(res["documents"][0], res["metadatas"][0], res["distances"][0]):
         pages = (f"str. {m['page_start']}" if m["page_start"] == m["page_end"]
                  else f"str. {m['page_start']}-{m['page_end']}")
-        sim = 1 - dist  # cosine distance -> podobieństwo
-        print(f"\n[{pages}]  podobieństwo={sim:.3f}")
+        print(f"\n[{pages}]  podobieństwo={1 - dist:.3f}")
         print(doc[:600].strip())
 
 
