@@ -1806,5 +1806,216 @@
   "trappings": "łuk albo kusza i 10 strzał albo bełtów, lekki pancerz (skórzana kurta), tarcza, 10 metrów liny z kotwiczką",
   "entries": "flisak, rybak, żeglarz",
   "exits": "banita, bosman, oprych, przemytnik, sierżant"
+ },
+ {
+  "name": "Arcykapłan",
+  "type": "zaawansowana",
+  "page": 62,
+  "main": {
+   "WW": "+20",
+   "US": "+20",
+   "K": "+15",
+   "Odp": "+15",
+   "Zr": "+15",
+   "Int": "+20",
+   "SW": "+30",
+   "Ogd": "+25"
+  },
+  "secondary": {
+   "A": "+1",
+   "Żyw": "+6",
+   "S": "—",
+   "Wt": "—",
+   "Sz": "—",
+   "Mag": "+3",
+   "PO": "—",
+   "PP": "—"
+  },
+  "skills": "jeździectwo albo pływanie, język tajemny (magiczny), leczenie, nauka (dowolne trzy), nauka (teologia), plotkowanie, przekonywanie, splatanie magii, wiedza (dowolne dwie), wykrywanie magii, zastraszanie, znajomość języka (dowolne trzy)",
+  "talents": "dotyk mocy albo odporność, etykieta, magia powszechna (dowolne dwie), pancerz wiary albo morderczy pocisk, zmysł magii albo medytacja",
+  "trappings": "relikwia",
+  "entries": "wybraniec boży",
+  "exits": "łowca czarownic, uczony, urzędnik"
+ },
+ {
+  "name": "Arcymag",
+  "type": "zaawansowana",
+  "page": 63,
+  "main": {
+   "WW": "+15",
+   "US": "+15",
+   "K": "+5",
+   "Odp": "+15",
+   "Zr": "+20",
+   "Int": "+35",
+   "SW": "+40",
+   "Ogd": "+20"
+  },
+  "secondary": {
+   "A": "—",
+   "Żyw": "+5",
+   "S": "—",
+   "Wt": "—",
+   "Sz": "—",
+   "Mag": "+4",
+   "PO": "—",
+   "PP": "—"
+  },
+  "skills": "czytanie i pisanie, język tajemny (demoniczny albo tajemny elfi), język tajemny (magiczny), nauka (dowolne trzy), nauka (magia), przekonywanie albo zastraszanie, splatanie magii, wiedza (dowolne trzy), wykrywanie magii, znajomość języka (dowolne cztery)",
+  "talents": "czarnoksięstwo albo medytacja, dotyk mocy albo twardziel, magia powszechna (dowolne dwie), zmysł magii albo morderczy pocisk",
+  "trappings": "3 magiczne przedmioty, 12 ksiąg magii tajemnej",
+  "entries": "mistrz magii",
+  "exits": "mistrz gildii, odkrywca"
+ },
+ {
+  "name": "Arystokrata",
+  "type": "zaawansowana",
+  "page": 63,
+  "main": {
+   "WW": "+25",
+   "US": "+15",
+   "K": "+10",
+   "Odp": "+10",
+   "Zr": "+10",
+   "Int": "+20",
+   "SW": "+20",
+   "Ogd": "+30"
+  },
+  "secondary": {
+   "A": "+1",
+   "Żyw": "+6",
+   "S": "—",
+   "Wt": "—",
+   "Sz": "—",
+   "Mag": "—",
+   "PO": "—",
+   "PP": "—"
+  },
+  "skills": "czytanie i pisanie, dowodzenie, jeździectwo, nauka (genealogia/heraldyka), nauka (historia albo strategia/taktyka), plotkowanie, przekonywanie, spostrzegawczość, wiedza (Imperium), wycena, znajomość języka (klasyczny), znajomość języka (staroświatowy)",
+  "talents": "broń specjalna (szermiercza), krasomówstwo, przemawianie",
+  "trappings": "rapier albo szpada najlepszej jakości, strój arystokraty najlepszej jakości, rumak z siodłem i uprzężą, 500 zk, biżuteria o wartości 500 zk",
+  "entries": "dworzanin, kapitan, mistrz zakonny, rycerz, urzędnik",
+  "exits": "kapitan, oficer, rycerz, uczony"
+ },
+ {
+  "name": "Bard",
+  "type": "zaawansowana",
+  "page": 64,
+  "main": {
+   "WW": "+10",
+   "US": "+10",
+   "K": "—",
+   "Odp": "—",
+   "Zr": "+15",
+   "Int": "+10",
+   "SW": "+5",
+   "Ogd": "+25"
+  },
+  "secondary": {
+   "A": "—",
+   "Żyw": "+4",
+   "S": "—",
+   "Wt": "—",
+   "Sz": "—",
+   "Mag": "—",
+   "PO": "—",
+   "PP": "—"
+  },
+  "skills": "czytanie i pisanie, kuglarstwo (muzykalność), kuglarstwo (śpiew), plotkowanie, przekonywanie, spostrzegawczość, wiedza (dowolne dwie), znajomość języka (bretoński, eltharin albo tileański)",
+  "talents": "etykieta, przemawianie",
+  "trappings": "kostium, instrument muzyczny (lutnia albo mandolina)",
+  "entries": "cyrkowiec",
+  "exits": "demagog, rozbójnik, szarlatan, szpieg, żak"
+ },
+ {
+  "name": "Biczownik",
+  "type": "zaawansowana",
+  "page": 64,
+  "main": {
+   "WW": "+15",
+   "US": "—",
+   "K": "+10",
+   "Odp": "+15",
+   "Zr": "+5",
+   "Int": "—",
+   "SW": "+20",
+   "Ogd": "+10"
+  },
+  "secondary": {
+   "A": "+1",
+   "Żyw": "+6",
+   "S": "—",
+   "Wt": "—",
+   "Sz": "—",
+   "Mag": "—",
+   "PO": "—",
+   "PP": "—"
+  },
+  "skills": "leczenie, nauka (teologia), przekonywanie, zastraszanie, znajomość języka (klasyczny)",
+  "talents": "broń specjalna (korbacze albo dwuręczna), nieustraszony, silny cios",
+  "trappings": "korbacz albo broń dwuręczna, butelka spirytusu lub gorzałki dobrej jakości, symbol religijny, relikwia",
+  "entries": "fanatyk, kapłan, wybraniec boży, zakonnik",
+  "exits": "demagog, kapłan, oprawca, weteran, żołnierz",
+  "note": "Musi być dotknięty chorobą umysłu."
+ },
+ {
+  "name": "Bosman",
+  "type": "zaawansowana",
+  "page": 65,
+  "main": {
+   "WW": "+15",
+   "US": "+15",
+   "K": "+10",
+   "Odp": "+15",
+   "Zr": "+10",
+   "Int": "+10",
+   "SW": "+10",
+   "Ogd": "+10"
+  },
+  "secondary": {
+   "A": "+1",
+   "Żyw": "+4",
+   "S": "—",
+   "Wt": "—",
+   "Sz": "—",
+   "Mag": "—",
+   "PO": "—",
+   "PP": "—"
+  },
+  "skills": "dowodzenie, hazard, mocna głowa, plotkowanie, pływanie, rzemiosło (szkutnictwo), unik, wiedza (dowolne dwie), wioślarstwo, zastraszanie, znajomość języka (bretoński, kislevski albo norski), żeglarstwo",
+  "talents": "bijatyka, obieżyświat, odporność na choroby",
+  "trappings": "lekki pancerz (skórzana kurta)",
+  "entries": "żeglarz, żołnierz okrętowy",
+  "exits": "kapitan, kupiec, nawigator, odkrywca"
+ },
+ {
+  "name": "Demagog",
+  "type": "zaawansowana",
+  "page": 65,
+  "main": {
+   "WW": "+10",
+   "US": "+10",
+   "K": "—",
+   "Odp": "+10",
+   "Zr": "+15",
+   "Int": "+20",
+   "SW": "+15",
+   "Ogd": "+30"
+  },
+  "secondary": {
+   "A": "+1",
+   "Żyw": "+4",
+   "S": "—",
+   "Wt": "—",
+   "Sz": "—",
+   "Mag": "—",
+   "PO": "—",
+   "PP": "—"
+  },
+  "skills": "charakteryzacja, dowodzenie, gadanina, nauka (historia), nauka (prawo), plotkowanie, przekonywanie, spostrzegawczość, ukrywanie się, unik, wiedza (Imperium), zastraszanie, znajomość języka (staroświatowy)",
+  "talents": "bijatyka, etykieta albo łotrzyk, krasomówstwo, przemawianie",
+  "trappings": "lekki pancerz (skórzana kurta i skórzany hełm)",
+  "entries": "akolita, banita, bard, biczownik, herszt banitów, kanciarz, książę złodziei, łowca czarownic, łowca wampirów, mistrz rzemiosła, podżegacz, szarlatan, urzędnik, wybraniec boży, zakonnik",
+  "exits": "herszt banitów, książę złodziei, najemnik, urzędnik, zakonnik"
  }
 ]
