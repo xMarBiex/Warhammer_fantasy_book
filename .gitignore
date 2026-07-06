@@ -15,3 +15,6 @@ venv/
 # Modele / cache embeddingów
 .cache/
 models/
+
+# Spakowane archiwum danych (generowane przez scripts/package_data.sh)
+*.tar.gz
