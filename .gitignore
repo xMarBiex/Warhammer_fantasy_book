@@ -21,3 +21,7 @@ models/
 
 # Wygenerowana strona mobilna (zawiera treść księgi = dane)
 web/search_mobile.html
+
+# Paczka do wdrożenia (generowana, zawiera treść księgi)
+dist/
+*.zip
