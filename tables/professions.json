@@ -600,5 +600,245 @@
   "trappings": "kusza i 10 bełtów, sieć, lekki pancerz (skórzany kaftan i skórzany hełm), kajdany, 10 metrów liny",
   "entries": "gladiator, kozak kislevski, łowca, najemnik, ochroniarz, strażnik pól",
   "exits": "łowca wampirów, najemnik, rzezimieszek, strzelec, zwiadowca"
+ },
+ {
+  "name": "Mieszczanin",
+  "type": "podstawowa",
+  "page": 42,
+  "main": {
+   "WW": "+5",
+   "US": "—",
+   "K": "—",
+   "Odp": "—",
+   "Zr": "+5",
+   "Int": "+10",
+   "SW": "+5",
+   "Ogd": "+5"
+  },
+  "secondary": {
+   "A": "—",
+   "Żyw": "+2",
+   "S": "—",
+   "Wt": "—",
+   "Sz": "—",
+   "Mag": "—",
+   "PO": "—",
+   "PP": "—"
+  },
+  "skills": "plotkowanie albo czytanie i pisanie, powożenie, przeszukiwanie, spostrzegawczość, targowanie, wiedza (Imperium) albo mocna głowa, wycena, znajomość języka (bretoński, kislevski albo tileański), znajomość języka (staroświatowy)",
+  "talents": "błyskotliwość albo charyzmatyczny, żyłka handlowa",
+  "trappings": "ubranie dobrej jakości, liczydło, latarnia",
+  "entries": "karczmarz, sługa",
+  "exits": "karczmarz, kupiec, ochotnik, paser, paź, podżegacz, rzemieślnik"
+ },
+ {
+  "name": "Mytnik",
+  "type": "podstawowa",
+  "page": 42,
+  "main": {
+   "WW": "+10",
+   "US": "+5",
+   "K": "+5",
+   "Odp": "+10",
+   "Zr": "+5",
+   "Int": "—",
+   "SW": "+5",
+   "Ogd": "—"
+  },
+  "secondary": {
+   "A": "—",
+   "Żyw": "+2",
+   "S": "—",
+   "Wt": "—",
+   "Sz": "—",
+   "Mag": "—",
+   "PO": "—",
+   "PP": "—"
+  },
+  "skills": "czytanie i pisanie, plotkowanie albo targowanie, przeszukiwanie, spostrzegawczość, unik, wycena, znajomość języka (bretoński, kislevski albo tileański)",
+  "talents": "szybki refleks albo strzelec wyborowy",
+  "trappings": "kusza i 10 bełtów, średni pancerz (kaftan kolczy i skórzany kaftan), tarcza, zamykana na kłódkę skrzynia, 1k10 zk",
+  "entries": "strażnik dróg, woźnica, zarządca",
+  "exits": "banita, przewoźnik, rozbójnik, strażnik pól, urzędnik, złodziej, żołnierz"
+ },
+ {
+  "name": "Najemnik",
+  "type": "podstawowa",
+  "page": 43,
+  "main": {
+   "WW": "+10",
+   "US": "+10",
+   "K": "+5",
+   "Odp": "+5",
+   "Zr": "+5",
+   "Int": "—",
+   "SW": "+5",
+   "Ogd": "—"
+  },
+  "secondary": {
+   "A": "+1",
+   "Żyw": "+2",
+   "S": "—",
+   "Wt": "—",
+   "Sz": "—",
+   "Mag": "—",
+   "PO": "—",
+   "PP": "—"
+  },
+  "skills": "opieka nad zwierzętami albo hazard, plotkowanie albo targowanie, powożenie albo jeździectwo, sekretny język (bitewny), spostrzegawczość albo przeszukiwanie, unik, wiedza (Bretonia, Kislev albo Tilea), znajomość języka (tileański) albo pływanie",
+  "talents": "błyskawiczne przeładowanie albo silny cios, rozbrajanie albo szybkie wyciągnięcie, strzał mierzony albo ogłuszanie",
+  "trappings": "kusza i 10 bełtów, średni pancerz (kaftan kolczy i skórzana kurta), tarcza, mikstura lecznicza",
+  "entries": "berserker z Norski, demagog, gladiator, górnik, kozak kislevski, łowca nagród, ochotnik, ochroniarz, oprych, przepatrywacz, strażnik, strażnik pól, żołnierz",
+  "exits": "banita, łowca nagród, ochroniarz, sierżant, tarczownik, weteran"
+ },
+ {
+  "name": "Ochotnik",
+  "type": "podstawowa",
+  "page": 43,
+  "main": {
+   "WW": "+10",
+   "US": "+5",
+   "K": "+5",
+   "Odp": "+5",
+   "Zr": "+10",
+   "Int": "—",
+   "SW": "—",
+   "Ogd": "—"
+  },
+  "secondary": {
+   "A": "—",
+   "Żyw": "+2",
+   "S": "—",
+   "Wt": "—",
+   "Sz": "—",
+   "Mag": "—",
+   "PO": "—",
+   "PP": "—"
+  },
+  "skills": "hazard albo plotkowanie, opieka nad zwierzętami, powożenie albo pływanie, przeszukiwanie, rzemiosło (dowolne), spostrzegawczość, sztuka przetrwania, unik",
+  "talents": "broń specjalna (dwuręczna) albo błyskawiczne przeładowanie, silny cios",
+  "trappings": "halabarda albo łuk i 10 strzał, lekki pancerz (skórzana kurta i skórzany hełm), mundur",
+  "entries": "chłop, kupiec, leśnik, mieszczanin, mistrz rzemiosła, rybak, rzemieślnik, zarządca",
+  "exits": "banita, mistrz rzemiosła, najemnik, posłaniec, sierżant, strażnik pól, złodziej"
+ },
+ {
+  "name": "Ochroniarz",
+  "type": "podstawowa",
+  "page": 44,
+  "main": {
+   "WW": "+10",
+   "US": "—",
+   "K": "+5",
+   "Odp": "+5",
+   "Zr": "+5",
+   "Int": "—",
+   "SW": "—",
+   "Ogd": "—"
+  },
+  "secondary": {
+   "A": "+1",
+   "Żyw": "+3",
+   "S": "—",
+   "Wt": "—",
+   "Sz": "—",
+   "Mag": "—",
+   "PO": "—",
+   "PP": "—"
+  },
+  "skills": "leczenie, spostrzegawczość, unik, zastraszanie",
+  "talents": "bardzo silny albo niezwykle odporny, bijatyka, broń specjalna (parująca), broń specjalna (rzucana), ogłuszanie, rozbrajanie albo szybkie wyciągnięcie",
+  "trappings": "dwa topory albo noże do rzucania, kastety, lekki pancerz (skórzana kurta), puklerz",
+  "entries": "najemnik, oprych, strażnik więzienny, szermierz estalijski",
+  "exits": "łowca nagród, najemnik, oprawca, reketer, rzezimieszek, strażnik więzienny, zarządca"
+ },
+ {
+  "name": "Oprych",
+  "type": "podstawowa",
+  "page": 44,
+  "main": {
+   "WW": "+10",
+   "US": "—",
+   "K": "+5",
+   "Odp": "+5",
+   "Zr": "—",
+   "Int": "—",
+   "SW": "+5",
+   "Ogd": "+5"
+  },
+  "secondary": {
+   "A": "+1",
+   "Żyw": "+2",
+   "S": "—",
+   "Wt": "—",
+   "Sz": "—",
+   "Mag": "—",
+   "PO": "—",
+   "PP": "—"
+  },
+  "skills": "hazard, mocna głowa, sekretny język (złodziejski), unik, zastraszanie",
+  "talents": "morderczy atak albo zapasy, odporność na trucizny albo szybkie wyciągnięcie, ogłuszanie, opanowanie albo szybki refleks, rozbrajanie",
+  "trappings": "kastety, średni pancerz (kaftan kolczy i skórzany kaftan)",
+  "entries": "rzezimieszek, żołnierz okrętowy",
+  "exits": "gladiator, najemnik, ochroniarz, oprawca, reketer"
+ },
+ {
+  "name": "Paź",
+  "type": "podstawowa",
+  "page": 45,
+  "main": {
+   "WW": "—",
+   "US": "—",
+   "K": "—",
+   "Odp": "—",
+   "Zr": "+10",
+   "Int": "+10",
+   "SW": "+5",
+   "Ogd": "+10"
+  },
+  "secondary": {
+   "A": "—",
+   "Żyw": "+2",
+   "S": "—",
+   "Wt": "—",
+   "Sz": "—",
+   "Mag": "—",
+   "PO": "—",
+   "PP": "—"
+  },
+  "skills": "czytanie i pisanie, gadanina, nauka (genealogia/heraldyka), plotkowanie albo znajomość języka (bretoński albo staroświatowy), przeszukiwanie, spostrzegawczość, targowanie, wycena",
+  "talents": "etykieta, opanowanie albo charyzmatyczny, żyłka handlowa albo obieżyświat",
+  "trappings": "2 komplety ubrań najlepszej jakości, liberia, perfumy, mieszek",
+  "entries": "mieszczanin, sługa",
+  "exits": "giermek, herold, kanciarz, majordomus, żak"
+ },
+ {
+  "name": "Podżegacz",
+  "type": "podstawowa",
+  "page": 45,
+  "main": {
+   "WW": "+5",
+   "US": "+5",
+   "K": "—",
+   "Odp": "—",
+   "Zr": "+5",
+   "Int": "+10",
+   "SW": "—",
+   "Ogd": "+10"
+  },
+  "secondary": {
+   "A": "—",
+   "Żyw": "+2",
+   "S": "—",
+   "Wt": "—",
+   "Sz": "—",
+   "Mag": "—",
+   "PO": "—",
+   "PP": "—"
+  },
+  "skills": "czytanie i pisanie, nauka (historia) albo plotkowanie, nauka (prawo) albo wiedza (Imperium), przekonywanie, spostrzegawczość, ukrywanie się, znajomość języka (bretoński albo tileański), znajomość języka (staroświatowy)",
+  "talents": "chodu!, opanowanie albo bijatyka, przemawianie",
+  "trappings": "lekki pancerz (skórzana kurta), ubranie dobrej jakości, 2k10 ulotek różnej treści",
+  "entries": "fanatyk, herold, mieszczanin, oficer, rozbójnik, skryba, sługa, żak",
+  "exits": "banita, demagog, fanatyk, kanciarz, szarlatan, urzędnik"
  }
 ]
