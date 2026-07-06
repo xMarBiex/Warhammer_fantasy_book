@@ -2017,5 +2017,185 @@
   "trappings": "lekki pancerz (skórzana kurta i skórzany hełm)",
   "entries": "akolita, banita, bard, biczownik, herszt banitów, kanciarz, książę złodziei, łowca czarownic, łowca wampirów, mistrz rzemiosła, podżegacz, szarlatan, urzędnik, wybraniec boży, zakonnik",
   "exits": "herszt banitów, książę złodziei, najemnik, urzędnik, zakonnik"
+ },
+ {
+  "name": "Dworzanin",
+  "type": "zaawansowana",
+  "page": 66,
+  "main": {
+   "WW": "+5",
+   "US": "+5",
+   "K": "—",
+   "Odp": "—",
+   "Zr": "+10",
+   "Int": "+20",
+   "SW": "+20",
+   "Ogd": "+20"
+  },
+  "secondary": {
+   "A": "—",
+   "Żyw": "+4",
+   "S": "—",
+   "Wt": "—",
+   "Sz": "—",
+   "Mag": "—",
+   "PO": "—",
+   "PP": "—"
+  },
+  "skills": "czytanie i pisanie, dowodzenie albo kuglarstwo (dowolne), gadanina, jeździectwo, nauka (sztuka albo historia) albo hazard, plotkowanie, przekonywanie, spostrzegawczość, wiedza (Bretonia albo Tilea), wycena, znajomość języka (bretoński albo tileański), znajomość języka (staroświatowy)",
+  "talents": "błyskotliwość albo charyzmatyczny, intrygant albo broń specjalna (szermiercza), przemawianie, żyłka handlowa albo etykieta",
+  "trappings": "4 stroje szlacheckie, 100 zk, paź",
+  "entries": "herold, rajtar, szlachcic, urzędnik",
+  "exits": "arystokrata, majordomus, szarlatan, szpieg, urzędnik, zwadźca"
+ },
+ {
+  "name": "Fechtmistrz",
+  "type": "zaawansowana",
+  "page": 66,
+  "main": {
+   "WW": "+40",
+   "US": "+40",
+   "K": "+25",
+   "Odp": "+25",
+   "Zr": "+30",
+   "Int": "—",
+   "SW": "+20",
+   "Ogd": "—"
+  },
+  "secondary": {
+   "A": "+2",
+   "Żyw": "+8",
+   "S": "—",
+   "Wt": "—",
+   "Sz": "—",
+   "Mag": "—",
+   "PO": "—",
+   "PP": "—"
+  },
+  "skills": "spostrzegawczość, unik, wycena, zastraszanie",
+  "talents": "artylerzysta, bardzo szybki albo szybki refleks, błyskawiczne przeładowanie, błyskawiczny blok, broń specjalna (dowolne trzy), strzał precyzyjny, szybkie wyciągnięcie, zapasy",
+  "trappings": "dowolne sześć sztuk broni najlepszej jakości, średni pancerz (kaftan kolczy i skórzana kurta)",
+  "entries": "łowca czarownic, mistrz zakonny, skrytobójca, strzelec, szampierz, weteran, zwadźca",
+  "exits": "łowca czarownic, sierżant, skrytobójca, zwiadowca"
+ },
+ {
+  "name": "Herold",
+  "type": "zaawansowana",
+  "page": 67,
+  "main": {
+   "WW": "+10",
+   "US": "+10",
+   "K": "+5",
+   "Odp": "+5",
+   "Zr": "+15",
+   "Int": "+15",
+   "SW": "+10",
+   "Ogd": "+20"
+  },
+  "secondary": {
+   "A": "—",
+   "Żyw": "+4",
+   "S": "—",
+   "Wt": "—",
+   "Sz": "—",
+   "Mag": "—",
+   "PO": "—",
+   "PP": "—"
+  },
+  "skills": "czytanie i pisanie, gadanina, jeździectwo, nauka (genealogia/heraldyka), nauka (historia), plotkowanie, przekonywanie, spostrzegawczość, targowanie, wiedza (Bretonia, Kislev albo Tilea), wiedza (Imperium), wycena, znajomość języka (bretoński, kislevski albo tileański), znajomość języka (staroświatowy)",
+  "talents": "etykieta, krasomówstwo, przemawianie",
+  "trappings": "perfumy, mieszek, 2 komplety ubrań najlepszej jakości, liberia",
+  "entries": "paź, posłaniec",
+  "exits": "cyrkowiec, dworzanin, giermek, odkrywca, podżegacz, urzędnik"
+ },
+ {
+  "name": "Herszt banitów",
+  "type": "zaawansowana",
+  "page": 67,
+  "main": {
+   "WW": "+20",
+   "US": "+30",
+   "K": "+10",
+   "Odp": "+20",
+   "Zr": "+10",
+   "Int": "+10",
+   "SW": "+10",
+   "Ogd": "+20"
+  },
+  "secondary": {
+   "A": "+2",
+   "Żyw": "+6",
+   "S": "—",
+   "Wt": "—",
+   "Sz": "—",
+   "Mag": "—",
+   "PO": "—",
+   "PP": "—"
+  },
+  "skills": "dowodzenie, jeździectwo, nauka (strategia/taktyka), sekretne znaki (zwiadowców albo złodziei), sekretny język (bitewny), sekretny język (złodziejski), skradanie się, spostrzegawczość, tropienie, ukrywanie się, wiedza (Imperium), wspinaczka",
+  "talents": "błyskawiczne przeładowanie, błyskawiczny blok, strzał precyzyjny, strzał przebijający, szybkie wyciągnięcie",
+  "trappings": "łuk albo kusza i 10 strzał albo bełtów, średni pancerz (koszulka kolcza i skórzana kurta), koń z siodłem i uprzężą, grupa banitów",
+  "entries": "demagog, książę złodziei, leśny duch, mistrz cieni, oficer, reketer, rozbójnik, skrytobójca, weteran, zwiadowca",
+  "exits": "demagog, książę złodziei, oficer, skrytobójca"
+ },
+ {
+  "name": "Inżynier",
+  "type": "zaawansowana",
+  "page": 68,
+  "main": {
+   "WW": "+10",
+   "US": "+15",
+   "K": "+5",
+   "Odp": "+5",
+   "Zr": "+10",
+   "Int": "+20",
+   "SW": "+10",
+   "Ogd": "—"
+  },
+  "secondary": {
+   "A": "—",
+   "Żyw": "+4",
+   "S": "—",
+   "Wt": "—",
+   "Sz": "—",
+   "Mag": "—",
+   "PO": "—",
+   "PP": "—"
+  },
+  "skills": "czytanie i pisanie, nauka (inżynieria), nauka (mechanika), powożenie albo jeździectwo, rzemiosło (rusznikarstwo), spostrzegawczość, wiedza (krasnoludy albo Tilea), znajomość języka (khazalid albo tileański)",
+  "talents": "artylerzysta, broń specjalna (mechaniczna albo palna)",
+  "trappings": "lekki pancerz (skórzana kurta), narzędzia (inżyniera), 6 długich gwoździ",
+  "entries": "górnik, mistrz rzemiosła, rzemieślnik, żak",
+  "exits": "mistrz gildii, mistrz rzemiosła, odkrywca, przemytnik, rajtar"
+ },
+ {
+  "name": "Kapitan",
+  "type": "zaawansowana",
+  "page": 68,
+  "main": {
+   "WW": "+25",
+   "US": "+20",
+   "K": "+15",
+   "Odp": "+20",
+   "Zr": "+20",
+   "Int": "+20",
+   "SW": "+25",
+   "Ogd": "+30"
+  },
+  "secondary": {
+   "A": "+2",
+   "Żyw": "+6",
+   "S": "—",
+   "Wt": "—",
+   "Sz": "—",
+   "Mag": "—",
+   "PO": "—",
+   "PP": "—"
+  },
+  "skills": "dowodzenie, nauka (strategia/taktyka), pływanie, rzemiosło (kartografia albo szkutnictwo), spostrzegawczość, tresura, unik, wiedza (dowolne trzy), znajomość języka (dowolne trzy), żeglarstwo",
+  "talents": "błyskawiczny blok albo brawura, broń specjalna (szermiercza), obieżyświat, rozbrajanie, silny cios",
+  "trappings": "rapier, średni pancerz (skórzana kurta), luneta, żaglowiec",
+  "entries": "arystokrata, bosman, nawigator, odkrywca",
+  "exits": "arystokrata, odkrywca, szpieg, uczony"
  }
 ]
