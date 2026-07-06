@@ -1322,5 +1322,248 @@
   "trappings": "proca z amunicją, 4 pułapki na szczury, drąg z martwymi szczurami (1k10), mały ale zajadły pies",
   "entries": "goniec, hiena cmentarna, porywacz zwłok, strażnik więzienny",
   "exits": "porywacz zwłok, strażnik więzienny, śmieciarz, tarczownik, włamywacz, złodziej"
+ },
+ {
+  "name": "Szermierz estalijski",
+  "type": "podstawowa",
+  "page": 54,
+  "main": {
+   "WW": "+15",
+   "US": "—",
+   "K": "+5",
+   "Odp": "+5",
+   "Zr": "+10",
+   "Int": "+5",
+   "SW": "—",
+   "Ogd": "—"
+  },
+  "secondary": {
+   "A": "+1",
+   "Żyw": "+2",
+   "S": "—",
+   "Wt": "—",
+   "Sz": "—",
+   "Mag": "—",
+   "PO": "—",
+   "PP": "—"
+  },
+  "skills": "czytanie i pisanie, nauka (anatomia), unik, wiedza (Estalia), znajomość języka (estalijski)",
+  "talents": "brawura albo szybki refleks, broń specjalna (szermiercza), silny cios, szybkie wyciągnięcie albo morderczy atak",
+  "trappings": "szpada albo rapier, ubranie najlepszej jakości, perfumy, mikstura leczenia",
+  "entries": "brak",
+  "exits": "kanciarz, ochroniarz, rozbójnik, rzezimieszek, zwadźca"
+ },
+ {
+  "name": "Szlachcic",
+  "type": "podstawowa",
+  "page": 54,
+  "main": {
+   "WW": "+10",
+   "US": "+5",
+   "K": "—",
+   "Odp": "—",
+   "Zr": "+5",
+   "Int": "+5",
+   "SW": "+5",
+   "Ogd": "+10"
+  },
+  "secondary": {
+   "A": "—",
+   "Żyw": "+2",
+   "S": "—",
+   "Wt": "—",
+   "Sz": "—",
+   "Mag": "—",
+   "PO": "—",
+   "PP": "—"
+  },
+  "skills": "czytanie i pisanie, gadanina albo dowodzenie, hazard albo plotkowanie, jeździectwo, mocna głowa albo kuglarstwo (muzykalność), przekonywanie, wiedza (Imperium), znajomość języka (staroświatowy)",
+  "talents": "błyskotliwość albo broń specjalna (szermiercza), broń specjalna (parująca) albo intrygant, etykieta, szczęście albo przemawianie",
+  "trappings": "szpada, lewak, strój szlachecki z herbem rodu, koń z siodłem i uprzężą, 1k10 zk, biżuteria o wartości 6k10 zk",
+  "entries": "giermek, majordomus",
+  "exits": "dworzanin, giermek, kanciarz, rajtar, urzędnik, żak"
+ },
+ {
+  "name": "Śmieciarz",
+  "type": "podstawowa",
+  "page": 55,
+  "main": {
+   "WW": "+5",
+   "US": "—",
+   "K": "+5",
+   "Odp": "+10",
+   "Zr": "+5",
+   "Int": "—",
+   "SW": "+5",
+   "Ogd": "+5"
+  },
+  "secondary": {
+   "A": "—",
+   "Żyw": "+2",
+   "S": "—",
+   "Wt": "—",
+   "Sz": "—",
+   "Mag": "—",
+   "PO": "—",
+   "PP": "—"
+  },
+  "skills": "opieka nad zwierzętami, powożenie, przekonywanie albo plotkowanie, przeszukiwanie, spostrzegawczość, targowanie, wiedza (Imperium), wycena",
+  "talents": "opanowanie albo łotrzyk, twardziel albo odporność na choroby",
+  "trappings": "wózek, 3 worki",
+  "entries": "chłop, szczurołap, włóczykij",
+  "exits": "ciura obozowa, paser, porywacz zwłok, przemytnik, włamywacz"
+ },
+ {
+  "name": "Tarczownik",
+  "type": "podstawowa",
+  "page": 55,
+  "main": {
+   "WW": "+10",
+   "US": "—",
+   "K": "+5",
+   "Odp": "+5",
+   "Zr": "+10",
+   "Int": "—",
+   "SW": "+5",
+   "Ogd": "—"
+  },
+  "secondary": {
+   "A": "+1",
+   "Żyw": "+2",
+   "S": "—",
+   "Wt": "—",
+   "Sz": "—",
+   "Mag": "—",
+   "PO": "—",
+   "PP": "—"
+  },
+  "skills": "nawigacja, spostrzegawczość, śledzenie, unik, wspinaczka",
+  "talents": "czuły słuch albo opanowanie, morderczy atak, ogłuszanie, silny cios, wyczucie kierunku",
+  "trappings": "kusza i 10 bełtów, średni pancerz (kolczuga, skórzana kurta i skórzane nogawice), tarcza, 10 metrów liny z kotwiczką, bukłak z wodą",
+  "entries": "goniec, górnik, hiena cmentarna, kozak kislevski, najemnik, przemytnik, szczurołap",
+  "exits": "gladiator, goniec, hiena cmentarna, przemytnik, sierżant, weteran",
+  "note": "Jako początkowa tylko krasnoludy."
+ },
+ {
+  "name": "Uczeń czarodzieja",
+  "type": "podstawowa",
+  "page": 56,
+  "main": {
+   "WW": "—",
+   "US": "—",
+   "K": "—",
+   "Odp": "—",
+   "Zr": "+5",
+   "Int": "+10",
+   "SW": "+15",
+   "Ogd": "+5"
+  },
+  "secondary": {
+   "A": "—",
+   "Żyw": "+2",
+   "S": "—",
+   "Wt": "—",
+   "Sz": "—",
+   "Mag": "+1",
+   "PO": "—",
+   "PP": "—"
+  },
+  "skills": "czytanie i pisanie, język tajemny (magiczny), nauka (magia), przeszukiwanie, splatanie magii, spostrzegawczość, wykrywanie magii, znajomość języka (klasyczny)",
+  "talents": "błyskotliwość albo niezwykle odporny, magia prosta (tajemna), zmysł magii albo dotyk mocy",
+  "trappings": "kij, plecak, księga wiedzy tajemnej",
+  "entries": "guślarz, skryba, uczony, żak",
+  "exits": "skryba, uczony, wędrowny czarodziej",
+  "note": "Magia. Nie niziołki ani krasnoludy."
+ },
+ {
+  "name": "Węglarz",
+  "type": "podstawowa",
+  "page": 56,
+  "main": {
+   "WW": "+5",
+   "US": "—",
+   "K": "+5",
+   "Odp": "+5",
+   "Zr": "+5",
+   "Int": "+5",
+   "SW": "+5",
+   "Ogd": "+5"
+  },
+  "secondary": {
+   "A": "—",
+   "Żyw": "+2",
+   "S": "—",
+   "Wt": "—",
+   "Sz": "—",
+   "Mag": "—",
+   "PO": "—",
+   "PP": "—"
+  },
+  "skills": "powożenie albo plotkowanie, przeszukiwanie, sekretne znaki (łowców), spostrzegawczość, sztuka przetrwania, targowanie, wiedza (Imperium) albo ukrywanie się, wspinaczka",
+  "talents": "błyskotliwość albo bardzo silny, chodu!",
+  "trappings": "broń jednoręczna (topór albo pałka), 3 pochodnie, krzesiwo i hubka",
+  "entries": "chłop, ciura obozowa, górnik, łowca",
+  "exits": "górnik, leśnik, łowca, włóczykij, zwiadowca"
+ },
+ {
+  "name": "Włóczykij",
+  "type": "podstawowa",
+  "page": 57,
+  "main": {
+   "WW": "+5",
+   "US": "+10",
+   "K": "—",
+   "Odp": "—",
+   "Zr": "+10",
+   "Int": "+5",
+   "SW": "—",
+   "Ogd": "+5"
+  },
+  "secondary": {
+   "A": "—",
+   "Żyw": "+2",
+   "S": "—",
+   "Wt": "—",
+   "Sz": "—",
+   "Mag": "—",
+   "PO": "—",
+   "PP": "—"
+  },
+  "skills": "kuglarstwo (gawędziarstwo, śpiew albo taniec) albo sekretne znaki (łowców albo złodziei), leczenie albo spostrzegawczość, nawigacja, plotkowanie albo sekretny język (łowców albo złodziejski), skradanie się, sztuka przetrwania, targowanie albo pływanie, wiedza (Bretonia, Estalia, Kislev albo Tilea)",
+  "talents": "bardzo szybki albo wędrowiec, obieżyświat, strzelec wyborowy albo wyczucie kierunku",
+  "trappings": "plecak, prowiant (1 tydzień), namiot, bukłak z wodą",
+  "entries": "banita, ciura obozowa, cyrkowiec, cyrulik, guślarz, leśnik, rzecznik rodu, strażnik pól, węglarz, włamywacz, wojownik klanowy, żołnierz",
+  "exits": "cyrkowiec, leśnik, śmieciarz, zakonnik, złodziej, zwiadowca"
+ },
+ {
+  "name": "Wojownik klanowy",
+  "type": "podstawowa",
+  "page": 57,
+  "main": {
+   "WW": "+5",
+   "US": "+5",
+   "K": "—",
+   "Odp": "—",
+   "Zr": "+10",
+   "Int": "+10",
+   "SW": "+5",
+   "Ogd": "—"
+  },
+  "secondary": {
+   "A": "—",
+   "Żyw": "+2",
+   "S": "—",
+   "Wt": "—",
+   "Sz": "—",
+   "Mag": "—",
+   "PO": "—",
+   "PP": "—"
+  },
+  "skills": "leczenie albo przeszukiwanie, skradanie się, spostrzegawczość, sztuka przetrwania, tropienie, ukrywanie się, unik, wspinaczka",
+  "talents": "błyskawiczne przeładowanie albo urodzony wojownik, strzelec wyborowy albo wędrowiec",
+  "trappings": "elfi łuk i 10 strzał, lekki pancerz (skórzana kurta)",
+  "entries": "łowca, posłaniec",
+  "exits": "łowca, przepatrywacz, weteran, włóczykij, zwiadowca",
+  "note": "Tylko Leśne Elfy."
  }
 ]
