@@ -840,5 +840,246 @@
   "trappings": "lekki pancerz (skórzana kurta), ubranie dobrej jakości, 2k10 ulotek różnej treści",
   "entries": "fanatyk, herold, mieszczanin, oficer, rozbójnik, skryba, sługa, żak",
   "exits": "banita, demagog, fanatyk, kanciarz, szarlatan, urzędnik"
+ },
+ {
+  "name": "Porywacz zwłok",
+  "type": "podstawowa",
+  "page": 46,
+  "main": {
+   "WW": "+5",
+   "US": "+5",
+   "K": "+5",
+   "Odp": "—",
+   "Zr": "+10",
+   "Int": "—",
+   "SW": "+10",
+   "Ogd": "—"
+  },
+  "secondary": {
+   "A": "—",
+   "Żyw": "+2",
+   "S": "—",
+   "Wt": "—",
+   "Sz": "—",
+   "Mag": "—",
+   "PO": "—",
+   "PP": "—"
+  },
+  "skills": "plotkowanie albo targowanie, powożenie, przeszukiwanie, sekretne znaki (złodziei), skradanie się, spostrzegawczość, wspinaczka",
+  "talents": "chodu!, łotrzyk albo odporność psychiczna, odporność na choroby",
+  "trappings": "latarnia, olej do latarni, kilof, łopata, worek",
+  "entries": "cyrulik, szczurołap, śmieciarz",
+  "exits": "paser, szczurołap, włamywacz, złodziej, żak"
+ },
+ {
+  "name": "Posłaniec",
+  "type": "podstawowa",
+  "page": 46,
+  "main": {
+   "WW": "+5",
+   "US": "+5",
+   "K": "—",
+   "Odp": "+5",
+   "Zr": "+10",
+   "Int": "+5",
+   "SW": "+5",
+   "Ogd": "—"
+  },
+  "secondary": {
+   "A": "—",
+   "Żyw": "+2",
+   "S": "—",
+   "Wt": "—",
+   "Sz": "—",
+   "Mag": "—",
+   "PO": "—",
+   "PP": "—"
+  },
+  "skills": "jeździectwo, nawigacja, opieka nad zwierzętami, pływanie, sekretne znaki (zwiadowców), spostrzegawczość, sztuka przetrwania, wiedza (Imperium albo Jałowa Kraina) albo plotkowanie, znajomość języka (staroświatowy)",
+  "talents": "obieżyświat, wyczucie kierunku",
+  "trappings": "lekki pancerz (skórzana kurta), tarcza, koń z siodłem i uprzężą (albo kuc dla niziołków), tuba na mapy",
+  "entries": "ochotnik, sługa, przepatrywacz, strażnik dróg",
+  "exits": "herold, strażnik dróg, wojownik klanowy, woźnica, zwiadowca, żołnierz"
+ },
+ {
+  "name": "Przemytnik",
+  "type": "podstawowa",
+  "page": 47,
+  "main": {
+   "WW": "+5",
+   "US": "+5",
+   "K": "—",
+   "Odp": "—",
+   "Zr": "+10",
+   "Int": "+10",
+   "SW": "—",
+   "Ogd": "+10"
+  },
+  "secondary": {
+   "A": "—",
+   "Żyw": "+2",
+   "S": "—",
+   "Wt": "—",
+   "Sz": "—",
+   "Mag": "—",
+   "PO": "—",
+   "PP": "—"
+  },
+  "skills": "plotkowanie albo sekretny język (złodziejski), pływanie, powożenie, przeszukiwanie, skradanie się, spostrzegawczość, targowanie, wioślarstwo, wycena, znajomość języka (bretoński albo kislevski) albo sekretne znaki (złodziei)",
+  "talents": "żyłka handlowa albo łotrzyk",
+  "trappings": "lekki pancerz (skórzana kurta), koń pociągowy i wóz albo łódź wiosłowa, 2 pochodnie",
+  "entries": "ciura obozowa, flisak, górnik, inżynier, karczmarz, przewoźnik, śmieciarz, tarczownik, woźnica, zarządca, żeglarz, żołnierz okrętowy",
+  "exits": "flisak, paser, przewoźnik, szarlatan, tarczownik, złodziej, żeglarz"
+ },
+ {
+  "name": "Przepatrywacz",
+  "type": "podstawowa",
+  "page": 47,
+  "main": {
+   "WW": "+5",
+   "US": "+10",
+   "K": "—",
+   "Odp": "—",
+   "Zr": "+10",
+   "Int": "+10",
+   "SW": "+5",
+   "Ogd": "—"
+  },
+  "secondary": {
+   "A": "—",
+   "Żyw": "+2",
+   "S": "—",
+   "Wt": "—",
+   "Sz": "—",
+   "Mag": "—",
+   "PO": "—",
+   "PP": "—"
+  },
+  "skills": "jeździectwo, nawigacja, opieka nad zwierzętami, przeszukiwanie, skradanie się, spostrzegawczość, sztuka przetrwania, tropienie",
+  "talents": "broń specjalna (unieruchamiająca), opanowanie albo bardzo silny, wyczucie kierunku",
+  "trappings": "łuk albo kusza i 10 strzał albo bełtów, bicz albo arkan, sieć, lekki pancerz (skórzana kurta), tarcza, koń z siodłem i uprzężą, 10 metrów liny",
+  "entries": "posłaniec, strażnik dróg, wojownik klanowy, żołnierz",
+  "exits": "najemnik, rozbójnik, strażnik dróg, woźnica, zwiadowca"
+ },
+ {
+  "name": "Przewoźnik",
+  "type": "podstawowa",
+  "page": 48,
+  "main": {
+   "WW": "+5",
+   "US": "+5",
+   "K": "+10",
+   "Odp": "+5",
+   "Zr": "+5",
+   "Int": "+5",
+   "SW": "—",
+   "Ogd": "—"
+  },
+  "secondary": {
+   "A": "—",
+   "Żyw": "+2",
+   "S": "—",
+   "Wt": "—",
+   "Sz": "—",
+   "Mag": "—",
+   "PO": "—",
+   "PP": "—"
+  },
+  "skills": "plotkowanie albo zastraszanie, pływanie, przekonywanie, spostrzegawczość, targowanie, wiedza (Imperium), wioślarstwo, wycena albo sekretny język (łowców)",
+  "talents": "broń specjalna (palna) albo bijatyka, strzelec wyborowy albo charyzmatyczny",
+  "trappings": "kusza i 10 bełtów albo garłacz z zapasem amunicji na 10 strzałów, lekki pancerz (skórzana kurta)",
+  "entries": "mytnik, przemytnik, woźnica",
+  "exits": "flisak, przemytnik, rozbójnik, strażnik dróg, żeglarz"
+ },
+ {
+  "name": "Rybak",
+  "type": "podstawowa",
+  "page": 48,
+  "main": {
+   "WW": "—",
+   "US": "+5",
+   "K": "+10",
+   "Odp": "+5",
+   "Zr": "+10",
+   "Int": "+5",
+   "SW": "—",
+   "Ogd": "—"
+  },
+  "secondary": {
+   "A": "—",
+   "Żyw": "+2",
+   "S": "—",
+   "Wt": "—",
+   "Sz": "—",
+   "Mag": "—",
+   "PO": "—",
+   "PP": "—"
+  },
+  "skills": "mocna głowa albo targowanie, nawigacja albo rzemiosło (handel), pływanie, spostrzegawczość, sztuka przetrwania, wiedza (Imperium albo Jałowa Kraina), wioślarstwo, znajomość języka (staroświatowy albo norski), żeglarstwo",
+  "talents": "twardziel albo błyskotliwość, wyczucie kierunku albo bijatyka",
+  "trappings": "włócznia, sieć, lina z kotwiczką",
+  "entries": "chłop, flisak",
+  "exits": "kupiec, nawigator, ochotnik, żeglarz, żołnierz okrętowy"
+ },
+ {
+  "name": "Rzecznik rodu",
+  "type": "podstawowa",
+  "page": 49,
+  "main": {
+   "WW": "+5",
+   "US": "+5",
+   "K": "—",
+   "Odp": "—",
+   "Zr": "+5",
+   "Int": "+10",
+   "SW": "+5",
+   "Ogd": "+10"
+  },
+  "secondary": {
+   "A": "—",
+   "Żyw": "+2",
+   "S": "—",
+   "Wt": "—",
+   "Sz": "—",
+   "Mag": "—",
+   "PO": "—",
+   "PP": "—"
+  },
+  "skills": "czytanie i pisanie, plotkowanie, pływanie, przekonywanie, rzemiosło (handel), sekretny język (gildii), spostrzegawczość, targowanie, wiedza (Imperium albo Jałowa Kraina), wycena",
+  "talents": "obieżyświat albo żyłka handlowa",
+  "trappings": "lekki pancerz (skórzana kurta), 2 komplety ubrań dobrej jakości, przybory do pisania",
+  "entries": "rzemieślnik, żak",
+  "exits": "kanciarz, kupiec, szarlatan, włóczykij, żeglarz, żak",
+  "note": "Tylko elfy."
+ },
+ {
+  "name": "Rzemieślnik",
+  "type": "podstawowa",
+  "page": 49,
+  "main": {
+   "WW": "—",
+   "US": "—",
+   "K": "+5",
+   "Odp": "+5",
+   "Zr": "+10",
+   "Int": "+5",
+   "SW": "+10",
+   "Ogd": "—"
+  },
+  "secondary": {
+   "A": "—",
+   "Żyw": "+2",
+   "S": "—",
+   "Wt": "—",
+   "Sz": "—",
+   "Mag": "—",
+   "PO": "—",
+   "PP": "—"
+  },
+  "skills": "czytanie i pisanie, opieka nad zwierzętami albo plotkowanie, powożenie, rzemiosło (dowolne dwa), sekretny język (gildii), spostrzegawczość, targowanie, wycena",
+  "talents": "żyłka handlowa albo błyskotliwość",
+  "trappings": "lekki pancerz (skórzany kaftan), 1k10 zk",
+  "entries": "chłop, ciura obozowa, cyrulik, mieszczanin, strażnik",
+  "exits": "fanatyk, inżynier, kupiec, mistrz rzemiosła, ochotnik, rzecznik rodu"
  }
 ]
