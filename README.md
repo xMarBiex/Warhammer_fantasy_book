@@ -84,4 +84,18 @@ Pliki: `scripts/webapp.py` (serwer, tylko stdlib + chromadb + fastembed) oraz
 `web/index.html` (interfejs). Wpisujesz pytanie po polsku, dostajesz fragmenty
 z numerami stron i podobieństwem.
 
+## Wersja mobilna (samodzielna strona, bez serwera)
+
+Do testowania na telefonie — jeden plik HTML z wbudowaną treścią księgi;
+wyszukiwanie działa w przeglądarce (słowno-frazowe, odporne na literówki OCR).
+Nie wymaga serwera ani modelu, ale nie jest w pełni semantyczne.
+
+```bash
+python scripts/build_mobile.py     # -> web/search_mobile.html (samodzielny plik)
+```
+
+Wynikowy `web/search_mobile.html` można otworzyć wprost w przeglądarce telefonu
+lub opublikować. Źródło: `web/search_mobile.template.html` + `scripts/build_mobile.py`.
+Pełne wyszukiwanie semantyczne pozostaje w wersji z serwerem (`scripts/webapp.py`).
+
 Dane (PDF, tekst OCR, baza wektorowa) są poza gitem — patrz `.gitignore`.

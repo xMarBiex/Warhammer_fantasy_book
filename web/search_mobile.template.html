@@ -1,0 +1,259 @@
+<title>Księga Zasad — wyszukiwarka (Warhammer Fantasy)</title>
+<style>
+  :root{
+    --bg:#14110d; --bg2:#1b1710; --panel:#211b13; --panel-h:#2a2318;
+    --line:#3a3020; --line2:#4a3d27;
+    --ink:#e9e0cb; --ink-dim:#b6a98c; --ink-faint:#8a7d63;
+    --gold:#c69a34; --gold-2:#8f6f22; --oxblood:#7c2b23; --oxblood-2:#5c1f18;
+    --mark:#f0d78a; --mark-bg:rgba(198,154,52,.20);
+  }
+  @media (prefers-color-scheme: light){
+    :root{
+      --bg:#e7dcc2; --bg2:#e1d4b6; --panel:#f1e9d5; --panel-h:#ece2ca;
+      --line:#cdbd98; --line2:#b8a67e;
+      --ink:#2a2016; --ink-dim:#5e4f38; --ink-faint:#7d6d50;
+      --gold:#8a6413; --gold-2:#a67f27; --oxblood:#7c2b23; --oxblood-2:#8f342a;
+      --mark:#5a3d00; --mark-bg:rgba(160,120,20,.24);
+    }
+  }
+  :root[data-theme="dark"]{
+    --bg:#14110d; --bg2:#1b1710; --panel:#211b13; --panel-h:#2a2318;
+    --line:#3a3020; --line2:#4a3d27;
+    --ink:#e9e0cb; --ink-dim:#b6a98c; --ink-faint:#8a7d63;
+    --gold:#c69a34; --gold-2:#8f6f22; --oxblood:#7c2b23; --oxblood-2:#5c1f18;
+    --mark:#f0d78a; --mark-bg:rgba(198,154,52,.20);
+  }
+  :root[data-theme="light"]{
+    --bg:#e7dcc2; --bg2:#e1d4b6; --panel:#f1e9d5; --panel-h:#ece2ca;
+    --line:#cdbd98; --line2:#b8a67e;
+    --ink:#2a2016; --ink-dim:#5e4f38; --ink-faint:#7d6d50;
+    --gold:#8a6413; --gold-2:#a67f27; --oxblood:#7c2b23; --oxblood-2:#8f342a;
+    --mark:#5a3d00; --mark-bg:rgba(160,120,20,.24);
+  }
+
+  *{box-sizing:border-box}
+  html,body{margin:0}
+  body{
+    background:var(--bg); color:var(--ink);
+    font-family:"Iowan Old Style","Palatino Linotype",Palatino,Georgia,"Times New Roman",serif;
+    line-height:1.6; -webkit-text-size-adjust:100%;
+  }
+  .sans{font-family:ui-sans-serif,system-ui,-apple-system,"Segoe UI",Roboto,sans-serif}
+  .wrap{max-width:680px; margin:0 auto; padding:0 15px 72px}
+
+  /* --- header --- */
+  header{text-align:center; padding:26px 6px 14px}
+  .eyebrow{
+    font-family:ui-sans-serif,system-ui,sans-serif; font-size:11px; letter-spacing:.22em;
+    text-transform:uppercase; color:var(--gold-2); margin:0 0 6px;
+  }
+  h1{
+    font-size:clamp(23px,7vw,34px); margin:0; color:var(--ink);
+    text-wrap:balance; letter-spacing:.3px;
+  }
+  h1 .amp{color:var(--gold)}
+  .sub{color:var(--ink-dim); font-size:13.5px; margin:8px 0 0}
+  .divider{display:flex; align-items:center; justify-content:center; gap:10px; margin:16px 0 0; color:var(--gold-2)}
+  .divider::before,.divider::after{content:""; height:1px; width:64px;
+    background:linear-gradient(90deg,transparent,var(--line2))}
+  .divider::after{background:linear-gradient(90deg,var(--line2),transparent)}
+
+  /* --- search bar (sticky) --- */
+  .searchbar{
+    position:sticky; top:0; z-index:5; padding:12px 0 10px;
+    background:linear-gradient(var(--bg) 78%, transparent);
+  }
+  form{display:flex; gap:8px}
+  .field{position:relative; flex:1}
+  input[type=text]{
+    width:100%; padding:14px 14px 14px 40px; font-size:16px; /* >=16px: iOS bez zoomu */
+    font-family:inherit; color:var(--ink);
+    background:var(--panel); border:1px solid var(--line2); border-radius:11px;
+  }
+  input[type=text]::placeholder{color:var(--ink-faint)}
+  input[type=text]:focus{outline:none; border-color:var(--gold);
+    box-shadow:0 0 0 3px var(--mark-bg)}
+  .field svg{position:absolute; left:13px; top:50%; transform:translateY(-50%);
+    width:17px; height:17px; color:var(--ink-faint)}
+  button.go{
+    font-family:ui-sans-serif,system-ui,sans-serif; font-weight:700; font-size:15px;
+    padding:0 18px; border-radius:11px; cursor:pointer; white-space:nowrap;
+    color:#1a1409; background:var(--gold); border:1px solid var(--gold);
+  }
+  button.go:active{background:var(--gold-2)}
+
+  .chips{display:flex; gap:7px; flex-wrap:wrap; margin:11px 1px 0}
+  .chip{
+    font-family:ui-sans-serif,system-ui,sans-serif; font-size:12.5px; cursor:pointer;
+    color:var(--gold); background:transparent; border:1px solid var(--line2);
+    padding:6px 11px; border-radius:999px;
+  }
+  .chip:active{background:var(--mark-bg)}
+
+  .meta{font-family:ui-sans-serif,system-ui,sans-serif; font-size:12.5px;
+    color:var(--ink-faint); margin:18px 2px 2px; min-height:16px}
+
+  /* --- result cards --- */
+  .card{
+    background:var(--panel); border:1px solid var(--line); border-radius:12px;
+    padding:14px 15px 15px; margin:12px 0;
+  }
+  .card .head{display:flex; align-items:center; gap:11px; margin-bottom:9px}
+  .seal{
+    font-family:ui-sans-serif,system-ui,sans-serif; font-weight:700; font-size:12px;
+    color:#f2e5cf; background:var(--oxblood); border:1px solid var(--oxblood-2);
+    padding:4px 10px; border-radius:7px; white-space:nowrap; letter-spacing:.02em;
+    font-variant-numeric:tabular-nums;
+  }
+  .relwrap{flex:1; display:flex; align-items:center; gap:8px}
+  .relbar{flex:1; height:6px; border-radius:99px; background:var(--bg2); overflow:hidden; border:1px solid var(--line)}
+  .relfill{height:100%; background:linear-gradient(90deg,var(--gold-2),var(--gold))}
+  .relval{font-family:ui-sans-serif,system-ui,sans-serif; font-size:11.5px;
+    color:var(--ink-faint); min-width:34px; text-align:right; font-variant-numeric:tabular-nums}
+  .passage{font-size:15.5px; color:var(--ink); white-space:pre-wrap; word-break:break-word}
+  .passage mark{background:var(--mark-bg); color:var(--mark); padding:0 1px; border-radius:2px; font-weight:600}
+
+  .empty{color:var(--ink-dim); font-size:15px; text-align:center; padding:34px 10px; line-height:1.7}
+  .empty b{color:var(--ink)}
+
+  footer{margin-top:30px; text-align:center;
+    font-family:ui-sans-serif,system-ui,sans-serif; font-size:11.5px; color:var(--ink-faint); line-height:1.7}
+  footer code{color:var(--ink-dim)}
+  .note{margin:2px 0 0}
+</style>
+
+<div class="wrap">
+  <header>
+    <p class="eyebrow">Warhammer Fantasy Roleplay · 2. edycja</p>
+    <h1>Księga Zasad <span class="amp">—</span> wyszukiwarka</h1>
+    <p class="sub">Przeszukaj 266 stron. Wpisz pytanie po polsku, otrzymasz fragmenty z numerami stron.</p>
+    <div class="divider">✦</div>
+  </header>
+
+  <div class="searchbar">
+    <form id="f" autocomplete="off">
+      <div class="field">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="11" cy="11" r="7"/><path d="m21 21-4.3-4.3"/></svg>
+        <input id="q" type="text" inputmode="search" enterkeyhint="search"
+               placeholder="np. jak działa trafienie krytyczne?">
+      </div>
+      <button class="go" type="submit">Szukaj</button>
+    </form>
+    <div class="chips" id="chips">
+      <span class="chip">parowanie ciosu</span>
+      <span class="chip">trafienie krytyczne</span>
+      <span class="chip">rzut na inicjatywę</span>
+      <span class="chip">punkty doświadczenia</span>
+      <span class="chip">test cechy</span>
+      <span class="chip">magia i zaklęcia</span>
+    </div>
+  </div>
+
+  <div class="meta sans" id="meta"></div>
+  <div id="results"></div>
+
+  <footer>
+    <p class="note">Wyszukiwanie słowno-frazowe po treści księgi (odporne na literówki OCR — ignoruje ogonki).</p>
+    <p class="note">Pełne wyszukiwanie <em>semantyczne</em> (model <code>multilingual-e5-large</code> + ChromaDB) działa w wersji z serwerem na komputerze.</p>
+  </footer>
+</div>
+
+<script>
+const DATA = __DATA__;
+
+// normalizacja: małe litery + usunięcie polskich ogonków (odporność na OCR)
+const MAP = {'ą':'a','ć':'c','ę':'e','ł':'l','ń':'n','ó':'o','ś':'s','ż':'z','ź':'z'};
+function norm(s){
+  return s.toLowerCase().replace(/[ąćęłńóśżź]/g, c => MAP[c] || c)
+          .replace(/[^a-z0-9\s]/g,' ').replace(/\s+/g,' ').trim();
+}
+const STOP = new Set(['i','w','na','do','z','za','o','a','the','of','jak','czy','co','sie','się','jest','po','od','to','dla']);
+
+// pre-normalizacja korpusu (raz)
+const NORM = DATA.map(d => norm(d.t));
+
+const q = document.getElementById('q'), meta = document.getElementById('meta'),
+      results = document.getElementById('results'), form = document.getElementById('f');
+
+function esc(s){return s.replace(/[&<>]/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;'}[c]));}
+
+function search(query){
+  const nq = norm(query);
+  const terms = nq.split(' ').filter(t => t.length>1);
+  const core = terms.filter(t => !STOP.has(t));
+  const useTerms = core.length ? core : terms;
+  if(!useTerms.length){ meta.textContent=''; results.innerHTML=''; return; }
+
+  const scored = [];
+  for(let i=0;i<NORM.length;i++){
+    const doc = NORM[i];
+    let score = 0, present = 0;
+    for(const t of useTerms){
+      let idx = doc.indexOf(t), c = 0;
+      while(idx !== -1){ c++; idx = doc.indexOf(t, idx + t.length); }
+      if(c){ present++; score += 1 + Math.log(1 + c); }
+    }
+    if(!present) continue;
+    if(present === useTerms.length) score += 3;             // wszystkie słowa
+    if(useTerms.length > 1 && doc.includes(nq)) score += 4; // dokładna fraza
+    score -= Math.log(1 + doc.length) * 0.15;               // lekka normalizacja długości
+    scored.push({i, score, present});
+  }
+  scored.sort((x,y) => y.score - x.score || y.present - x.present);
+  const top = scored.slice(0, 8);
+
+  if(!top.length){
+    meta.textContent='';
+    results.innerHTML = `<div class="empty">Brak trafień dla „<b>${esc(query)}</b>".<br>Spróbuj innych słów albo pojedynczego terminu (np. <b>inicjatywa</b>, <b>zbroja</b>).</div>`;
+    return;
+  }
+  const maxS = top[0].score;
+  meta.textContent = `Znaleziono ${scored.length} fragment${scored.length===1?'':'ów'} · pokazuję ${top.length} najlepszych`;
+
+  results.innerHTML = top.map(r => {
+    const d = DATA[r.i];
+    const pages = d.a === d.b ? ('str. ' + d.a) : ('str. ' + d.a + '–' + d.b);
+    const rel = Math.max(8, Math.round(100 * r.score / maxS));
+    return `<div class="card">
+      <div class="head">
+        <span class="seal">${pages}</span>
+        <div class="relwrap">
+          <div class="relbar"><div class="relfill" style="width:${rel}%"></div></div>
+          <span class="relval">${rel}%</span>
+        </div>
+      </div>
+      <div class="passage">${snippet(d.t, useTerms)}</div>
+    </div>`;
+  }).join('');
+  window.scrollTo({top:0});
+}
+
+// wycina okno wokół pierwszego trafienia i podświetla terminy
+function snippet(text, terms){
+  const nText = norm(text);
+  let first = Infinity;
+  for(const t of terms){ const k = nText.indexOf(t); if(k!==-1 && k<first) first=k; }
+  let start = 0, body = text;
+  const WIN = 460;
+  if(first !== Infinity && text.length > WIN){
+    start = Math.max(0, first - 130);
+    body = (start>0?'… ':'') + text.slice(start, start + WIN) + (start+WIN<text.length?' …':'');
+  } else if(text.length > WIN){
+    body = text.slice(0, WIN) + ' …';
+  }
+  // podświetlenie: buduj regex z terminów (na oryginale, ale terminy są bez ogonków —
+  // dopasuj tolerancyjnie zamieniając a->[aą] itd.)
+  let html = esc(body);
+  const back = {a:'[aąA]',c:'[cćC]',e:'[eęE]',l:'[lłL]',n:'[nńN]',o:'[oóO]',s:'[sśS]',z:'[zżźZ]'};
+  for(const t of [...new Set(terms)].sort((a,b)=>b.length-a.length)){
+    const pat = t.split('').map(ch => back[ch] || (/[a-z0-9]/.test(ch)? '['+ch+ch.toUpperCase()+']' : ch)).join('');
+    try{ html = html.replace(new RegExp('('+pat+')','gi'), '<mark>$1</mark>'); }catch(e){}
+  }
+  return html;
+}
+
+form.addEventListener('submit', e => { e.preventDefault(); q.blur(); search(q.value); });
+document.getElementById('chips').addEventListener('click', e => {
+  if(e.target.classList.contains('chip')){ q.value = e.target.textContent; search(q.value); }
+});
+</script>
