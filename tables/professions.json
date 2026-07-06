@@ -1,50 +1,363 @@
 [
-  {
-    "name": "Akolita",
-    "type": "podstawowa",
-    "page": 32,
-    "main":      {"WW": "+5",  "US": "+5",  "K": "—",   "Odp": "+5",  "Zr": "—",   "Int": "+10", "SW": "+10", "Ogd": "+10"},
-    "secondary": {"A": "—",   "Żyw": "+2", "S": "—",   "Wt": "—",   "Sz": "—",   "Mag": "—",  "PO": "—",   "PP": "—"},
-    "skills": "czytanie i pisanie, leczenie, nauka (astronomia albo historia), nauka (teologia), przekonywanie, spostrzegawczość, znajomość języka (klasyczny), znajomość języka (staroświatowy)",
-    "talents": "bardzo silny albo szybki refleks, charyzmatyczny albo urodzony wojownik, przemawianie",
-    "trappings": "szaty kapłańskie, symbol boga",
-    "entries": "fanatyk, guślarz, łowca czarownic, łowca wampirów, rycerz, skryba, żak",
-    "exits": "cyrulik, demagog, fanatyk, kapłan, skryba, zakonnik"
+ {
+  "name": "Akolita",
+  "type": "podstawowa",
+  "page": 32,
+  "main": {
+   "WW": "+5",
+   "US": "+5",
+   "K": "—",
+   "Odp": "+5",
+   "Zr": "—",
+   "Int": "+10",
+   "SW": "+10",
+   "Ogd": "+10"
   },
-  {
-    "name": "Banita",
-    "type": "podstawowa",
-    "page": 32,
-    "main":      {"WW": "+10", "US": "+10", "K": "—",   "Odp": "—",   "Zr": "+10", "Int": "+5", "SW": "—",   "Ogd": "—"},
-    "secondary": {"A": "+1",  "Żyw": "+2", "S": "—",   "Wt": "—",   "Sz": "—",   "Mag": "—",  "PO": "—",   "PP": "—"},
-    "skills": "opieka nad zwierzętami albo wiedza (Imperium), plotkowanie albo sekretne znaki (złodziei), powożenie albo jeździectwo, skradanie się, spostrzegawczość, ukrywanie się, unik, wspinaczka, zastawianie pułapek albo pływanie",
-    "talents": "strzał mierzony albo ogłuszanie, wędrowiec albo łotrzyk",
-    "trappings": "łuk i 10 strzał, lekki pancerz (skórzany kaftan), tarcza",
-    "entries": "chłop, fanatyk, giermek, guślarz, kanciarz, karczmarz, leśnik, mytnik, najemnik, ochotnik, podżegacz, strażnik dróg, szarlatan, woźnica, żołnierz okrętowy",
-    "exits": "demagog, rozbójnik, weteran, włóczykij, złodziej"
+  "secondary": {
+   "A": "—",
+   "Żyw": "+2",
+   "S": "—",
+   "Wt": "—",
+   "Sz": "—",
+   "Mag": "—",
+   "PO": "—",
+   "PP": "—"
   },
-  {
-    "name": "Berserker z Norski",
-    "type": "podstawowa",
-    "page": 33,
-    "main":      {"WW": "+15", "US": "—",   "K": "+10", "Odp": "+10", "Zr": "—",   "Int": "—",  "SW": "+10", "Ogd": "—"},
-    "secondary": {"A": "—",   "Żyw": "+2", "S": "—",   "Wt": "—",   "Sz": "—",   "Mag": "—",  "PO": "—",   "PP": "—"},
-    "skills": "kuglarstwo (gawędziarstwo), mocna głowa, pływanie, wiedza (Norska), zastraszanie, znajomość języka (norski)",
-    "talents": "broń specjalna (dwuręczna), groźny, szał bojowy, szybkie wyciągnięcie",
-    "trappings": "broń dwuręczna albo tarcza, lekki pancerz (skórzany kaftan), butelka gorzałki",
-    "entries": "brak",
-    "exits": "gladiator, najemnik, sierżant, weteran, żeglarz"
+  "skills": "czytanie i pisanie, leczenie, nauka (astronomia albo historia), nauka (teologia), przekonywanie, spostrzegawczość, znajomość języka (klasyczny), znajomość języka (staroświatowy)",
+  "talents": "bardzo silny albo szybki refleks, charyzmatyczny albo urodzony wojownik, przemawianie",
+  "trappings": "szaty kapłańskie, symbol boga",
+  "entries": "fanatyk, guślarz, łowca czarownic, łowca wampirów, rycerz, skryba, żak",
+  "exits": "cyrulik, demagog, fanatyk, kapłan, skryba, zakonnik"
+ },
+ {
+  "name": "Banita",
+  "type": "podstawowa",
+  "page": 32,
+  "main": {
+   "WW": "+10",
+   "US": "+10",
+   "K": "—",
+   "Odp": "—",
+   "Zr": "+10",
+   "Int": "+5",
+   "SW": "—",
+   "Ogd": "—"
   },
-  {
-    "name": "Chłop",
-    "type": "podstawowa",
-    "page": 33,
-    "main":      {"WW": "+5",  "US": "+5",  "K": "+5",  "Odp": "+10", "Zr": "+5",  "Int": "—",  "SW": "+5",  "Ogd": "—"},
-    "secondary": {"A": "—",   "Żyw": "+2", "S": "—",   "Wt": "—",   "Sz": "—",   "Mag": "—",  "PO": "—",   "PP": "—"},
-    "skills": "hazard albo kuglarstwo (taniec albo śpiew), opieka nad zwierzętami albo przekonywanie, oswajanie albo rzemiosło (gotowanie), powożenie albo rzemiosło (wyrób łuków), sztuka przetrwania albo rzemiosło (uprawa ziemi), tresura albo pływanie, ukrywanie się, wioślarstwo albo zastawianie pułapek, wspinaczka albo skradanie się",
-    "talents": "chodu! albo broń specjalna (proca), twardziel albo wędrowiec",
-    "trappings": "proca albo kij, skórzany bukłak",
-    "entries": "brak",
-    "exits": "banita, fanatyk, ochotnik, rybak, rzemieślnik, sługa, śmieciarz, urzędnik, węglarz"
-  }
+  "secondary": {
+   "A": "+1",
+   "Żyw": "+2",
+   "S": "—",
+   "Wt": "—",
+   "Sz": "—",
+   "Mag": "—",
+   "PO": "—",
+   "PP": "—"
+  },
+  "skills": "opieka nad zwierzętami albo wiedza (Imperium), plotkowanie albo sekretne znaki (złodziei), powożenie albo jeździectwo, skradanie się, spostrzegawczość, ukrywanie się, unik, wspinaczka, zastawianie pułapek albo pływanie",
+  "talents": "strzał mierzony albo ogłuszanie, wędrowiec albo łotrzyk",
+  "trappings": "łuk i 10 strzał, lekki pancerz (skórzany kaftan), tarcza",
+  "entries": "chłop, fanatyk, giermek, guślarz, kanciarz, karczmarz, leśnik, mytnik, najemnik, ochotnik, podżegacz, strażnik dróg, szarlatan, woźnica, żołnierz okrętowy",
+  "exits": "demagog, rozbójnik, weteran, włóczykij, złodziej"
+ },
+ {
+  "name": "Berserker z Norski",
+  "type": "podstawowa",
+  "page": 33,
+  "main": {
+   "WW": "+15",
+   "US": "—",
+   "K": "+10",
+   "Odp": "+10",
+   "Zr": "—",
+   "Int": "—",
+   "SW": "+10",
+   "Ogd": "—"
+  },
+  "secondary": {
+   "A": "—",
+   "Żyw": "+2",
+   "S": "—",
+   "Wt": "—",
+   "Sz": "—",
+   "Mag": "—",
+   "PO": "—",
+   "PP": "—"
+  },
+  "skills": "kuglarstwo (gawędziarstwo), mocna głowa, pływanie, wiedza (Norska), zastraszanie, znajomość języka (norski)",
+  "talents": "broń specjalna (dwuręczna), groźny, szał bojowy, szybkie wyciągnięcie",
+  "trappings": "broń dwuręczna albo tarcza, lekki pancerz (skórzany kaftan), butelka gorzałki",
+  "entries": "brak",
+  "exits": "gladiator, najemnik, sierżant, weteran, żeglarz"
+ },
+ {
+  "name": "Chłop",
+  "type": "podstawowa",
+  "page": 33,
+  "main": {
+   "WW": "+5",
+   "US": "+5",
+   "K": "+5",
+   "Odp": "+10",
+   "Zr": "+5",
+   "Int": "—",
+   "SW": "+5",
+   "Ogd": "—"
+  },
+  "secondary": {
+   "A": "—",
+   "Żyw": "+2",
+   "S": "—",
+   "Wt": "—",
+   "Sz": "—",
+   "Mag": "—",
+   "PO": "—",
+   "PP": "—"
+  },
+  "skills": "hazard albo kuglarstwo (taniec albo śpiew), opieka nad zwierzętami albo przekonywanie, oswajanie albo rzemiosło (gotowanie), powożenie albo rzemiosło (wyrób łuków), sztuka przetrwania albo rzemiosło (uprawa ziemi), tresura albo pływanie, ukrywanie się, wioślarstwo albo zastawianie pułapek, wspinaczka albo skradanie się",
+  "talents": "chodu! albo broń specjalna (proca), twardziel albo wędrowiec",
+  "trappings": "proca albo kij, skórzany bukłak",
+  "entries": "brak",
+  "exits": "banita, fanatyk, ochotnik, rybak, rzemieślnik, sługa, śmieciarz, urzędnik, węglarz"
+ },
+ {
+  "name": "Ciura obozowa",
+  "type": "podstawowa",
+  "page": 34,
+  "main": {
+   "WW": "—",
+   "US": "—",
+   "K": "—",
+   "Odp": "+5",
+   "Zr": "+10",
+   "Int": "+5",
+   "SW": "+5",
+   "Ogd": "+10"
+  },
+  "secondary": {
+   "A": "—",
+   "Żyw": "+2",
+   "S": "—",
+   "Wt": "—",
+   "Sz": "—",
+   "Mag": "—",
+   "PO": "—",
+   "PP": "—"
+  },
+  "skills": "opieka nad zwierzętami albo powożenie, plotkowanie, przekonywanie albo wycena, przeszukiwanie, rzemiosło (jedno z: gotowanie, handel, kartografia, kowalstwo, krawiectwo, płatnerstwo, rusznikarstwo, wyrób łuków, zielarstwo), spostrzegawczość, targowanie, znajomość języka (bretoński, kislevski albo tileański), zwinne palce",
+  "talents": "chodu!, odporność na choroby albo obieżyświat, twardziel albo charyzmatyczny, żyłka handlowa albo bijatyka",
+  "trappings": "talizman szczęścia albo narzędzia (rzemieślnika), sakiewka, namiot",
+  "entries": "sługa, śmieciarz",
+  "exits": "przemytnik, rzemieślnik, sługa, szarlatan, szpieg, węglarz, włóczykij"
+ },
+ {
+  "name": "Cyrkowiec",
+  "type": "podstawowa",
+  "page": 34,
+  "main": {
+   "WW": "+5",
+   "US": "+10",
+   "K": "—",
+   "Odp": "—",
+   "Zr": "+10",
+   "Int": "—",
+   "SW": "+5",
+   "Ogd": "+10"
+  },
+  "secondary": {
+   "A": "—",
+   "Żyw": "+2",
+   "S": "—",
+   "Wt": "—",
+   "Sz": "—",
+   "Mag": "—",
+   "PO": "—",
+   "PP": "—"
+  },
+  "skills": "kuglarstwo (dowolne dwa), opieka nad zwierzętami albo pływanie, przekonywanie, spostrzegawczość, wiedza (Imperium), wycena albo plotkowanie, znajomość języka (staroświatowy) oraz jedna umiejętność do wyboru spośród: brzuchomówstwo, gadanina, hipnoza, jeździectwo, oswajanie, tresura, wspinaczka, zwinne palce",
+  "talents": "dwie zdolności do wyboru spośród: bardzo silny, broń specjalna (rzucana), naśladowca, przemawianie, strzał mierzony, szybki refleks, szybkie wyciągnięcie, woltyżerka, zapasy",
+  "trappings": "lekki pancerz (skórzany kaftan), jeden przedmiot do wyboru spośród: 3 noże do rzucania, 2 topory do rzucania, instrument muzyczny (dowolny), narzędzia (kuglarza), oraz kostium cyrkowca albo ubranie dobrej jakości",
+  "entries": "herold, kanciarz, włóczykij",
+  "exits": "bard, kanciarz, szarlatan, włóczykij, złodziej"
+ },
+ {
+  "name": "Cyrulik",
+  "type": "podstawowa",
+  "page": 35,
+  "main": {
+   "WW": "+5",
+   "US": "—",
+   "K": "—",
+   "Odp": "—",
+   "Zr": "+10",
+   "Int": "+10",
+   "SW": "+10",
+   "Ogd": "+5"
+  },
+  "secondary": {
+   "A": "—",
+   "Żyw": "+2",
+   "S": "—",
+   "Wt": "—",
+   "Sz": "—",
+   "Mag": "—",
+   "PO": "—",
+   "PP": "—"
+  },
+  "skills": "czytanie i pisanie, leczenie, powożenie albo pływanie, przekonywanie, rzemiosło (aptekarstwo), spostrzegawczość, targowanie, znajomość języka (bretoński, staroświatowy albo tileański)",
+  "talents": "charyzmatyczny albo niezwykle odporny, chirurgia, odporność na choroby albo błyskotliwość",
+  "trappings": "narzędzia (cyrulika)",
+  "entries": "akolita, żak",
+  "exits": "medyk, oprawca, porywacz zwłok, rzemieślnik, włóczykij"
+ },
+ {
+  "name": "Fanatyk",
+  "type": "podstawowa",
+  "page": 35,
+  "main": {
+   "WW": "+10",
+   "US": "—",
+   "K": "+5",
+   "Odp": "+10",
+   "Zr": "—",
+   "Int": "—",
+   "SW": "+10",
+   "Ogd": "+5"
+  },
+  "secondary": {
+   "A": "—",
+   "Żyw": "+2",
+   "S": "—",
+   "Wt": "—",
+   "Sz": "—",
+   "Mag": "—",
+   "PO": "—",
+   "PP": "—"
+  },
+  "skills": "czytanie i pisanie, nauka (teologia), przekonywanie, wiedza (Imperium), zastraszanie",
+  "talents": "broń specjalna (korbacze), opanowanie albo bardzo silny, przemawianie, twardziel albo charyzmatyczny",
+  "trappings": "korbacz albo morgensztern, lekki pancerz (skórzana kurta), butelka spirytusu lub gorzałki dobrej jakości",
+  "entries": "akolita, chłop, podżegacz, rzemieślnik, szampierz",
+  "exits": "akolita, banita, biczownik, podżegacz, zakonnik"
+ },
+ {
+  "name": "Flisak",
+  "type": "podstawowa",
+  "page": 36,
+  "main": {
+   "WW": "+10",
+   "US": "+5",
+   "K": "+5",
+   "Odp": "+5",
+   "Zr": "+10",
+   "Int": "+5",
+   "SW": "—",
+   "Ogd": "—"
+  },
+  "secondary": {
+   "A": "—",
+   "Żyw": "+2",
+   "S": "—",
+   "Wt": "—",
+   "Sz": "—",
+   "Mag": "—",
+   "PO": "—",
+   "PP": "—"
+  },
+  "skills": "mocna głowa albo plotkowanie, nawigacja, pływanie, sekretny język (łowców) albo znajomość języka (kislevski), spostrzegawczość, sztuka przetrwania, wiedza (Imperium albo Kislev), wioślarstwo, żeglarstwo",
+  "talents": "obieżyświat, wyczucie kierunku",
+  "trappings": "lekki pancerz (skórzana kurta), łódź wiosłowa",
+  "entries": "przemytnik, przewoźnik",
+  "exits": "nawigator, przemytnik, rybak, żeglarz, żołnierz okrętowy"
+ },
+ {
+  "name": "Giermek",
+  "type": "podstawowa",
+  "page": 36,
+  "main": {
+   "WW": "+10",
+   "US": "+5",
+   "K": "+5",
+   "Odp": "+5",
+   "Zr": "+5",
+   "Int": "—",
+   "SW": "—",
+   "Ogd": "+5"
+  },
+  "secondary": {
+   "A": "+1",
+   "Żyw": "+2",
+   "S": "—",
+   "Wt": "—",
+   "Sz": "—",
+   "Mag": "—",
+   "PO": "—",
+   "PP": "—"
+  },
+  "skills": "jeździectwo, nauka (genealogia/heraldyka) albo wiedza (Bretonia), opieka nad zwierzętami, przekonywanie albo plotkowanie, tresura, unik, znajomość języka (bretoński albo staroświatowy)",
+  "talents": "broń specjalna (kawaleryjska), etykieta, silny cios",
+  "trappings": "lanca, średni pancerz (kaftan kolczy, czepiec kolczy i skórzana kurta), tarcza, koń z siodłem i uprzężą",
+  "entries": "herold, paź, szlachcic",
+  "exits": "banita, rycerz, sierżant, szlachcic, weteran"
+ },
+ {
+  "name": "Gladiator",
+  "type": "podstawowa",
+  "page": 37,
+  "main": {
+   "WW": "+15",
+   "US": "—",
+   "K": "—",
+   "Odp": "+10",
+   "Zr": "+10",
+   "Int": "—",
+   "SW": "+10",
+   "Ogd": "—"
+  },
+  "secondary": {
+   "A": "—",
+   "Żyw": "+2",
+   "S": "—",
+   "Wt": "—",
+   "Sz": "—",
+   "Mag": "—",
+   "PO": "—",
+   "PP": "—"
+  },
+  "skills": "unik, zastraszanie",
+  "talents": "bardzo silny albo odporność psychiczna, broń specjalna (dwuręczna), broń specjalna (korbacze), broń specjalna (parująca), rozbrajanie albo zapasy, silny cios, szybkie wyciągnięcie albo morderczy atak",
+  "trappings": "korbacz albo broń dwuręczna, kastet, średni pancerz (kaftan kolczy i skórzana kurta), tarcza albo puklerz",
+  "entries": "berserker z Norski, oprych, rzezimieszek, tarczownik",
+  "exits": "łowca nagród, najemnik, rzezimieszek, weteran, zabójca trolli"
+ },
+ {
+  "name": "Goniec",
+  "type": "podstawowa",
+  "page": 37,
+  "main": {
+   "WW": "+10",
+   "US": "—",
+   "K": "+5",
+   "Odp": "+5",
+   "Zr": "+10",
+   "Int": "+5",
+   "SW": "+5",
+   "Ogd": "—"
+  },
+  "secondary": {
+   "A": "—",
+   "Żyw": "+2",
+   "S": "—",
+   "Wt": "—",
+   "Sz": "+1",
+   "Mag": "—",
+   "PO": "—",
+   "PP": "—"
+  },
+  "skills": "nawigacja, pływanie, sekretne znaki (zwiadowców), spostrzegawczość, sztuka przetrwania, unik",
+  "talents": "bardzo szybki albo szósty zmysł, bardzo wytrzymały albo bardzo silny, błyskawiczne przeładowanie, chodu!, wyczucie kierunku",
+  "trappings": "kusza i 10 bełtów, lekki pancerz (skórzana kurta), mikstura lecznicza, talizman szczęścia",
+  "entries": "tarczownik",
+  "exits": "hiena cmentarna, szczurołap, tarczownik, weteran, zwiadowca",
+  "note": "Tylko krasnoludy."
+ }
 ]
