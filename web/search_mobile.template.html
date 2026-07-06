@@ -113,6 +113,26 @@
   .passage{font-size:15.5px; color:var(--ink); white-space:pre-wrap; word-break:break-word}
   .passage mark{background:var(--mark-bg); color:var(--mark); padding:0 1px; border-radius:2px; font-weight:600}
 
+  /* --- karta faktu (dokładne dane z tabeli) --- */
+  .factcard{
+    background:linear-gradient(180deg, rgba(198,154,52,.10), var(--panel));
+    border:1px solid var(--gold-2); border-radius:12px; padding:14px 15px 15px; margin:12px 0;
+  }
+  .factcard .fhead{display:flex; align-items:center; justify-content:space-between; gap:10px}
+  .ftype{font-family:ui-sans-serif,system-ui,sans-serif; font-size:11px; letter-spacing:.14em;
+    text-transform:uppercase; color:var(--gold-2)}
+  .fname{font-size:22px; color:var(--gold); margin:2px 0 10px; letter-spacing:.3px}
+  .stattbl{overflow-x:auto; margin:0 0 10px}
+  .stattbl table{border-collapse:collapse; width:100%; font-family:ui-sans-serif,system-ui,sans-serif}
+  .stattbl th{font-size:11px; color:var(--ink-faint); font-weight:700; padding:3px 6px;
+    border:1px solid var(--line); background:var(--bg2); text-align:center}
+  .stattbl td{font-size:14px; color:var(--ink); padding:5px 6px; border:1px solid var(--line);
+    text-align:center; font-variant-numeric:tabular-nums; min-width:34px}
+  .stattbl td.sd{color:var(--ink-faint)}
+  .fline{font-size:14px; color:var(--ink-dim); margin:5px 0; line-height:1.5}
+  .fline .fl{color:var(--gold-2); font-family:ui-sans-serif,system-ui,sans-serif; font-size:12px;
+    text-transform:uppercase; letter-spacing:.05em}
+
   .empty{color:var(--ink-dim); font-size:15px; text-align:center; padding:34px 10px; line-height:1.7}
   .empty b{color:var(--ink)}
 
@@ -160,7 +180,8 @@
 
 <script>
 const DATA = __DATA__;
-const TOC = __TOC__;   // spis treści: [{t: tytuł, p: strona PDF}] — najwyższa waga
+const TOC = __TOC__;     // spis treści: [{t: tytuł, p: strona PDF}] — najwyższa waga
+const FACTS = __FACTS__; // fakt-karty z tabel (profesje, broń, czary…) — dokładne dane
 
 // zwijanie polskich ogonków — odporność na literówki OCR (może/moze itd.)
 const MAP = {'ą':'a','ć':'c','ę':'e','ł':'l','ń':'n','ó':'o','ś':'s','ż':'z','ź':'z'};
@@ -188,6 +209,12 @@ for(let i=0;i<N;i++){
 const TOCN = TOC.map(e => ({ w: norm(e.t).split(' ').filter(x => x.length >= 4 && !STOP.has(x)), p: e.p }))
                .filter(e => e.w.length);
 
+// fakt-karty -> znormalizowane słowa nazwy i słów kluczowych
+const FACTN = FACTS.map(f => Object.assign({}, f, {
+  nw: norm(f.name).split(' ').filter(Boolean),
+  kw: norm(f.search || f.name).split(' ').filter(Boolean),
+}));
+
 const q = document.getElementById('q'), meta = document.getElementById('meta'),
       results = document.getElementById('results'), form = document.getElementById('f');
 
@@ -206,6 +233,52 @@ function tfOf(t, freq){
   let tf = 0;
   for(const w in freq){ if(wordHit(w, t)) tf += freq[w]; }
   return tf;
+}
+
+// --- fakt-karty z tabel: dokładne dane na górze wyników ---
+const MAIN_ORDER = ['WW','US','K','Odp','Zr','Int','SW','Ogd'];
+const SEC_ORDER  = ['A','Żyw','S','Wt','Sz','Mag','PO','PP'];
+
+function statTable(obj, order){
+  const heads = order.map(k => `<th>${k}</th>`).join('');
+  const cells = order.map(k => `<td class="${obj[k]==='—'?'sd':''}">${esc(obj[k]||'—')}</td>`).join('');
+  return `<tr>${heads}</tr><tr>${cells}</tr>`;
+}
+function factLine(label, val){
+  return val ? `<div class="fline"><span class="fl">${label}:</span> ${esc(val)}</div>` : '';
+}
+function factCardHtml(f){
+  if(f.type === 'profesja'){
+    return `<div class="factcard">
+      <div class="fhead"><span class="ftype">Profesja ${esc(f.cat||'')}</span><span class="seal">str. ${f.page}</span></div>
+      <div class="fname">${esc(f.name)}</div>
+      <div class="stattbl"><table><tbody>
+        ${statTable(f.main, MAIN_ORDER)}
+        ${statTable(f.secondary, SEC_ORDER)}
+      </tbody></table></div>
+      ${factLine('Umiejętności', f.skills)}
+      ${factLine('Zdolności', f.talents)}
+      ${factLine('Wyposażenie', f.trappings)}
+      ${factLine('Profesje wstępne', f.entries)}
+      ${factLine('Profesje wyjściowe', f.exits)}
+    </div>`;
+  }
+  return '';
+}
+// pokaż kartę tylko gdy któreś słowo zapytania trafia w NAZWĘ (nie tylko słowa kluczowe)
+function renderFacts(terms){
+  const scored = [];
+  for(const f of FACTN){
+    let nameHit = 0, kwHit = 0;
+    for(const t of terms){
+      if(f.nw.some(w => wordHit(w, t))) nameHit++;
+      else if(f.kw.some(w => wordHit(w, t))) kwHit++;
+    }
+    if(nameHit > 0) scored.push({ f, s: nameHit * 10 + kwHit });
+  }
+  if(!scored.length) return '';
+  scored.sort((a, b) => b.s - a.s);
+  return scored.slice(0, 2).map(x => factCardHtml(x.f)).join('');
 }
 
 function search(query){
@@ -252,15 +325,19 @@ function search(query){
   cand.sort((x,y) => y.s - x.s || y.p - x.p);
   const top = cand.slice(0, 8);
 
-  if(!top.length){
+  const factHtml = renderFacts(terms);   // dokładne dane z tabel (na górze)
+
+  if(!top.length && !factHtml){
     meta.textContent='';
     results.innerHTML = `<div class="empty">Brak trafień dla „<b>${esc(query)}</b>".<br>Spróbuj pojedynczego, konkretnego słowa (np. <b>akolita</b>, <b>inicjatywa</b>, <b>zbroja</b>).</div>`;
     return;
   }
-  const maxS = top[0].s;
-  meta.textContent = `Znaleziono ${cand.length} fragment${cand.length===1?'':'ów'} · pokazuję ${top.length} najlepszych`;
+  meta.textContent = top.length
+    ? `Znaleziono ${cand.length} fragment${cand.length===1?'':'ów'} · pokazuję ${top.length} najlepszych`
+    : 'Dokładne dane z tabeli:';
+  const maxS = top.length ? top[0].s : 1;
 
-  results.innerHTML = top.map(r => {
+  const proseHtml = top.map(r => {
     const d = DATA[r.i];
     const pages = d.a === d.b ? ('str. ' + d.a) : ('str. ' + d.a + '–' + d.b);
     const rel = Math.max(8, Math.round(100 * r.s / maxS));
@@ -275,6 +352,7 @@ function search(query){
       <div class="passage">${snippet(d.t, terms)}</div>
     </div>`;
   }).join('');
+  results.innerHTML = factHtml + proseHtml;
   window.scrollTo({top:0});
 }
 

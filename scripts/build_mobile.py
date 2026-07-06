@@ -43,8 +43,15 @@ def main():
     toc = json.load(open(toc_path, encoding="utf-8")) if os.path.exists(toc_path) else []
     toc_js = json.dumps(toc, ensure_ascii=False, separators=(",", ":"))
 
+    # fakt-karty z tabel (profesje, broń, czary…) — dokładne dane na górze wyników
+    facts_path = os.path.join(ROOT, "data", "tables", "facts.json")
+    facts = json.load(open(facts_path, encoding="utf-8")) if os.path.exists(facts_path) else []
+    facts_js = json.dumps(facts, ensure_ascii=False, separators=(",", ":"))
+
     tpl = open(tpl_path, encoding="utf-8").read()
-    content = tpl.replace("__DATA__", data).replace("__TOC__", toc_js)
+    content = (tpl.replace("__DATA__", data)
+                  .replace("__TOC__", toc_js)
+                  .replace("__FACTS__", facts_js))
 
     # 1) wersja dla Artifacta (bez <head> — Artifact sam dokłada nagłówek)
     open(out_path, "w", encoding="utf-8").write(content)

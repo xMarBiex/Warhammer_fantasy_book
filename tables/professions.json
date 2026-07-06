@@ -1,0 +1,50 @@
+[
+  {
+    "name": "Akolita",
+    "type": "podstawowa",
+    "page": 32,
+    "main":      {"WW": "+5",  "US": "+5",  "K": "—",   "Odp": "+5",  "Zr": "—",   "Int": "+10", "SW": "+10", "Ogd": "+10"},
+    "secondary": {"A": "—",   "Żyw": "+2", "S": "—",   "Wt": "—",   "Sz": "—",   "Mag": "—",  "PO": "—",   "PP": "—"},
+    "skills": "czytanie i pisanie, leczenie, nauka (astronomia albo historia), nauka (teologia), przekonywanie, spostrzegawczość, znajomość języka (klasyczny), znajomość języka (staroświatowy)",
+    "talents": "bardzo silny albo szybki refleks, charyzmatyczny albo urodzony wojownik, przemawianie",
+    "trappings": "szaty kapłańskie, symbol boga",
+    "entries": "fanatyk, guślarz, łowca czarownic, łowca wampirów, rycerz, skryba, żak",
+    "exits": "cyrulik, demagog, fanatyk, kapłan, skryba, zakonnik"
+  },
+  {
+    "name": "Banita",
+    "type": "podstawowa",
+    "page": 32,
+    "main":      {"WW": "+10", "US": "+10", "K": "—",   "Odp": "—",   "Zr": "+10", "Int": "+5", "SW": "—",   "Ogd": "—"},
+    "secondary": {"A": "+1",  "Żyw": "+2", "S": "—",   "Wt": "—",   "Sz": "—",   "Mag": "—",  "PO": "—",   "PP": "—"},
+    "skills": "opieka nad zwierzętami albo wiedza (Imperium), plotkowanie albo sekretne znaki (złodziei), powożenie albo jeździectwo, skradanie się, spostrzegawczość, ukrywanie się, unik, wspinaczka, zastawianie pułapek albo pływanie",
+    "talents": "strzał mierzony albo ogłuszanie, wędrowiec albo łotrzyk",
+    "trappings": "łuk i 10 strzał, lekki pancerz (skórzany kaftan), tarcza",
+    "entries": "chłop, fanatyk, giermek, guślarz, kanciarz, karczmarz, leśnik, mytnik, najemnik, ochotnik, podżegacz, strażnik dróg, szarlatan, woźnica, żołnierz okrętowy",
+    "exits": "demagog, rozbójnik, weteran, włóczykij, złodziej"
+  },
+  {
+    "name": "Berserker z Norski",
+    "type": "podstawowa",
+    "page": 33,
+    "main":      {"WW": "+15", "US": "—",   "K": "+10", "Odp": "+10", "Zr": "—",   "Int": "—",  "SW": "+10", "Ogd": "—"},
+    "secondary": {"A": "—",   "Żyw": "+2", "S": "—",   "Wt": "—",   "Sz": "—",   "Mag": "—",  "PO": "—",   "PP": "—"},
+    "skills": "kuglarstwo (gawędziarstwo), mocna głowa, pływanie, wiedza (Norska), zastraszanie, znajomość języka (norski)",
+    "talents": "broń specjalna (dwuręczna), groźny, szał bojowy, szybkie wyciągnięcie",
+    "trappings": "broń dwuręczna albo tarcza, lekki pancerz (skórzany kaftan), butelka gorzałki",
+    "entries": "brak",
+    "exits": "gladiator, najemnik, sierżant, weteran, żeglarz"
+  },
+  {
+    "name": "Chłop",
+    "type": "podstawowa",
+    "page": 33,
+    "main":      {"WW": "+5",  "US": "+5",  "K": "+5",  "Odp": "+10", "Zr": "+5",  "Int": "—",  "SW": "+5",  "Ogd": "—"},
+    "secondary": {"A": "—",   "Żyw": "+2", "S": "—",   "Wt": "—",   "Sz": "—",   "Mag": "—",  "PO": "—",   "PP": "—"},
+    "skills": "hazard albo kuglarstwo (taniec albo śpiew), opieka nad zwierzętami albo przekonywanie, oswajanie albo rzemiosło (gotowanie), powożenie albo rzemiosło (wyrób łuków), sztuka przetrwania albo rzemiosło (uprawa ziemi), tresura albo pływanie, ukrywanie się, wioślarstwo albo zastawianie pułapek, wspinaczka albo skradanie się",
+    "talents": "chodu! albo broń specjalna (proca), twardziel albo wędrowiec",
+    "trappings": "proca albo kij, skórzany bukłak",
+    "entries": "brak",
+    "exits": "banita, fanatyk, ochotnik, rybak, rzemieślnik, sługa, śmieciarz, urzędnik, węglarz"
+  }
+]
