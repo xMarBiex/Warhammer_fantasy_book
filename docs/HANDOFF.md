@@ -31,7 +31,7 @@ Katalog roboczy: `/home/user/Warhammer_fantasy_book` · Python: `./.venv/bin/pyt
   **110 pozycji** w 13 kategoriach (pojemniki, oświetlenie, ekwipunek ogólny, pojazdy,
   wierzchowce, inwentarz żywy, mikstury, trucizny, osobliwości, protezy, noclegi,
   usługi transportowe, pensje) — cena, obciążenie, dostępność.
-- **Bestiariusz — W TOKU (`tables/bestiary.json`)**: **5 stworów** (Goblin, Mutant, Ork,
+- **Bestiariusz — W TOKU (`tables/bestiary.json`)**: **13 stworów** (m.in. Goblin, Mutant, Ork,
   Skaven, Zwierzoczłek, str. 239–241). Profil = cechy BEZWZGLĘDNE + umiejętności,
   zdolności, zasady specjalne, zbroja, Punkty Zbroi, uzbrojenie. Format jak profesje,
   ale wartości absolutne. Pozostałe stwory: str. 241–247 (Stwory samotniki: demony,
