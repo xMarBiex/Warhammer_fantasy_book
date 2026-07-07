@@ -27,18 +27,17 @@ Katalog roboczy: `/home/user/Warhammer_fantasy_book` · Python: `./.venv/bin/pyt
   cena, obciążenie, kategoria, zasięg/przeładowanie, cechy oręża, dostępność.
 - **Pancerz — KOMPLET (Tabela 5-6, str. 114)**: `tables/armour.json`, **17 rekordów**
   (skórzana/kolcza/płytowa) — PZ, cena, obciążenie, chronione lokacje, dostępność.
-- **Czary — W TOKU (`tables/spells.json`, 104 czary)**: KOMPLET dla **11 tradycji** —
-  Magia powszechna (8) + **8 Tradycji tajemnych** (Ognia, Cienia, Metalu, Niebios,
-  Śmierci, Światła, Zwierząt, Życia) + **magia czarnoksięska** (Tradycja Chaosu 10,
-  Tradycja Nekromancji 10). Poziom mocy, czas rzucania, składnik, czas trwania, opis.
-  Węzły `Spell` + `MagicLore` z relacją `BELONGS_TO`. **Magia kapłańska — W TOKU**:
-  gotowe Dziedziny **Manann (6), Morr (6), Sigmar (6), Ulryk (5)**. Pozostałe boskie
-  Dziedziny (str. 172–176): **Myrmidia, Ranald, Shallya, Taal i Rhya, Verena** (9 kultów
-  łącznie, kolejność alfabetyczna w księdze). `tradycja = "Magia kapłańska: <bóg>"`;
-  dopasowanie w `spells_by_tradition` odporne na polską odmianę (Morra→Morr itd.).
-- **KOS Graf+SQL**: `data/kos/kos.db` — 316 węzłów, 998 krawędzi (`ADVANCES_TO`,
+- **Czary — KOMPLET (`tables/spells.json`, 157 czarów, 20 dziedzin magii)**: CAŁA
+  magia z Księgi Zasad. Magia powszechna (8) + **8 Tradycji tajemnych** (Ognia,
+  Cienia, Metalu, Niebios, Śmierci, Światła, Zwierząt, Życia = 74) + **czarnoksięska**
+  (Chaosu 10, Nekromancji 10) + **kapłańska — 9 Dziedzin** (Manann, Morr, Myrmidia,
+  Ranald, Shallya, Sigmar, Taal i Rhya, Ulryk, Verena = 53). Poziom mocy, czas
+  rzucania, składnik, czas trwania, opis. Węzły `Spell` + `MagicLore` z `BELONGS_TO`;
+  `tradycja = "Magia kapłańska: <bóg>"`; `spells_by_tradition` odporne na polską
+  odmianę (Morra→Morr). (Magia rytualna — osobny system, str. 176+ — pominięta.)
+- **KOS Graf+SQL**: `data/kos/kos.db` — 354 węzły, 1058 krawędzi (`ADVANCES_TO`,
   `DEFINED_IN`, `BELONGS_TO`), tabele SQL: 113 profesji + 47 oręża + 17 pancerzy
-  + 127 czarów. **0 luk.**
+  + 157 czarów. **0 luk.**
 - **Agent dialogowy (Warstwa 5)**: `agent/` — okno czatu na Claude API
   (`claude-opus-4-8`), 7 narzędzi: `profesja_szczegoly`, `porownaj_ceche`,
   `bron_szczegoly`, `pancerz_szczegoly`, `czar_szczegoly`, `czary_tradycji`
@@ -54,12 +53,11 @@ Wszystko to TABELE (wymagają odczytu WZROKOWEGO — tesseract ich nie czyta):
 1. ✅ **Broń** — zrobione (`tables/weapons.json`, str. 110).
 2. ✅ **Pancerz** — zrobione (`tables/armour.json`, Tabela 5-6, str. 114).
 3. **Ekwipunek / usługi** (ceny) — Rozdział V, str. ~116–127 (Tabele 5-8…5-19)
-4. **Czary** — ⏳ W TOKU. Zrobione: Magia powszechna + wszystkie **8 Tradycji
-   tajemnych** (84 czary, str. 155–167). Pozostało: **Magia czarnoksięska**
-   (Tradycja Chaosu + Tradycja Nekromancji, str. 167–177) i **Magia kapłańska**
-   (czary bogów: Sigmar, Ulryk, Morr, Shallya, Taal… — str. ~172+).
-   Format czaru: nazwa / Wymagany poziom mocy / Czas rzucania / [Zasięg] /
-   Składnik / Czas trwania / Opis. **PM czytaj WZROKOWO** (OCR myli cyfry, np. „Ś").
+4. ✅ **Czary — KOMPLET** (157 czarów, str. 155–177): powszechna + 8 tradycji
+   tajemnych + czarnoksięska (Chaosu, Nekromancji) + kapłańska (9 Dziedzin bogów).
+   Uwaga: prozę czarów da się wyciągnąć z OCR (`data/text/pages/`), ale **poziomy
+   mocy trzeba było czytać WZROKOWO** (OCR myli cyfry, np. „Ś"=6). Nie objęto:
+   **magii rytualnej** (osobny system, str. 176+) — do dodania w razie potrzeby.
 5. **Trafienia krytyczne** (tabele efektów wg lokacji) — ~str. 138–141
 6. **Bestiariusz** (profile potworów) — Rozdział XI, ~str. 238–247
 
