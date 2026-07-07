@@ -173,6 +173,26 @@ def cena_ekwipunku(nazwa: str) -> dict:
             "zrodlo": "Księga Zasad 2e (Rozdział V: Ekwipunek)", "pewnosc": 0.95}
 
 
+# ── Warstwa 3+2: bestiariusz ───────────────────────────────────────────────
+def potwor_szczegoly(nazwa: str) -> dict:
+    kos = _get_kos()
+    cid = kos.resolve_creature(nazwa)
+    if not cid:
+        return {"znaleziono": False,
+                "info": f"Stwora «{nazwa}» nie ma jeszcze w bazie bestiariusza.",
+                "pewnosc": None}
+    d = kos.creature_details(cid)
+    return {
+        "znaleziono": True, "nazwa": d["name"], "strona": d["page"],
+        "cechy_glowne": {k: v for k, v in d["main"].items() if v not in ("—", "")},
+        "cechy_drugorzedne": {k: v for k, v in d["secondary"].items() if v not in ("—", "")},
+        "umiejetnosci": d["skills"], "zdolnosci": d["talents"],
+        "zasady_specjalne": d["special"], "zbroja": d["armour"],
+        "punkty_zbroi": d["armour_points"], "uzbrojenie": d["weapons"],
+        "zrodlo": d["source"], "pewnosc": d["confidence"],
+    }
+
+
 # ── Warstwa 4: proza / lore / zasady ───────────────────────────────────────
 def szukaj_zasad(pytanie: str, k: int = 5) -> dict:
     embedder, col = _get_vectors()
@@ -294,6 +314,20 @@ TOOLS = [
         },
     },
     {
+        "name": "potwor_szczegoly",
+        "description": "Zwraca profil potwora/stwora z Bestiariusza (Rozdział XI): "
+                       "cechy główne i drugorzędne (wartości BEZWZGLĘDNE), umiejętności, "
+                       "zdolności, zasady specjalne, zbroję, Punkty Zbroi i uzbrojenie. "
+                       "Używaj do pytań o statystyki potworów, np. «statystyki orka», "
+                       "«ile Żywotności ma goblin».",
+        "input_schema": {
+            "type": "object",
+            "properties": {"nazwa": {"type": "string",
+                           "description": "nazwa stwora, np. «Goblin», «Ork», «Skaven»"}},
+            "required": ["nazwa"],
+        },
+    },
+    {
         "name": "szukaj_zasad",
         "description": "Wyszukiwanie semantyczne w treści Księgi Zasad (proza, opisy, "
                        "zasady, lore). Używaj do pytań o mechaniki, opisy, tło świata, "
@@ -318,6 +352,7 @@ DISPATCH = {
     "czar_szczegoly": czar_szczegoly,
     "czary_tradycji": czary_tradycji,
     "cena_ekwipunku": cena_ekwipunku,
+    "potwor_szczegoly": potwor_szczegoly,
     "szukaj_zasad": szukaj_zasad,
 }
 

@@ -240,6 +240,36 @@ def build():
                 (iid, "DEFINED_IN", book_id, SOURCE["id"], it["page"], 1.0))
             n_items += 1
 
+    # ── Bestiariusz (Warstwa 2 węzły + Warstwa 3 SQL) ──────────────────────
+    bpath = os.path.join(TABLES, "bestiary.json")
+    n_creatures = 0
+    if os.path.exists(bpath):
+        for c in json.load(open(bpath, encoding="utf-8")):
+            cid = node_id("potwor", c["name"])
+            con.execute(
+                "INSERT OR REPLACE INTO nodes"
+                "(id,type,name,name_fold,data,source_id,page,confidence) "
+                "VALUES(?,?,?,?,?,?,?,?)",
+                (cid, "Creature", c["name"], fold(c["name"]),
+                 json.dumps(c, ensure_ascii=False), SOURCE["id"], c["page"], 0.95))
+            cols = ["node_id", "name", "page"]
+            vals = [cid, c["name"], c["page"]]
+            for k in MAIN:
+                cols.append(k); vals.append(c["main"].get(k, "—"))
+            for k in SEC:
+                cols.append(SEC_COL.get(k, k)); vals.append(c["secondary"].get(k, "—"))
+            for k in ("skills", "talents", "special", "armour", "armour_points", "weapons"):
+                cols.append(k); vals.append(c.get(k, ""))
+            cols += ["source_id", "confidence"]; vals += [SOURCE["id"], 0.95]
+            con.execute(
+                f"INSERT OR REPLACE INTO bestiary_profiles({','.join(cols)}) "
+                f"VALUES({','.join('?' * len(vals))})", vals)
+            con.execute(
+                "INSERT OR IGNORE INTO edges(src,rel,dst,source_id,page,confidence) "
+                "VALUES(?,?,?,?,?,?)",
+                (cid, "DEFINED_IN", book_id, SOURCE["id"], c["page"], 1.0))
+            n_creatures += 1
+
     # indeks nazwa-fold -> id (do rozwiązywania krawędzi po nazwie)
     idx = {fold(p["name"]): node_id("prof", p["name"]) for p in profs}
 
@@ -278,10 +308,11 @@ def build():
 
     print(f"KOS zbudowany -> {DB_PATH}")
     print(f"  węzły:      {n_nodes}  (Book + {n_stats} prof. + {n_weapons} oręża + "
-          f"{n_armour} pancerzy + {n_spells} czarów + {len(lore_ids)} tradycji + {n_items} ekw.)")
+          f"{n_armour} pancerzy + {n_spells} czarów + {len(lore_ids)} tradycji + "
+          f"{n_items} ekw. + {n_creatures} potworów)")
     print(f"  krawędzie:  {n_edges}  (ADVANCES_TO + DEFINED_IN + BELONGS_TO)")
     print(f"  SQL:        {n_stats} profesji, {n_weapons} oręża, {n_armour} pancerzy, "
-          f"{n_spells} czarów, {n_items} ekwipunku (Warstwa 3)")
+          f"{n_spells} czarów, {n_items} ekwipunku, {n_creatures} potworów (Warstwa 3)")
     if missing:
         names = ", ".join(m[0] for m in missing)
         print(f"  ⚠ Validation Agent: {len(missing)} profesji wskazywanych w siatce "

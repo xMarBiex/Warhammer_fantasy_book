@@ -31,6 +31,11 @@ Katalog roboczy: `/home/user/Warhammer_fantasy_book` · Python: `./.venv/bin/pyt
   **110 pozycji** w 13 kategoriach (pojemniki, oświetlenie, ekwipunek ogólny, pojazdy,
   wierzchowce, inwentarz żywy, mikstury, trucizny, osobliwości, protezy, noclegi,
   usługi transportowe, pensje) — cena, obciążenie, dostępność.
+- **Bestiariusz — W TOKU (`tables/bestiary.json`)**: **5 stworów** (Goblin, Mutant, Ork,
+  Skaven, Zwierzoczłek, str. 239–241). Profil = cechy BEZWZGLĘDNE + umiejętności,
+  zdolności, zasady specjalne, zbroja, Punkty Zbroi, uzbrojenie. Format jak profesje,
+  ale wartości absolutne. Pozostałe stwory: str. 241–247 (Stwory samotniki: demony,
+  nieumarli, potwory) + szablony goblinoidów (Knuj/Siłacz/Wódz — modyfikatory, str. 238–239).
 - **Czary — KOMPLET (`tables/spells.json`, 157 czarów, 20 dziedzin magii)**: CAŁA
   magia z Księgi Zasad. Magia powszechna (8) + **8 Tradycji tajemnych** (Ognia,
   Cienia, Metalu, Niebios, Śmierci, Światła, Zwierząt, Życia = 74) + **czarnoksięska**
@@ -39,14 +44,14 @@ Katalog roboczy: `/home/user/Warhammer_fantasy_book` · Python: `./.venv/bin/pyt
   rzucania, składnik, czas trwania, opis. Węzły `Spell` + `MagicLore` z `BELONGS_TO`;
   `tradycja = "Magia kapłańska: <bóg>"`; `spells_by_tradition` odporne na polską
   odmianę (Morra→Morr). (Magia rytualna — osobny system, str. 176+ — pominięta.)
-- **KOS Graf+SQL**: `data/kos/kos.db` — 464 węzły, 1168 krawędzi (`ADVANCES_TO`,
+- **KOS Graf+SQL**: `data/kos/kos.db` — 469 węzłów, 1173 krawędzi (`ADVANCES_TO`,
   `DEFINED_IN`, `BELONGS_TO`), tabele SQL: 113 profesji + 47 oręża + 17 pancerzy
-  + 157 czarów + 110 ekwipunku. **0 luk.**
+  + 157 czarów + 110 ekwipunku + 5 potworów. **0 luk.**
 - **Agent dialogowy (Warstwa 5)**: `agent/` — okno czatu na Claude API
-  (`claude-opus-4-8`), **8 narzędzi**: `profesja_szczegoly`, `porownaj_ceche`,
+  (`claude-opus-4-8`), **9 narzędzi**: `profesja_szczegoly`, `porownaj_ceche`,
   `bron_szczegoly`, `pancerz_szczegoly`, `czar_szczegoly`, `czary_tradycji`,
-  `cena_ekwipunku` (wszystkie SQL/Graf) + `szukaj_zasad` (wektory); strażnik tematu
-  (tylko WFRP). Uruchomienie: `ANTHROPIC_API_KEY=... python agent/server.py`.
+  `cena_ekwipunku`, `potwor_szczegoly` (wszystkie SQL/Graf) + `szukaj_zasad` (wektory);
+  strażnik tematu (tylko WFRP). Uruchomienie: `ANTHROPIC_API_KEY=... python agent/server.py`.
 - **Fakt-karty**: 111 (zdania z dokładnymi liczbami) → `data/tables/facts.json`.
 - **Wyszukiwarka mobilna** (samodzielny HTML, offline w przeglądarce):
   artefakt `https://claude.ai/code/artifact/f7157f9c-3bbd-4e9c-9fdf-127e4633ba3c`

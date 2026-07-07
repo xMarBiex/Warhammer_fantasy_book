@@ -135,5 +135,22 @@ CREATE TABLE IF NOT EXISTS item_costs (
 );
 CREATE INDEX IF NOT EXISTS idx_item_kat ON item_costs(kategoria);
 
+-- Bestiariusz (Rozdział XI). Profile potworów — wartości BEZWZGLĘDNE (nie modyfikatory).
+CREATE TABLE IF NOT EXISTS bestiary_profiles (
+  node_id   TEXT PRIMARY KEY REFERENCES nodes(id),
+  name      TEXT NOT NULL,
+  page      INTEGER,
+  WW TEXT, US TEXT, K TEXT, Odp TEXT, Zr TEXT, Int TEXT, SW TEXT, Ogd TEXT,
+  A TEXT, Zyw TEXT, S TEXT, Wt TEXT, Sz TEXT, Mag TEXT, PO TEXT, PP TEXT,
+  skills        TEXT,
+  talents       TEXT,
+  special       TEXT,                 -- zasady specjalne
+  armour        TEXT,                 -- zbroja
+  armour_points TEXT,                 -- Punkty Zbroi wg lokacji
+  weapons       TEXT,                 -- uzbrojenie
+  source_id  TEXT REFERENCES sources(id),
+  confidence REAL NOT NULL DEFAULT 0.95
+);
+
 -- Miejsce na kolejne tabele SQL (do zrobienia po ekstrakcji tabel):
---   critical_hits, bestiary_profiles
+--   critical_hits

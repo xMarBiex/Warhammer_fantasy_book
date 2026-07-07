@@ -231,6 +231,31 @@ class KOS:
         d["source"] = f"Księga Zasad 2e (Rozdział V, str. {d['page']})"
         return d
 
+    # ── Warstwa 3 (SQL): bestiariusz ──────────────────────────────────────
+    def resolve_creature(self, q):
+        f = fold(q)
+        rows = self.con.execute("SELECT node_id,name FROM bestiary_profiles").fetchall()
+        hits = [r for r in rows if fold(r["name"]) in f]
+        if not hits:
+            return None
+        return max(hits, key=lambda r: len(r["name"]))["node_id"]
+
+    def creature_details(self, node_id):
+        r = self.con.execute(
+            "SELECT * FROM bestiary_profiles WHERE node_id=?", (node_id,)).fetchone()
+        if not r:
+            return None
+        d = dict(r)
+        return {
+            "name": d["name"], "page": d["page"],
+            "main": {k: d[k] for k in MAIN},
+            "secondary": {k: d[k] for k in SEC},
+            "skills": d["skills"], "talents": d["talents"], "special": d["special"],
+            "armour": d["armour"], "armour_points": d["armour_points"],
+            "weapons": d["weapons"], "source": f"Księga Zasad 2e (Bestiariusz, str. {d['page']})",
+            "confidence": d["confidence"],
+        }
+
     # ── COMPARISON: ekstremum cechy przez SQL ─────────────────────────────
     def stat_extreme(self, stat_col, biggest=True):
         rows = self.con.execute(

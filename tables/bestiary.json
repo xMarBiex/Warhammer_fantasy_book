@@ -1,0 +1,152 @@
+[
+ {
+  "name": "Goblin",
+  "page": 239,
+  "main": {
+   "WW": 25,
+   "US": 30,
+   "K": 30,
+   "Odp": 30,
+   "Zr": 25,
+   "Int": 25,
+   "SW": 30,
+   "Ogd": 20
+  },
+  "secondary": {
+   "A": 1,
+   "Żyw": 8,
+   "S": 3,
+   "Wt": 3,
+   "Sz": 4,
+   "Mag": 0,
+   "PO": 0,
+   "PP": 0
+  },
+  "skills": "jeździectwo albo pływanie, skradanie się, spostrzegawczość, sztuka przetrwania, ukrywanie się, wspinaczka, znajomość języka (gobliński)",
+  "talents": "widzenie w ciemności",
+  "special": "Elfiaki som straszni: goblin musi wykonać test Strachu, jeśli napotkana grupa elfów przewyższa go liczebnie w proporcji przynajmniej dwa do jednego.",
+  "armour": "lekki pancerz (skórzany kaftan)",
+  "armour_points": "głowa 0, ręce 0, korpus 1, nogi 0",
+  "weapons": "broń jednoręczna, krótki łuk albo włócznia"
+ },
+ {
+  "name": "Mutant",
+  "page": 240,
+  "main": {
+   "WW": 31,
+   "US": 31,
+   "K": 31,
+   "Odp": 31,
+   "Zr": 31,
+   "Int": 31,
+   "SW": 31,
+   "Ogd": 31
+  },
+  "secondary": {
+   "A": 1,
+   "Żyw": 11,
+   "S": 3,
+   "Wt": 3,
+   "Sz": 4,
+   "Mag": 0,
+   "PO": 0,
+   "PP": 0
+  },
+  "skills": "opieka nad zwierzętami, skradanie się, spostrzegawczość, sztuka przetrwania, ukrywanie się, znajomość języka (mroczna mowa albo staroświatowy)",
+  "talents": "chodu!",
+  "special": "Mutacje Chaosu: rzuć 1k10, by określić liczbę mutacji (1-3=1, 4-6=2, 7-9=3, 10=4), a następnie 1k100 wg Tabeli 11-1, by określić ich rodzaj i zmodyfikować współczynniki.",
+  "armour": "brak",
+  "armour_points": "głowa 0, ręce 0, korpus 0, nogi 0",
+  "weapons": "broń jednoręczna (pałka)"
+ },
+ {
+  "name": "Ork",
+  "page": 240,
+  "main": {
+   "WW": 35,
+   "US": 35,
+   "K": 35,
+   "Odp": 45,
+   "Zr": 25,
+   "Int": 25,
+   "SW": 30,
+   "Ogd": 20
+  },
+  "secondary": {
+   "A": 1,
+   "Żyw": 12,
+   "S": 3,
+   "Wt": 4,
+   "Sz": 4,
+   "Mag": 0,
+   "PO": 0,
+   "PP": 0
+  },
+  "skills": "jeździectwo albo pływanie, spostrzegawczość, sztuka przetrwania, torturowanie, wspinaczka, zastraszanie, znajomość języka (gobliński)",
+  "talents": "bijatyka, groźny, silny cios, widzenie w ciemności",
+  "special": "Nienawiść: orki nienawidzą wszystkich, nawet innych orków i goblinów; sporne kwestie rozwiązują pięścią lub żelazem. Siekacz: wielka, ciężka broń zadająca +1 do obrażeń w pierwszej rundzie; w rękach nie-orka traktowana jako broń jednoręczna z cechą «powolny».",
+  "armour": "średni pancerz (koszulka kolcza, skórzana kurta i skórzany czepiec)",
+  "armour_points": "głowa 1, ręce 1, korpus 3, nogi 0",
+  "weapons": "siekacz, sztylet albo łuk"
+ },
+ {
+  "name": "Skaven",
+  "page": 241,
+  "main": {
+   "WW": 30,
+   "US": 25,
+   "K": 30,
+   "Odp": 30,
+   "Zr": 40,
+   "Int": 25,
+   "SW": 25,
+   "Ogd": 15
+  },
+  "secondary": {
+   "A": 1,
+   "Żyw": 9,
+   "S": 3,
+   "Wt": 3,
+   "Sz": 5,
+   "Mag": 0,
+   "PO": 0,
+   "PP": 0
+  },
+  "skills": "broń specjalna (proce), pływanie, skradanie się, spostrzegawczość, sztuka przetrwania, ukrywanie się, wspinaczka, znajomość języka (queekish)",
+  "talents": "grotołaz, widzenie w ciemności",
+  "special": "brak",
+  "armour": "lekki pancerz (skórzana kurta i skórzany czepiec)",
+  "armour_points": "głowa 0, ręce 0, korpus 1, nogi 0",
+  "weapons": "broń jednoręczna (miecz), sztylet albo proca"
+ },
+ {
+  "name": "Zwierzoczłek",
+  "page": 241,
+  "main": {
+   "WW": 40,
+   "US": 25,
+   "K": 35,
+   "Odp": 45,
+   "Zr": 35,
+   "Int": 25,
+   "SW": 25,
+   "Ogd": 25
+  },
+  "secondary": {
+   "A": 1,
+   "Żyw": 12,
+   "S": 3,
+   "Wt": 4,
+   "Sz": 5,
+   "Mag": 0,
+   "PO": 0,
+   "PP": 0
+  },
+  "skills": "skradanie się, spostrzegawczość, sztuka przetrwania, śledzenie, tropienie, ukrywanie się, zastraszanie, znajomość języka (mroczna mowa)",
+  "talents": "groźny, wędrowiec, wyostrzone zmysły",
+  "special": "Mutacje Chaosu (Zwierzęce odnóża i rogi; 25% szans na dodatkową mutację wg Tabeli 11-1). Mieszkaniec lasów: +20 do skradania się oraz +10 do ukrywania się w lesie.",
+  "armour": "lekki pancerz (skórzana kurta)",
+  "armour_points": "głowa 0, ręce 1, korpus 1, nogi 0",
+  "weapons": "broń jednoręczna albo włócznia, rogi (obrażenia S-1), tarcza"
+ }
+]
