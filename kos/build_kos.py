@@ -174,6 +174,47 @@ def build():
                 (aid, "DEFINED_IN", book_id, SOURCE["id"], a["page"], 1.0))
             n_armour += 1
 
+    # ── Czary (Warstwa 2 węzły Spell + MagicLore + BELONGS_TO; Warstwa 3 SQL) ─
+    spath = os.path.join(TABLES, "spells.json")
+    n_spells = 0
+    lore_ids = set()
+    if os.path.exists(spath):
+        scols = ["node_id", "name", "tradycja", "pm", "czas_rzucania", "zasieg",
+                 "czas_trwania", "skladnik", "opis", "page", "source_id", "confidence"]
+        for s in json.load(open(spath, encoding="utf-8")):
+            sid = node_id("czar", s["name"])
+            lid = node_id("magia", s["tradycja"])
+            if lid not in lore_ids:  # węzeł tradycji magii
+                con.execute(
+                    "INSERT OR REPLACE INTO nodes"
+                    "(id,type,name,name_fold,data,source_id,page,confidence) "
+                    "VALUES(?,?,?,?,?,?,?,?)",
+                    (lid, "MagicLore", s["tradycja"], fold(s["tradycja"]),
+                     json.dumps({"tradycja": s["tradycja"]}, ensure_ascii=False),
+                     SOURCE["id"], s["page"], 0.95))
+                lore_ids.add(lid)
+            con.execute(
+                "INSERT OR REPLACE INTO nodes"
+                "(id,type,name,name_fold,data,source_id,page,confidence) "
+                "VALUES(?,?,?,?,?,?,?,?)",
+                (sid, "Spell", s["name"], fold(s["name"]),
+                 json.dumps(s, ensure_ascii=False), SOURCE["id"], s["page"], 0.95))
+            con.execute(
+                f"INSERT OR REPLACE INTO spell_stats({','.join(scols)}) "
+                f"VALUES({','.join('?' * len(scols))})",
+                (sid, s["name"], s["tradycja"], s["pm"], s["czas_rzucania"],
+                 s["zasieg"], s["czas_trwania"], s["skladnik"], s["opis"],
+                 s["page"], SOURCE["id"], 0.95))
+            con.execute(  # czar -> tradycja
+                "INSERT OR IGNORE INTO edges(src,rel,dst,source_id,page,confidence) "
+                "VALUES(?,?,?,?,?,?)",
+                (sid, "BELONGS_TO", lid, SOURCE["id"], s["page"], 0.95))
+            con.execute(  # czar -> książka
+                "INSERT OR IGNORE INTO edges(src,rel,dst,source_id,page,confidence) "
+                "VALUES(?,?,?,?,?,?)",
+                (sid, "DEFINED_IN", book_id, SOURCE["id"], s["page"], 1.0))
+            n_spells += 1
+
     # indeks nazwa-fold -> id (do rozwiązywania krawędzi po nazwie)
     idx = {fold(p["name"]): node_id("prof", p["name"]) for p in profs}
 
@@ -211,9 +252,11 @@ def build():
     con.close()
 
     print(f"KOS zbudowany -> {DB_PATH}")
-    print(f"  węzły:      {n_nodes}  (Book + {n_stats} prof. + {n_weapons} oręża + {n_armour} pancerzy)")
-    print(f"  krawędzie:  {n_edges}  (ADVANCES_TO + DEFINED_IN)")
-    print(f"  SQL:        {n_stats} profesji, {n_weapons} oręża, {n_armour} pancerzy (Warstwa 3)")
+    print(f"  węzły:      {n_nodes}  (Book + {n_stats} prof. + {n_weapons} oręża + "
+          f"{n_armour} pancerzy + {n_spells} czarów + {len(lore_ids)} tradycji)")
+    print(f"  krawędzie:  {n_edges}  (ADVANCES_TO + DEFINED_IN + BELONGS_TO)")
+    print(f"  SQL:        {n_stats} profesji, {n_weapons} oręża, {n_armour} pancerzy, "
+          f"{n_spells} czarów (Warstwa 3)")
     if missing:
         names = ", ".join(m[0] for m in missing)
         print(f"  ⚠ Validation Agent: {len(missing)} profesji wskazywanych w siatce "

@@ -126,6 +126,36 @@ def pancerz_szczegoly(nazwa: str) -> dict:
             "zrodlo": "Księga Zasad 2e (Tabela 5-6, str. 114)", "pewnosc": 0.95}
 
 
+# ── Warstwa 3+2: czary ─────────────────────────────────────────────────────
+def czar_szczegoly(nazwa: str) -> dict:
+    kos = _get_kos()
+    sid = kos.resolve_spell(nazwa)
+    if not sid:
+        return {"znaleziono": False,
+                "info": f"Czaru «{nazwa}» nie ma jeszcze w bazie (na razie wpisana "
+                        "jest Magia powszechna; kolejne tradycje w toku).",
+                "pewnosc": None}
+    d = kos.spell_details(sid)
+    return {"znaleziono": True, "nazwa": d["name"], "tradycja": d["tradycja"],
+            "poziom_mocy": d["pm"], "czas_rzucania": d["czas_rzucania"],
+            "zasieg": d["zasieg"] or "—", "czas_trwania": d["czas_trwania"] or "—",
+            "skladnik": d["skladnik"], "opis": d["opis"],
+            "strona": d["page"], "zrodlo": d["source"], "pewnosc": d["confidence"]}
+
+
+def czary_tradycji(tradycja: str) -> dict:
+    kos = _get_kos()
+    match, spells = kos.spells_by_tradition(tradycja)
+    if not match:
+        return {"znaleziono": False,
+                "info": f"Nie znam tradycji «{tradycja}». Dostępne: "
+                        f"{', '.join(kos.list_traditions())}.", "pewnosc": None}
+    return {"znaleziono": True, "tradycja": match, "liczba": len(spells),
+            "czary": [{"nazwa": s["name"], "poziom_mocy": s["pm"], "strona": s["page"]}
+                      for s in spells],
+            "zrodlo": "Księga Zasad 2e (Rozdział VII: Magia)", "pewnosc": 0.95}
+
+
 # ── Warstwa 4: proza / lore / zasady ───────────────────────────────────────
 def szukaj_zasad(pytanie: str, k: int = 5) -> dict:
     embedder, col = _get_vectors()
@@ -208,6 +238,31 @@ TOOLS = [
         },
     },
     {
+        "name": "czar_szczegoly",
+        "description": "Zwraca dane konkretnego czaru: Poziom Mocy (liczba do "
+                       "rzucenia), czas rzucania, zasięg, czas trwania, składnik i "
+                       "opis efektu. Używaj do «jak działa czar…», «jaki poziom mocy "
+                       "ma…». (Na razie w bazie Magia powszechna; kolejne tradycje w toku.)",
+        "input_schema": {
+            "type": "object",
+            "properties": {"nazwa": {"type": "string",
+                           "description": "nazwa czaru, np. «Pancerz Eteru», «Uciszenie»"}},
+            "required": ["nazwa"],
+        },
+    },
+    {
+        "name": "czary_tradycji",
+        "description": "Zwraca LISTĘ czarów danej tradycji/dziedziny magii wraz z "
+                       "Poziomem Mocy. Używaj do pytań «jakie czary są w danej magii», "
+                       "«lista zaklęć tradycji…».",
+        "input_schema": {
+            "type": "object",
+            "properties": {"tradycja": {"type": "string",
+                           "description": "nazwa tradycji, np. «Magia powszechna»"}},
+            "required": ["tradycja"],
+        },
+    },
+    {
         "name": "szukaj_zasad",
         "description": "Wyszukiwanie semantyczne w treści Księgi Zasad (proza, opisy, "
                        "zasady, lore). Używaj do pytań o mechaniki, opisy, tło świata, "
@@ -229,6 +284,8 @@ DISPATCH = {
     "porownaj_ceche": porownaj_ceche,
     "bron_szczegoly": bron_szczegoly,
     "pancerz_szczegoly": pancerz_szczegoly,
+    "czar_szczegoly": czar_szczegoly,
+    "czary_tradycji": czary_tradycji,
     "szukaj_zasad": szukaj_zasad,
 }
 

@@ -1,0 +1,90 @@
+[
+ {
+  "name": "Dotyk na odległość",
+  "tradycja": "Magia powszechna",
+  "pm": 4,
+  "czas_rzucania": "akcja",
+  "zasieg": "",
+  "czas_trwania": "",
+  "skladnik": "niewielki wachlarz (+1)",
+  "opis": "Adept siłą woli przesuwa każdy niezabezpieczony, lekki przedmiot (Obciążenie 10 lub niższe) na odległość do 12 metrów. Może też otworzyć lub zamknąć niezaryglowane drzwi albo przewracać przedmioty o Obciążeniu 50 lub mniejszym w odległości do 24 metrów.",
+  "page": 155
+ },
+ {
+  "name": "Pancerz Eteru",
+  "tradycja": "Magia powszechna",
+  "pm": 5,
+  "czas_rzucania": "akcja",
+  "zasieg": "",
+  "czas_trwania": "1 minuta (6 rund)",
+  "skladnik": "ogniwo kolczugi (+1)",
+  "opis": "Adept splata wokół siebie Wiatry Magii, tworząc niewidzialną barierę. Zapewnia dodatkowe Punkty Zbroi na każdej lokacji równe wartości jego Magii. Nie działa, jeśli adept nosi zbroję; przerywa się po założeniu zbroi lub wzięciu tarczy.",
+  "page": 155
+ },
+ {
+  "name": "Magiczna broń",
+  "tradycja": "Magia powszechna",
+  "pm": 6,
+  "czas_rzucania": "akcja",
+  "zasieg": "",
+  "czas_trwania": "1 godzina",
+  "skladnik": "odrobina poświęconej wody (+1)",
+  "opis": "Adept zamyka moc Wiatrów Magii w dowolnej broni białej lub w maksymalnie pięciu pociskach broni strzeleckiej. Broń nie zadaje dodatkowych obrażeń, ale jest traktowana jak magiczna — może ranić duchy, upiory i potwory odporne na zwykły oręż.",
+  "page": 155
+ },
+ {
+  "name": "Magiczne zamknięcie",
+  "tradycja": "Magia powszechna",
+  "pm": 7,
+  "czas_rzucania": "1 minuta",
+  "zasieg": "",
+  "czas_trwania": "1 tydzień",
+  "skladnik": "mały klucz (+1)",
+  "opis": "Zaklęcie nakłada się na dowolny zamek (skobel, zasuwkę itp.) w odległości do 2 metrów. Chronionego zamka nie można otworzyć żadnym kluczem ani wytrychem, choć można wyważyć drzwi lub rozbić wieko kufra.",
+  "page": 156
+ },
+ {
+  "name": "Magiczny alarm",
+  "tradycja": "Magia powszechna",
+  "pm": 8,
+  "czas_rzucania": "1 minuta",
+  "zasieg": "",
+  "czas_trwania": "do wyzwolenia (naraz tylko jeden aktywny)",
+  "skladnik": "mosiężny dzwoneczek (+1)",
+  "opis": "Adept ogniskuje moc w wybranym miejscu. Jeśli ktokolwiek znajdzie się w odległości 2 metrów, adept odbiera przekaz mentalny (działa też, gdy śpi). Rzucenie kolejnego alarmu wygasza poprzedni; efekt kończy się po wyzwoleniu.",
+  "page": 156
+ },
+ {
+  "name": "Uciszenie",
+  "tradycja": "Magia powszechna",
+  "pm": 10,
+  "czas_rzucania": "akcja",
+  "zasieg": "",
+  "czas_trwania": "liczba rund równa wartości Magii adepta",
+  "skladnik": "knebel (+1)",
+  "opis": "Adept tworzy wokół dowolnej postaci w odległości do 24 metrów zamkniętą sferę ciszy. Ofiara może oprzeć się czarowi udanym testem Siły Woli; w trakcie trwania nie wydaje żadnych dźwięków.",
+  "page": 156
+ },
+ {
+  "name": "Podniebny chód",
+  "tradycja": "Magia powszechna",
+  "pm": 11,
+  "czas_rzucania": "akcja podwójna",
+  "zasieg": "",
+  "czas_trwania": "1 runda",
+  "skladnik": "orle pióro (+2)",
+  "opis": "Czar pozwala przez krótką chwilę chodzić w powietrzu jak po stałym gruncie. Adept może przebyć odległość równą wartości Szybkości, a potem powoli opada. Maksymalna wysokość wynosi 6 metrów.",
+  "page": 156
+ },
+ {
+  "name": "Rozproszenie magii",
+  "tradycja": "Magia powszechna",
+  "pm": 13,
+  "czas_rzucania": "akcja podwójna",
+  "zasieg": "",
+  "czas_trwania": "",
+  "skladnik": "srebrny młoteczek (+2)",
+  "opis": "Umożliwia rozproszenie efektu dowolnego zaklęcia działającego na obszarze w odległości do 12 metrów (nie działa na magię rytualną). Rzucający otrzymuje modyfikator -10 do testu splatania magii za każdy punkt Magii postaci, która rzuciła rozpraszany czar. Nie działa na ożywieńców i demony.",
+  "page": 156
+ }
+]

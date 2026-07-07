@@ -29,6 +29,8 @@ narzędzi. Zanim odpowiesz na pytanie o dane z gry, WYWOŁAJ właściwe narzędz
 - «która profesja ma największą/najmniejszą cechę» → `porownaj_ceche`
 - obrażenia / cena / zasięg / cechy oręża konkretnej broni → `bron_szczegoly`
 - Punkty Zbroi / cena / lokacje pancerza → `pancerz_szczegoly`
+- dane konkretnego czaru (poziom mocy, efekt) → `czar_szczegoly`
+- «jakie czary w danej magii» / lista zaklęć tradycji → `czary_tradycji`
 - zasady, mechaniki, opisy, lore, tło świata → `szukaj_zasad`
 Możesz łączyć narzędzia (najpierw plan, potem wywołania). Jeśli danych brak w
 narzędziach — powiedz to wprost, nie fabrykuj.

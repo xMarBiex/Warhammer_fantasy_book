@@ -156,6 +156,40 @@ class KOS:
         d["source"] = "Księga Zasad 2e (Tabela 5-6, str. 114)"
         return d
 
+    # ── Warstwa 3 (SQL): czary ────────────────────────────────────────────
+    def resolve_spell(self, q):
+        f = fold(q)
+        rows = self.con.execute("SELECT node_id,name FROM spell_stats").fetchall()
+        hits = [r for r in rows if fold(r["name"]) in f]
+        if not hits:
+            return None
+        return max(hits, key=lambda r: len(r["name"]))["node_id"]
+
+    def spell_details(self, node_id):
+        r = self.con.execute(
+            "SELECT * FROM spell_stats WHERE node_id=?", (node_id,)).fetchone()
+        if not r:
+            return None
+        d = dict(r)
+        d["source"] = f"Księga Zasad 2e (str. {d['page']})"
+        return d
+
+    def list_traditions(self):
+        return [r[0] for r in self.con.execute(
+            "SELECT DISTINCT tradycja FROM spell_stats ORDER BY tradycja").fetchall()]
+
+    def spells_by_tradition(self, tradycja):
+        """Czary danej tradycji magii ('jakie czary w danej magii')."""
+        f = fold(tradycja)
+        trads = self.list_traditions()
+        match = next((t for t in trads if f in fold(t) or fold(t) in f), None)
+        if not match:
+            return None, []
+        rows = self.con.execute(
+            "SELECT name, pm, page FROM spell_stats WHERE tradycja=? ORDER BY pm",
+            (match,)).fetchall()
+        return match, [dict(r) for r in rows]
+
     # ── COMPARISON: ekstremum cechy przez SQL ─────────────────────────────
     def stat_extreme(self, stat_col, biggest=True):
         rows = self.con.execute(

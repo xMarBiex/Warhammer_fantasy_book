@@ -104,5 +104,22 @@ CREATE TABLE IF NOT EXISTS armour_stats (
 );
 CREATE INDEX IF NOT EXISTS idx_armour_material ON armour_stats(material);
 
+-- Czary (Rozdział VII: Magia). Tradycja = szkoła/dziedzina magii.
+CREATE TABLE IF NOT EXISTS spell_stats (
+  node_id       TEXT PRIMARY KEY REFERENCES nodes(id),
+  name          TEXT NOT NULL,
+  tradycja      TEXT NOT NULL,           -- np. 'Magia powszechna', 'Tradycja Ognia'
+  pm            INTEGER,                  -- Wymagany Poziom Mocy (liczba do rzucenia)
+  czas_rzucania TEXT,
+  zasieg        TEXT,
+  czas_trwania  TEXT,
+  skladnik      TEXT,
+  opis          TEXT,
+  page          INTEGER,
+  source_id     TEXT REFERENCES sources(id),
+  confidence    REAL NOT NULL DEFAULT 0.95
+);
+CREATE INDEX IF NOT EXISTS idx_spell_tradycja ON spell_stats(tradycja);
+
 -- Miejsce na kolejne tabele SQL (do zrobienia po ekstrakcji tabel):
---   item_costs, spell_stats, critical_hits, bestiary_profiles
+--   item_costs, critical_hits, bestiary_profiles
