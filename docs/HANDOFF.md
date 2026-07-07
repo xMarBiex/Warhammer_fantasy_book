@@ -27,15 +27,15 @@ Katalog roboczy: `/home/user/Warhammer_fantasy_book` · Python: `./.venv/bin/pyt
   cena, obciążenie, kategoria, zasięg/przeładowanie, cechy oręża, dostępność.
 - **Pancerz — KOMPLET (Tabela 5-6, str. 114)**: `tables/armour.json`, **17 rekordów**
   (skórzana/kolcza/płytowa) — PZ, cena, obciążenie, chronione lokacje, dostępność.
-- **Czary — W TOKU (`tables/spells.json`, 56 czarów)**: KOMPLET dla 6 tradycji —
-  **Magia powszechna (8)**, **Tradycje: Ognia (10), Cienia (8), Metalu (10),
-  Niebios (10), Śmierci (10)**. Poziom mocy, czas rzucania, składnik, czas trwania,
-  opis. Węzły `Spell` + `MagicLore` z relacją `BELONGS_TO`. Pozostałe Tradycje
-  tajemne: **Światła (163–164), Życia (165–167), Bestii**; + czarnoksięska (168+),
-  kapłańska.
-- **KOS Graf+SQL**: `data/kos/kos.db` — 239 węzłów, 856 krawędzi (`ADVANCES_TO`,
+- **Czary — W TOKU (`tables/spells.json`, 84 czary)**: KOMPLET dla **9 tradycji** —
+  Magia powszechna (8) + **wszystkie 8 Tradycji tajemnych**: Ognia (10), Cienia (8),
+  Metalu (10), Niebios (10), Śmierci (10), Światła (8), Zwierząt (10), Życia (10).
+  Poziom mocy, czas rzucania, składnik, czas trwania, opis. Węzły `Spell` +
+  `MagicLore` z relacją `BELONGS_TO`. Pozostałe: **Magia czarnoksięska** (Chaosu +
+  Nekromancji, str. 167–177) i **kapłańska** (bogowie, str. ~172+).
+- **KOS Graf+SQL**: `data/kos/kos.db` — 270 węzłów, 912 krawędzi (`ADVANCES_TO`,
   `DEFINED_IN`, `BELONGS_TO`), tabele SQL: 113 profesji + 47 oręża + 17 pancerzy
-  + 56 czarów. **0 luk.**
+  + 84 czary. **0 luk.**
 - **Agent dialogowy (Warstwa 5)**: `agent/` — okno czatu na Claude API
   (`claude-opus-4-8`), 7 narzędzi: `profesja_szczegoly`, `porownaj_ceche`,
   `bron_szczegoly`, `pancerz_szczegoly`, `czar_szczegoly`, `czary_tradycji`
@@ -51,9 +51,10 @@ Wszystko to TABELE (wymagają odczytu WZROKOWEGO — tesseract ich nie czyta):
 1. ✅ **Broń** — zrobione (`tables/weapons.json`, str. 110).
 2. ✅ **Pancerz** — zrobione (`tables/armour.json`, Tabela 5-6, str. 114).
 3. **Ekwipunek / usługi** (ceny) — Rozdział V, str. ~116–127 (Tabele 5-8…5-19)
-4. **Czary** — ⏳ W TOKU. Zrobiona Magia powszechna (8, str. 155–156). Pozostałe:
-   Magia tajemna (8 Tradycji: Cienia, Ognia, Metalu, Śmierci, Życia, Niebios,
-   Bestii, Światła — str. 157–167), Magia czarnoksięska (168+), Magia kapłańska.
+4. **Czary** — ⏳ W TOKU. Zrobione: Magia powszechna + wszystkie **8 Tradycji
+   tajemnych** (84 czary, str. 155–167). Pozostało: **Magia czarnoksięska**
+   (Tradycja Chaosu + Tradycja Nekromancji, str. 167–177) i **Magia kapłańska**
+   (czary bogów: Sigmar, Ulryk, Morr, Shallya, Taal… — str. ~172+).
    Format czaru: nazwa / Wymagany poziom mocy / Czas rzucania / [Zasięg] /
    Składnik / Czas trwania / Opis. **PM czytaj WZROKOWO** (OCR myli cyfry, np. „Ś").
 5. **Trafienia krytyczne** (tabele efektów wg lokacji) — ~str. 138–141
