@@ -1,7 +1,14 @@
 # HANDOFF — Warhammer Fantasy: PDF → baza wiedzy dla agenta
 
+> **ARCHITEKTURA (2026-07): przejście na Knowledge Operating System (KOS).**
+> Kanon wymagań: `docs/KOS_SPEC.md`. Mapowanie na technologie: `docs/ARCHITECTURE.md`.
+> 5 warstw: Graf+SQL+Metadane = SQLite `data/kos/kos.db` (`kos/build_kos.py`,
+> `kos/query.py`), Wektory = ChromaDB, Document Store = `data/text/`.
+> Zasada: **model nie jest bazą wiedzy** — liczby z SQL, relacje z grafu, proza z
+> wektorów, wszystko ze źródłem i poziomem pewności.
+
 Dokument dla nowej sesji. Cel: agent „nakarmiony" Księgą Zasad = **baza wektorowa
-(proza)** + **tabele w kontekście/narzędziach (dane strukturalne)**.
+(proza)** + **tabele w warstwie SQL/Graf (dane strukturalne z prowenancją)**.
 
 Repo: `xMarBiex/Warhammer_fantasy_book` · gałąź `claude/pdf-vector-database-rj4qzp`
 Katalog roboczy: `/home/user/Warhammer_fantasy_book` · Python: `./.venv/bin/python`
@@ -11,8 +18,11 @@ Katalog roboczy: `/home/user/Warhammer_fantasy_book` · Python: `./.venv/bin/pyt
   Diagnoza: PDF to czysty skan (0% warstwy tekstowej).
 - **Baza wektorowa (proza)**: ChromaDB, model `intfloat/multilingual-e5-large` (fastembed/ONNX),
   **1537 wektorów**. Ranking: **spis treści > nagłówki > treść (IDF)**.
-- **Tabele: PROFESJE — KOMPLET 111** (60 podstawowych + 51 zaawansowanych, cały Rozdział III,
-  str. 32–88). Źródło prawdy: `tables/professions.json`.
+- **Tabele: PROFESJE — 111** (Rozdział III, str. 32–88). Źródło prawdy: `tables/professions.json`.
+  ⚠ Kontrola spójności grafu (KOS) wykryła **2 realne luki**: brak `Kapłan` i
+  `Karczmarz` (są wskazywane w siatce rozwoju innych profesji). Do douzupełnienia.
+- **KOS Graf+SQL**: `data/kos/kos.db` — 112 węzłów, 671 krawędzi (`ADVANCES_TO`
+  = siatka rozwoju profesji, `DEFINED_IN`), 111 rekordów `profession_stats`.
 - **Fakt-karty**: 111 (zdania z dokładnymi liczbami) → `data/tables/facts.json`.
 - **Wyszukiwarka mobilna** (samodzielny HTML, offline w przeglądarce):
   artefakt `https://claude.ai/code/artifact/f7157f9c-3bbd-4e9c-9fdf-127e4633ba3c`
