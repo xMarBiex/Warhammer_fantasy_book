@@ -2558,5 +2558,786 @@
   "trappings": "rapier albo szpada, puklerz albo lewak, ciężki pancerz (zbroja płytowa najlepszej jakości), symbol religijny, 50 zk",
   "entries": "łowca czarownic, rycerz",
   "exits": "arystokrata, fechtmistrz, łowca czarownic, oficer"
+ },
+ {
+  "name": "Nawigator",
+  "type": "zaawansowana",
+  "page": 76,
+  "main": {
+   "WW": "+10",
+   "US": "+10",
+   "K": "+5",
+   "Odp": "+5",
+   "Zr": "+10",
+   "Int": "+25",
+   "SW": "+10",
+   "Ogd": "+5"
+  },
+  "secondary": {
+   "A": "—",
+   "Żyw": "+4",
+   "S": "—",
+   "Wt": "—",
+   "Sz": "—",
+   "Mag": "—",
+   "PO": "—",
+   "PP": "—"
+  },
+  "skills": "czytanie i pisanie, nauka (astronomia), nawigacja, pływanie, rzemiosło (kartografia), spostrzegawczość, wiedza (dowolne dwie), znajomość języka (klasyczny)",
+  "talents": "wyczucie kierunku",
+  "trappings": "6 map i kartuszy, narzędzia (instrumenty nawigacyjne)",
+  "entries": "bosman, flisak, rybak, skryba, żeglarz",
+  "exits": "kapitan, mistrz rzemiosła, odkrywca, uczony"
+ },
+ {
+  "name": "Odkrywca",
+  "type": "zaawansowana",
+  "page": 76,
+  "main": {
+   "WW": "+20",
+   "US": "+20",
+   "K": "+10",
+   "Odp": "+15",
+   "Zr": "+15",
+   "Int": "+25",
+   "SW": "+20",
+   "Ogd": "+15"
+  },
+  "secondary": {
+   "A": "+1",
+   "Żyw": "+6",
+   "S": "—",
+   "Wt": "—",
+   "Sz": "—",
+   "Mag": "—",
+   "PO": "—",
+   "PP": "—"
+  },
+  "skills": "czytanie i pisanie, dowodzenie, jeździectwo, nauka (historia albo prawo), nawigacja, pływanie, powożenie, rzemiosło (kartografia), sekretne znaki (zwiadowców), sekretny język (łowców), spostrzegawczość, sztuka przetrwania, tropienie, wiedza (dowolne trzy), wspinaczka, wycena, znajomość języka (dowolne trzy)",
+  "talents": "obieżyświat, wyczucie kierunku albo poliglota",
+  "trappings": "łuk albo kusza i 10 strzał albo bełtów, broń jednoręczna, średni pancerz (kaftan kolczy i skórzana kurta), tarcza, koń z siodłem i uprzężą, 6 map, tysiąc zk w monecie i towarach na wymianę",
+  "entries": "arcymag, bosman, herold, inżynier, kapitan, mistrz cieni, mistrz magii, nawigator, oficer, szpieg, uczony, zwiadowca",
+  "exits": "kapitan, kupiec, oficer, szpieg"
+ },
+ {
+  "name": "Oficer",
+  "type": "zaawansowana",
+  "page": 77,
+  "main": {
+   "WW": "+30",
+   "US": "+20",
+   "K": "+20",
+   "Odp": "+20",
+   "Zr": "+20",
+   "Int": "+15",
+   "SW": "+15",
+   "Ogd": "+25"
+  },
+  "secondary": {
+   "A": "+2",
+   "Żyw": "+7",
+   "S": "—",
+   "Wt": "—",
+   "Sz": "—",
+   "Mag": "—",
+   "PO": "—",
+   "PP": "—"
+  },
+  "skills": "czytanie i pisanie, dowodzenie, jeździectwo, nauka (strategia/taktyka), opieka nad zwierzętami, plotkowanie, sekretny język (bitewny), unik, wiedza (dowolne trzy), znajomość języka (kislevski albo tileański)",
+  "talents": "błyskawiczny blok, broń specjalna (kawaleryjska albo dwuręczna), broń specjalna (korbacze albo parująca), rozbrajanie albo szybkie wyciągnięcie",
+  "trappings": "korbacz albo łamacz mieczy, kopia albo broń dwuręczna, średni pancerz (zbroja kolcza), tarcza, rumak z siodłem i uprzężą, oddział żołnierzy",
+  "entries": "arystokrata, herszt banitów, leśny duch, łowca czarownic, mistrz zakonny, odkrywca, rycerz, sierżant",
+  "exits": "herszt banitów, kupiec, odkrywca, podżegacz, urzędnik"
+ },
+ {
+  "name": "Oprawca",
+  "type": "zaawansowana",
+  "page": 77,
+  "main": {
+   "WW": "+15",
+   "US": "—",
+   "K": "+20",
+   "Odp": "+10",
+   "Zr": "+10",
+   "Int": "+10",
+   "SW": "+20",
+   "Ogd": "+15"
+  },
+  "secondary": {
+   "A": "—",
+   "Żyw": "+4",
+   "S": "—",
+   "Wt": "—",
+   "Sz": "—",
+   "Mag": "—",
+   "PO": "—",
+   "PP": "—"
+  },
+  "skills": "leczenie, przekonywanie, spostrzegawczość, torturowanie, zastraszanie",
+  "talents": "broń specjalna (korbacze), groźny, zapasy",
+  "trappings": "5 noży, korbacz, 3 pary kajdan",
+  "entries": "biczownik, cyrulik, ochroniarz, oprych, strażnik więzienny",
+  "exits": "medyk, reketer, złodziej"
+ },
+ {
+  "name": "Paser",
+  "type": "zaawansowana",
+  "page": 78,
+  "main": {
+   "WW": "+15",
+   "US": "+10",
+   "K": "+10",
+   "Odp": "+5",
+   "Zr": "+10",
+   "Int": "+5",
+   "SW": "+10",
+   "Ogd": "+10"
+  },
+  "secondary": {
+   "A": "+1",
+   "Żyw": "+4",
+   "S": "—",
+   "Wt": "—",
+   "Sz": "—",
+   "Mag": "—",
+   "PO": "—",
+   "PP": "—"
+  },
+  "skills": "hazard, plotkowanie, spostrzegawczość, targowanie, wycena, zastraszanie, zwinne palce",
+  "talents": "geniusz arytmetyczny, ogłuszanie, żyłka handlowa albo łotrzyk",
+  "trappings": "narzędzia (grawera), przybory do pisania",
+  "entries": "hiena cmentarna, karczmarz, majordomus, mieszczanin, porywacz zwłok, przemytnik, reketer, śmieciarz, włamywacz, złodziej",
+  "exits": "książę złodziei, mistrz cieni, reketer, szarlatan"
+ },
+ {
+  "name": "Rajtar",
+  "type": "zaawansowana",
+  "page": 78,
+  "main": {
+   "WW": "+20",
+   "US": "+20",
+   "K": "+10",
+   "Odp": "+10",
+   "Zr": "+15",
+   "Int": "—",
+   "SW": "+15",
+   "Ogd": "+15"
+  },
+  "secondary": {
+   "A": "+1",
+   "Żyw": "+4",
+   "S": "—",
+   "Wt": "—",
+   "Sz": "—",
+   "Mag": "—",
+   "PO": "—",
+   "PP": "—"
+  },
+  "skills": "jeździectwo, opieka nad zwierzętami, sekretne znaki (zwiadowców), spostrzegawczość, unik, wycena albo plotkowanie",
+  "talents": "artylerzysta, błyskawiczne przeładowanie, broń specjalna (palna), silny cios, strzał mierzony, strzał przebijający, szybkie wyciągnięcie",
+  "trappings": "2 pistolety z amunicją i zapasem prochu na 20 strzałów, ubranie najlepszej jakości, lekki koń bojowy",
+  "entries": "inżynier, szlachcic",
+  "exits": "dworzanin, rycerz, sierżant, weteran, zwadźca"
+ },
+ {
+  "name": "Reketer",
+  "type": "zaawansowana",
+  "page": 79,
+  "main": {
+   "WW": "+20",
+   "US": "+15",
+   "K": "+15",
+   "Odp": "+10",
+   "Zr": "+10",
+   "Int": "—",
+   "SW": "+15",
+   "Ogd": "+10"
+  },
+  "secondary": {
+   "A": "+1",
+   "Żyw": "+5",
+   "S": "—",
+   "Wt": "—",
+   "Sz": "—",
+   "Mag": "—",
+   "PO": "—",
+   "PP": "—"
+  },
+  "skills": "dowodzenie, plotkowanie, spostrzegawczość, śledzenie, targowanie, unik, wiedza (Imperium), wycena, zastraszanie",
+  "talents": "bijatyka, groźny, łotrzyk, ogłuszanie, silny cios",
+  "trappings": "kastety, ubranie dobrej jakości, kapelusz",
+  "entries": "kupiec, mistrz gildii, ochroniarz, oprawca, oprych, paser, rzezimieszek, strażnik, szpieg, urzędnik, włamywacz, zarządca",
+  "exits": "herszt banitów, mistrz cieni, paser, urzędnik"
+ },
+ {
+  "name": "Rozbójnik",
+  "type": "zaawansowana",
+  "page": 79,
+  "main": {
+   "WW": "+20",
+   "US": "+20",
+   "K": "+10",
+   "Odp": "+10",
+   "Zr": "+30",
+   "Int": "+20",
+   "SW": "+15",
+   "Ogd": "+25"
+  },
+  "secondary": {
+   "A": "+1",
+   "Żyw": "+4",
+   "S": "—",
+   "Wt": "—",
+   "Sz": "—",
+   "Mag": "—",
+   "PO": "—",
+   "PP": "—"
+  },
+  "skills": "jeździectwo, opieka nad zwierzętami, plotkowanie, przekonywanie, skradanie się, tresura, wiedza (Imperium), wycena",
+  "talents": "artylerzysta, brawura, broń specjalna (palna), broń specjalna (szermiercza), etykieta, oburęczność, strzał mierzony, strzał precyzyjny, woltyżerka",
+  "trappings": "2 pistolety z amunicją i zapasem prochu na 20 strzałów, strój szlachecki, kaptur albo maska, koń z siodłem i uprzężą",
+  "entries": "banita, bard, mytnik, przepatrywacz, przewoźnik, strażnik dróg, szermierz estalijski, woźnica, zwadźca",
+  "exits": "herszt banitów, mistrz cieni, podżegacz, sierżant, zwadźca"
+ },
+ {
+  "name": "Rycerz",
+  "type": "zaawansowana",
+  "page": 80,
+  "main": {
+   "WW": "+25",
+   "US": "—",
+   "K": "+15",
+   "Odp": "+15",
+   "Zr": "+15",
+   "Int": "+5",
+   "SW": "+15",
+   "Ogd": "+5"
+  },
+  "secondary": {
+   "A": "+1",
+   "Żyw": "+4",
+   "S": "—",
+   "Wt": "—",
+   "Sz": "—",
+   "Mag": "—",
+   "PO": "—",
+   "PP": "—"
+  },
+  "skills": "jeździectwo, nauka (genealogia/heraldyka albo teologia), nauka (strategia/taktyka), sekretny język (bitewny), spostrzegawczość, unik, znajomość języka (dowolne dwa)",
+  "talents": "broń specjalna (dwuręczna), broń specjalna (kawaleryjska), broń specjalna (korbacze), silny cios",
+  "trappings": "korbacz albo morgensztern, kopia, ciężki pancerz (zbroja płytowa), tarcza, rumak z siodłem i uprzężą, symbol religijny, 25 zk",
+  "entries": "arystokrata, giermek, łowca wampirów, rajtar, sierżant",
+  "exits": "akolita, arystokrata, łowca wampirów, mistrz zakonny, oficer"
+ },
+ {
+  "name": "Sierżant",
+  "type": "zaawansowana",
+  "page": 80,
+  "main": {
+   "WW": "+20",
+   "US": "+15",
+   "K": "+10",
+   "Odp": "+10",
+   "Zr": "+10",
+   "Int": "+10",
+   "SW": "+10",
+   "Ogd": "+20"
+  },
+  "secondary": {
+   "A": "+1",
+   "Żyw": "+4",
+   "S": "—",
+   "Wt": "—",
+   "Sz": "—",
+   "Mag": "—",
+   "PO": "—",
+   "PP": "—"
+  },
+  "skills": "dowodzenie, jeździectwo albo pływanie, nauka (strategia/taktyka), plotkowanie, sekretny język (bitewny), spostrzegawczość, unik, wiedza (dowolne dwie), zastraszanie, znajomość języka (tileański)",
+  "talents": "bijatyka albo zapasy, groźny albo obieżyświat, ogłuszanie, silny cios",
+  "trappings": "średni pancerz (zbroja kolcza), tarcza",
+  "entries": "berserker z Norski, fechtmistrz, giermek, kozak kislevski, najemnik, ochotnik, rajtar, rozbójnik, skrytobójca, strażnik, strażnik dróg, strzelec, szampierz, tarczownik, weteran, zwadźca, zwiadowca, żołnierz, żołnierz okrętowy",
+  "exits": "oficer, rycerz, szampierz, zwadźca"
+ },
+ {
+  "name": "Skrytobójca",
+  "type": "zaawansowana",
+  "page": 81,
+  "main": {
+   "WW": "+25",
+   "US": "+25",
+   "K": "+10",
+   "Odp": "+10",
+   "Zr": "+30",
+   "Int": "+20",
+   "SW": "+10",
+   "Ogd": "+20"
+  },
+  "secondary": {
+   "A": "+2",
+   "Żyw": "+4",
+   "S": "—",
+   "Wt": "—",
+   "Sz": "—",
+   "Mag": "—",
+   "PO": "—",
+   "PP": "—"
+  },
+  "skills": "charakteryzacja, plotkowanie, sekretne znaki (złodziei), skradanie się, spostrzegawczość, śledzenie, ukrywanie się, warzenie trucizn, wspinaczka",
+  "talents": "bijatyka, błyskawiczny blok, brawura, broń specjalna (parująca), broń specjalna (rzucana), broń specjalna (unieruchamiająca), łotrzyk, strzał mierzony, szybkie wyciągnięcie",
+  "trappings": "sieć, 4 noże do rzucania, kotwiczka do wspinaczki, 10 metrów liny, porcja trucizny (dowolnej)",
+  "entries": "fechtmistrz, herszt banitów, strzelec, szampierz, szpieg, zwadźca",
+  "exits": "fechtmistrz, herszt banitów, łowca czarownic, kanciarz, sierżant"
+ },
+ {
+  "name": "Strzelec",
+  "type": "zaawansowana",
+  "page": 81,
+  "main": {
+   "WW": "—",
+   "US": "+35",
+   "K": "+10",
+   "Odp": "+10",
+   "Zr": "+25",
+   "Int": "+10",
+   "SW": "+20",
+   "Ogd": "+15"
+  },
+  "secondary": {
+   "A": "+1",
+   "Żyw": "+4",
+   "S": "—",
+   "Wt": "—",
+   "Sz": "—",
+   "Mag": "—",
+   "PO": "—",
+   "PP": "—"
+  },
+  "skills": "plotkowanie, przeszukiwanie, spostrzegawczość, sztuka przetrwania, wiedza (Imperium), zwinne palce",
+  "talents": "błyskawiczne przeładowanie, broń specjalna (długi łuk), broń specjalna (kusze albo rzucana), strzał mierzony, strzał precyzyjny, strzał przebijający",
+  "trappings": "długi łuk albo kusza i 10 strzał albo bełtów, lekki pancerz (skórzana kurta)",
+  "entries": "leśny duch, łowca, łowca nagród, łowca wampirów, mistrz cieni, weteran",
+  "exits": "fechtmistrz, sierżant, skrytobójca, zwadźca"
+ },
+ {
+  "name": "Szampierz",
+  "type": "zaawansowana",
+  "page": 82,
+  "main": {
+   "WW": "+35",
+   "US": "—",
+   "K": "+15",
+   "Odp": "+15",
+   "Zr": "+20",
+   "Int": "+10",
+   "SW": "+15",
+   "Ogd": "—"
+  },
+  "secondary": {
+   "A": "+2",
+   "Żyw": "+6",
+   "S": "—",
+   "Wt": "—",
+   "Sz": "—",
+   "Mag": "—",
+   "PO": "—",
+   "PP": "—"
+  },
+  "skills": "spostrzegawczość, unik",
+  "talents": "błyskawiczny blok, broń specjalna (dwuręczna), broń specjalna (korbacze), broń specjalna (parująca), broń specjalna (szermiercza)",
+  "trappings": "broń dwuręczna, korbacz albo morgensztern, rapier albo szpada, puklerz albo lewak, 10 metrów liny",
+  "entries": "sierżant, weteran",
+  "exits": "fanatyk, fechtmistrz, łowca czarownic, sierżant, skrytobójca"
+ },
+ {
+  "name": "Szarlatan",
+  "type": "zaawansowana",
+  "page": 82,
+  "main": {
+   "WW": "+10",
+   "US": "+10",
+   "K": "+5",
+   "Odp": "+10",
+   "Zr": "+15",
+   "Int": "+15",
+   "SW": "+15",
+   "Ogd": "+25"
+  },
+  "secondary": {
+   "A": "—",
+   "Żyw": "+4",
+   "S": "—",
+   "Wt": "—",
+   "Sz": "—",
+   "Mag": "—",
+   "PO": "—",
+   "PP": "—"
+  },
+  "skills": "charakteryzacja, gadanina, hazard, plotkowanie, przekonywanie, sekretny język (złodziejski), spostrzegawczość, targowanie, wiedza (Bretonia albo Tilea), wycena, znajomość języka (bretoński albo tileański), znajomość języka (staroświatowy), zwinne palce",
+  "talents": "chodul, intrygant albo łotrzyk, naśladowca, obieżyświat, przemawianie",
+  "trappings": "6 ubrań dobrej jakości, 4 komplety ubrań najlepszej jakości, podrobione dokumenty, 4 butelki różnokolorowej wody, 4 butelki różnokolorowego proszku",
+  "entries": "bard, ciura obozowa, cyrkowiec, dworzanin, guślarz, kanciarz, paser, podżegacz, przemytnik, rzecznik rodu, wędrowny czarodziej, złodziej",
+  "exits": "banita, demagog, szpieg, urzędnik, włamywacz"
+ },
+ {
+  "name": "Szpieg",
+  "type": "zaawansowana",
+  "page": 83,
+  "main": {
+   "WW": "+15",
+   "US": "+15",
+   "K": "+5",
+   "Odp": "+10",
+   "Zr": "+20",
+   "Int": "+20",
+   "SW": "+35",
+   "Ogd": "+20"
+  },
+  "secondary": {
+   "A": "+1",
+   "Żyw": "+4",
+   "S": "—",
+   "Wt": "—",
+   "Sz": "—",
+   "Mag": "—",
+   "PO": "—",
+   "PP": "—"
+  },
+  "skills": "charakteryzacja, czytanie z warg, kuglarstwo (aktorstwo), otwieranie zamków, plotkowanie, przekonywanie, sekretny język (dowolny), skradanie się, śledzenie, ukrywanie się, wiedza (dowolne dwie), znajomość języka (dowolne trzy), zwinne palce",
+  "talents": "charyzmatyczny albo szósty zmysł, chodul, intrygant, poliglota",
+  "trappings": "zestaw do charakteryzacji, 4 gołębie pocztowe",
+  "entries": "bard, ciura obozowa, dworzanin, kapitan, kupiec, medyk, odkrywca, sługa, szarlatan",
+  "exits": "mistrz cieni, odkrywca, reketer, skrytobójca"
+ },
+ {
+  "name": "Uczony",
+  "type": "zaawansowana",
+  "page": 83,
+  "main": {
+   "WW": "+5",
+   "US": "+5",
+   "K": "+5",
+   "Odp": "+5",
+   "Zr": "+10",
+   "Int": "+30",
+   "SW": "+15",
+   "Ogd": "+15"
+  },
+  "secondary": {
+   "A": "—",
+   "Żyw": "+4",
+   "S": "—",
+   "Wt": "—",
+   "Sz": "—",
+   "Mag": "—",
+   "PO": "—",
+   "PP": "—"
+  },
+  "skills": "czytanie i pisanie, nauka (dowolne trzy), spostrzegawczość, wiedza (dowolne trzy), wycena albo rzemiosło (kartografia), znajomość języka (dowolne trzy), znajomość języka (klasyczny)",
+  "talents": "poliglota",
+  "trappings": "przybory do pisania",
+  "entries": "arcykapłan, arystokrata, kapitan, kapłan, medyk, mistrz magii, nawigator, skryba, uczeń czarodzieja, wędrowny czarodziej, wybraniec boży, zakonnik, żak",
+  "exits": "kupiec, majordomus, medyk, odkrywca, uczeń czarodzieja, zakonnik"
+ },
+ {
+  "name": "Urzędnik",
+  "type": "zaawansowana",
+  "page": 84,
+  "main": {
+   "WW": "+5",
+   "US": "+5",
+   "K": "+5",
+   "Odp": "+10",
+   "Zr": "—",
+   "Int": "+20",
+   "SW": "+10",
+   "Ogd": "+20"
+  },
+  "secondary": {
+   "A": "—",
+   "Żyw": "+4",
+   "S": "—",
+   "Wt": "—",
+   "Sz": "—",
+   "Mag": "—",
+   "PO": "—",
+   "PP": "—"
+  },
+  "skills": "czytanie i pisanie, dowodzenie, gadanina, kuglarstwo (aktorstwo), nauka (historia albo genealogia/heraldyka), nauka (prawo), plotkowanie, przekonywanie, spostrzegawczość, targowanie, wiedza (Imperium), wycena, znajomość języka (staroświatowy)",
+  "talents": "etykieta albo łotrzyk, krasomówstwo, przemawianie, żyłka handlowa albo intrygant",
+  "trappings": "broń jednoręczna najlepszej jakości, lekki pancerz (skórzana kurta najlepszej jakości), ulotki i odezwy polityczne",
+  "entries": "arcykapłan, chłop, demagog, dworzanin, herold, książę złodziei, kupiec, mistrz gildii, mytnik, oficer, podżegacz, reketer, szarlatan, szlachcic, zarządca",
+  "exits": "arystokrata, demagog, dworzanin, książę złodziei, majordomus, reketer"
+ },
+ {
+  "name": "Weteran",
+  "type": "zaawansowana",
+  "page": 84,
+  "main": {
+   "WW": "+20",
+   "US": "+20",
+   "K": "+10",
+   "Odp": "+10",
+   "Zr": "+15",
+   "Int": "—",
+   "SW": "+15",
+   "Ogd": "—"
+  },
+  "secondary": {
+   "A": "+1",
+   "Żyw": "+6",
+   "S": "—",
+   "Wt": "—",
+   "Sz": "—",
+   "Mag": "—",
+   "PO": "—",
+   "PP": "—"
+  },
+  "skills": "hazard, mocna głowa, plotkowanie, sekretny język (bitewny), spostrzegawczość, unik, wiedza (Imperium), zastraszanie",
+  "talents": "błyskawiczne przeładowanie albo morderczy atak, broń specjalna (dowolne dwie), niezwykle odporny albo bardzo silny, strzał precyzyjny albo silny cios",
+  "trappings": "dwie sztuki broni, średni pancerz (zbroja kolcza), butelka spirytusu lub gorzałki najlepszej jakości",
+  "entries": "banita, berserker z Norski, biczownik, giermek, gladiator, goniec, kozak kislevski, najemnik, rajtar, tarczownik, wojownik klanowy, żołnierz",
+  "exits": "fechtmistrz, herszt banitów, sierżant, strzelec, szampierz"
+ },
+ {
+  "name": "Wędrowny czarodziej",
+  "type": "zaawansowana",
+  "page": 85,
+  "main": {
+   "WW": "+5",
+   "US": "+5",
+   "K": "—",
+   "Odp": "+5",
+   "Zr": "+10",
+   "Int": "+20",
+   "SW": "+25",
+   "Ogd": "+10"
+  },
+  "secondary": {
+   "A": "—",
+   "Żyw": "+3",
+   "S": "—",
+   "Wt": "—",
+   "Sz": "—",
+   "Mag": "+2",
+   "PO": "—",
+   "PP": "—"
+  },
+  "skills": "czytanie i pisanie, jeździectwo albo pływanie, język tajemny (magiczny), nauka (dowolna), nauka (magia), plotkowanie, przekonywanie albo zastraszanie, splatanie magii, wiedza (dowolne dwie), wykrywanie magii, znajomość języka (dowolne dwa)",
+  "talents": "dotyk mocy albo niezwykle odporny, magia tajemna (dowolna) albo magia czarnoksięska (dowolna), magia powszechna (dowolne dwie), medytacja albo morderczy pocisk, zmysł magii albo czarnoksięstwo",
+  "trappings": "księga wiedzy tajemnej, przybory do pisania",
+  "entries": "uczeń czarodzieja",
+  "exits": "mistrz magii, szarlatan, uczony"
+ },
+ {
+  "name": "Włamywacz",
+  "type": "zaawansowana",
+  "page": 85,
+  "main": {
+   "WW": "+10",
+   "US": "+10",
+   "K": "+5",
+   "Odp": "+5",
+   "Zr": "+25",
+   "Int": "+10",
+   "SW": "+10",
+   "Ogd": "—"
+  },
+  "secondary": {
+   "A": "—",
+   "Żyw": "+4",
+   "S": "—",
+   "Wt": "—",
+   "Sz": "—",
+   "Mag": "—",
+   "PO": "—",
+   "PP": "—"
+  },
+  "skills": "otwieranie zamków, plotkowanie, przeszukiwanie, sekretne znaki (złodziei), sekretny język (złodziejski), skradanie się, spostrzegawczość, targowanie, ukrywanie się, wspinaczka, wycena",
+  "talents": "bijatyka, łotrzyk, ulicznik, wykrywanie pułapek",
+  "trappings": "wytrychy, 10 metrów liny, kotwiczka do wspinaczki",
+  "entries": "porywacz zwłok, szarlatan, szczurołap, śmieciarz, złodziej",
+  "exits": "książę złodziei, mistrz cieni, paser, reketer, włóczykij"
+ },
+ {
+  "name": "Wybraniec boży",
+  "type": "zaawansowana",
+  "page": 86,
+  "main": {
+   "WW": "+15",
+   "US": "+15",
+   "K": "+10",
+   "Odp": "+10",
+   "Zr": "+10",
+   "Int": "+15",
+   "SW": "+25",
+   "Ogd": "+20"
+  },
+  "secondary": {
+   "A": "+1",
+   "Żyw": "+5",
+   "S": "—",
+   "Wt": "—",
+   "Sz": "—",
+   "Mag": "+2",
+   "PO": "—",
+   "PP": "—"
+  },
+  "skills": "jeździectwo albo pływanie, język tajemny (magiczny), leczenie, nauka (dowolne dwie), nauka (teologia), plotkowanie, splatanie magii, wiedza (dowolne dwie), wykrywanie magii, znajomość języka (dowolne dwa)",
+  "talents": "magia kapłańska (dowolna), magia powszechna (dowolne dwie), obieżyświat albo silny cios, pancerz wiary albo dotyk mocy, zmysł magii albo medytacja",
+  "trappings": "szaty kapłańskie najlepszej jakości albo strój szlachecki",
+  "entries": "kapłan",
+  "exits": "arcykapłan, biczownik, demagog, łowca czarownic, uczony"
+ },
+ {
+  "name": "Zabójca demonów",
+  "type": "zaawansowana",
+  "page": 86,
+  "main": {
+   "WW": "+40",
+   "US": "—",
+   "K": "+30",
+   "Odp": "+30",
+   "Zr": "+20",
+   "Int": "—",
+   "SW": "+30",
+   "Ogd": "—"
+  },
+  "secondary": {
+   "A": "+2",
+   "Żyw": "+8",
+   "S": "—",
+   "Wt": "—",
+   "Sz": "—",
+   "Mag": "—",
+   "PO": "—",
+   "PP": "—"
+  },
+  "skills": "mocna głowa, unik, wiedza (dowolne dwie), wspinaczka, zastraszanie",
+  "talents": "błyskawiczny blok, niepokojący",
+  "trappings": "broń dwuręczna",
+  "entries": "zabójca olbrzymów",
+  "exits": "chwalebna śmierć!"
+ },
+ {
+  "name": "Zabójca olbrzymów",
+  "type": "zaawansowana",
+  "page": 87,
+  "main": {
+   "WW": "+25",
+   "US": "—",
+   "K": "+15",
+   "Odp": "+15",
+   "Zr": "+10",
+   "Int": "—",
+   "SW": "+20",
+   "Ogd": "—"
+  },
+  "secondary": {
+   "A": "+1",
+   "Żyw": "+6",
+   "S": "—",
+   "Wt": "—",
+   "Sz": "—",
+   "Mag": "—",
+   "PO": "—",
+   "PP": "—"
+  },
+  "skills": "mocna głowa, spostrzegawczość, unik, wiedza (dowolna), zastraszanie",
+  "talents": "broń specjalna (korbacze), morderczy atak, nieustraszony, odporność na trucizny",
+  "trappings": "broń dwuręczna",
+  "entries": "zabójca trolli",
+  "exits": "zabójca demonów",
+  "note": "Tę profesję mogą wykonywać wyłącznie krasnoludy. Twój Bohater musi wcześniej zabić olbrzyma."
+ },
+ {
+  "name": "Zakonnik",
+  "type": "zaawansowana",
+  "page": 87,
+  "main": {
+   "WW": "+10",
+   "US": "—",
+   "K": "+5",
+   "Odp": "+10",
+   "Zr": "—",
+   "Int": "+15",
+   "SW": "+15",
+   "Ogd": "+15"
+  },
+  "secondary": {
+   "A": "—",
+   "Żyw": "+4",
+   "S": "—",
+   "Wt": "—",
+   "Sz": "—",
+   "Mag": "—",
+   "PO": "—",
+   "PP": "—"
+  },
+  "skills": "leczenie, nauka (teologia), opieka nad zwierzętami, spostrzegawczość, sztuka przetrwania, wiedza (dowolne dwie), znajomość języka (bretoński, estalijski, kislevski albo tileański), znajomość języka (klasyczny), znajomość języka (staroświatowy)",
+  "talents": "obieżyświat",
+  "trappings": "habit (szaty kapłańskie), mikstura leczenia, symbol religijny, relikwia",
+  "entries": "akolita, demagog, fanatyk, medyk, uczony, włóczykij",
+  "exits": "biczownik, demagog, kapłan, uczony"
+ },
+ {
+  "name": "Zwadźca",
+  "type": "zaawansowana",
+  "page": 88,
+  "main": {
+   "WW": "+20",
+   "US": "+20",
+   "K": "+10",
+   "Odp": "+20",
+   "Zr": "+20",
+   "Int": "+15",
+   "SW": "+15",
+   "Ogd": "+10"
+  },
+  "secondary": {
+   "A": "+1",
+   "Żyw": "+4",
+   "S": "—",
+   "Wt": "—",
+   "Sz": "—",
+   "Mag": "—",
+   "PO": "—",
+   "PP": "—"
+  },
+  "skills": "hazard, plotkowanie, przekonywanie, spostrzegawczość, unik, zastraszanie, zwinne palce",
+  "talents": "artylerzysta, brawura, broń specjalna (palna), broń specjalna (parująca), broń specjalna (szermiercza), etykieta, morderczy atak, oburęczność albo rozbrajanie, silny cios, strzał mierzony, strzał precyzyjny, szybkie wyciągnięcie",
+  "trappings": "lewak, pistolet z amunicją i zapasem prochu na 10 strzałów, rapier",
+  "entries": "dworzanin, rajtar, rozbójnik, rzezimieszek, sierżant, strzelec, szermierz estalijski",
+  "exits": "fechtmistrz, kanciarz, rozbójnik, sierżant, skrytobójca"
+ },
+ {
+  "name": "Zwiadowca",
+  "type": "zaawansowana",
+  "page": 88,
+  "main": {
+   "WW": "+20",
+   "US": "+20",
+   "K": "+10",
+   "Odp": "+10",
+   "Zr": "+15",
+   "Int": "+20",
+   "SW": "+15",
+   "Ogd": "—"
+  },
+  "secondary": {
+   "A": "+1",
+   "Żyw": "+6",
+   "S": "—",
+   "Wt": "—",
+   "Sz": "—",
+   "Mag": "—",
+   "PO": "—",
+   "PP": "—"
+  },
+  "skills": "jeździectwo, nawigacja, opieka nad zwierzętami, oswajanie, sekretne znaki (zwiadowców), sekretny język (łowców), skradanie się, spostrzegawczość, tropienie, ukrywanie się, unik, wiedza (dowolne dwie), znajomość języka (dowolne dwa)",
+  "talents": "błyskawiczne przeładowanie, broń specjalna (długi łuk albo kusze), strzał precyzyjny albo strzał przebijający, wyczucie kierunku",
+  "trappings": "średni pancerz (kaftan kolczy i skórzana kurta), tarcza, koń z siodłem i uprzężą, 10 metrów liny",
+  "entries": "fechtmistrz, goniec, górnik, leśnik, łowca, łowca nagród, posłaniec, przepatrywacz, strażnik dróg, strażnik pól, węglarz, włóczykij, wojownik klanowy, woźnica",
+  "exits": "herszt banitów, leśny duch, łowca wampirów, odkrywca, sierżant"
  }
 ]
