@@ -31,12 +31,14 @@ Katalog roboczy: `/home/user/Warhammer_fantasy_book` · Python: `./.venv/bin/pyt
   Magia powszechna (8) + **8 Tradycji tajemnych** (Ognia, Cienia, Metalu, Niebios,
   Śmierci, Światła, Zwierząt, Życia) + **magia czarnoksięska** (Tradycja Chaosu 10,
   Tradycja Nekromancji 10). Poziom mocy, czas rzucania, składnik, czas trwania, opis.
-  Węzły `Spell` + `MagicLore` z relacją `BELONGS_TO`. Pozostała: **Magia kapłańska**
-  — 10 boskich Dziedzin (Manann, Morr, Sigmar, Ulryk, Shallya, Taal/Rhya, Verena,
-  Myrmidia, Ranald, Handrich), str. 171–177, po ~6 czarów każda.
-- **KOS Graf+SQL**: `data/kos/kos.db` — 292 węzły, 952 krawędzie (`ADVANCES_TO`,
+  Węzły `Spell` + `MagicLore` z relacją `BELONGS_TO`. **Magia kapłańska — W TOKU**:
+  gotowe Dziedziny **Manann (6), Morr (6), Sigmar (6), Ulryk (5)**. Pozostałe boskie
+  Dziedziny (str. 172–176): **Myrmidia, Ranald, Shallya, Taal i Rhya, Verena** (9 kultów
+  łącznie, kolejność alfabetyczna w księdze). `tradycja = "Magia kapłańska: <bóg>"`;
+  dopasowanie w `spells_by_tradition` odporne na polską odmianę (Morra→Morr itd.).
+- **KOS Graf+SQL**: `data/kos/kos.db` — 316 węzłów, 998 krawędzi (`ADVANCES_TO`,
   `DEFINED_IN`, `BELONGS_TO`), tabele SQL: 113 profesji + 47 oręża + 17 pancerzy
-  + 104 czary. **0 luk.**
+  + 127 czarów. **0 luk.**
 - **Agent dialogowy (Warstwa 5)**: `agent/` — okno czatu na Claude API
   (`claude-opus-4-8`), 7 narzędzi: `profesja_szczegoly`, `porownaj_ceche`,
   `bron_szczegoly`, `pancerz_szczegoly`, `czar_szczegoly`, `czary_tradycji`

@@ -178,17 +178,41 @@ class KOS:
         return [r[0] for r in self.con.execute(
             "SELECT DISTINCT tradycja FROM spell_stats ORDER BY tradycja").fetchall()]
 
+    # słowa nieodróżniające tradycji (pomijane przy dopasowaniu)
+    _TRAD_STOP = {"magia", "tradycja", "kaplanska", "dziedzina"}
+
     def spells_by_tradition(self, tradycja):
-        """Czary danej tradycji magii ('jakie czary w danej magii')."""
-        f = fold(tradycja)
+        """Czary danej tradycji magii ('jakie czary w danej magii').
+
+        Dopasowanie odporne na polską odmianę (np. 'Morra'->'Morr',
+        'Ulryka'->'Ulryk', 'ognia'->'Ognia') przez wspólny prefiks słów.
+        """
+        def words(s):
+            return [w for w in re.split(r"[^a-z0-9]+", fold(s)) if len(w) >= 3]
+
+        q = words(tradycja)
+        fq = fold(tradycja)
         trads = self.list_traditions()
-        match = next((t for t in trads if f in fold(t) or fold(t) in f), None)
-        if not match:
+
+        def score(t):
+            tw = [w for w in words(t) if w not in self._TRAD_STOP]
+            s = 0
+            for a in q:
+                for b in tw:
+                    n = min(len(a), len(b))
+                    if n >= 4 and a[:n] == b[:n]:
+                        s = max(s, n)
+            if fq and fq in fold(t):           # pełne zawieranie jako fallback
+                s = max(s, len(fq))
+            return s
+
+        best = max(trads, key=score) if trads else None
+        if not best or score(best) == 0:
             return None, []
         rows = self.con.execute(
             "SELECT name, pm, page FROM spell_stats WHERE tradycja=? ORDER BY pm",
-            (match,)).fetchall()
-        return match, [dict(r) for r in rows]
+            (best,)).fetchall()
+        return best, [dict(r) for r in rows]
 
     # ── COMPARISON: ekstremum cechy przez SQL ─────────────────────────────
     def stat_extreme(self, stat_col, biggest=True):

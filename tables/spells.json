@@ -1208,5 +1208,192 @@
   "skladnik": "pióro albatrosa (+2)",
   "opis": "Kapłan kieruje klątwą Mananna przeciwko wrogom w odległości do 48 metrów. Wszystkie postacie w promieniu 5 metrów zostają objęte czarem; w trakcie jego trwania Wartość Krytyczna wszystkich trafień krytycznych zadanych tym postaciom zwiększa się o 2.",
   "page": 171
+ },
+ {
+  "name": "Mumifikacja",
+  "tradycja": "Magia kapłańska: Morr",
+  "pm": 5,
+  "czas_rzucania": "1 minuta",
+  "zasieg": "",
+  "czas_trwania": "24 godziny",
+  "skladnik": "kawałek świeżego owocu (+1)",
+  "opis": "Kapłan na pewien czas powstrzymuje proces gnicia zwłok. W trakcie trwania czaru poddane mumifikacji zwłoki nie mogą zostać ożywione za pomocą magii nekromanckiej.",
+  "page": 171
+ },
+ {
+  "name": "Znak kruka",
+  "tradycja": "Magia kapłańska: Morr",
+  "pm": 9,
+  "czas_rzucania": "akcja",
+  "zasieg": "",
+  "czas_trwania": "1 runda",
+  "skladnik": "krucze pióro (+1)",
+  "opis": "Kapłan przywołuje symbol Morra — widmowego kruka — który spowija go cieniem śmierci. W trakcie trwania czaru kapłan i wszyscy jego towarzysze w odległości do 12 metrów zadają obrażenia zwiększone o 1.",
+  "page": 171
+ },
+ {
+  "name": "Posłaniec ze snu",
+  "tradycja": "Magia kapłańska: Morr",
+  "pm": 10,
+  "czas_rzucania": "1 minuta",
+  "zasieg": "",
+  "czas_trwania": "30 sekund (3 rundy)",
+  "skladnik": "kłębek wełny (+1)",
+  "opis": "Kapłan objawia się we śnie wybranej postaci i przez 30 sekund może przekazać jej dowolną wiadomość. Odbiorca musi być osobą, którą kapłan spotkał osobiście, musi rozumieć język kapłana i musi spać w momencie rzucenia zaklęcia.",
+  "page": 171
+ },
+ {
+  "name": "Wieczny odpoczynek",
+  "tradycja": "Magia kapłańska: Morr",
+  "pm": 13,
+  "czas_rzucania": "akcja",
+  "zasieg": "",
+  "czas_trwania": "",
+  "skladnik": "drewniany kołek (+2)",
+  "opis": "Kapłan modli się do boga, by uspokoił ożywionego trupa. Dotyk kapłana zadaje ożywieńcowi trafienie o Sile 8. Jest to czar dotykowy.",
+  "page": 171
+ },
+ {
+  "name": "Wizja Morra",
+  "tradycja": "Magia kapłańska: Morr",
+  "pm": 15,
+  "czas_rzucania": "1 minuta",
+  "zasieg": "",
+  "czas_trwania": "",
+  "skladnik": "grzyb zebrany z mogiły (+2)",
+  "opis": "Kapłan modli się do Morra o objawienie wyjaśniające zaistniały problem lub zagadkę. MG w tajemnicy wykonuje test Ogłady BG; udany = wizja zawiera pomocne wskazówki, nieudany = wizja nie przybliża do rozwiązania.",
+  "page": 172
+ },
+ {
+  "name": "Letarg",
+  "tradycja": "Magia kapłańska: Morr",
+  "pm": 20,
+  "czas_rzucania": "akcja podwójna",
+  "zasieg": "",
+  "czas_trwania": "1k10 rund",
+  "skladnik": "mała srebrna kosa (+2)",
+  "opis": "Kapłan wykorzystuje moc Morra, by uśpić dowolną grupę osób w odległości do 24 metrów. Wszystkie postacie w promieniu 5 metrów wykonują test Siły Woli; nieudany = zapadają w sen nie do odróżnienia od śmierci i są traktowane jako bezbronne.",
+  "page": 172
+ },
+ {
+  "name": "Młot Sigmara",
+  "tradycja": "Magia kapłańska: Sigmar",
+  "pm": 5,
+  "czas_rzucania": "akcja",
+  "zasieg": "",
+  "czas_trwania": "1 minuta (6 rund)",
+  "skladnik": "amulet z wyrytym symbolem Sigmara (+1)",
+  "opis": "Kapłan napełnia potęgą Sigmara zwykły młot bojowy. W trakcie trwania czaru młot traktowany jest jako broń magiczna z cechą oręża «druzgoczący».",
+  "page": 173
+ },
+ {
+  "name": "Pancerz prawości",
+  "tradycja": "Magia kapłańska: Sigmar",
+  "pm": 6,
+  "czas_rzucania": "akcja podwójna",
+  "zasieg": "",
+  "czas_trwania": "liczba minut równa wartości Magii kapłana",
+  "skladnik": "żelazny pierścień (+1)",
+  "opis": "Kapłan otacza się ochronną aurą mocy: otrzymuje +1 Punkt Zbroi na wszystkich lokacjach ciała (wciąż obowiązuje ograniczenie do 5 PZ na każdej lokacji).",
+  "page": 173
+ },
+ {
+  "name": "Kojący dotyk",
+  "tradycja": "Magia kapłańska: Sigmar",
+  "pm": 12,
+  "czas_rzucania": "3 akcje",
+  "zasieg": "",
+  "czas_trwania": "",
+  "skladnik": "skórzana rękawica (+2)",
+  "opis": "Dotyk kapłana przywraca rannej postaci 1k10 punktów Żywotności. Czar dotykowy — kapłan może go rzucić również na siebie.",
+  "page": 174
+ },
+ {
+  "name": "Aura odwagi",
+  "tradycja": "Magia kapłańska: Sigmar",
+  "pm": 14,
+  "czas_rzucania": "akcja",
+  "zasieg": "",
+  "czas_trwania": "",
+  "skladnik": "pryzmat (+2)",
+  "opis": "Majestat Sigmara przepełnia kapłana, który jaśnieje aurą męstwa i niezłomnej wiary. Na jego widok wszyscy towarzysze ogarnięci Strachem lub Grozą opanowują się i mogą działać normalnie.",
+  "page": 174
+ },
+ {
+  "name": "Kometa Sigmara",
+  "tradycja": "Magia kapłańska: Sigmar",
+  "pm": 16,
+  "czas_rzucania": "akcja",
+  "zasieg": "",
+  "czas_trwania": "",
+  "skladnik": "złoty grot strzały (+2)",
+  "opis": "Kapłan kształtuje moc w płonący pocisk przybierający postać symbolu Sigmara. Miniaturowa kometa o dwóch ogonach uderza w dowolną postać w odległości do 24 metrów. To magiczny pocisk o Sile 6.",
+  "page": 174
+ },
+ {
+  "name": "Płomień wiary",
+  "tradycja": "Magia kapłańska: Sigmar",
+  "pm": 20,
+  "czas_rzucania": "akcja",
+  "zasieg": "",
+  "czas_trwania": "",
+  "skladnik": "złoty amulet z wizerunkiem komety o dwóch ogonach (+2)",
+  "opis": "Kapłan przyzywa gniew Sigmara, otaczając się płomieniami, które go nie ranią. Wszystkie postacie w promieniu 10 metrów otrzymują trafienie o Sile 3; demony i ożywieńcy w zasięgu płomieni — o Sile 5. Od tych obrażeń nie odejmuje się Punktów Zbroi.",
+  "page": 174
+ },
+ {
+  "name": "Zimowy chłód",
+  "tradycja": "Magia kapłańska: Ulryk",
+  "pm": 5,
+  "czas_rzucania": "akcja",
+  "zasieg": "",
+  "czas_trwania": "1 minuta (6 rund)",
+  "skladnik": "kłębek zwierzęcej sierści (+1)",
+  "opis": "Kapłan zaczyna emanować przenikającym do szpiku kości zimnem. W trakcie trwania czaru wszystkie atakujące go postacie otrzymują modyfikator -10 do Walki Wręcz.",
+  "page": 175
+ },
+ {
+  "name": "Bitewny szał",
+  "tradycja": "Magia kapłańska: Ulryk",
+  "pm": 7,
+  "czas_rzucania": "akcja podwójna",
+  "zasieg": "",
+  "czas_trwania": "liczba minut równa wartości Magii kapłana",
+  "skladnik": "odrobina świeżej krwi (+1)",
+  "opis": "W kapłana wstępuje duch Ulryka, wzbudzając w nim żądzę krwi: +1 do Ataków, ale zawsze musi atakować najbliższego przeciwnika (wykonując «szarżę», «szaleńczy atak» lub «atak wielokrotny») i nie może uciekać ani wykonać akcji «odwrót».",
+  "page": 175
+ },
+ {
+  "name": "Wilczy zew",
+  "tradycja": "Magia kapłańska: Ulryk",
+  "pm": 11,
+  "czas_rzucania": "akcja",
+  "zasieg": "",
+  "czas_trwania": "1 runda",
+  "skladnik": "język wilka (+2)",
+  "opis": "Kapłan wyje niczym jeden z wilków Ulryka, wzbudzając w towarzyszach żądzę mordu. Wszyscy towarzysze w promieniu 24 metrów mogą atakować dwukrotnie w czasie «szarży», niezależnie od posiadanej liczby Ataków.",
+  "page": 175
+ },
+ {
+  "name": "Dar Ulryka",
+  "tradycja": "Magia kapłańska: Ulryk",
+  "pm": 15,
+  "czas_rzucania": "3 akcje",
+  "zasieg": "",
+  "czas_trwania": "1 godzina",
+  "skladnik": "topór (+2)",
+  "opis": "Kapłan wzywa moc Ulryka, która napełnia bitewnym duchem jego towarzyszy. W trakcie trwania czaru są odporni na Strach i Grozę oraz na efekty umiejętności zastraszanie i zdolności niepokojący.",
+  "page": 175
+ },
+ {
+  "name": "Lodowa zamieć",
+  "tradycja": "Magia kapłańska: Ulryk",
+  "pm": 20,
+  "czas_rzucania": "akcja",
+  "zasieg": "",
+  "czas_trwania": "1 runda",
+  "skladnik": "sopel lodu (+2)",
+  "opis": "Kapłan przyzywa gwałtowną burzę miotającą lodowymi odłamkami. Magiczna chmura formuje się w dowolnym miejscu do 24 metrów; wszystkie postacie w promieniu 5 metrów otrzymują trafienie o Sile 5 i muszą zdać test Siły Woli, inaczej zostają ogłuszone na 1 rundę.",
+  "page": 175
  }
 ]
