@@ -388,5 +388,185 @@
   "armour": "brak",
   "armour_points": "—",
   "weapons": "kopyta i zęby (broń naturalna)"
+ },
+ {
+  "name": "Rumak",
+  "page": 244,
+  "main": {
+   "WW": 25,
+   "US": "0",
+   "K": 38,
+   "Odp": 38,
+   "Zr": 30,
+   "Int": 10,
+   "SW": 10,
+   "Ogd": "0"
+  },
+  "secondary": {
+   "A": 0,
+   "Żyw": 12,
+   "S": 3,
+   "Wt": 3,
+   "Sz": 8,
+   "Mag": 0,
+   "PO": 0,
+   "PP": 0
+  },
+  "skills": "pływanie, spostrzegawczość +10",
+  "talents": "broń naturalna, czuły słuch, silny cios, wyostrzone zmysły",
+  "special": "Ciężki koń bojowy rycerzy zakonnych i pancernej konnicy — atakuje gryząc i kopiąc.",
+  "armour": "brak",
+  "armour_points": "—",
+  "weapons": "kopyta i zęby (broń naturalna)"
+ },
+ {
+  "name": "Pies domowy",
+  "page": 244,
+  "main": {
+   "WW": 25,
+   "US": "0",
+   "K": 21,
+   "Odp": 21,
+   "Zr": 30,
+   "Int": 15,
+   "SW": 30,
+   "Ogd": "0"
+  },
+  "secondary": {
+   "A": 1,
+   "Żyw": 6,
+   "S": 3,
+   "Wt": 3,
+   "Sz": 6,
+   "Mag": 0,
+   "PO": 0,
+   "PP": 0
+  },
+  "skills": "pływanie, spostrzegawczość +20, tropienie",
+  "talents": "broń naturalna, chodu!, wyostrzone zmysły",
+  "special": "",
+  "armour": "brak",
+  "armour_points": "—",
+  "weapons": "kły (broń naturalna)"
+ },
+ {
+  "name": "Pies bojowy",
+  "page": 244,
+  "main": {
+   "WW": 41,
+   "US": "0",
+   "K": 32,
+   "Odp": 38,
+   "Zr": 30,
+   "Int": 15,
+   "SW": 43,
+   "Ogd": "0"
+  },
+  "secondary": {
+   "A": 1,
+   "Żyw": 10,
+   "S": 3,
+   "Wt": 3,
+   "Sz": 6,
+   "Mag": 0,
+   "PO": 0,
+   "PP": 0
+  },
+  "skills": "pływanie, spostrzegawczość +20, tropienie",
+  "talents": "broń naturalna, silny cios, wyostrzone zmysły",
+  "special": "Większe i agresywniejsze psy szkolone do walki, polowania lub obrony.",
+  "armour": "brak",
+  "armour_points": "—",
+  "weapons": "kły (broń naturalna)"
+ },
+ {
+  "name": "Kruk",
+  "page": 244,
+  "main": {
+   "WW": 38,
+   "US": "0",
+   "K": 10,
+   "Odp": 10,
+   "Zr": 38,
+   "Int": 12,
+   "SW": 24,
+   "Ogd": "0"
+  },
+  "secondary": {
+   "A": 2,
+   "Żyw": 6,
+   "S": 1,
+   "Wt": 1,
+   "Sz": "2(8)",
+   "Mag": 0,
+   "PO": 0,
+   "PP": 0
+  },
+  "skills": "spostrzegawczość +20",
+  "talents": "bystry wzrok, latanie, wyostrzone zmysły",
+  "special": "",
+  "armour": "brak",
+  "armour_points": "—",
+  "weapons": "dziób i pazury (broń naturalna)"
+ },
+ {
+  "name": "Niedźwiedź",
+  "page": 244,
+  "main": {
+   "WW": 33,
+   "US": "0",
+   "K": 52,
+   "Odp": 47,
+   "Zr": 25,
+   "Int": 10,
+   "SW": 25,
+   "Ogd": "0"
+  },
+  "secondary": {
+   "A": 2,
+   "Żyw": 20,
+   "S": 5,
+   "Wt": 4,
+   "Sz": 6,
+   "Mag": 0,
+   "PO": 0,
+   "PP": 0
+  },
+  "skills": "pływanie, spostrzegawczość",
+  "talents": "broń naturalna, morderczy atak, niepokojący, silny cios, wyostrzone zmysły",
+  "special": "Podane współczynniki dotyczą niedźwiedzia górskiego.",
+  "armour": "brak",
+  "armour_points": "—",
+  "weapons": "pazury i kły (broń naturalna)"
+ },
+ {
+  "name": "Wilk",
+  "page": 244,
+  "main": {
+   "WW": 30,
+   "US": "0",
+   "K": 30,
+   "Odp": 30,
+   "Zr": 40,
+   "Int": 14,
+   "SW": 25,
+   "Ogd": "0"
+  },
+  "secondary": {
+   "A": 1,
+   "Żyw": 10,
+   "S": 3,
+   "Wt": 3,
+   "Sz": 6,
+   "Mag": 0,
+   "PO": 0,
+   "PP": 0
+  },
+  "skills": "pływanie, spostrzegawczość +10, tropienie",
+  "talents": "broń naturalna, wyostrzone zmysły",
+  "special": "Uznawane przez kapłanów Ulryka za zwierzęta święte.",
+  "armour": "brak",
+  "armour_points": "—",
+  "weapons": "kły (broń naturalna)"
  }
 ]

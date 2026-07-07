@@ -31,11 +31,13 @@ Katalog roboczy: `/home/user/Warhammer_fantasy_book` · Python: `./.venv/bin/pyt
   **110 pozycji** w 13 kategoriach (pojemniki, oświetlenie, ekwipunek ogólny, pojazdy,
   wierzchowce, inwentarz żywy, mikstury, trucizny, osobliwości, protezy, noclegi,
   usługi transportowe, pensje) — cena, obciążenie, dostępność.
-- **Bestiariusz — W TOKU (`tables/bestiary.json`)**: **13 stworów** (m.in. Goblin, Mutant, Ork,
-  Skaven, Zwierzoczłek, str. 239–241). Profil = cechy BEZWZGLĘDNE + umiejętności,
-  zdolności, zasady specjalne, zbroja, Punkty Zbroi, uzbrojenie. Format jak profesje,
-  ale wartości absolutne. Pozostałe stwory: str. 241–247 (Stwory samotniki: demony,
-  nieumarli, potwory) + szablony goblinoidów (Knuj/Siłacz/Wódz — modyfikatory, str. 238–239).
+- **Bestiariusz — POTWORY/ZWIERZĘTA KOMPLET (`tables/bestiary.json`, 19 profili)**:
+  Stwory Ciemności (Goblin, Mutant, Ork, Skaven, Zwierzoczłek), demony (chochlik,
+  pomniejszy demon), Ożywieńcy (Szkielet, Zombi, Upiór), Zwierzęta (konie, kuc, psy,
+  kruk, niedźwiedź, wilk); str. 239–244. Profil = cechy BEZWZGLĘDNE + umiejętności,
+  zdolności, zasady specjalne, zbroja, Punkty Zbroi, uzbrojenie. **Do zrobienia
+  (osobna kategoria):** „Bohaterowie Niezależni" — gotowe archetypy BN z Profesją/Rasą
+  (str. 245–247) oraz szablony goblinoidów (Knuj/Siłacz/Wódz — modyfikatory, str. 238–239).
 - **Czary — KOMPLET (`tables/spells.json`, 157 czarów, 20 dziedzin magii)**: CAŁA
   magia z Księgi Zasad. Magia powszechna (8) + **8 Tradycji tajemnych** (Ognia,
   Cienia, Metalu, Niebios, Śmierci, Światła, Zwierząt, Życia = 74) + **czarnoksięska**
@@ -44,9 +46,9 @@ Katalog roboczy: `/home/user/Warhammer_fantasy_book` · Python: `./.venv/bin/pyt
   rzucania, składnik, czas trwania, opis. Węzły `Spell` + `MagicLore` z `BELONGS_TO`;
   `tradycja = "Magia kapłańska: <bóg>"`; `spells_by_tradition` odporne na polską
   odmianę (Morra→Morr). (Magia rytualna — osobny system, str. 176+ — pominięta.)
-- **KOS Graf+SQL**: `data/kos/kos.db` — 469 węzłów, 1173 krawędzi (`ADVANCES_TO`,
+- **KOS Graf+SQL**: `data/kos/kos.db` — 483 węzły, 1187 krawędzi (`ADVANCES_TO`,
   `DEFINED_IN`, `BELONGS_TO`), tabele SQL: 113 profesji + 47 oręża + 17 pancerzy
-  + 157 czarów + 110 ekwipunku + 5 potworów. **0 luk.**
+  + 157 czarów + 110 ekwipunku + 19 potworów. **0 luk.**
 - **Agent dialogowy (Warstwa 5)**: `agent/` — okno czatu na Claude API
   (`claude-opus-4-8`), **9 narzędzi**: `profesja_szczegoly`, `porownaj_ceche`,
   `bron_szczegoly`, `pancerz_szczegoly`, `czar_szczegoly`, `czary_tradycji`,
@@ -67,8 +69,11 @@ Wszystko to TABELE (wymagają odczytu WZROKOWEGO — tesseract ich nie czyta):
    Uwaga: prozę czarów da się wyciągnąć z OCR (`data/text/pages/`), ale **poziomy
    mocy trzeba było czytać WZROKOWO** (OCR myli cyfry, np. „Ś"=6). Nie objęto:
    **magii rytualnej** (osobny system, str. 176+) — do dodania w razie potrzeby.
-5. **Trafienia krytyczne** (tabele efektów wg lokacji) — ~str. 138–141
-6. **Bestiariusz** (profile potworów) — Rozdział XI, ~str. 238–247
+5. ✅ **Ekwipunek/usługi** — zrobione (`tables/items.json`, str. 119–126).
+6. ✅ **Bestiariusz — potwory/zwierzęta** (`tables/bestiary.json`, 19 profili, str. 239–244).
+   Pozostało (opcjonalnie): archetypy BN „Bohaterowie Niezależni" (str. 245–247),
+   szablony goblinoidów (str. 238–239), **trafienia krytyczne** (Tabele 6-x, str. 138–141),
+   statystyki łodzi/pojazdów, magia rytualna.
 
 Wzorzec dodania tabeli (jak przy broni): `tables/<x>.json` → tabela SQL w
 `kos/schema.sql` → materializacja w `kos/build_kos.py` → metody w `kos/query.py`
