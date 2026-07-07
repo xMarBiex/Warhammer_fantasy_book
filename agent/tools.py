@@ -193,6 +193,32 @@ def potwor_szczegoly(nazwa: str) -> dict:
     }
 
 
+# ── Warstwa 2 (Graf): zależności — kto zna daną umiejętność/zdolność ────────
+def kto_zna(nazwa: str) -> dict:
+    kos = _get_kos()
+    sk_name, sk_src = kos.who_has_skill(nazwa)
+    tl_name, tl_src = kos.who_has_talent(nazwa)
+    if not sk_src and not tl_src:
+        return {"znaleziono": False,
+                "info": f"Nie znalazłem umiejętności ani zdolności «{nazwa}» w grafie.",
+                "pewnosc": None}
+    out = {"znaleziono": True, "pewnosc": 0.85,
+           "zrodlo": "Księga Zasad 2e (graf zależności KOS)"}
+    if sk_src:
+        out["umiejetnosc"] = sk_name
+        out["profesje_z_umiejetnoscia"] = [s["name"] for s in sk_src
+                                           if s["type"] == "Profession"]
+        out["potwory_z_umiejetnoscia"] = [s["name"] for s in sk_src
+                                          if s["type"] == "Creature"]
+    if tl_src:
+        out["zdolnosc"] = tl_name
+        out["profesje_ze_zdolnoscia"] = [s["name"] for s in tl_src
+                                         if s["type"] == "Profession"]
+        out["potwory_ze_zdolnoscia"] = [s["name"] for s in tl_src
+                                        if s["type"] == "Creature"]
+    return out
+
+
 # ── Warstwa 4: proza / lore / zasady ───────────────────────────────────────
 def szukaj_zasad(pytanie: str, k: int = 5) -> dict:
     embedder, col = _get_vectors()
@@ -328,6 +354,19 @@ TOOLS = [
         },
     },
     {
+        "name": "kto_zna",
+        "description": "Zależności z grafu: zwraca profesje i potwory, które posiadają "
+                       "daną UMIEJĘTNOŚĆ lub ZDOLNOŚĆ. Używaj do pytań «które profesje "
+                       "znają leczenie», «kto ma zdolność silny cios», «które klasy mają "
+                       "skradanie się».",
+        "input_schema": {
+            "type": "object",
+            "properties": {"nazwa": {"type": "string",
+                           "description": "nazwa umiejętności lub zdolności, np. «leczenie», «silny cios»"}},
+            "required": ["nazwa"],
+        },
+    },
+    {
         "name": "szukaj_zasad",
         "description": "Wyszukiwanie semantyczne w treści Księgi Zasad (proza, opisy, "
                        "zasady, lore). Używaj do pytań o mechaniki, opisy, tło świata, "
@@ -353,6 +392,7 @@ DISPATCH = {
     "czary_tradycji": czary_tradycji,
     "cena_ekwipunku": cena_ekwipunku,
     "potwor_szczegoly": potwor_szczegoly,
+    "kto_zna": kto_zna,
     "szukaj_zasad": szukaj_zasad,
 }
 

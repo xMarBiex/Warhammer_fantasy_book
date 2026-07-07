@@ -295,6 +295,60 @@ def build():
             if other:
                 add_edge(other, src, "", p["page"])
 
+    # 3) Wzbogacenie grafu: Umiejętności i Zdolności jako WĘZŁY + relacje
+    #    (zależności: które profesje/potwory dają daną umiejętność lub zdolność —
+    #     np. „które profesje znają Leczenie", „kto ma zdolność Silny cios")
+    import re as _re
+
+    def _abils(field):
+        out = []
+        for part in (field or "").split(","):
+            for alt in part.split(" albo "):
+                a = alt.strip()
+                if a:
+                    out.append(a)
+        return out
+
+    made = set()
+
+    def _abil_node(prefix, typ, name):
+        nid = node_id(prefix, name)
+        if nid not in made:
+            con.execute(
+                "INSERT OR REPLACE INTO nodes"
+                "(id,type,name,name_fold,data,source_id,confidence) VALUES(?,?,?,?,?,?,?)",
+                (nid, typ, name, fold(name),
+                 json.dumps({"name": name}, ensure_ascii=False), SOURCE["id"], 0.85))
+            made.add(nid)
+        return nid
+
+    n_ab = 0
+
+    def _link_abils(src, skills, talents, page):
+        nonlocal n_ab
+        for s in _abils(skills):
+            base = _re.sub(r"\(.*?\)", "", s).strip()  # baza umiejętności (bez specjalizacji)
+            if not base:
+                continue
+            aid = _abil_node("um", "Skill", base)
+            con.execute("INSERT OR IGNORE INTO edges(src,rel,dst,source_id,page,confidence) "
+                        "VALUES(?,?,?,?,?,?)", (src, "HAS_SKILL", aid, SOURCE["id"], page, 0.8))
+            n_ab += 1
+        for t in _abils(talents):
+            tid = _abil_node("zd", "Talent", t)
+            con.execute("INSERT OR IGNORE INTO edges(src,rel,dst,source_id,page,confidence) "
+                        "VALUES(?,?,?,?,?,?)", (src, "HAS_TALENT", tid, SOURCE["id"], page, 0.8))
+            n_ab += 1
+
+    for p in profs:
+        _link_abils(node_id("prof", p["name"]), p.get("skills", ""), p.get("talents", ""), p["page"])
+    if os.path.exists(bpath):
+        for c in json.load(open(bpath, encoding="utf-8")):
+            _link_abils(node_id("potwor", c["name"]), c.get("skills", ""),
+                        c.get("talents", ""), c["page"])
+    n_skills = con.execute("SELECT COUNT(*) FROM nodes WHERE type='Skill'").fetchone()[0]
+    n_talents = con.execute("SELECT COUNT(*) FROM nodes WHERE type='Talent'").fetchone()[0]
+
     con.commit()
 
     n_nodes = con.execute("SELECT COUNT(*) FROM nodes").fetchone()[0]
@@ -310,9 +364,11 @@ def build():
     print(f"  węzły:      {n_nodes}  (Book + {n_stats} prof. + {n_weapons} oręża + "
           f"{n_armour} pancerzy + {n_spells} czarów + {len(lore_ids)} tradycji + "
           f"{n_items} ekw. + {n_creatures} potworów)")
-    print(f"  krawędzie:  {n_edges}  (ADVANCES_TO + DEFINED_IN + BELONGS_TO)")
+    print(f"  krawędzie:  {n_edges}  (ADVANCES_TO + DEFINED_IN + BELONGS_TO + HAS_SKILL/HAS_TALENT)")
     print(f"  SQL:        {n_stats} profesji, {n_weapons} oręża, {n_armour} pancerzy, "
           f"{n_spells} czarów, {n_items} ekwipunku, {n_creatures} potworów (Warstwa 3)")
+    print(f"  graf zależności: {n_skills} umiejętności + {n_talents} zdolności "
+          f"({n_ab} powiązań HAS_SKILL/HAS_TALENT)")
     if missing:
         names = ", ".join(m[0] for m in missing)
         print(f"  ⚠ Validation Agent: {len(missing)} profesji wskazywanych w siatce "

@@ -256,6 +256,29 @@ class KOS:
             "confidence": d["confidence"],
         }
 
+    # ── Warstwa 2 (Graf): zależności umiejętności/zdolności ────────────────
+    def who_has(self, ability, rel):
+        """Kto (profesje/potwory) ma daną umiejętność (HAS_SKILL) lub zdolność
+        (HAS_TALENT). Zwraca (dopasowana_nazwa, [ {name,type} ])."""
+        typ = "Skill" if rel == "HAS_SKILL" else "Talent"
+        f = fold(ability)
+        rows = self.con.execute("SELECT id,name FROM nodes WHERE type=?", (typ,)).fetchall()
+        cand = [r for r in rows if f == fold(r["name"]) or f in fold(r["name"])
+                or fold(r["name"]) in f]
+        if not cand:
+            return None, []
+        best = min(cand, key=lambda r: abs(len(r["name"]) - len(ability)))
+        src = self.con.execute(
+            "SELECT n.name AS name, n.type AS type FROM edges e JOIN nodes n ON n.id=e.src "
+            "WHERE e.dst=? AND e.rel=? ORDER BY n.type, n.name", (best["id"], rel)).fetchall()
+        return best["name"], [dict(r) for r in src]
+
+    def who_has_skill(self, name):
+        return self.who_has(name, "HAS_SKILL")
+
+    def who_has_talent(self, name):
+        return self.who_has(name, "HAS_TALENT")
+
     # ── COMPARISON: ekstremum cechy przez SQL ─────────────────────────────
     def stat_extreme(self, stat_col, biggest=True):
         rows = self.con.execute(

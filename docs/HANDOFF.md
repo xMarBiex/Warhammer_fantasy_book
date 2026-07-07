@@ -46,13 +46,20 @@ Katalog roboczy: `/home/user/Warhammer_fantasy_book` · Python: `./.venv/bin/pyt
   rzucania, składnik, czas trwania, opis. Węzły `Spell` + `MagicLore` z `BELONGS_TO`;
   `tradycja = "Magia kapłańska: <bóg>"`; `spells_by_tradition` odporne na polską
   odmianę (Morra→Morr). (Magia rytualna — osobny system, str. 176+ — pominięta.)
-- **KOS Graf+SQL**: `data/kos/kos.db` — 483 węzły, 1187 krawędzi (`ADVANCES_TO`,
-  `DEFINED_IN`, `BELONGS_TO`), tabele SQL: 113 profesji + 47 oręża + 17 pancerzy
-  + 157 czarów + 110 ekwipunku + 19 potworów. **0 luk.**
+- **KOS Graf+SQL**: `data/kos/kos.db` — **705 węzłów, 3055 krawędzi**. Typy węzłów:
+  Book, Profession, Weapon, Armour, Item, Spell, MagicLore, Creature, **Skill (117),
+  Talent (105)**. Relacje: `ADVANCES_TO`, `DEFINED_IN`, `BELONGS_TO`, **`HAS_SKILL`,
+  `HAS_TALENT`** (1891 powiązań profesja/potwór→umiejętność/zdolność — sedno „rozumienia
+  zależności"). **0 luk.**
+- **Warstwa wektorowa UJEDNOLICONA**: `data/chroma` zawiera CAŁĄ prozę (1561 chunków,
+  str. 2–266) **oraz 463 fakt-karty ze wszystkich tabel** (metadane `source`:
+  proza/tabela). Dzięki temu wyszukiwanie semantyczne trafia i na prozę, i na fakty
+  tabelaryczne. Budowa: `scripts/build_facts.py` + `scripts/04_build_vectordb.py`.
 - **Agent dialogowy (Warstwa 5)**: `agent/` — okno czatu na Claude API
-  (`claude-opus-4-8`), **9 narzędzi**: `profesja_szczegoly`, `porownaj_ceche`,
+  (`claude-opus-4-8`), **10 narzędzi**: `profesja_szczegoly`, `porownaj_ceche`,
   `bron_szczegoly`, `pancerz_szczegoly`, `czar_szczegoly`, `czary_tradycji`,
-  `cena_ekwipunku`, `potwor_szczegoly` (wszystkie SQL/Graf) + `szukaj_zasad` (wektory);
+  `cena_ekwipunku`, `potwor_szczegoly`, **`kto_zna`** (zależności: kto ma daną
+  umiejętność/zdolność) — wszystkie SQL/Graf — + `szukaj_zasad` (wektory);
   strażnik tematu (tylko WFRP). Uruchomienie: `ANTHROPIC_API_KEY=... python agent/server.py`.
 - **Fakt-karty**: 111 (zdania z dokładnymi liczbami) → `data/tables/facts.json`.
 - **Wyszukiwarka mobilna** (samodzielny HTML, offline w przeglądarce):
