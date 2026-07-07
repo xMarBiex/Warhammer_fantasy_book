@@ -126,7 +126,8 @@ def build():
                  "kategoria", "sila_broni", "zasieg", "przeladowanie", "cechy",
                  "dostepnosc", "dwureczna", "source_id", "confidence"]
         for w in json.load(open(wpath, encoding="utf-8")):
-            wid = node_id("bron", w["name"])
+            # nazwa bywa wspólna dla broni białej i strzeleckiej (np. Włócznia)
+            wid = node_id("bron", f"{w['name']} {w['klasa']}")
             con.execute(
                 "INSERT OR REPLACE INTO nodes"
                 "(id,type,name,name_fold,data,source_id,page,confidence) "
