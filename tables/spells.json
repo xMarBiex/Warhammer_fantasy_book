@@ -86,5 +86,115 @@
   "skladnik": "srebrny młoteczek (+2)",
   "opis": "Umożliwia rozproszenie efektu dowolnego zaklęcia działającego na obszarze w odległości do 12 metrów (nie działa na magię rytualną). Rzucający otrzymuje modyfikator -10 do testu splatania magii za każdy punkt Magii postaci, która rzuciła rozpraszany czar. Nie działa na ożywieńców i demony.",
   "page": 156
+ },
+ {
+  "name": "Przypalenie",
+  "tradycja": "Tradycja Ognia",
+  "pm": 4,
+  "czas_rzucania": "akcja",
+  "zasieg": "",
+  "czas_trwania": "",
+  "skladnik": "kawałek węgla drzewnego (+1)",
+  "opis": "Czarodziej kładzie dłonie na otwartej ranie i wypala ją dotykiem. Nie przywraca Żywotności, ale liczy się jako pomoc medyczna, która może ocalić od śmierci ciężko ranną postać. Bywa używany też np. do napiętnowania.",
+  "page": 161
+ },
+ {
+  "name": "Ogień U'zhul",
+  "tradycja": "Tradycja Ognia",
+  "pm": 6,
+  "czas_rzucania": "akcja",
+  "zasieg": "",
+  "czas_trwania": "",
+  "skladnik": "zapałka (+1)",
+  "opis": "Czarodziej ciska ognistym pociskiem w przeciwnika w odległości do 36 metrów. Magiczny pocisk o Sile 4.",
+  "page": 161
+ },
+ {
+  "name": "Ognista korona",
+  "tradycja": "Tradycja Ognia",
+  "pm": 8,
+  "czas_rzucania": "akcja podwójna",
+  "zasieg": "",
+  "czas_trwania": "liczba minut równa wartości Magii czarodzieja",
+  "skladnik": "złota moneta (+1)",
+  "opis": "Nad głową pojawia się korona z płomieni: +20 do testów dowodzenia i zastraszania. Każdy przeciwnik w walce wręcz musi zdać test Siły Woli albo nie może zaatakować. Daje światło jak pochodnia; czarodziej nie odnosi obrażeń.",
+  "page": 161
+ },
+ {
+  "name": "Ognista kula",
+  "tradycja": "Tradycja Ognia",
+  "pm": 12,
+  "czas_rzucania": "akcja",
+  "zasieg": "",
+  "czas_trwania": "",
+  "skladnik": "brylka siarki (+2)",
+  "opis": "Czarodziej tworzy tyle ognistych kul, ile wynosi jego Magia, i ciska nimi w jednego lub kilku przeciwników w promieniu 48 metrów. Magiczne pociski o Sile 3.",
+  "page": 161
+ },
+ {
+  "name": "Tarcza Aqshy",
+  "tradycja": "Tradycja Ognia",
+  "pm": 12,
+  "czas_rzucania": "akcja podwójna",
+  "zasieg": "",
+  "czas_trwania": "1k10 minut",
+  "skladnik": "żelazny amulet (+2)",
+  "opis": "Czarodziej otacza się wirami czerwonego Wiatru Magii chroniącymi przed płomieniami: +20 do Odporności przeciw ognistym atakom (zionięcie smoka, ogniste kule itp.). Można rzucić wyłącznie na siebie.",
+  "page": 161
+ },
+ {
+  "name": "Gorejący miecz",
+  "tradycja": "Tradycja Ognia",
+  "pm": 14,
+  "czas_rzucania": "akcja",
+  "zasieg": "",
+  "czas_trwania": "liczba rund równa wartości Magii (można przedłużać udanym testem Siły Woli co rundę)",
+  "skladnik": "pochodnia (+2)",
+  "opis": "W dłoni czarodzieja pojawia się ognisty miecz — broń magiczna z cechą oręża «druzgoczący» i Siłą 4. Daje +1 do Ataków.",
+  "page": 161
+ },
+ {
+  "name": "Żar serc",
+  "tradycja": "Tradycja Ognia",
+  "pm": 16,
+  "czas_rzucania": "2 akcje podwójne",
+  "zasieg": "",
+  "czas_trwania": "10 minut",
+  "skladnik": "fiolka z mieszanką krwi i oleju (+2)",
+  "opis": "Rozpala gniew w sercach towarzyszy w promieniu 30 metrów: +20 do Siły Woli w testach Strachu i Grozy. Jeśli oddalą się ponad 30 metrów od czarodzieja, czar przestaje na nich działać.",
+  "page": 161
+ },
+ {
+  "name": "Ognisty podmuch",
+  "tradycja": "Tradycja Ognia",
+  "pm": 22,
+  "czas_rzucania": "akcja podwójna",
+  "zasieg": "",
+  "czas_trwania": "",
+  "skladnik": "sztylet z potrójnie hartowanej stali (+3)",
+  "opis": "Czarodziej posyła 1k10 ognistych podmuchów w jednego lub kilku przeciwników w odległości do 48 metrów. Magiczne pociski o Sile 4; liczba podmuchów nie może być mniejsza od wartości Magii.",
+  "page": 161
+ },
+ {
+  "name": "Ognisty dech",
+  "tradycja": "Tradycja Ognia",
+  "pm": 25,
+  "czas_rzucania": "akcja podwójna",
+  "zasieg": "",
+  "czas_trwania": "",
+  "skladnik": "łuska smoka (+3)",
+  "opis": "Czarodziej zieje ogniem niczym smok — stożek szeroki od 1 metra przy nim do 5 metrów na końcu, długi do 16 metrów. Ogarnięte postacie otrzymują trafienie o Sile 8; udany test Siły Woli redukuje je do Siły 4.",
+  "page": 161
+ },
+ {
+  "name": "Pożoga zagłady",
+  "tradycja": "Tradycja Ognia",
+  "pm": 31,
+  "czas_rzucania": "3 akcje",
+  "zasieg": "",
+  "czas_trwania": "do śmierci wszystkich istot w polu działania",
+  "skladnik": "ząb smoka (+3)",
+  "opis": "Najbardziej niszczycielski czar piromancji. Obszar do 48 metrów zamienia się w ogniste piekło; wszyscy w promieniu 5 metrów otrzymują tyle trafień o Sile 4, ile wynosi Magia czarodzieja, i co rundę wykonują test Siły Woli. Tak potężny, że wyczuwają go czarodzieje w promieniu 5 kilometrów.",
+  "page": 162
  }
 ]
