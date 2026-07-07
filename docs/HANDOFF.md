@@ -27,14 +27,15 @@ Katalog roboczy: `/home/user/Warhammer_fantasy_book` · Python: `./.venv/bin/pyt
   cena, obciążenie, kategoria, zasięg/przeładowanie, cechy oręża, dostępność.
 - **Pancerz — KOMPLET (Tabela 5-6, str. 114)**: `tables/armour.json`, **17 rekordów**
   (skórzana/kolcza/płytowa) — PZ, cena, obciążenie, chronione lokacje, dostępność.
-- **Czary — W TOKU (`tables/spells.json`, 18 czarów)**: **Magia powszechna (8,
-  str. 155–156)** i **Tradycja Ognia (10, str. 161–162)** — KOMPLET. Poziom mocy,
-  czas rzucania, składnik, czas trwania, opis. Węzły `Spell` + `MagicLore` z relacją
-  `BELONGS_TO`. Pozostałe Tradycje tajemne: Cienia (156), Metalu (158), Niebios
-  (159), Śmierci (162), Światła (163), Życia (165), Bestii; + czarnoksięska, kapłańska.
-- **KOS Graf+SQL**: `data/kos/kos.db` — 197 węzłów, 780 krawędzi (`ADVANCES_TO`,
+- **Czary — W TOKU (`tables/spells.json`, 36 czarów)**: KOMPLET dla 4 tradycji —
+  **Magia powszechna (8)**, **Tradycja Ognia (10)**, **Cienia (8)**, **Metalu (10)**.
+  Poziom mocy, czas rzucania, składnik, czas trwania, opis. Węzły `Spell` +
+  `MagicLore` z relacją `BELONGS_TO`. Pozostałe Tradycje tajemne: Niebios (159–160,
+  część już widoczna), Śmierci (162), Światła (163), Życia (165), Bestii; +
+  czarnoksięska (168+), kapłańska.
+- **KOS Graf+SQL**: `data/kos/kos.db` — 217 węzłów, 816 krawędzi (`ADVANCES_TO`,
   `DEFINED_IN`, `BELONGS_TO`), tabele SQL: 113 profesji + 47 oręża + 17 pancerzy
-  + 18 czarów. **0 luk.**
+  + 36 czarów. **0 luk.**
 - **Agent dialogowy (Warstwa 5)**: `agent/` — okno czatu na Claude API
   (`claude-opus-4-8`), 7 narzędzi: `profesja_szczegoly`, `porownaj_ceche`,
   `bron_szczegoly`, `pancerz_szczegoly`, `czar_szczegoly`, `czary_tradycji`

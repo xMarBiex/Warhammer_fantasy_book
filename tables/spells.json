@@ -196,5 +196,203 @@
   "skladnik": "ząb smoka (+3)",
   "opis": "Najbardziej niszczycielski czar piromancji. Obszar do 48 metrów zamienia się w ogniste piekło; wszyscy w promieniu 5 metrów otrzymują tyle trafień o Sile 4, ile wynosi Magia czarodzieja, i co rundę wykonują test Siły Woli. Tak potężny, że wyczuwają go czarodzieje w promieniu 5 kilometrów.",
   "page": 162
+ },
+ {
+  "name": "Płaszcz cieni",
+  "tradycja": "Tradycja Cienia",
+  "pm": 5,
+  "czas_rzucania": "akcja",
+  "zasieg": "",
+  "czas_trwania": "liczba minut równa wartości Magii czarodzieja",
+  "skladnik": "kawałek węgla drzewnego (+1)",
+  "opis": "Czarodziej przywołuje moc Ulgu, okrywając ciało zasłoną utkaną z cieni: +20 do testów ukrywania się.",
+  "page": 157
+ },
+ {
+  "name": "Sobowtór",
+  "tradycja": "Tradycja Cienia",
+  "pm": 7,
+  "czas_rzucania": "3 akcje",
+  "zasieg": "",
+  "czas_trwania": "",
+  "skladnik": "pukiel włosów przedstawiciela rasy, w którą ma się przeobrazić czarodziej (+1)",
+  "opis": "Czarodziej przybiera wygląd (wraz z ubraniem i zbroją) dowolnej żywej istoty humanoidalnej poniżej 3 metrów wzrostu. Zmienia tylko wygląd zewnętrzny — nie wiedzę ani barwę głosu. Kto go podejrzewa, może wykonać test Inteligencji; by przybrać wygląd konkretnej osoby, potrzebny jest udany test splatania magii.",
+  "page": 157
+ },
+ {
+  "name": "Oszołomienie",
+  "tradycja": "Tradycja Cienia",
+  "pm": 8,
+  "czas_rzucania": "akcja",
+  "zasieg": "",
+  "czas_trwania": "liczba rund równa wartości Magii czarodzieja",
+  "skladnik": "trochę piwa (+1)",
+  "opis": "Czarodziej ogłupia dowolną postać w odległości do 24 metrów (ofiara broni się testem Siły Woli). Efekt wg rzutu procentowego: 01-20 otępienie (1 akcja/rundę), 21-40 ucieczka w losowym kierunku, 41-60 atak najbliższej postaci, 61-80 paraliż, 81-00 lęk (bezbronna).",
+  "page": 157
+ },
+ {
+  "name": "Maska iluzji",
+  "tradycja": "Tradycja Cienia",
+  "pm": 12,
+  "czas_rzucania": "akcja",
+  "zasieg": "",
+  "czas_trwania": "1k10 rund",
+  "skladnik": "szkic wyobrażający planowaną czynność (+2)",
+  "opis": "Czarodziej okrywa się iluzją pozwalającą wykonywać dowolne działania przy zachowaniu wrażenia, że robi coś zupełnie innego. Iluzja reaguje na jego ruchy; postać objęta działaniem może przejrzeć ją testem Inteligencji. Maskuje też sam fakt użycia magii.",
+  "page": 157
+ },
+ {
+  "name": "Strefa mroku",
+  "tradycja": "Tradycja Cienia",
+  "pm": 15,
+  "czas_rzucania": "akcja",
+  "zasieg": "",
+  "czas_trwania": "liczba rund równa wartości Magii czarodzieja",
+  "skladnik": "oczy salamandry (+2)",
+  "opis": "Czarodziej tworzy obszar nieprzeniknionej ciemności w odległości do 48 metrów. W promieniu 5 metrów nikt nie widzi (chyba że ma widzenie w ciemności); postacie muszą na początku tury zdać test Siły Woli, inaczej wykonają tylko jedną akcję zwykłą.",
+  "page": 157
+ },
+ {
+  "name": "Całun niewidzialności",
+  "tradycja": "Tradycja Cienia",
+  "pm": 17,
+  "czas_rzucania": "akcja podwójna",
+  "zasieg": "",
+  "czas_trwania": "1k10 rund",
+  "skladnik": "nić babiego lata (+2)",
+  "opis": "Czarodziej otacza się mocą Ulgu i staje się niewidzialny: nie może być celem broni strzeleckiej ani magicznych pocisków, +20 do Walki Wręcz. Postacie w promieniu 4 metrów mogą go wykryć Trudnym (-20) testem spostrzegawczości; wtedy atakują z modyfikatorem -30. Tylko na siebie.",
+  "page": 158
+ },
+ {
+  "name": "Przerażający wygląd",
+  "tradycja": "Tradycja Cienia",
+  "pm": 21,
+  "czas_rzucania": "akcja",
+  "zasieg": "",
+  "czas_trwania": "1 minuta (6 rund)",
+  "skladnik": "skrawek szaty upiora (+3)",
+  "opis": "Czarodziej przybiera wygląd przerażającej istoty i wzbudza Grozę (wg zasad z Rozdziału IX: Mistrz Gry).",
+  "page": 158
+ },
+ {
+  "name": "Sztylety cienia",
+  "tradycja": "Tradycja Cienia",
+  "pm": 21,
+  "czas_rzucania": "akcja",
+  "zasieg": "",
+  "czas_trwania": "",
+  "skladnik": "nóż ze skuwanego na zimno żelaza (+3)",
+  "opis": "Czarodziej czerpie moc cienia i tworzy z niej kilka sztyletów (tyle, ile wynosi jego Magia), którymi ciska w jednego lub kilku przeciwników w odległości do 48 metrów. To magiczne pociski.",
+  "page": 158
+ },
+ {
+  "name": "Zapora ze stali",
+  "tradycja": "Tradycja Metalu",
+  "pm": 5,
+  "czas_rzucania": "akcja",
+  "zasieg": "",
+  "czas_trwania": "1 minuta (6 rund)",
+  "skladnik": "stalowa kula (+1)",
+  "opis": "Czarodziej otacza się zaporą wirujących stalowych kul. Wszystkie wymierzone w niego ataki wykonywane są z modyfikatorem -10 do WW lub US.",
+  "page": 158
+ },
+ {
+  "name": "Prawo logiki",
+  "tradycja": "Tradycja Metalu",
+  "pm": 7,
+  "czas_rzucania": "1k10 akcji podwójnych",
+  "zasieg": "",
+  "czas_trwania": "5 minut lub do wykonania wybranego testu",
+  "skladnik": "czysta karta papieru (+1)",
+  "opis": "Czarodziej czerpie moc, by znaleźć logiczne rozwiązanie pojedynczego problemu lub zagadki. On lub towarzysz w odległości do 12 metrów otrzymuje +20 do dowolnego testu umiejętności lub cechy. Losowy czas rzucania odpowiada rozważaniom nad naturą problemu.",
+  "page": 158
+ },
+ {
+  "name": "Korozja",
+  "tradycja": "Tradycja Metalu",
+  "pm": 9,
+  "czas_rzucania": "akcja",
+  "zasieg": "",
+  "czas_trwania": "",
+  "skladnik": "zardzewiały ćwiek (+1)",
+  "opis": "Czarodziej sprawia, że dowolny metalowy przedmiot w odległości do 12 metrów koroduje i rdzewieje, stając się bezużyteczny. Celem może być obiekt o Obciążeniu 75 lub mniejszym.",
+  "page": 158
+ },
+ {
+  "name": "Srebrzyste strzały Arha",
+  "tradycja": "Tradycja Metalu",
+  "pm": 13,
+  "czas_rzucania": "akcja",
+  "zasieg": "",
+  "czas_trwania": "",
+  "skladnik": "srebrny grot strzały (+2)",
+  "opis": "Czarodziej tworzy kilka magicznych strzał z czystego srebra (tyle, ile wynosi jego Magia) i ciska nimi w jednego lub kilku przeciwników w odległości do 48 metrów. Magiczne pociski o Sile 3; po uderzeniu niemal natychmiast znikają.",
+  "page": 158
+ },
+ {
+  "name": "Pancerz z ołowiu",
+  "tradycja": "Tradycja Metalu",
+  "pm": 14,
+  "czas_rzucania": "akcja podwójna",
+  "zasieg": "",
+  "czas_trwania": "1 minuta (6 rund)",
+  "skladnik": "miniaturowy hełm z ołowiu (+2)",
+  "opis": "Zbroje grupy przeciwników w odległości do 48 metrów stają się ciężkie jak z ołowiu. Wszystkie odziane w pancerz postacie w promieniu 5 metrów: -10 do Walki Wręcz, Umiejętności Strzeleckich i Zręczności oraz -1 do Szybkości.",
+  "page": 159
+ },
+ {
+  "name": "Metoda prób i błędów",
+  "tradycja": "Tradycja Metalu",
+  "pm": 16,
+  "czas_rzucania": "akcja podwójna",
+  "zasieg": "",
+  "czas_trwania": "1 runda",
+  "skladnik": "pusta szklana fiolka (+2)",
+  "opis": "Czarodziej kieruje poczynaniami wszystkich towarzyszy w odległości do 12 metrów: każdy może przerzucić wynik pojedynczego testu lub rzutu na obrażenia. Wynik drugiego rzutu jest ostateczny.",
+  "page": 159
+ },
+ {
+  "name": "Przekształcenie metalu",
+  "tradycja": "Tradycja Metalu",
+  "pm": 18,
+  "czas_rzucania": "1 minuta",
+  "zasieg": "",
+  "czas_trwania": "",
+  "skladnik": "talizman w kształcie młota i kowadła (+2)",
+  "opis": "Czarodziej przemienia dowolny metalowy przedmiot w inny (nie może zmienić rodzaju metalu). Jakość wg testu splatania magii: Bardzo Trudny (-30) najlepsza, Trudny (-20) dobra, bez modyfikatora zwykła, nieudany kiepska. Czar dotykowy; nie działa na przedmioty magiczne.",
+  "page": 159
+ },
+ {
+  "name": "Umagicznienie",
+  "tradycja": "Tradycja Metalu",
+  "pm": 21,
+  "czas_rzucania": "1 minuta",
+  "zasieg": "",
+  "czas_trwania": "1 godzina",
+  "skladnik": "pióro gryfa (+3)",
+  "opis": "Czarodziej zamyka odrobinę magicznej energii w przedmiocie: +5 do dowolnej cechy związanej z jego podstawową funkcją (np. magiczny miecz zwiększa WW, pierścień daje modyfikator do Ogłady). Naraz działa tylko jedno umagicznienie. Czar dotykowy.",
+  "page": 159
+ },
+ {
+  "name": "Siła umysłu",
+  "tradycja": "Tradycja Metalu",
+  "pm": 23,
+  "czas_rzucania": "10 minut",
+  "zasieg": "",
+  "czas_trwania": "",
+  "skladnik": "strona z księgi napisanej przez szaleńca (+3)",
+  "opis": "Czarodziej mocą umysłu próbuje uzdrowić obłąkaną postać — magia jest nieprzewidywalna. Udany test splatania magii usuwa 1k10 Punktów Obłędu, nieudany dodaje kolejne 1k10. Czar dotykowy; nie na siebie ani na zwierzęta.",
+  "page": 159
+ },
+ {
+  "name": "Tłumienie magii",
+  "tradycja": "Tradycja Metalu",
+  "pm": 26,
+  "czas_rzucania": "akcja podwójna",
+  "zasieg": "",
+  "czas_trwania": "1k10 rund",
+  "skladnik": "niewielka ozdobna pochwa ze złota o wartości min. 75 zk (+3)",
+  "opis": "Czarodziej przywołuje moc Chamon, owijając jej pasmami dowolny magiczny przedmiot w odległości do 24 metrów. W trakcie trwania czaru przedmiot traci wszystkie swoje właściwości magiczne.",
+  "page": 159
  }
 ]
