@@ -43,9 +43,11 @@ relacje).
 
 ## Agent rozwoju wiedzy / Validation (spec) — działa
 `kos/build_kos.py` przy budowie wykrywa **encje wskazywane w relacjach, których
-brak w tabelach**. Wykrył realne luki: `Kapłan`, `Karczmarz` (prawdziwe profesje
-do douzupełnienia) oraz `chwalebna śmierć!` (artefakt/nie-encja — do whitelisty).
-To jest dokładnie „wykrywanie niepełnych danych i błędów OCR" ze specyfikacji.
+brak w tabelach**. Dzięki temu wykryto pominiętą stronę 69 — profesje `Kapłan`
+i `Karczmarz` — które **uzupełniono** (graf domknięty, 0 luk). Nie-encję
+`chwalebna śmierć!` (klimatyczne wyjście kariery) dodano do whitelisty
+(`NON_ENTITIES`). To dokładnie „wykrywanie niepełnych danych i błędów OCR" ze
+specyfikacji — i realnie poprawiło kompletność (111 → 113).
 
 ## Przepływ pracy
 ```bash
@@ -66,7 +68,7 @@ python kos/query.py "największa modyfikacja WW"  # COMPARISON (SQL)
   `confidence` i przyszłe `UPDATED_BY`/errata rozstrzygają sprzeczności.
 
 ## Do zrobienia (kolejność wartości)
-1. Douzupełnić profesje `Kapłan`, `Karczmarz` (2 strony, wzrokowo) → znika luka grafu.
+1. ✅ Uzupełniono `Kapłan`, `Karczmarz` (str. 69) — graf profesji domknięty (0 luk).
 2. Warstwa 3+2 dla **broni/pancerza/ekwipunku** → `weapon_stats`, `armour_stats`,
    `item_costs` + relacje `CAN_EQUIP`/`CAN_USE`, koszty w SQL.
 3. **Czary** per tradycja → `spell_stats` + `Spell`/`CASTS`/`KNOWS`.

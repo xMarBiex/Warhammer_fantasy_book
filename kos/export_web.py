@@ -30,10 +30,14 @@ def fold(s):
     return "".join(c for c in s if not unicodedata.combining(c))
 
 
+NON_ENTITIES = {"chwalebna smierc!"}  # klimatyczne zakończenia, nie profesje
+
+
 def split_names(field):
     if not field or field.strip().lower() == "brak":
         return []
-    return [x.strip() for x in field.split(",") if x.strip()]
+    return [x.strip() for x in field.split(",")
+            if x.strip() and fold(x) not in NON_ENTITIES]
 
 
 def cap(s):

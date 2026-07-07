@@ -3339,5 +3339,65 @@
   "trappings": "średni pancerz (kaftan kolczy i skórzana kurta), tarcza, koń z siodłem i uprzężą, 10 metrów liny",
   "entries": "fechtmistrz, goniec, górnik, leśnik, łowca, łowca nagród, posłaniec, przepatrywacz, strażnik dróg, strażnik pól, węglarz, włóczykij, wojownik klanowy, woźnica",
   "exits": "herszt banitów, leśny duch, łowca wampirów, odkrywca, sierżant"
+ },
+ {
+  "name": "Kapłan",
+  "type": "zaawansowana",
+  "page": 69,
+  "main": {
+   "WW": "+10",
+   "US": "+10",
+   "K": "+5",
+   "Odp": "+10",
+   "Zr": "+5",
+   "Int": "+10",
+   "SW": "+20",
+   "Ogd": "+15"
+  },
+  "secondary": {
+   "A": "—",
+   "Żyw": "+4",
+   "S": "—",
+   "Wt": "—",
+   "Sz": "—",
+   "Mag": "+1",
+   "PO": "—",
+   "PP": "—"
+  },
+  "skills": "czytanie i pisanie, jeździectwo albo pływanie, język tajemny (magiczny), leczenie, nauka (dowolna), nauka (teologia), plotkowanie, przekonywanie, splatanie magii, spostrzegawczość, wiedza (dowolne dwie), wykrywanie magii, znajomość języka (dowolne dwa)",
+  "talents": "magia prosta (kapłańska), morderczy atak albo ogłuszanie, pancerz wiary albo krasomówstwo",
+  "trappings": "modlitewnik, przybory do pisania",
+  "entries": "akolita, biczownik, zakonnik",
+  "exits": "biczownik, majordomus, uczony, wybraniec boży"
+ },
+ {
+  "name": "Karczmarz",
+  "type": "zaawansowana",
+  "page": 69,
+  "main": {
+   "WW": "+10",
+   "US": "+5",
+   "K": "+5",
+   "Odp": "+10",
+   "Zr": "+20",
+   "Int": "+10",
+   "SW": "+10",
+   "Ogd": "+20"
+  },
+  "secondary": {
+   "A": "—",
+   "Żyw": "+4",
+   "S": "—",
+   "Wt": "—",
+   "Sz": "—",
+   "Mag": "—",
+   "PO": "—",
+   "PP": "—"
+  },
+  "skills": "czytanie i pisanie albo zwinne palce, gadanina albo czytanie z warg, mocna głowa, plotkowanie, przekonywanie, rzemiosło (gotowanie), spostrzegawczość, targowanie, wiedza (Imperium), wycena, znajomość języka (bretoński, kislevski, staroświatowy albo tileański)",
+  "talents": "etykieta albo łotrzyk, ogłuszanie, żyłka handlowa albo bijatyka",
+  "trappings": "karczma, jeden albo więcej służących",
+  "entries": "mieszczanin, sługa",
+  "exits": "banita, kupiec, mieszczanin, paser, przemytnik"
  }
 ]

@@ -50,11 +50,23 @@ def node_id(prefix, name):
     return f"{prefix}:{fold(name).replace(' ', '_')}"
 
 
+# Nazwy w polach wejść/wyjść, które NIE są profesjami (klimatyczne zakończenia
+# kariery — np. „chwalebna śmierć!" jako jedyne wyjście Berserkera). Nie tworzą
+# węzłów ani luk w grafie.
+NON_ENTITIES = {"chwalebna śmierć!"}
+_NON = {n.strip().lower().replace("ł", "l") for n in NON_ENTITIES}
+
+
 def split_names(field):
-    """'a, b, c' -> ['a','b','c']; 'brak'/'' -> []."""
+    """'a, b, c' -> ['a','b','c']; 'brak'/'' -> []; pomija nie-encje."""
     if not field or field.strip().lower() == "brak":
         return []
-    return [x.strip() for x in field.split(",") if x.strip()]
+    out = []
+    for x in field.split(","):
+        x = x.strip()
+        if x and x.lower().replace("ł", "l") not in _NON:
+            out.append(x)
+    return out
 
 
 def build():

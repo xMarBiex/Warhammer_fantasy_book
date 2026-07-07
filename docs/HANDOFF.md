@@ -18,11 +18,12 @@ Katalog roboczy: `/home/user/Warhammer_fantasy_book` · Python: `./.venv/bin/pyt
   Diagnoza: PDF to czysty skan (0% warstwy tekstowej).
 - **Baza wektorowa (proza)**: ChromaDB, model `intfloat/multilingual-e5-large` (fastembed/ONNX),
   **1537 wektorów**. Ranking: **spis treści > nagłówki > treść (IDF)**.
-- **Tabele: PROFESJE — 111** (Rozdział III, str. 32–88). Źródło prawdy: `tables/professions.json`.
-  ⚠ Kontrola spójności grafu (KOS) wykryła **2 realne luki**: brak `Kapłan` i
-  `Karczmarz` (są wskazywane w siatce rozwoju innych profesji). Do douzupełnienia.
-- **KOS Graf+SQL**: `data/kos/kos.db` — 112 węzłów, 671 krawędzi (`ADVANCES_TO`
-  = siatka rozwoju profesji, `DEFINED_IN`), 111 rekordów `profession_stats`.
+- **Tabele: PROFESJE — 113 (KOMPLET, graf domknięty)** (Rozdział III, str. 32–88).
+  Źródło prawdy: `tables/professions.json`. Kontrola spójności KOS wykryła i
+  **uzupełniono** brakującą stronę 69 (`Kapłan`, `Karczmarz` — zaawansowane).
+  Nie-encja `chwalebna śmierć!` (klimatyczne wyjście) na whiteliście w `build_kos.py`.
+- **KOS Graf+SQL**: `data/kos/kos.db` — 114 węzłów, 681 krawędzi (`ADVANCES_TO`
+  = siatka rozwoju profesji, `DEFINED_IN`), 113 rekordów `profession_stats`. **0 luk.**
 - **Agent dialogowy (Warstwa 5)**: `agent/` — okno czatu na Claude API
   (`claude-opus-4-8`), pętla tool-use z narzędziami `profesja_szczegoly`
   (SQL+Graf), `porownaj_ceche` (SQL), `szukaj_zasad` (wektory), strażnik tematu
