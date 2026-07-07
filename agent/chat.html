@@ -1,0 +1,122 @@
+<!doctype html>
+<html lang="pl">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Mistrz Gry — Warhammer Fantasy (agent KOS)</title>
+<style>
+  :root{
+    --bg:#14110d; --bg2:#1b1710; --panel:#211b13; --panel2:#2a2318;
+    --line:#3a3020; --line2:#4a3d27; --ink:#e9e0cb; --dim:#b6a98c;
+    --faint:#8a7d63; --gold:#c8a24a; --rust:#a2482f; --ok:#6f9d5b;
+  }
+  *{box-sizing:border-box}
+  html,body{height:100%}
+  body{margin:0;background:var(--bg);color:var(--ink);
+    font:16px/1.55 "Iowan Old Style",Georgia,"Times New Roman",serif;
+    display:flex;flex-direction:column;-webkit-text-size-adjust:100%}
+  header{border-bottom:1px solid var(--line);padding:12px 16px;background:var(--bg2)}
+  header h1{margin:0;font-size:1.15rem;color:var(--gold);letter-spacing:.4px}
+  header .sub{color:var(--faint);font-size:.8rem;margin-top:2px}
+  #log{flex:1;overflow-y:auto;padding:16px;max-width:820px;width:100%;margin:0 auto}
+  .msg{margin:10px 0;display:flex}
+  .msg.user{justify-content:flex-end}
+  .bubble{max-width:82%;padding:11px 14px;border-radius:14px;white-space:pre-wrap;
+    word-wrap:break-word}
+  .user .bubble{background:#2c2314;border:1px solid var(--line2);border-bottom-right-radius:4px}
+  .bot .bubble{background:var(--panel);border:1px solid var(--line);border-bottom-left-radius:4px}
+  .bot .bubble b,.bot .bubble strong{color:var(--gold)}
+  .sys .bubble{background:#2a1512;border:1px solid var(--rust);color:#e7c3b6;max-width:100%}
+  .tools{margin-top:8px;display:flex;flex-wrap:wrap;gap:5px}
+  .tool{font-size:.72rem;color:var(--faint);background:var(--panel2);
+    border:1px solid var(--line);padding:2px 8px;border-radius:20px}
+  .tool b{color:var(--dim)}
+  .typing{color:var(--faint);font-style:italic;padding:6px 14px}
+  .dot{animation:blink 1.2s infinite}.dot:nth-child(2){animation-delay:.2s}.dot:nth-child(3){animation-delay:.4s}
+  @keyframes blink{0%,60%,100%{opacity:.25}30%{opacity:1}}
+  footer{border-top:1px solid var(--line);background:var(--bg2);padding:10px 16px}
+  .row{max-width:820px;margin:0 auto;display:flex;gap:8px;align-items:flex-end}
+  textarea{flex:1;resize:none;max-height:140px;padding:11px 13px;font:inherit;
+    color:var(--ink);background:var(--panel);border:1px solid var(--line2);
+    border-radius:12px;outline:none}
+  textarea:focus{border-color:var(--gold)}
+  button{padding:11px 18px;font:inherit;color:#1a140a;background:var(--gold);
+    border:none;border-radius:12px;cursor:pointer;font-weight:600}
+  button:disabled{opacity:.5;cursor:default}
+  .hint{max-width:820px;margin:6px auto 0;color:var(--faint);font-size:.74rem;text-align:center}
+  .chips{max-width:820px;margin:0 auto 4px;display:flex;flex-wrap:wrap;gap:6px;justify-content:center}
+  .ex{font-size:.78rem;color:var(--dim);background:var(--panel);border:1px solid var(--line);
+    padding:4px 10px;border-radius:20px;cursor:pointer}
+  .ex:hover{border-color:var(--gold);color:var(--ink)}
+</style>
+</head>
+<body>
+<header>
+  <h1>⚔️ Mistrz Gry — Warhammer Fantasy Roleplay 2e</h1>
+  <div class="sub">Odpowiadam wyłącznie na pytania o grę, opierając się na Księdze Zasad.</div>
+</header>
+
+<div id="log"></div>
+
+<footer>
+  <div class="chips" id="ex"></div>
+  <div class="row">
+    <textarea id="q" rows="1" placeholder="Zapytaj o profesję, cechy, zasadę, świat gry…"></textarea>
+    <button id="send">Wyślij</button>
+  </div>
+  <div class="hint">Liczby pochodzą z tabel (SQL/Graf), zasady z treści księgi (wektory). Poza tematyką gry — nie odpowiadam.</div>
+</footer>
+
+<script>
+const log=document.getElementById("log"), qi=document.getElementById("q"), btn=document.getElementById("send");
+const history=[];
+const EX=["Jakie są cechy akolity i do czego może awansować?",
+  "Która profesja ma największą modyfikację WW?",
+  "Jak działa punkty przeznaczenia?",
+  "Opowiedz o Zabójcach Trolli"];
+
+function esc(s){return s.replace(/[&<>]/g,c=>({"&":"&amp;","<":"&lt;",">":"&gt;"}[c]));}
+function fmt(s){return esc(s).replace(/\*\*(.+?)\*\*/g,"<b>$1</b>");}
+
+function add(role,html,tools){
+  const wrap=document.createElement("div");
+  wrap.className="msg "+(role==="user"?"user":role==="system"?"sys":"bot");
+  let inner=`<div class="bubble">${html}`;
+  if(tools&&tools.length){
+    inner+='<div class="tools">'+tools.map(t=>`<span class="tool"><b>${esc(t.tool)}</b></span>`).join("")+"</div>";
+  }
+  inner+="</div>";
+  wrap.innerHTML=inner;
+  log.appendChild(wrap); log.scrollTop=log.scrollHeight;
+  return wrap;
+}
+
+async function send(){
+  const text=qi.value.trim(); if(!text) return;
+  qi.value=""; qi.style.height="auto"; btn.disabled=true;
+  add("user",esc(text));
+  history.push({role:"user",content:text});
+  const typing=document.createElement("div");
+  typing.className="typing"; typing.innerHTML='MG rozważa<span class="dot">.</span><span class="dot">.</span><span class="dot">.</span>';
+  log.appendChild(typing); log.scrollTop=log.scrollHeight;
+  try{
+    const r=await fetch("/api/chat",{method:"POST",headers:{"Content-Type":"application/json"},
+      body:JSON.stringify({messages:history})});
+    const d=await r.json();
+    typing.remove();
+    if(d.error){add("system","⚠ "+esc(d.error));}
+    else{add("bot",fmt(d.reply),d.tools); history.push({role:"assistant",content:d.reply});}
+  }catch(e){typing.remove(); add("system","⚠ Błąd połączenia: "+esc(""+e));}
+  btn.disabled=false; qi.focus();
+}
+
+btn.onclick=send;
+qi.addEventListener("keydown",e=>{if(e.key==="Enter"&&!e.shiftKey){e.preventDefault();send();}});
+qi.addEventListener("input",()=>{qi.style.height="auto";qi.style.height=Math.min(qi.scrollHeight,140)+"px";});
+document.getElementById("ex").innerHTML=EX.map(x=>`<span class="ex">${esc(x)}</span>`).join("");
+document.querySelectorAll(".ex").forEach(el=>el.onclick=()=>{qi.value=el.textContent;send();});
+add("bot","Witaj, śmiałku. Jestem twoim Mistrzem Gry dla <b>Warhammer Fantasy Roleplay</b>. "
+  +"Pytaj o profesje, cechy, zasady albo mroczny świat Starego Świata — odpowiem wprost z Księgi Zasad.");
+</script>
+</body>
+</html>

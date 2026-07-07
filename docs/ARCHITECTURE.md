@@ -14,7 +14,7 @@ poziomem pewności.
 | 2. Knowledge Graph | znaczenie/relacje | **SQLite** `nodes`+`edges` (`data/kos/kos.db`) | ✅ profesje (siatka rozwoju) |
 | 3. Relational (SQL) | dokładne liczby | **SQLite** `profession_stats` (+ przyszłe `*_stats`) | ✅ profesje; ⬜ broń/czary/… |
 | 4. Semantic Memory | lore/proza/FAQ | **ChromaDB** + e5-large (fastembed/ONNX) | ✅ 1561 fragmentów |
-| 5. Reasoning Engine | plan + pewność | `kos/query.py` (klasyfikator + router + Confidence) | ✅ FACT/COMPARISON/Graf |
+| 5. Reasoning Engine | plan + pewność | `agent/` (Claude API + narzędzia) i `kos/query.py` (rdzeń SQL/Graf) | ✅ agent dialogowy |
 | Metadata Layer | źródło/edycja/pewność | kolumny `source_id, page, confidence` na każdym rekordzie | ✅ |
 
 **Dlaczego SQLite dla Grafu i SQL:** brak serwera (Neo4j/Postgres) w kontenerze,
@@ -72,6 +72,9 @@ python kos/query.py "największa modyfikacja WW"  # COMPARISON (SQL)
 3. **Czary** per tradycja → `spell_stats` + `Spell`/`CASTS`/`KNOWS`.
 4. Podpiąć Warstwę 4 do `kos/query.py` (EXPLANATION/RESEARCH pobiera prozę z
    ChromaDB i łączy z faktami — pełny hybrydowy plan).
-5. Agent (Claude API): system-prompt = reguły KOS + narzędzia `kos_fact`,
-   `kos_graf`, `szukaj_zasad` (wektory). Wg `docs/KOS_SPEC.md` warstwa 5.
+5. ✅ **Agent (Claude API) — zrobiony**: `agent/agent.py` (pętla tool-use,
+   `claude-opus-4-8`, myślenie adaptacyjne, strażnik tematu), `agent/tools.py`
+   (narzędzia `profesja_szczegoly`/`porownaj_ceche`/`szukaj_zasad`),
+   `agent/server.py` + `agent/chat.html` (okno dialogowe). Wymaga
+   `ANTHROPIC_API_KEY`. Kolejne tabele automatycznie wzbogacą narzędzia.
 ```

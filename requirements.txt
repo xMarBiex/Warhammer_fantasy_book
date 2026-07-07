@@ -3,9 +3,14 @@ pymupdf>=1.24        # odczyt PDF, warstwa tekstowa, render stron do obrazów
 pytesseract>=0.3.10  # wrapper na tesseract OCR (wymaga systemowego tesseract-ocr + pol/eng)
 pillow>=10.0
 
-# --- Baza wektorowa (krok 4-5) ---
+# --- Warstwa wektorowa / semantyczna (Warstwa 4 KOS) ---
 chromadb>=1.5        # trwała baza wektorowa (cosine)
 fastembed>=0.8       # embeddingi ONNX (bez torcha); model multilingual-e5-large
 # Uwaga: HuggingFace bywa niedostępny; model E5-large pobierany jest z
 # Google Cloud Storage (patrz scripts/embedder.py). Instaluj w venv,
 # by uniknąć konfliktu z systemowym PyYAML (Debian).
+
+# --- Agent / Reasoning Engine (Warstwa 5 KOS) ---
+anthropic>=0.69      # Claude API (agent w oknie dialogowym; model claude-opus-4-8)
+# Warstwa Graf+SQL (Warstwa 2+3) używa sqlite3 ze stdlib — bez zależności.
+# Uruchomienie agenta wymaga zmiennej ANTHROPIC_API_KEY.

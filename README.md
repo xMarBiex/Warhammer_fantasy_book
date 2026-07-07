@@ -1,101 +1,88 @@
-# Warhammer Fantasy — Księga Zasad (PDF) → baza wektorowa
+# Warhammer Fantasy — Knowledge Operating System (KOS)
 
-Pipeline zamieniający zeskanowaną książkę w PDF (266 stron, ~143 MB, pełną
-grafik i ozdobników) na przeszukiwalną **bazę wektorową** (RAG). Budowany
-**małymi krokami**, z weryfikacją jakości po każdym — szczególnie OCR.
+Cyfrowy **ekspert-Mistrz Gry** systemu *Warhammer Fantasy Roleplay 2e*: okno
+dialogowe, w którym pytasz o grę, a agent odpowiada **wyłącznie na podstawie
+Księgi Zasad** — liczby z tabel, relacje z grafu, zasady i lore z treści księgi,
+zawsze ze źródłem i poziomem pewności.
 
-## Status
+Zasada nadrzędna (spec `docs/KOS_SPEC.md`): **model językowy nie jest bazą
+wiedzy** — jest analitykiem, który sięga po wiedzę do warstw danych.
 
-| Krok | Co robimy | Status |
-|------|-----------|--------|
-| 0 | Wgranie PDF → `data/raw/` (przez GitHub Release, patrz niżej) | ✅ pobrany, checksum OK |
-| 1 | Inspekcja PDF + test OCR (`scripts/01_inspect.py`) | ✅ 0% warstwy tekstowej → skan; OCR pol+eng czytelny |
-| 2 | OCR całości → `data/text/pages/` (`scripts/02_extract.py`) | ⏳ w toku |
-| 3 | Czyszczenie + chunking z metadanymi stron (`scripts/03_chunk.py`) | ✅ |
-| 4 | Embeddingi + baza wektorowa ChromaDB (`scripts/04_build_vectordb.py`) | ✅ (przetestowane na 10 stronach) |
-| 5 | Zapytania testowe / retrieval (`scripts/05_query.py`) | ✅ (przetestowane) |
+## Architektura — 5 warstw
+Pełne mapowanie na technologie: `docs/ARCHITECTURE.md`.
 
-**Test na 10 stronach** przeszedł: retrieval trafnie odpowiada na pytania po
-polsku z cytowaniem stron. Pełną bazę budujemy po zakończeniu OCR całości.
+| Warstwa | Rola | Realizacja | Kod |
+|---|---|---|---|
+| 1. Document Intelligence | PDF → dane | PyMuPDF + Tesseract `pol+eng` | `scripts/01–03` |
+| 2. Knowledge Graph | relacje/znaczenie | SQLite `nodes`/`edges` | `kos/` |
+| 3. Relational (SQL) | dokładne liczby | SQLite `profession_stats` | `kos/` |
+| 4. Semantic Memory | proza / lore | ChromaDB + e5-large | `scripts/embedder.py` |
+| 5. Reasoning Engine | plan + odpowiedź | Claude API + narzędzia | `agent/` |
+| Metadata / Confidence | źródło, strona, pewność | kolumny na każdym rekordzie | wszędzie |
 
-## Stack (finalny, dobrany pod ograniczenia środowiska)
-
-- **Ekstrakcja / render:** PyMuPDF (fitz)
-- **OCR:** Tesseract 5 (`pol+eng`), render 300 DPI (eksperyment: 300 DPI surowe
-  = optimum; binaryzacja pogarsza polskie znaki diakrytyczne)
-- **Embeddingi:** `intfloat/multilingual-e5-large` (dim 1024) przez **fastembed**
-  (ONNX, bez torcha). Model pobierany z **Google Cloud Storage**, bo HuggingFace
-  jest w tym środowisku zablokowany — szczegóły w `scripts/embedder.py`.
-- **Baza wektorowa:** **ChromaDB** (lokalna, trwała, metryka cosine)
-
-Uwaga o jakości: skan generuje literówki OCR (gubione ż/ć/ń, ligatura „fi"→h),
-ale e5-large jest na taki szum odporny — retrieval działa poprawnie mimo błędów.
-
-## Jak dostarczono PDF (150 MB)
-
-Plik jest za duży dla gita (>100 MB) i dla pobrania przez MCP (base64 do
-kontekstu). Google Drive i Dropbox są zablokowane przez egress proxy. Zadziałał
-**GitHub Release**: PDF wgrany jako *release asset* (host `objects.githubusercontent.com`
-jest dostępny), a skrypt pobiera go z `browser_download_url`.
-
-## Instalacja
+## Agent w oknie dialogowym (główny produkt)
 
 ```bash
-# OCR systemowy
-sudo apt-get install -y tesseract-ocr tesseract-ocr-pol tesseract-ocr-eng
-# Python w venv (unika konfliktu z systemowym PyYAML)
 python3 -m venv .venv && . .venv/bin/activate
 pip install -r requirements.txt
+
+python kos/build_kos.py                 # zbuduj warstwę Graf+SQL z tabel
+
+export ANTHROPIC_API_KEY=sk-ant-...     # wymagane — klucz do Claude API
+python agent/server.py                  # http://127.0.0.1:8000
 ```
 
-## Użycie (cały pipeline)
+Otwórz `http://127.0.0.1:8000` i pytaj po polsku, np. *„Jakie są cechy akolity
+i do czego może awansować?"*, *„Która profesja ma największą WW?"*, *„Jak działają
+punkty przeznaczenia?"*. Pytania spoza świata gry agent **grzecznie odrzuca**.
+
+Test z terminala (bez UI):
+```bash
+python agent/agent.py "statystyki zabójcy demonów"
+python kos/query.py  "największa krzepa"      # sama warstwa SQL/Graf, bez API
+```
+
+Jak to działa (Warstwa 5): agent klasyfikuje pytanie i wywołuje narzędzia —
+`profesja_szczegoly` (SQL+Graf), `porownaj_ceche` (SQL), `szukaj_zasad`
+(wektory) — po czym odpowiada z cytowaniem strony i pewności. Model:
+`claude-opus-4-8`, myślenie adaptacyjne.
+
+## Warstwa danych (jak zbudowana)
 
 ```bash
-. .venv/bin/activate
-
-# 1. Inspekcja + próbki OCR
-python scripts/01_inspect.py data/raw/ksiega_zasad.pdf
-
-# 2. OCR całości (wznawialny — można przerwać i wznowić)
+# Warstwa 1 — OCR całości (skan, 266 stron; wznawialny)
 python scripts/02_extract.py data/raw/ksiega_zasad.pdf
-
-# 3. Chunking z metadanymi stron
 python scripts/03_chunk.py
 
-# 4. Embeddingi + baza wektorowa
+# Warstwa 4 — embeddingi + baza wektorowa (proza)
 python scripts/04_build_vectordb.py
 
-# 5. Zapytanie z terminala (retrieval z cytowaniem stron)
-python scripts/05_query.py "jak działa parowanie ciosu?" -k 5
+# Warstwa 2+3 — graf i tabele z tables/*.json
+python kos/build_kos.py
+
+# strona testowa warstwy strukturalnej (offline/Cloudflare)
+python kos/export_web.py                # -> web/kos.html + dist/index.html
 ```
 
-## Wyszukiwarka w przeglądarce (okno HTML)
+**Źródło prawdy tabel:** `tables/*.json` (w gicie). `data/` jest generowane i poza
+gitem. Kontrola spójności grafu przy `build_kos.py` wykrywa braki (np. profesje
+wskazane w rozwoju, których jeszcze nie wpisano).
 
-Graficzne okno zapytań do bazy — serwer ładuje model i bazę raz, strona
-odpytuje go przez `fetch`:
+## Ograniczenia środowiska (istotne)
+- **HuggingFace zablokowany** → model e5-large z Google Cloud Storage
+  (`scripts/embedder.py`), ładowany przez `specific_model_path`.
+- **Duże pliki** (PDF 143 MB) → GitHub Release asset (Drive/Dropbox zablokowane).
+- **Agent wymaga `ANTHROPIC_API_KEY`** (własny klucz Claude API).
+- **venv obowiązkowy** (konflikt z systemowym PyYAML na Debianie).
 
-```bash
-. .venv/bin/activate
-python scripts/webapp.py            # domyślnie port 8000, baza data/chroma
-# potem otwórz w przeglądarce:  http://localhost:8000
-```
+## Stan i plan
+- ✅ OCR całości; baza wektorowa (1561 fragmentów); profesje w SQL/Graf (111 +
+  wykryte luki); agent dialogowy z narzędziami i strażnikiem tematu.
+- ⬜ Kolejne tabele (broń, pancerz, ekwipunek, czary, trafienia krytyczne,
+  bestiariusz) → `weapon_stats`, `spell_stats`… + relacje `CAN_EQUIP`/`CASTS`.
+- Szczegóły i przekazanie sesji: `docs/HANDOFF.md`.
 
-Pliki: `scripts/webapp.py` (serwer, tylko stdlib + chromadb + fastembed) oraz
-`web/index.html` (interfejs). Wpisujesz pytanie po polsku, dostajesz fragmenty
-z numerami stron i podobieństwem.
-
-## Wersja mobilna (samodzielna strona, bez serwera)
-
-Do testowania na telefonie — jeden plik HTML z wbudowaną treścią księgi;
-wyszukiwanie działa w przeglądarce (słowno-frazowe, odporne na literówki OCR).
-Nie wymaga serwera ani modelu, ale nie jest w pełni semantyczne.
-
-```bash
-python scripts/build_mobile.py     # -> web/search_mobile.html (samodzielny plik)
-```
-
-Wynikowy `web/search_mobile.html` można otworzyć wprost w przeglądarce telefonu
-lub opublikować. Źródło: `web/search_mobile.template.html` + `scripts/build_mobile.py`.
-Pełne wyszukiwanie semantyczne pozostaje w wersji z serwerem (`scripts/webapp.py`).
-
-Dane (PDF, tekst OCR, baza wektorowa) są poza gitem — patrz `.gitignore`.
+## Uwaga o wcześniejszych narzędziach
+`scripts/webapp.py` i `scripts/build_mobile.py` (wyszukiwarki prozy) są
+**poprzednikami** agenta — nadal działają jako podgląd warstwy wektorowej, ale
+docelowym interfejsem jest agent (`agent/`), który łączy wszystkie warstwy.

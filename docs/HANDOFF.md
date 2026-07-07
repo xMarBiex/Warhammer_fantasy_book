@@ -23,6 +23,10 @@ Katalog roboczy: `/home/user/Warhammer_fantasy_book` · Python: `./.venv/bin/pyt
   `Karczmarz` (są wskazywane w siatce rozwoju innych profesji). Do douzupełnienia.
 - **KOS Graf+SQL**: `data/kos/kos.db` — 112 węzłów, 671 krawędzi (`ADVANCES_TO`
   = siatka rozwoju profesji, `DEFINED_IN`), 111 rekordów `profession_stats`.
+- **Agent dialogowy (Warstwa 5)**: `agent/` — okno czatu na Claude API
+  (`claude-opus-4-8`), pętla tool-use z narzędziami `profesja_szczegoly`
+  (SQL+Graf), `porownaj_ceche` (SQL), `szukaj_zasad` (wektory), strażnik tematu
+  (tylko WFRP). Uruchomienie: `ANTHROPIC_API_KEY=... python agent/server.py`.
 - **Fakt-karty**: 111 (zdania z dokładnymi liczbami) → `data/tables/facts.json`.
 - **Wyszukiwarka mobilna** (samodzielny HTML, offline w przeglądarce):
   artefakt `https://claude.ai/code/artifact/f7157f9c-3bbd-4e9c-9fdf-127e4633ba3c`
