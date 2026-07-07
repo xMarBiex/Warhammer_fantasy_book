@@ -25,12 +25,14 @@ Katalog roboczy: `/home/user/Warhammer_fantasy_book` · Python: `./.venv/bin/pyt
 - **Oręż — KOMPLET (Tabela 5-4/5-5 + amunicja, str. 110)**: `tables/weapons.json`,
   **47 rekordów** (19 biała, 24 strzelecka, 4 amunicja) — obrażenia (Siła broni),
   cena, obciążenie, kategoria, zasięg/przeładowanie, cechy oręża, dostępność.
-- **KOS Graf+SQL**: `data/kos/kos.db` — 160 węzłów, 727 krawędzi (`ADVANCES_TO`,
-  `DEFINED_IN`), 113 `profession_stats` + 47 `weapon_stats`. **0 luk.**
+- **Pancerz — KOMPLET (Tabela 5-6, str. 114)**: `tables/armour.json`, **17 rekordów**
+  (skórzana/kolcza/płytowa) — PZ, cena, obciążenie, chronione lokacje, dostępność.
+- **KOS Graf+SQL**: `data/kos/kos.db` — 177 węzłów, 744 krawędzie (`ADVANCES_TO`,
+  `DEFINED_IN`), 113 `profession_stats` + 47 `weapon_stats` + 17 `armour_stats`. **0 luk.**
 - **Agent dialogowy (Warstwa 5)**: `agent/` — okno czatu na Claude API
   (`claude-opus-4-8`), pętla tool-use z narzędziami `profesja_szczegoly`
-  (SQL+Graf), `porownaj_ceche` (SQL), `bron_szczegoly` (SQL), `szukaj_zasad`
-  (wektory), strażnik tematu (tylko WFRP).
+  (SQL+Graf), `porownaj_ceche` (SQL), `bron_szczegoly` (SQL), `pancerz_szczegoly`
+  (SQL), `szukaj_zasad` (wektory), strażnik tematu (tylko WFRP).
   Uruchomienie: `ANTHROPIC_API_KEY=... python agent/server.py`.
 - **Fakt-karty**: 111 (zdania z dokładnymi liczbami) → `data/tables/facts.json`.
 - **Wyszukiwarka mobilna** (samodzielny HTML, offline w przeglądarce):
@@ -40,7 +42,7 @@ Katalog roboczy: `/home/user/Warhammer_fantasy_book` · Python: `./.venv/bin/pyt
 ## 2. Co pozostało ⬜ (kolejność wg wartości)
 Wszystko to TABELE (wymagają odczytu WZROKOWEGO — tesseract ich nie czyta):
 1. ✅ **Broń** — zrobione (`tables/weapons.json`, str. 110).
-2. **Pancerz** (PZ, lokacje, cena) — Tabela 5-6/5-7, ~str. 114–115
+2. ✅ **Pancerz** — zrobione (`tables/armour.json`, Tabela 5-6, str. 114).
 3. **Ekwipunek / usługi** (ceny) — Rozdział V, str. ~116–127 (Tabele 5-8…5-19)
 4. **Czary** per tradycja/dziedzina (poziom mocy, zasięg, czas, efekt) — Rozdział VII, ~str. 146–177
 5. **Trafienia krytyczne** (tabele efektów wg lokacji) — ~str. 138–141

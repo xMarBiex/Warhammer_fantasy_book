@@ -146,6 +146,34 @@ def build():
                 (wid, "DEFINED_IN", book_id, SOURCE["id"], w["page"], 1.0))
             n_weapons += 1
 
+    # ── Pancerz (Warstwa 2 węzły + Warstwa 3 SQL) ──────────────────────────
+    apath = os.path.join(TABLES, "armour.json")
+    n_armour = 0
+    if os.path.exists(apath):
+        acols = ["node_id", "name", "material", "page", "cena", "obciazenie",
+                 "lokacje", "pz", "dostepnosc", "source_id", "confidence"]
+        for a in json.load(open(apath, encoding="utf-8")):
+            # nazwy powtarzają się między materiałami -> id zawiera materiał
+            aid = node_id("pancerz", f"{a['name']} {a['material']}")
+            disp = f"{a['name']} ({a['material']})"
+            con.execute(
+                "INSERT OR REPLACE INTO nodes"
+                "(id,type,name,name_fold,data,source_id,page,confidence) "
+                "VALUES(?,?,?,?,?,?,?,?)",
+                (aid, "Armour", disp, fold(a["name"]),
+                 json.dumps(a, ensure_ascii=False), SOURCE["id"], a["page"], 0.95))
+            con.execute(
+                f"INSERT OR REPLACE INTO armour_stats({','.join(acols)}) "
+                f"VALUES({','.join('?' * len(acols))})",
+                (aid, a["name"], a["material"], a["page"], a["cena"],
+                 a["obciazenie"], a["lokacje"], a["pz"], a["dostepnosc"],
+                 SOURCE["id"], 0.95))
+            con.execute(
+                "INSERT OR IGNORE INTO edges(src,rel,dst,source_id,page,confidence) "
+                "VALUES(?,?,?,?,?,?)",
+                (aid, "DEFINED_IN", book_id, SOURCE["id"], a["page"], 1.0))
+            n_armour += 1
+
     # indeks nazwa-fold -> id (do rozwiązywania krawędzi po nazwie)
     idx = {fold(p["name"]): node_id("prof", p["name"]) for p in profs}
 
@@ -183,9 +211,9 @@ def build():
     con.close()
 
     print(f"KOS zbudowany -> {DB_PATH}")
-    print(f"  węzły:      {n_nodes}  (Book + {n_stats} profesji + {n_weapons} oręża)")
+    print(f"  węzły:      {n_nodes}  (Book + {n_stats} prof. + {n_weapons} oręża + {n_armour} pancerzy)")
     print(f"  krawędzie:  {n_edges}  (ADVANCES_TO + DEFINED_IN)")
-    print(f"  SQL:        {n_stats} profesji, {n_weapons} oręża (Warstwa 3)")
+    print(f"  SQL:        {n_stats} profesji, {n_weapons} oręża, {n_armour} pancerzy (Warstwa 3)")
     if missing:
         names = ", ".join(m[0] for m in missing)
         print(f"  ⚠ Validation Agent: {len(missing)} profesji wskazywanych w siatce "

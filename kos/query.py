@@ -133,6 +133,29 @@ class KOS:
         d["source"] = "Księga Zasad 2e (Tabela 5-4/5-5, str. 110)"
         return d
 
+    # ── Warstwa 3 (SQL): pancerz ──────────────────────────────────────────
+    def resolve_armour(self, q):
+        """Zwraca listę pasujących elementów pancerza (nazwy się powtarzają
+        między materiałami, więc zwracamy wszystkie trafienia)."""
+        f = fold(q)
+        rows = self.con.execute(
+            "SELECT node_id,name,material FROM armour_stats").fetchall()
+        hits = [r for r in rows if fold(r["name"]) in f]
+        # jeśli pytanie wskazuje materiał, zawęź
+        mats = [m for m in ("skorzan", "kolcz", "plytow") if m in f]
+        if mats:
+            hits = [r for r in hits if any(m in fold(r["material"]) for m in mats)] or hits
+        return [r["node_id"] for r in hits]
+
+    def armour_details(self, node_id):
+        r = self.con.execute(
+            "SELECT * FROM armour_stats WHERE node_id=?", (node_id,)).fetchone()
+        if not r:
+            return None
+        d = dict(r)
+        d["source"] = "Księga Zasad 2e (Tabela 5-6, str. 114)"
+        return d
+
     # ── COMPARISON: ekstremum cechy przez SQL ─────────────────────────────
     def stat_extreme(self, stat_col, biggest=True):
         rows = self.con.execute(

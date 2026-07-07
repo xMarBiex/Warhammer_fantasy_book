@@ -1,0 +1,172 @@
+[
+ {
+  "name": "Hełm",
+  "material": "skórzana",
+  "page": 114,
+  "cena": "3 zk",
+  "obciazenie": "10",
+  "lokacje": "głowa",
+  "pz": 1,
+  "dostepnosc": "przeciętna"
+ },
+ {
+  "name": "Kaftan",
+  "material": "skórzana",
+  "page": 114,
+  "cena": "6 zk",
+  "obciazenie": "40",
+  "lokacje": "korpus",
+  "pz": 1,
+  "dostepnosc": "przeciętna"
+ },
+ {
+  "name": "Kurta",
+  "material": "skórzana",
+  "page": 114,
+  "cena": "12 zk",
+  "obciazenie": "50",
+  "lokacje": "korpus, ręce",
+  "pz": 1,
+  "dostepnosc": "przeciętna"
+ },
+ {
+  "name": "Nogawice",
+  "material": "skórzana",
+  "page": 114,
+  "cena": "10 zk",
+  "obciazenie": "20",
+  "lokacje": "nogi",
+  "pz": 1,
+  "dostepnosc": "przeciętna"
+ },
+ {
+  "name": "Skórznia",
+  "material": "skórzana",
+  "page": 114,
+  "cena": "25 zk",
+  "obciazenie": "80",
+  "lokacje": "wszystkie",
+  "pz": 1,
+  "dostepnosc": "mała"
+ },
+ {
+  "name": "Czepiec",
+  "material": "kolcza",
+  "page": 114,
+  "cena": "20 zk",
+  "obciazenie": "30",
+  "lokacje": "głowa",
+  "pz": 2,
+  "dostepnosc": "mała"
+ },
+ {
+  "name": "Kaftan",
+  "material": "kolcza",
+  "page": 114,
+  "cena": "60 zk",
+  "obciazenie": "60",
+  "lokacje": "korpus",
+  "pz": 2,
+  "dostepnosc": "mała"
+ },
+ {
+  "name": "Koszulka",
+  "material": "kolcza",
+  "page": 114,
+  "cena": "95 zk",
+  "obciazenie": "80",
+  "lokacje": "korpus, ręce",
+  "pz": 2,
+  "dostepnosc": "mała"
+ },
+ {
+  "name": "Kolczuga",
+  "material": "kolcza",
+  "page": 114,
+  "cena": "75 zk",
+  "obciazenie": "80",
+  "lokacje": "korpus, nogi",
+  "pz": 2,
+  "dostepnosc": "mała"
+ },
+ {
+  "name": "Kolczuga z rękawami",
+  "material": "kolcza",
+  "page": 114,
+  "cena": "130 zk",
+  "obciazenie": "100",
+  "lokacje": "korpus, ręce, nogi",
+  "pz": 2,
+  "dostepnosc": "mała"
+ },
+ {
+  "name": "Nogawice",
+  "material": "kolcza",
+  "page": 114,
+  "cena": "20 zk",
+  "obciazenie": "40",
+  "lokacje": "nogi",
+  "pz": 2,
+  "dostepnosc": "sporadyczna"
+ },
+ {
+  "name": "Zbroja kolcza",
+  "material": "kolcza",
+  "page": 114,
+  "cena": "170 zk",
+  "obciazenie": "210",
+  "lokacje": "wszystkie",
+  "pz": 3,
+  "dostepnosc": "sporadyczna"
+ },
+ {
+  "name": "Hełm",
+  "material": "płytowa",
+  "page": 114,
+  "cena": "30 zk",
+  "obciazenie": "40",
+  "lokacje": "głowa",
+  "pz": 2,
+  "dostepnosc": "sporadyczna"
+ },
+ {
+  "name": "Naramienniki",
+  "material": "płytowa",
+  "page": 114,
+  "cena": "70 zk",
+  "obciazenie": "75",
+  "lokacje": "ręce",
+  "pz": 2,
+  "dostepnosc": "sporadyczna"
+ },
+ {
+  "name": "Nogawice",
+  "material": "płytowa",
+  "page": 114,
+  "cena": "60 zk",
+  "obciazenie": "30",
+  "lokacje": "nogi",
+  "pz": 2,
+  "dostepnosc": "sporadyczna"
+ },
+ {
+  "name": "Napierśnik",
+  "material": "płytowa",
+  "page": 114,
+  "cena": "70 zk",
+  "obciazenie": "40",
+  "lokacje": "korpus",
+  "pz": 2,
+  "dostepnosc": "sporadyczna"
+ },
+ {
+  "name": "Zbroja płytowa",
+  "material": "płytowa",
+  "page": 114,
+  "cena": "400 zk",
+  "obciazenie": "395",
+  "lokacje": "wszystkie",
+  "pz": 5,
+  "dostepnosc": "rzadka"
+ }
+]

@@ -106,6 +106,26 @@ def bron_szczegoly(nazwa: str) -> dict:
     return out
 
 
+# ── Warstwa 3: pancerz ─────────────────────────────────────────────────────
+def pancerz_szczegoly(nazwa: str) -> dict:
+    kos = _get_kos()
+    ids = kos.resolve_armour(nazwa)
+    if not ids:
+        return {"znaleziono": False,
+                "info": f"Pancerza «{nazwa}» nie ma w Tabeli 5-6 (str. 114).",
+                "pewnosc": None}
+    elementy = []
+    for nid in ids:
+        d = kos.armour_details(nid)
+        elementy.append({
+            "nazwa": d["name"], "material": d["material"], "PZ": d["pz"],
+            "cena": d["cena"], "obciazenie": d["obciazenie"],
+            "chronione_lokacje": d["lokacje"], "dostepnosc": d["dostepnosc"],
+        })
+    return {"znaleziono": True, "elementy": elementy,
+            "zrodlo": "Księga Zasad 2e (Tabela 5-6, str. 114)", "pewnosc": 0.95}
+
+
 # ── Warstwa 4: proza / lore / zasady ───────────────────────────────────────
 def szukaj_zasad(pytanie: str, k: int = 5) -> dict:
     embedder, col = _get_vectors()
@@ -174,6 +194,20 @@ TOOLS = [
         },
     },
     {
+        "name": "pancerz_szczegoly",
+        "description": "Zwraca dane pancerza z Tabeli 5-6 (str. 114): Punkty Zbroi "
+                       "(PZ), cena, obciążenie, chronione lokacje, dostępność. Nazwy "
+                       "powtarzają się między materiałami (skórzana/kolcza/płytowa) — "
+                       "narzędzie zwraca wszystkie pasujące elementy. Doprecyzuj "
+                       "materiał w nazwie, by zawęzić (np. «hełm płytowy»).",
+        "input_schema": {
+            "type": "object",
+            "properties": {"nazwa": {"type": "string",
+                           "description": "nazwa pancerza, np. «Kolczuga», «hełm płytowy», «napierśnik»"}},
+            "required": ["nazwa"],
+        },
+    },
+    {
         "name": "szukaj_zasad",
         "description": "Wyszukiwanie semantyczne w treści Księgi Zasad (proza, opisy, "
                        "zasady, lore). Używaj do pytań o mechaniki, opisy, tło świata, "
@@ -194,6 +228,7 @@ DISPATCH = {
     "profesja_szczegoly": profesja_szczegoly,
     "porownaj_ceche": porownaj_ceche,
     "bron_szczegoly": bron_szczegoly,
+    "pancerz_szczegoly": pancerz_szczegoly,
     "szukaj_zasad": szukaj_zasad,
 }
 

@@ -69,9 +69,9 @@ python kos/query.py "największa modyfikacja WW"  # COMPARISON (SQL)
 
 ## Do zrobienia (kolejność wartości)
 1. ✅ Uzupełniono `Kapłan`, `Karczmarz` (str. 69) — graf profesji domknięty (0 luk).
-2. ✅ **Broń** — `weapon_stats` (47 rekordów, str. 110) + narzędzie `bron_szczegoly`.
-   ⬜ Pancerz (`armour_stats`) i ekwipunek/usługi (`item_costs`) + relacje
-   `CAN_EQUIP`/`CAN_USE`.
+2. ✅ **Broń** — `weapon_stats` (47, str. 110) + `bron_szczegoly`.
+   ✅ **Pancerz** — `armour_stats` (17, str. 114) + `pancerz_szczegoly`.
+   ⬜ Ekwipunek/usługi (`item_costs`) + relacje `CAN_EQUIP`/`CAN_USE`.
 3. **Czary** per tradycja → `spell_stats` + `Spell`/`CASTS`/`KNOWS`.
 4. Podpiąć Warstwę 4 do `kos/query.py` (EXPLANATION/RESEARCH pobiera prozę z
    ChromaDB i łączy z faktami — pełny hybrydowy plan).

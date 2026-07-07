@@ -88,5 +88,21 @@ CREATE TABLE IF NOT EXISTS weapon_stats (
 );
 CREATE INDEX IF NOT EXISTS idx_weapon_klasa ON weapon_stats(klasa);
 
+-- Pancerz (Tabela 5-6: Opancerzenie złożone; str. 114).
+CREATE TABLE IF NOT EXISTS armour_stats (
+  node_id    TEXT PRIMARY KEY REFERENCES nodes(id),
+  name       TEXT NOT NULL,              -- np. 'Hełm', 'Kolczuga'
+  material   TEXT NOT NULL,              -- 'skórzana' | 'kolcza' | 'płytowa'
+  page       INTEGER,
+  cena       TEXT,
+  obciazenie TEXT,
+  lokacje    TEXT,                       -- chronione lokacje, np. 'korpus, ręce'
+  pz         INTEGER,                    -- Punkty Zbroi
+  dostepnosc TEXT,
+  source_id  TEXT REFERENCES sources(id),
+  confidence REAL NOT NULL DEFAULT 0.95
+);
+CREATE INDEX IF NOT EXISTS idx_armour_material ON armour_stats(material);
+
 -- Miejsce na kolejne tabele SQL (do zrobienia po ekstrakcji tabel):
---   armour_stats, item_costs, spell_stats, critical_hits, bestiary_profiles
+--   item_costs, spell_stats, critical_hits, bestiary_profiles
