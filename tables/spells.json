@@ -1142,5 +1142,71 @@
   "skladnik": "fiolka wypełniona wodą święconą (+3)",
   "opis": "Nekromanta zaklina moc Dhar, tworząc magiczny wir w dowolnym miejscu do 48 metrów. Połączenie ośmiu Wiatrów Magii wysysa energię ze wszystkich ożywieńców w obszarze. Wszyscy ożywieńcy w promieniu 5 metrów otrzymują trafienie o Sile 5; czar automatycznie niszczy szkielety i zombi.",
   "page": 170
+ },
+ {
+  "name": "Błogosławiony rejs",
+  "tradycja": "Magia kapłańska: Manann",
+  "pm": 5,
+  "czas_rzucania": "1 minuta",
+  "zasieg": "",
+  "czas_trwania": "jedna podróż morska (do zawinięcia do portu)",
+  "skladnik": "flaszka wina (+1)",
+  "opis": "Na początku morskiej podróży kapłan modli się do Mananna o przychylność i opiekę. Jak długo kapłan pozostaje na pokładzie statku, wszystkie testy nawigacji wykonywane są z modyfikatorem +10.",
+  "page": 171
+ },
+ {
+  "name": "Oddychanie pod wodą",
+  "tradycja": "Magia kapłańska: Manann",
+  "pm": 7,
+  "czas_rzucania": "akcja podwójna",
+  "zasieg": "",
+  "czas_trwania": "1 godzina",
+  "skladnik": "żywa ryba (+1)",
+  "opis": "Dotyk kapłana sprawia, że dowolna postać może oddychać pod wodą. Czar dotykowy — kapłan może go rzucić również na siebie.",
+  "page": 171
+ },
+ {
+  "name": "Bicz wodny",
+  "tradycja": "Magia kapłańska: Manann",
+  "pm": 10,
+  "czas_rzucania": "akcja",
+  "zasieg": "",
+  "czas_trwania": "",
+  "skladnik": "fiolka wypełniona wodą morską (+1)",
+  "opis": "Z wyciągniętych dłoni kapłana tryskają strumienie morskiej wody, uderzając w dowolnego przeciwnika w odległości do 36 metrów. To magiczny pocisk o Sile 4; trafiona postać musi zdać test Krzepy, inaczej pada na ziemię.",
+  "page": 171
+ },
+ {
+  "name": "Chodzenie po wodzie",
+  "tradycja": "Magia kapłańska: Manann",
+  "pm": 14,
+  "czas_rzucania": "akcja podwójna",
+  "zasieg": "",
+  "czas_trwania": "liczba minut równa wartości Magii kapłana",
+  "skladnik": "wyschnięty żuk wodny (+2)",
+  "opis": "Bóg morza tchnie w kapłana moc chodzenia po wodzie, mokradłach i bagnach — kapłan może poruszać się po takim terenie tak, jakby stąpał po twardym gruncie.",
+  "page": 171
+ },
+ {
+  "name": "Cisza morska",
+  "tradycja": "Magia kapłańska: Manann",
+  "pm": 16,
+  "czas_rzucania": "akcja podwójna",
+  "zasieg": "",
+  "czas_trwania": "1 godzina",
+  "skladnik": "sztylet z fiszbinu wieloryba (+2)",
+  "opis": "Kapłan modli się do Mananna i wskazuje dowolny statek w odległości do 96 metrów — w jego pobliżu natychmiast cichnie wiatr, a żagle opadają bezwładnie. Jeśli statek nie ma wioseł, do końca trwania czaru stoi w miejscu lub dryfuje z prądami.",
+  "page": 171
+ },
+ {
+  "name": "Klątwa albatrosa",
+  "tradycja": "Magia kapłańska: Manann",
+  "pm": 19,
+  "czas_rzucania": "akcja podwójna",
+  "zasieg": "",
+  "czas_trwania": "1 minuta (6 rund)",
+  "skladnik": "pióro albatrosa (+2)",
+  "opis": "Kapłan kieruje klątwą Mananna przeciwko wrogom w odległości do 48 metrów. Wszystkie postacie w promieniu 5 metrów zostają objęte czarem; w trakcie jego trwania Wartość Krytyczna wszystkich trafień krytycznych zadanych tym postaciom zwiększa się o 2.",
+  "page": 171
  }
 ]
