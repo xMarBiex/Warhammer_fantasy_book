@@ -214,6 +214,23 @@ class KOS:
             (best,)).fetchall()
         return best, [dict(r) for r in rows]
 
+    # ── Warstwa 3 (SQL): ekwipunek i usługi ───────────────────────────────
+    def resolve_items(self, q):
+        """Zwraca listę pasujących pozycji ekwipunku (nazwy bywają niejednoznaczne)."""
+        f = fold(q)
+        rows = self.con.execute("SELECT node_id,name FROM item_costs").fetchall()
+        hits = [r for r in rows if fold(r["name"]) in f or f in fold(r["name"])]
+        return [r["node_id"] for r in hits]
+
+    def item_details(self, node_id):
+        r = self.con.execute(
+            "SELECT * FROM item_costs WHERE node_id=?", (node_id,)).fetchone()
+        if not r:
+            return None
+        d = dict(r)
+        d["source"] = f"Księga Zasad 2e (Rozdział V, str. {d['page']})"
+        return d
+
     # ── COMPARISON: ekstremum cechy przez SQL ─────────────────────────────
     def stat_extreme(self, stat_col, biggest=True):
         rows = self.con.execute(

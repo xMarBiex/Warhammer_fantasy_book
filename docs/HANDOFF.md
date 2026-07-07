@@ -27,6 +27,10 @@ Katalog roboczy: `/home/user/Warhammer_fantasy_book` · Python: `./.venv/bin/pyt
   cena, obciążenie, kategoria, zasięg/przeładowanie, cechy oręża, dostępność.
 - **Pancerz — KOMPLET (Tabela 5-6, str. 114)**: `tables/armour.json`, **17 rekordów**
   (skórzana/kolcza/płytowa) — PZ, cena, obciążenie, chronione lokacje, dostępność.
+- **Ekwipunek i usługi — KOMPLET (Tabele 5-9…5-19, str. 119–126)**: `tables/items.json`,
+  **110 pozycji** w 13 kategoriach (pojemniki, oświetlenie, ekwipunek ogólny, pojazdy,
+  wierzchowce, inwentarz żywy, mikstury, trucizny, osobliwości, protezy, noclegi,
+  usługi transportowe, pensje) — cena, obciążenie, dostępność.
 - **Czary — KOMPLET (`tables/spells.json`, 157 czarów, 20 dziedzin magii)**: CAŁA
   magia z Księgi Zasad. Magia powszechna (8) + **8 Tradycji tajemnych** (Ognia,
   Cienia, Metalu, Niebios, Śmierci, Światła, Zwierząt, Życia = 74) + **czarnoksięska**
@@ -35,14 +39,14 @@ Katalog roboczy: `/home/user/Warhammer_fantasy_book` · Python: `./.venv/bin/pyt
   rzucania, składnik, czas trwania, opis. Węzły `Spell` + `MagicLore` z `BELONGS_TO`;
   `tradycja = "Magia kapłańska: <bóg>"`; `spells_by_tradition` odporne na polską
   odmianę (Morra→Morr). (Magia rytualna — osobny system, str. 176+ — pominięta.)
-- **KOS Graf+SQL**: `data/kos/kos.db` — 354 węzły, 1058 krawędzi (`ADVANCES_TO`,
+- **KOS Graf+SQL**: `data/kos/kos.db` — 464 węzły, 1168 krawędzi (`ADVANCES_TO`,
   `DEFINED_IN`, `BELONGS_TO`), tabele SQL: 113 profesji + 47 oręża + 17 pancerzy
-  + 157 czarów. **0 luk.**
+  + 157 czarów + 110 ekwipunku. **0 luk.**
 - **Agent dialogowy (Warstwa 5)**: `agent/` — okno czatu na Claude API
-  (`claude-opus-4-8`), 7 narzędzi: `profesja_szczegoly`, `porownaj_ceche`,
-  `bron_szczegoly`, `pancerz_szczegoly`, `czar_szczegoly`, `czary_tradycji`
-  (wszystkie SQL/Graf) + `szukaj_zasad` (wektory); strażnik tematu (tylko WFRP).
-  Uruchomienie: `ANTHROPIC_API_KEY=... python agent/server.py`.
+  (`claude-opus-4-8`), **8 narzędzi**: `profesja_szczegoly`, `porownaj_ceche`,
+  `bron_szczegoly`, `pancerz_szczegoly`, `czar_szczegoly`, `czary_tradycji`,
+  `cena_ekwipunku` (wszystkie SQL/Graf) + `szukaj_zasad` (wektory); strażnik tematu
+  (tylko WFRP). Uruchomienie: `ANTHROPIC_API_KEY=... python agent/server.py`.
 - **Fakt-karty**: 111 (zdania z dokładnymi liczbami) → `data/tables/facts.json`.
 - **Wyszukiwarka mobilna** (samodzielny HTML, offline w przeglądarce):
   artefakt `https://claude.ai/code/artifact/f7157f9c-3bbd-4e9c-9fdf-127e4633ba3c`
@@ -52,7 +56,7 @@ Katalog roboczy: `/home/user/Warhammer_fantasy_book` · Python: `./.venv/bin/pyt
 Wszystko to TABELE (wymagają odczytu WZROKOWEGO — tesseract ich nie czyta):
 1. ✅ **Broń** — zrobione (`tables/weapons.json`, str. 110).
 2. ✅ **Pancerz** — zrobione (`tables/armour.json`, Tabela 5-6, str. 114).
-3. **Ekwipunek / usługi** (ceny) — Rozdział V, str. ~116–127 (Tabele 5-8…5-19)
+3. ✅ **Ekwipunek / usługi** — zrobione (`tables/items.json`, 110 pozycji, str. 119–126).
 4. ✅ **Czary — KOMPLET** (157 czarów, str. 155–177): powszechna + 8 tradycji
    tajemnych + czarnoksięska (Chaosu, Nekromancji) + kapłańska (9 Dziedzin bogów).
    Uwaga: prozę czarów da się wyciągnąć z OCR (`data/text/pages/`), ale **poziomy

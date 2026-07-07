@@ -1,0 +1,882 @@
+[
+ {
+  "name": "Bukłak",
+  "kategoria": "Pojemniki i sakwy",
+  "cena": "8 s",
+  "obciazenie": "1/100",
+  "dostepnosc": "duża",
+  "page": 119
+ },
+ {
+  "name": "Flaszka",
+  "kategoria": "Pojemniki i sakwy",
+  "cena": "4 s",
+  "obciazenie": "10",
+  "dostepnosc": "duża",
+  "page": 119
+ },
+ {
+  "name": "Juki",
+  "kategoria": "Pojemniki i sakwy",
+  "cena": "2 zk",
+  "obciazenie": "5",
+  "dostepnosc": "mała",
+  "page": 119
+ },
+ {
+  "name": "Kuferek",
+  "kategoria": "Pojemniki i sakwy",
+  "cena": "5 zk",
+  "obciazenie": "40",
+  "dostepnosc": "mała",
+  "page": 119
+ },
+ {
+  "name": "Manierka metalowa",
+  "kategoria": "Pojemniki i sakwy",
+  "cena": "2 zk",
+  "obciazenie": "15",
+  "dostepnosc": "sporadyczna",
+  "page": 119
+ },
+ {
+  "name": "Manierka skórzana",
+  "kategoria": "Pojemniki i sakwy",
+  "cena": "15 s",
+  "obciazenie": "5",
+  "dostepnosc": "mała",
+  "page": 119
+ },
+ {
+  "name": "Mieszek",
+  "kategoria": "Pojemniki i sakwy",
+  "cena": "2 s",
+  "obciazenie": "1",
+  "dostepnosc": "duża",
+  "page": 119
+ },
+ {
+  "name": "Plecak",
+  "kategoria": "Pojemniki i sakwy",
+  "cena": "30 s",
+  "obciazenie": "20",
+  "dostepnosc": "duża",
+  "page": 119
+ },
+ {
+  "name": "Sakiewka",
+  "kategoria": "Pojemniki i sakwy",
+  "cena": "5 s",
+  "obciazenie": "1",
+  "dostepnosc": "duża",
+  "page": 119
+ },
+ {
+  "name": "Tobołek",
+  "kategoria": "Pojemniki i sakwy",
+  "cena": "2 zk",
+  "obciazenie": "5",
+  "dostepnosc": "mała",
+  "page": 119
+ },
+ {
+  "name": "Tuba na mapy/pergaminy",
+  "kategoria": "Pojemniki i sakwy",
+  "cena": "1 zk",
+  "obciazenie": "2",
+  "dostepnosc": "sporadyczna",
+  "page": 119
+ },
+ {
+  "name": "Worek",
+  "kategoria": "Pojemniki i sakwy",
+  "cena": "5 s",
+  "obciazenie": "7",
+  "dostepnosc": "duża",
+  "page": 119
+ },
+ {
+  "name": "Drewno na opał",
+  "kategoria": "Oświetlenie",
+  "cena": "2 s",
+  "obciazenie": "5",
+  "dostepnosc": "duża",
+  "page": 119
+ },
+ {
+  "name": "Kaganek",
+  "kategoria": "Oświetlenie",
+  "cena": "5 s",
+  "obciazenie": "20",
+  "dostepnosc": "duża",
+  "page": 119
+ },
+ {
+  "name": "Latarnia",
+  "kategoria": "Oświetlenie",
+  "cena": "5 zk",
+  "obciazenie": "20",
+  "dostepnosc": "mała",
+  "page": 119
+ },
+ {
+  "name": "Latarnia sztormowa",
+  "kategoria": "Oświetlenie",
+  "cena": "12 zk",
+  "obciazenie": "30",
+  "dostepnosc": "sporadyczna",
+  "page": 119
+ },
+ {
+  "name": "Olej do latarni",
+  "kategoria": "Oświetlenie",
+  "cena": "5 s",
+  "obciazenie": "5",
+  "dostepnosc": "duża",
+  "page": 119
+ },
+ {
+  "name": "Pochodnia",
+  "kategoria": "Oświetlenie",
+  "cena": "5 p",
+  "obciazenie": "5",
+  "dostepnosc": "duża",
+  "page": 119
+ },
+ {
+  "name": "Świeczka łojowa",
+  "kategoria": "Oświetlenie",
+  "cena": "3 s",
+  "obciazenie": "5",
+  "dostepnosc": "duża",
+  "page": 119
+ },
+ {
+  "name": "Świeczka woskowa",
+  "kategoria": "Oświetlenie",
+  "cena": "6 s",
+  "obciazenie": "5",
+  "dostepnosc": "mała",
+  "page": 119
+ },
+ {
+  "name": "Zapałka",
+  "kategoria": "Oświetlenie",
+  "cena": "1 p",
+  "obciazenie": "—",
+  "dostepnosc": "mała",
+  "page": 119
+ },
+ {
+  "name": "Drabina",
+  "kategoria": "Ekwipunek ogólny",
+  "cena": "10 s",
+  "obciazenie": "50",
+  "dostepnosc": "przeciętna",
+  "page": 119
+ },
+ {
+  "name": "Hubka i krzesiwo",
+  "kategoria": "Ekwipunek ogólny",
+  "cena": "30 s",
+  "obciazenie": "5",
+  "dostepnosc": "duża",
+  "page": 119
+ },
+ {
+  "name": "Imbryk",
+  "kategoria": "Ekwipunek ogólny",
+  "cena": "30 s",
+  "obciazenie": "10",
+  "dostepnosc": "duża",
+  "page": 119
+ },
+ {
+  "name": "Instrument muzyczny",
+  "kategoria": "Ekwipunek ogólny",
+  "cena": "5 zk",
+  "obciazenie": "5",
+  "dostepnosc": "przeciętna",
+  "page": 119
+ },
+ {
+  "name": "Kłódka dobrej jakości",
+  "kategoria": "Ekwipunek ogólny",
+  "cena": "10 zk",
+  "obciazenie": "5",
+  "dostepnosc": "sporadyczna",
+  "page": 119
+ },
+ {
+  "name": "Kłódka zwykłej jakości",
+  "kategoria": "Ekwipunek ogólny",
+  "cena": "1 zk",
+  "obciazenie": "5",
+  "dostepnosc": "przeciętna",
+  "page": 119
+ },
+ {
+  "name": "Koc",
+  "kategoria": "Ekwipunek ogólny",
+  "cena": "25 s",
+  "obciazenie": "10",
+  "dostepnosc": "duża",
+  "page": 119
+ },
+ {
+  "name": "Kociołek",
+  "kategoria": "Ekwipunek ogólny",
+  "cena": "1 zk",
+  "obciazenie": "20",
+  "dostepnosc": "duża",
+  "page": 119
+ },
+ {
+  "name": "Kości do gry",
+  "kategoria": "Ekwipunek ogólny",
+  "cena": "6 s",
+  "obciazenie": "—",
+  "dostepnosc": "duża",
+  "page": 119
+ },
+ {
+  "name": "Kufel drewniany",
+  "kategoria": "Ekwipunek ogólny",
+  "cena": "10 s",
+  "obciazenie": "5",
+  "dostepnosc": "duża",
+  "page": 119
+ },
+ {
+  "name": "Kufel ze szkła barwionego",
+  "kategoria": "Ekwipunek ogólny",
+  "cena": "1 zk",
+  "obciazenie": "5",
+  "dostepnosc": "przeciętna",
+  "page": 119
+ },
+ {
+  "name": "Lina",
+  "kategoria": "Ekwipunek ogólny",
+  "cena": "1 zk",
+  "obciazenie": "50",
+  "dostepnosc": "przeciętna",
+  "page": 119
+ },
+ {
+  "name": "Luneta",
+  "kategoria": "Ekwipunek ogólny",
+  "cena": "100 zk",
+  "obciazenie": "5",
+  "dostepnosc": "rzadka",
+  "page": 119
+ },
+ {
+  "name": "Lustro",
+  "kategoria": "Ekwipunek ogólny",
+  "cena": "10 zk",
+  "obciazenie": "5",
+  "dostepnosc": "rzadka",
+  "page": 119
+ },
+ {
+  "name": "Namiot",
+  "kategoria": "Ekwipunek ogólny",
+  "cena": "15 s",
+  "obciazenie": "20",
+  "dostepnosc": "przeciętna",
+  "page": 119
+ },
+ {
+  "name": "Papier",
+  "kategoria": "Ekwipunek ogólny",
+  "cena": "1 s",
+  "obciazenie": "—",
+  "dostepnosc": "znikoma",
+  "page": 119
+ },
+ {
+  "name": "Perfumy",
+  "kategoria": "Ekwipunek ogólny",
+  "cena": "1 zk",
+  "obciazenie": "—",
+  "dostepnosc": "przeciętna",
+  "page": 119
+ },
+ {
+  "name": "Pergamin",
+  "kategoria": "Ekwipunek ogólny",
+  "cena": "5 s",
+  "obciazenie": "—",
+  "dostepnosc": "rzadka",
+  "page": 119
+ },
+ {
+  "name": "Symbol religijny",
+  "kategoria": "Ekwipunek ogólny",
+  "cena": "1 zk",
+  "obciazenie": "5",
+  "dostepnosc": "przeciętna",
+  "page": 119
+ },
+ {
+  "name": "Sztućce drewniane",
+  "kategoria": "Ekwipunek ogólny",
+  "cena": "5 s",
+  "obciazenie": "2",
+  "dostepnosc": "duża",
+  "page": 119
+ },
+ {
+  "name": "Sztućce metalowe",
+  "kategoria": "Ekwipunek ogólny",
+  "cena": "3 zk",
+  "obciazenie": "4",
+  "dostepnosc": "przeciętna",
+  "page": 119
+ },
+ {
+  "name": "Sztućce srebrne",
+  "kategoria": "Ekwipunek ogólny",
+  "cena": "15 zk",
+  "obciazenie": "3",
+  "dostepnosc": "sporadyczna",
+  "page": 119
+ },
+ {
+  "name": "Talia kart",
+  "kategoria": "Ekwipunek ogólny",
+  "cena": "1 zk",
+  "obciazenie": "1",
+  "dostepnosc": "duża",
+  "page": 119
+ },
+ {
+  "name": "Wózek",
+  "kategoria": "Pojazdy",
+  "cena": "50 zk",
+  "obciazenie": "—",
+  "dostepnosc": "przeciętna",
+  "page": 123
+ },
+ {
+  "name": "Wóz",
+  "kategoria": "Pojazdy",
+  "cena": "90 zk",
+  "obciazenie": "—",
+  "dostepnosc": "przeciętna",
+  "page": 123
+ },
+ {
+  "name": "Powóz",
+  "kategoria": "Pojazdy",
+  "cena": "500+ zk",
+  "obciazenie": "—",
+  "dostepnosc": "rzadka",
+  "page": 123
+ },
+ {
+  "name": "Łódź rzeczna",
+  "kategoria": "Pojazdy",
+  "cena": "600 zk",
+  "obciazenie": "—",
+  "dostepnosc": "rzadka",
+  "page": 123
+ },
+ {
+  "name": "Łódź wiosłowa",
+  "kategoria": "Pojazdy",
+  "cena": "90 zk",
+  "obciazenie": "900",
+  "dostepnosc": "mała",
+  "page": 123
+ },
+ {
+  "name": "Statek",
+  "kategoria": "Pojazdy",
+  "cena": "12 000 zk",
+  "obciazenie": "—",
+  "dostepnosc": "sporadyczna",
+  "page": 123
+ },
+ {
+  "name": "Rumak",
+  "kategoria": "Wierzchowce",
+  "cena": "500 zk",
+  "obciazenie": "—",
+  "dostepnosc": "sporadyczna",
+  "page": 123
+ },
+ {
+  "name": "Lekki koń bojowy",
+  "kategoria": "Wierzchowce",
+  "cena": "300 zk",
+  "obciazenie": "—",
+  "dostepnosc": "przeciętna",
+  "page": 123
+ },
+ {
+  "name": "Koń",
+  "kategoria": "Wierzchowce",
+  "cena": "80 zk",
+  "obciazenie": "—",
+  "dostepnosc": "duża",
+  "page": 123
+ },
+ {
+  "name": "Kuc",
+  "kategoria": "Wierzchowce",
+  "cena": "50 zk",
+  "obciazenie": "—",
+  "dostepnosc": "przeciętna",
+  "page": 123
+ },
+ {
+  "name": "Siodło",
+  "kategoria": "Wierzchowce",
+  "cena": "5 zk",
+  "obciazenie": "50",
+  "dostepnosc": "przeciętna",
+  "page": 123
+ },
+ {
+  "name": "Uprząż",
+  "kategoria": "Wierzchowce",
+  "cena": "1 zk",
+  "obciazenie": "20",
+  "dostepnosc": "przeciętna",
+  "page": 123
+ },
+ {
+  "name": "Gołąb pocztowy",
+  "kategoria": "Inwentarz żywy",
+  "cena": "1 zk",
+  "obciazenie": "—",
+  "dostepnosc": "mała",
+  "page": 123
+ },
+ {
+  "name": "Jastrząb",
+  "kategoria": "Inwentarz żywy",
+  "cena": "80 zk",
+  "obciazenie": "—",
+  "dostepnosc": "rzadka",
+  "page": 123
+ },
+ {
+  "name": "Koń juczny",
+  "kategoria": "Inwentarz żywy",
+  "cena": "40 zk",
+  "obciazenie": "—",
+  "dostepnosc": "duża",
+  "page": 123
+ },
+ {
+  "name": "Koń pociągowy lub muł",
+  "kategoria": "Inwentarz żywy",
+  "cena": "25+ zk",
+  "obciazenie": "—",
+  "dostepnosc": "duża",
+  "page": 123
+ },
+ {
+  "name": "Kot",
+  "kategoria": "Inwentarz żywy",
+  "cena": "1 s",
+  "obciazenie": "—",
+  "dostepnosc": "duża",
+  "page": 123
+ },
+ {
+  "name": "Koza",
+  "kategoria": "Inwentarz żywy",
+  "cena": "2 zk",
+  "obciazenie": "—",
+  "dostepnosc": "duża",
+  "page": 123
+ },
+ {
+  "name": "Krowa",
+  "kategoria": "Inwentarz żywy",
+  "cena": "10 zk",
+  "obciazenie": "—",
+  "dostepnosc": "duża",
+  "page": 123
+ },
+ {
+  "name": "Kurczak",
+  "kategoria": "Inwentarz żywy",
+  "cena": "5 p",
+  "obciazenie": "—",
+  "dostepnosc": "duża",
+  "page": 123
+ },
+ {
+  "name": "Owca",
+  "kategoria": "Inwentarz żywy",
+  "cena": "2 zk",
+  "obciazenie": "—",
+  "dostepnosc": "duża",
+  "page": 123
+ },
+ {
+  "name": "Pies (rasowy)",
+  "kategoria": "Inwentarz żywy",
+  "cena": "3 zk",
+  "obciazenie": "—",
+  "dostepnosc": "duża",
+  "page": 123
+ },
+ {
+  "name": "Pies bojowy",
+  "kategoria": "Inwentarz żywy",
+  "cena": "30 zk",
+  "obciazenie": "—",
+  "dostepnosc": "rzadka",
+  "page": 123
+ },
+ {
+  "name": "Świnia",
+  "kategoria": "Inwentarz żywy",
+  "cena": "3 zk",
+  "obciazenie": "—",
+  "dostepnosc": "duża",
+  "page": 123
+ },
+ {
+  "name": "Wół",
+  "kategoria": "Inwentarz żywy",
+  "cena": "30 zk",
+  "obciazenie": "—",
+  "dostepnosc": "duża",
+  "page": 123
+ },
+ {
+  "name": "Łódź rzeczna (przejazd)",
+  "kategoria": "Usługi transportowe",
+  "cena": "1 s / 5 s",
+  "obciazenie": "—",
+  "dostepnosc": "duża",
+  "page": 125
+ },
+ {
+  "name": "Powóz (przejazd)",
+  "kategoria": "Usługi transportowe",
+  "cena": "1 zk / 7 zk",
+  "obciazenie": "—",
+  "dostepnosc": "mała",
+  "page": 125
+ },
+ {
+  "name": "Statek (przejazd)",
+  "kategoria": "Usługi transportowe",
+  "cena": "1 zk / 5 zk",
+  "obciazenie": "—",
+  "dostepnosc": "przeciętna",
+  "page": 125
+ },
+ {
+  "name": "Wóz dwukonny (przejazd)",
+  "kategoria": "Usługi transportowe",
+  "cena": "1 s / 3 zk",
+  "obciazenie": "—",
+  "dostepnosc": "duża",
+  "page": 125
+ },
+ {
+  "name": "Wóz trzykonny (przejazd)",
+  "kategoria": "Usługi transportowe",
+  "cena": "10 s / 4 zk",
+  "obciazenie": "—",
+  "dostepnosc": "przeciętna",
+  "page": 125
+ },
+ {
+  "name": "Wózek lub wóz (przejazd)",
+  "kategoria": "Usługi transportowe",
+  "cena": "1 p / 15 p",
+  "obciazenie": "—",
+  "dostepnosc": "duża",
+  "page": 125
+ },
+ {
+  "name": "Kąpiel",
+  "kategoria": "Noclegi",
+  "cena": "1 s",
+  "obciazenie": "—",
+  "dostepnosc": "",
+  "page": 125
+ },
+ {
+  "name": "Osobny pokój",
+  "kategoria": "Noclegi",
+  "cena": "10 s",
+  "obciazenie": "—",
+  "dostepnosc": "",
+  "page": 125
+ },
+ {
+  "name": "Stajnia (1 noc)",
+  "kategoria": "Noclegi",
+  "cena": "10 p",
+  "obciazenie": "—",
+  "dostepnosc": "",
+  "page": 125
+ },
+ {
+  "name": "Wspólna sala (1 noc)",
+  "kategoria": "Noclegi",
+  "cena": "5 p",
+  "obciazenie": "—",
+  "dostepnosc": "",
+  "page": 125
+ },
+ {
+  "name": "Cyrkowiec (pensja)",
+  "kategoria": "Usługi rozmaite (pensje)",
+  "cena": "28 p/dzień lub 14 s/tydzień",
+  "obciazenie": "—",
+  "dostepnosc": "przeciętna",
+  "page": 125
+ },
+ {
+  "name": "Medyk (pensja)",
+  "kategoria": "Usługi rozmaite (pensje)",
+  "cena": "60 p/dzień lub 30 s/tydzień",
+  "obciazenie": "—",
+  "dostepnosc": "przeciętna",
+  "page": 125
+ },
+ {
+  "name": "Robotnik (pensja)",
+  "kategoria": "Usługi rozmaite (pensje)",
+  "cena": "10 p/dzień lub 5 s/tydzień",
+  "obciazenie": "—",
+  "dostepnosc": "przeciętna",
+  "page": 125
+ },
+ {
+  "name": "Rzemieślnik (pensja)",
+  "kategoria": "Usługi rozmaite (pensje)",
+  "cena": "34 p/dzień lub 17 s/tydzień",
+  "obciazenie": "—",
+  "dostepnosc": "przeciętna",
+  "page": 125
+ },
+ {
+  "name": "Sługa (pensja)",
+  "kategoria": "Usługi rozmaite (pensje)",
+  "cena": "12 p/dzień lub 6 s/tydzień",
+  "obciazenie": "—",
+  "dostepnosc": "przeciętna",
+  "page": 125
+ },
+ {
+  "name": "Dar Grety",
+  "kategoria": "Mikstury",
+  "cena": "30 zk",
+  "obciazenie": "—",
+  "dostepnosc": "znikoma",
+  "page": 126
+ },
+ {
+  "name": "Mikstura lecznicza",
+  "kategoria": "Mikstury",
+  "cena": "5 zk",
+  "obciazenie": "—",
+  "dostepnosc": "mała",
+  "page": 126
+ },
+ {
+  "name": "Piwo Bugmana",
+  "kategoria": "Mikstury",
+  "cena": "50 zk",
+  "obciazenie": "5",
+  "dostepnosc": "znikoma",
+  "page": 126
+ },
+ {
+  "name": "Czarny Jad",
+  "kategoria": "Trucizny",
+  "cena": "30 zk",
+  "obciazenie": "—",
+  "dostepnosc": "znikoma",
+  "page": 126
+ },
+ {
+  "name": "Czarny lotos",
+  "kategoria": "Trucizny",
+  "cena": "20 zk",
+  "obciazenie": "—",
+  "dostepnosc": "znikoma",
+  "page": 126
+ },
+ {
+  "name": "Grzybki Szalonego Kapelusznika",
+  "kategoria": "Trucizny",
+  "cena": "30 zk",
+  "obciazenie": "—",
+  "dostepnosc": "znikoma",
+  "page": 126
+ },
+ {
+  "name": "Jad mantikory",
+  "kategoria": "Trucizny",
+  "cena": "65 zk",
+  "obciazenie": "—",
+  "dostepnosc": "znikoma",
+  "page": 126
+ },
+ {
+  "name": "Korzeń mandragory",
+  "kategoria": "Trucizny",
+  "cena": "25 zk",
+  "obciazenie": "—",
+  "dostepnosc": "znikoma",
+  "page": 126
+ },
+ {
+  "name": "Sercobój",
+  "kategoria": "Trucizny",
+  "cena": "800 zk",
+  "obciazenie": "—",
+  "dostepnosc": "znikoma",
+  "page": 126
+ },
+ {
+  "name": "Szkarłatny Cień",
+  "kategoria": "Trucizny",
+  "cena": "35 zk",
+  "obciazenie": "—",
+  "dostepnosc": "znikoma",
+  "page": 126
+ },
+ {
+  "name": "Ślina chimery",
+  "kategoria": "Trucizny",
+  "cena": "150 zk",
+  "obciazenie": "—",
+  "dostepnosc": "znikoma",
+  "page": 126
+ },
+ {
+  "name": "Księga wiedzy tajemnej",
+  "kategoria": "Osobliwości",
+  "cena": "500 zk",
+  "obciazenie": "—",
+  "dostepnosc": "znikoma",
+  "page": 126
+ },
+ {
+  "name": "Napar kojący",
+  "kategoria": "Osobliwości",
+  "cena": "5 p",
+  "obciazenie": "—",
+  "dostepnosc": "przeciętna",
+  "page": 126
+ },
+ {
+  "name": "Odtrutki",
+  "kategoria": "Osobliwości",
+  "cena": "3 zk",
+  "obciazenie": "—",
+  "dostepnosc": "sporadyczna",
+  "page": 126
+ },
+ {
+  "name": "Relikwia",
+  "kategoria": "Osobliwości",
+  "cena": "5 zk",
+  "obciazenie": "—",
+  "dostepnosc": "sporadyczna",
+  "page": 126
+ },
+ {
+  "name": "Talizman szczęścia",
+  "kategoria": "Osobliwości",
+  "cena": "15 zk",
+  "obciazenie": "—",
+  "dostepnosc": "mała",
+  "page": 126
+ },
+ {
+  "name": "Woda święcona",
+  "kategoria": "Osobliwości",
+  "cena": "10 zk",
+  "obciazenie": "—",
+  "dostepnosc": "sporadyczna",
+  "page": 126
+ },
+ {
+  "name": "Dłoń weterana",
+  "kategoria": "Protezy",
+  "cena": "60+ zk",
+  "obciazenie": "0",
+  "dostepnosc": "rzadka",
+  "page": 126
+ },
+ {
+  "name": "Drewniane zęby",
+  "kategoria": "Protezy",
+  "cena": "3+ s",
+  "obciazenie": "0",
+  "dostepnosc": "mała",
+  "page": 126
+ },
+ {
+  "name": "Kolczyk",
+  "kategoria": "Protezy",
+  "cena": "1+ s",
+  "obciazenie": "0",
+  "dostepnosc": "przeciętna",
+  "page": 126
+ },
+ {
+  "name": "Opaska na oko",
+  "kategoria": "Protezy",
+  "cena": "6+ p",
+  "obciazenie": "0",
+  "dostepnosc": "przeciętna",
+  "page": 126
+ },
+ {
+  "name": "Płytka czaszkowa",
+  "kategoria": "Protezy",
+  "cena": "6+ s",
+  "obciazenie": "0",
+  "dostepnosc": "sporadyczna",
+  "page": 126
+ },
+ {
+  "name": "Pozłacany nos",
+  "kategoria": "Protezy",
+  "cena": "6+ s",
+  "obciazenie": "0",
+  "dostepnosc": "mała",
+  "page": 126
+ },
+ {
+  "name": "Szklane oko",
+  "kategoria": "Protezy",
+  "cena": "1+ s",
+  "obciazenie": "0",
+  "dostepnosc": "mała",
+  "page": 126
+ },
+ {
+  "name": "Sztuczna noga",
+  "kategoria": "Protezy",
+  "cena": "6+ s",
+  "obciazenie": "0",
+  "dostepnosc": "mała",
+  "page": 126
+ },
+ {
+  "name": "Tatuaż",
+  "kategoria": "Protezy",
+  "cena": "3+ s",
+  "obciazenie": "0",
+  "dostepnosc": "mała",
+  "page": 126
+ }
+]

@@ -156,6 +156,23 @@ def czary_tradycji(tradycja: str) -> dict:
             "zrodlo": "Księga Zasad 2e (Rozdział VII: Magia)", "pewnosc": 0.95}
 
 
+# ── Warstwa 3: ekwipunek i usługi ──────────────────────────────────────────
+def cena_ekwipunku(nazwa: str) -> dict:
+    kos = _get_kos()
+    ids = kos.resolve_items(nazwa)
+    if not ids:
+        return {"znaleziono": False,
+                "info": f"Pozycji «{nazwa}» nie ma w tabelach ekwipunku/usług "
+                        "(Rozdział V, str. 119–126).", "pewnosc": None}
+    poz = []
+    for nid in ids[:8]:
+        d = kos.item_details(nid)
+        poz.append({"nazwa": d["name"], "kategoria": d["kategoria"], "cena": d["cena"],
+                    "obciazenie": d["obciazenie"], "dostepnosc": d["dostepnosc"]})
+    return {"znaleziono": True, "pozycje": poz,
+            "zrodlo": "Księga Zasad 2e (Rozdział V: Ekwipunek)", "pewnosc": 0.95}
+
+
 # ── Warstwa 4: proza / lore / zasady ───────────────────────────────────────
 def szukaj_zasad(pytanie: str, k: int = 5) -> dict:
     embedder, col = _get_vectors()
@@ -263,6 +280,20 @@ TOOLS = [
         },
     },
     {
+        "name": "cena_ekwipunku",
+        "description": "Zwraca cenę, obciążenie i dostępność przedmiotu lub usługi z "
+                       "tabel Rozdziału V (str. 119–126): pojemniki, oświetlenie, "
+                       "ekwipunek ogólny, pojazdy, wierzchowce, inwentarz żywy, "
+                       "mikstury, trucizny, osobliwości, protezy, noclegi, usługi/pensje. "
+                       "Używaj do pytań «ile kosztuje…», «cena…».",
+        "input_schema": {
+            "type": "object",
+            "properties": {"nazwa": {"type": "string",
+                           "description": "nazwa przedmiotu/usługi, np. «latarnia», «koń», «woda święcona»"}},
+            "required": ["nazwa"],
+        },
+    },
+    {
         "name": "szukaj_zasad",
         "description": "Wyszukiwanie semantyczne w treści Księgi Zasad (proza, opisy, "
                        "zasady, lore). Używaj do pytań o mechaniki, opisy, tło świata, "
@@ -286,6 +317,7 @@ DISPATCH = {
     "pancerz_szczegoly": pancerz_szczegoly,
     "czar_szczegoly": czar_szczegoly,
     "czary_tradycji": czary_tradycji,
+    "cena_ekwipunku": cena_ekwipunku,
     "szukaj_zasad": szukaj_zasad,
 }
 

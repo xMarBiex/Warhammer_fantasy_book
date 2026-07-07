@@ -121,5 +121,19 @@ CREATE TABLE IF NOT EXISTS spell_stats (
 );
 CREATE INDEX IF NOT EXISTS idx_spell_tradycja ON spell_stats(tradycja);
 
+-- Ekwipunek i usługi (Tabele 5-9…5-19; str. 119–126). Ceny w SQL.
+CREATE TABLE IF NOT EXISTS item_costs (
+  node_id    TEXT PRIMARY KEY REFERENCES nodes(id),
+  name       TEXT NOT NULL,
+  kategoria  TEXT NOT NULL,              -- np. 'Oświetlenie', 'Wierzchowce', 'Trucizny'
+  cena       TEXT,
+  obciazenie TEXT,
+  dostepnosc TEXT,
+  page       INTEGER,
+  source_id  TEXT REFERENCES sources(id),
+  confidence REAL NOT NULL DEFAULT 0.95
+);
+CREATE INDEX IF NOT EXISTS idx_item_kat ON item_costs(kategoria);
+
 -- Miejsce na kolejne tabele SQL (do zrobienia po ekstrakcji tabel):
---   item_costs, critical_hits, bestiary_profiles
+--   critical_hits, bestiary_profiles
