@@ -114,6 +114,25 @@ class KOS:
             "WHERE e.dst=? AND e.rel='ADVANCES_TO' ORDER BY name", (node_id,)).fetchall()
         return ([dict(r) for r in entries], [dict(r) for r in exits])
 
+    # ── Warstwa 3 (SQL): oręż ─────────────────────────────────────────────
+    def resolve_weapon(self, q):
+        f = fold(q)
+        rows = self.con.execute("SELECT node_id,name FROM weapon_stats").fetchall()
+        hits = [r for r in rows if fold(r["name"]) in f]
+        if not hits:
+            return None
+        return max(hits, key=lambda r: len(r["name"]))["node_id"]
+
+    def weapon_details(self, node_id):
+        r = self.con.execute(
+            "SELECT * FROM weapon_stats WHERE node_id=?", (node_id,)).fetchone()
+        if not r:
+            return None
+        d = dict(r)
+        d["dwureczna"] = bool(d["dwureczna"])
+        d["source"] = "Księga Zasad 2e (Tabela 5-4/5-5, str. 110)"
+        return d
+
     # ── COMPARISON: ekstremum cechy przez SQL ─────────────────────────────
     def stat_extreme(self, stat_col, biggest=True):
         rows = self.con.execute(

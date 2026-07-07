@@ -82,6 +82,30 @@ def porownaj_ceche(cecha: str, tryb: str = "max") -> dict:
     }
 
 
+# ── Warstwa 3: oręż ────────────────────────────────────────────────────────
+def bron_szczegoly(nazwa: str) -> dict:
+    kos = _get_kos()
+    wid = kos.resolve_weapon(nazwa)
+    if not wid:
+        return {"znaleziono": False,
+                "info": f"Oręża «{nazwa}» nie ma w tabeli broni (str. 110). "
+                        "Sprawdź nazwę lub użyj szukaj_zasad dla opisu.",
+                "pewnosc": None}
+    d = kos.weapon_details(wid)
+    out = {
+        "znaleziono": True, "nazwa": d["name"], "klasa": d["klasa"],
+        "obrazenia": d["sila_broni"], "cena": d["cena"],
+        "obciazenie": d["obciazenie"], "kategoria": d["kategoria"],
+        "cechy_oreza": d["cechy"], "dostepnosc": d["dostepnosc"],
+        "dwureczna": d["dwureczna"], "strona": d["page"],
+        "zrodlo": d["source"], "pewnosc": d["confidence"],
+    }
+    if d["klasa"] == "strzelecka":
+        out["zasieg"] = d["zasieg"]
+        out["przeladowanie"] = d["przeladowanie"]
+    return out
+
+
 # ── Warstwa 4: proza / lore / zasady ───────────────────────────────────────
 def szukaj_zasad(pytanie: str, k: int = 5) -> dict:
     embedder, col = _get_vectors()
@@ -136,6 +160,20 @@ TOOLS = [
         },
     },
     {
+        "name": "bron_szczegoly",
+        "description": "Zwraca DOKŁADNE dane oręża z Tabeli 5-4/5-5 Księgi Zasad "
+                       "(str. 110): obrażenia (Siła broni, np. «S+1», «4»), cena, "
+                       "obciążenie, kategoria/grupa, cechy oręża, dostępność, a dla "
+                       "broni strzeleckiej także zasięg i przeładowanie. Używaj do "
+                       "pytań «ile obrażeń zadaje…», «ile kosztuje…», «jaki zasięg ma…».",
+        "input_schema": {
+            "type": "object",
+            "properties": {"nazwa": {"type": "string",
+                           "description": "nazwa broni, np. «Halabarda», «Pistolet», «Rapier»"}},
+            "required": ["nazwa"],
+        },
+    },
+    {
         "name": "szukaj_zasad",
         "description": "Wyszukiwanie semantyczne w treści Księgi Zasad (proza, opisy, "
                        "zasady, lore). Używaj do pytań o mechaniki, opisy, tło świata, "
@@ -155,6 +193,7 @@ TOOLS = [
 DISPATCH = {
     "profesja_szczegoly": profesja_szczegoly,
     "porownaj_ceche": porownaj_ceche,
+    "bron_szczegoly": bron_szczegoly,
     "szukaj_zasad": szukaj_zasad,
 }
 

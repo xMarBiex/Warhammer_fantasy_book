@@ -22,12 +22,16 @@ Katalog roboczy: `/home/user/Warhammer_fantasy_book` · Python: `./.venv/bin/pyt
   Źródło prawdy: `tables/professions.json`. Kontrola spójności KOS wykryła i
   **uzupełniono** brakującą stronę 69 (`Kapłan`, `Karczmarz` — zaawansowane).
   Nie-encja `chwalebna śmierć!` (klimatyczne wyjście) na whiteliście w `build_kos.py`.
-- **KOS Graf+SQL**: `data/kos/kos.db` — 114 węzłów, 681 krawędzi (`ADVANCES_TO`
-  = siatka rozwoju profesji, `DEFINED_IN`), 113 rekordów `profession_stats`. **0 luk.**
+- **Oręż — KOMPLET (Tabela 5-4/5-5 + amunicja, str. 110)**: `tables/weapons.json`,
+  **47 rekordów** (19 biała, 24 strzelecka, 4 amunicja) — obrażenia (Siła broni),
+  cena, obciążenie, kategoria, zasięg/przeładowanie, cechy oręża, dostępność.
+- **KOS Graf+SQL**: `data/kos/kos.db` — 160 węzłów, 727 krawędzi (`ADVANCES_TO`,
+  `DEFINED_IN`), 113 `profession_stats` + 47 `weapon_stats`. **0 luk.**
 - **Agent dialogowy (Warstwa 5)**: `agent/` — okno czatu na Claude API
   (`claude-opus-4-8`), pętla tool-use z narzędziami `profesja_szczegoly`
-  (SQL+Graf), `porownaj_ceche` (SQL), `szukaj_zasad` (wektory), strażnik tematu
-  (tylko WFRP). Uruchomienie: `ANTHROPIC_API_KEY=... python agent/server.py`.
+  (SQL+Graf), `porownaj_ceche` (SQL), `bron_szczegoly` (SQL), `szukaj_zasad`
+  (wektory), strażnik tematu (tylko WFRP).
+  Uruchomienie: `ANTHROPIC_API_KEY=... python agent/server.py`.
 - **Fakt-karty**: 111 (zdania z dokładnymi liczbami) → `data/tables/facts.json`.
 - **Wyszukiwarka mobilna** (samodzielny HTML, offline w przeglądarce):
   artefakt `https://claude.ai/code/artifact/f7157f9c-3bbd-4e9c-9fdf-127e4633ba3c`
@@ -35,12 +39,16 @@ Katalog roboczy: `/home/user/Warhammer_fantasy_book` · Python: `./.venv/bin/pyt
 
 ## 2. Co pozostało ⬜ (kolejność wg wartości)
 Wszystko to TABELE (wymagają odczytu WZROKOWEGO — tesseract ich nie czyta):
-1. **Broń** (obrażenia, cechy oręża, cena) — Rozdział V, ~str. 105–125
-2. **Pancerz** (PZ, lokacje, cena)
-3. **Ekwipunek / usługi** (ceny) — Rozdział V
+1. ✅ **Broń** — zrobione (`tables/weapons.json`, str. 110).
+2. **Pancerz** (PZ, lokacje, cena) — Tabela 5-6/5-7, ~str. 114–115
+3. **Ekwipunek / usługi** (ceny) — Rozdział V, str. ~116–127 (Tabele 5-8…5-19)
 4. **Czary** per tradycja/dziedzina (poziom mocy, zasięg, czas, efekt) — Rozdział VII, ~str. 146–177
 5. **Trafienia krytyczne** (tabele efektów wg lokacji) — ~str. 138–141
 6. **Bestiariusz** (profile potworów) — Rozdział XI, ~str. 238–247
+
+Wzorzec dodania tabeli (jak przy broni): `tables/<x>.json` → tabela SQL w
+`kos/schema.sql` → materializacja w `kos/build_kos.py` → metody w `kos/query.py`
+→ narzędzie w `agent/tools.py` (+ wpis w SYSTEM `agent/agent.py`).
 Numery stron sprawdź w spisie treści: `data/text/toc.json` (offset druk→PDF: `doc[P]` = strona drukowana P).
 
 Po tabelach: **przebudować bazę wektorową** na aktualne chunki (`chunks.jsonl` ma 1561, baza ma 1537)

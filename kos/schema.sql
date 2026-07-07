@@ -68,5 +68,25 @@ CREATE TABLE IF NOT EXISTS profession_stats (
 );
 CREATE INDEX IF NOT EXISTS idx_prof_kind ON profession_stats(kind);
 
+-- Oręż (Tabela 5-4 Broń biała, 5-5 Broń strzelecka, Amunicja; str. 110).
+CREATE TABLE IF NOT EXISTS weapon_stats (
+  node_id      TEXT PRIMARY KEY REFERENCES nodes(id),
+  name         TEXT NOT NULL,
+  klasa        TEXT NOT NULL,             -- 'biała' | 'strzelecka' | 'amunicja'
+  page         INTEGER,
+  cena         TEXT,                      -- np. '20 zk', '3 s', '—'
+  obciazenie   TEXT,                      -- punkty Obciążenia (string; bywa '—')
+  kategoria    TEXT,                      -- grupa oręża, np. 'Dwuręczna'
+  sila_broni   TEXT,                      -- obrażenia: 'S', 'S-4', 'S+1', '3'…
+  zasieg       TEXT,                      -- tylko strzelecka, np. '30/60'
+  przeladowanie TEXT,                     -- tylko strzelecka, np. 'Akcja'
+  cechy        TEXT,                      -- cechy oręża (np. 'druzgoczący, szybki')
+  dostepnosc   TEXT,
+  dwureczna    INTEGER NOT NULL DEFAULT 0,-- 1 = wymaga dwóch rąk
+  source_id    TEXT REFERENCES sources(id),
+  confidence   REAL NOT NULL DEFAULT 0.95
+);
+CREATE INDEX IF NOT EXISTS idx_weapon_klasa ON weapon_stats(klasa);
+
 -- Miejsce na kolejne tabele SQL (do zrobienia po ekstrakcji tabel):
---   weapon_stats, armour_stats, item_costs, spell_stats, critical_hits, bestiary_profiles
+--   armour_stats, item_costs, spell_stats, critical_hits, bestiary_profiles
