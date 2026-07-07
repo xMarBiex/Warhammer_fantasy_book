@@ -1,0 +1,166 @@
+<title>KOS — Warhammer Fantasy (test warstwy SQL/Graf)</title>
+<style>
+  :root{
+    --bg:#14110d; --panel:#211b13; --panel2:#2a2318; --line:#3a3020; --line2:#4a3d27;
+    --ink:#e9e0cb; --dim:#b6a98c; --faint:#8a7d63; --gold:#c8a24a; --rust:#a2482f;
+    --ok:#6f9d5b; --warn:#c98a2f;
+  }
+  *{box-sizing:border-box}
+  body{margin:0;background:var(--bg);color:var(--ink);
+    font:16px/1.5 "Iowan Old Style",Georgia,"Times New Roman",serif;
+    -webkit-text-size-adjust:100%}
+  .wrap{max-width:760px;margin:0 auto;padding:18px 14px 60px}
+  header{border-bottom:1px solid var(--line);padding-bottom:12px;margin-bottom:14px}
+  h1{font-size:1.5rem;margin:0 0 2px;color:var(--gold);letter-spacing:.5px}
+  .sub{color:var(--faint);font-size:.85rem}
+  .search{position:sticky;top:0;background:var(--bg);padding:10px 0 8px;z-index:5}
+  #q{width:100%;padding:12px 14px;font-size:1.05rem;color:var(--ink);
+    background:var(--panel);border:1px solid var(--line2);border-radius:10px;outline:none}
+  #q:focus{border-color:var(--gold)}
+  .hints{display:flex;flex-wrap:wrap;gap:6px;margin-top:8px}
+  .hint{font-size:.8rem;color:var(--dim);background:var(--panel);border:1px solid var(--line);
+    padding:4px 9px;border-radius:20px;cursor:pointer}
+  .hint:hover{border-color:var(--gold);color:var(--ink)}
+  .card{background:var(--panel);border:1px solid var(--line2);border-radius:12px;
+    padding:14px 16px;margin:12px 0}
+  .card h2{margin:0 0 2px;font-size:1.2rem;color:var(--gold)}
+  .meta{color:var(--faint);font-size:.82rem;margin-bottom:10px}
+  .badge{display:inline-block;font-size:.72rem;padding:2px 8px;border-radius:20px;
+    border:1px solid var(--line2);color:var(--dim);margin-left:6px;vertical-align:middle}
+  .badge.q{color:var(--gold);border-color:var(--gold)}
+  .conf{float:right;font-size:.78rem;color:var(--ok)}
+  table.stats{width:100%;border-collapse:collapse;margin:6px 0 4px}
+  table.stats td{border:1px solid var(--line);padding:5px 4px;text-align:center;font-size:.9rem}
+  table.stats td.k{color:var(--faint);font-size:.72rem;background:var(--panel2)}
+  table.stats td.v{color:var(--ink);font-weight:600}
+  .lbl{color:var(--gold);font-size:.8rem;text-transform:uppercase;letter-spacing:.6px;
+    margin:12px 0 4px}
+  .txt{color:var(--dim);font-size:.92rem}
+  .chips{display:flex;flex-wrap:wrap;gap:6px;margin-top:4px}
+  .chip{font-size:.85rem;padding:4px 10px;border-radius:20px;cursor:pointer;
+    background:var(--panel2);border:1px solid var(--line2);color:var(--ink)}
+  .chip:hover{border-color:var(--gold)}
+  .chip.miss{cursor:not-allowed;color:var(--warn);border-color:var(--warn);opacity:.8}
+  .chip.miss::after{content:" ⚠"}
+  .arrow{color:var(--faint);font-size:.8rem;margin-right:4px}
+  .empty{color:var(--faint);text-align:center;padding:30px 10px}
+  .foot{color:var(--faint);font-size:.78rem;text-align:center;margin-top:24px;
+    border-top:1px solid var(--line);padding-top:12px}
+  .warnbox{background:#2a2013;border:1px solid var(--warn);border-radius:10px;
+    padding:10px 12px;margin:12px 0;font-size:.86rem;color:var(--dim)}
+</style>
+
+<div class="wrap">
+  <header>
+    <h1>Warhammer Fantasy — KOS</h1>
+    <div class="sub">Test warstwy strukturalnej (SQL + Graf). Liczby z tabel,
+      relacje z grafu, każda odpowiedź ze źródłem i pewnością.</div>
+  </header>
+
+  <div class="search">
+    <input id="q" placeholder="Wpisz profesję (np. akolita) lub pytanie (np. największa WW)…"
+      autocomplete="off" autocapitalize="off" spellcheck="false">
+    <div class="hints" id="hints"></div>
+  </div>
+
+  <div id="out"></div>
+
+  <div class="foot" id="foot"></div>
+</div>
+
+<script>
+const DATA = __DATA__;
+const MAIN = ["WW","US","K","Odp","Zr","Int","SW","Ogd"];
+const SEC  = ["A","Żyw","S","Wt","Sz","Mag","PO","PP"];
+const SECK = {"Żyw":"Zyw"};   // klucz w danych
+const STAT = {ww:"WW","walka wrecz":"WW",us:"US",k:"K",krzepa:"K",odp:"Odp",
+  odpornosc:"Odp",zr:"Zr",zrecznosc:"Zr",int:"Int",inteligencja:"Int",sw:"SW",
+  "sila woli":"SW",ogd:"Ogd",oglada:"Ogd",a:"A",ataki:"A",zyw:"Zyw",zywotnosc:"Zyw",
+  s:"S",sila:"S",wt:"Wt",wytrzymalosc:"Wt",sz:"Sz",szybkosc:"Sz",mag:"Mag",
+  magia:"Mag",po:"PO",pp:"PP"};
+const EXAMPLES = ["akolita","zabójca demonów","największa WW","najwyższa krzepa",
+  "z kogo na kapłana","czarodziej"];
+
+function fold(s){return (s||"").toLowerCase().replace(/ł/g,"l")
+  .normalize("NFKD").replace(/[̀-ͯ]/g,"").trim();}
+function num(v){if(!v||v==="—")return null;const m=(""+v).match(/-?\d+/);return m?+m[0]:null;}
+const BYFOLD={}; DATA.profs.forEach(p=>BYFOLD[fold(p.name)]=p);
+
+function classify(q){const f=fold(q);
+  if(/naj(wi|wy|mnie|ni)/.test(f))return "COMPARISON";
+  return "FACT";}
+
+function statCol(q){const f=fold(q);let best=null;
+  for(const a in STAT){if(new RegExp("\\b"+a.replace(/ /g,"\\s")+"\\b").test(f)
+    &&(!best||a.length>best.a))best={a:a.length,c:STAT[a]};}
+  return best?best.c:null;}
+
+function resolveProf(q){const f=fold(q);let hit=null;
+  for(const p of DATA.profs){if(f.includes(fold(p.name))&&(!hit||p.name.length>hit.name.length))hit=p;}
+  return hit;}
+
+function esc(s){return (s||"").replace(/[&<>]/g,c=>({"&":"&amp;","<":"&lt;",">":"&gt;"}[c]));}
+
+function statTable(p){
+  let h='<table class="stats"><tr>'+MAIN.map(k=>`<td class="k">${k}</td>`).join("")+"</tr><tr>";
+  h+=MAIN.map(k=>{const v=p.main[k]||"—";return `<td class="v">${v==="—"?'<span style="color:#6a5f48">—</span>':v}</td>`}).join("")+"</tr></table>";
+  h+='<table class="stats"><tr>'+SEC.map(k=>`<td class="k">${k}</td>`).join("")+"</tr><tr>";
+  h+=SEC.map(k=>{const v=(p.sec[SECK[k]||k])||"—";return `<td class="v">${v==="—"?'<span style="color:#6a5f48">—</span>':v}</td>`}).join("")+"</tr></table>";
+  return h;}
+
+function chips(ok,miss){
+  const a=(ok||[]).map(n=>`<span class="chip" data-go="${esc(n)}">${esc(n)}</span>`);
+  const b=(miss||[]).map(n=>`<span class="chip miss" title="brak w bazie — luka wykryta przez KOS">${esc(n)}</span>`);
+  return '<div class="chips">'+(a.concat(b).join("")||'<span class="txt">brak</span>')+"</div>";}
+
+function cardProf(p){
+  return `<div class="card">
+    <span class="conf">źródło: ${esc(DATA.source)} · pewność 0.95</span>
+    <h2>${esc(p.name)}</h2>
+    <div class="meta">profesja ${esc(p.kind)} · str. ${p.page}
+      <span class="badge q">FACT · SQL+Graf</span></div>
+    ${statTable(p)}
+    ${p.skills?`<div class="lbl">Umiejętności</div><div class="txt">${esc(p.skills)}</div>`:""}
+    ${p.talents?`<div class="lbl">Zdolności</div><div class="txt">${esc(p.talents)}</div>`:""}
+    ${p.trappings?`<div class="lbl">Wyposażenie</div><div class="txt">${esc(p.trappings)}</div>`:""}
+    <div class="lbl"><span class="arrow">←</span>Wejście z (siatka rozwoju)</div>${chips(p.inOk,p.inMiss)}
+    <div class="lbl"><span class="arrow">→</span>Wyjście do</div>${chips(p.outOk,p.outMiss)}
+  </div>`;}
+
+function cardCompare(col,q){
+  const big=!/najmniejsz|najni/.test(fold(q));
+  const scored=DATA.profs.map(p=>({n:p.name,v:p.main[col]!==undefined?p.main[col]:p.sec[SECK[col]||col],pg:p.page}))
+    .map(x=>({...x,k:num(x.v)})).filter(x=>x.k!==null);
+  if(!scored.length)return `<div class="warnbox">Brak danych dla cechy ${esc(col)}.</div>`;
+  const ext=big?Math.max(...scored.map(x=>x.k)):Math.min(...scored.map(x=>x.k));
+  const win=scored.filter(x=>x.k===ext).sort((a,b)=>a.n.localeCompare(b.n));
+  return `<div class="card">
+    <span class="conf">źródło: ${esc(DATA.source)} · pewność 0.95</span>
+    <h2>${big?"Największa":"Najmniejsza"} modyfikacja: ${esc(col)}</h2>
+    <div class="meta"><span class="badge q">COMPARISON · SQL</span> policzone z tabel cech, nie z modelu</div>
+    <div class="chips">${win.map(x=>`<span class="chip" data-go="${esc(x.n)}">${esc(x.n)} · ${esc(x.v)} (str. ${x.pg})</span>`).join("")}</div>
+  </div>`;}
+
+function run(q){
+  const out=document.getElementById("out");
+  q=(q||"").trim();
+  if(!q){out.innerHTML='<div class="empty">Wpisz nazwę profesji albo pytanie porównawcze.</div>';return;}
+  const kind=classify(q);
+  if(kind==="COMPARISON"){const c=statCol(q);
+    if(c){out.innerHTML=cardCompare(c,q);return;}}
+  const p=resolveProf(q);
+  if(p){out.innerHTML=cardProf(p);return;}
+  out.innerHTML=`<div class="warnbox">Nie znaleziono profesji w warstwie strukturalnej.
+    Prozę/lore (Warstwa 4 — wektory) obsługuje osobna wyszukiwarka.
+    ${DATA.missing.length?`<br><br><b>Znane luki (KOS Validation):</b> ${DATA.missing.map(esc).join(", ")}.`:""}</div>`;
+}
+
+const qi=document.getElementById("q");
+qi.addEventListener("input",()=>run(qi.value));
+document.addEventListener("click",e=>{const g=e.target.getAttribute&&e.target.getAttribute("data-go");
+  if(g){qi.value=g;run(g);window.scrollTo(0,0);qi.focus();}});
+document.getElementById("hints").innerHTML=EXAMPLES.map(x=>`<span class="hint" data-go="${x}">${x}</span>`).join("");
+document.getElementById("foot").innerHTML=`${DATA.profs.length} profesji w warstwie SQL/Graf ·
+  ${DATA.missing.length} luk wykrytych przez KOS · dane: ${esc(DATA.source)}`;
+run("");
+</script>
