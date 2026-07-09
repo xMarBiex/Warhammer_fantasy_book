@@ -33,6 +33,63 @@ def check(name, fn):
         print(f"  {BAD} {name}: {type(e).__name__}: {e}")
 
 
+def test_consistency():
+    """Końcowa kontrola spójności: SQL == źródła prawdy, graf bez sierot i martwych krawędzi."""
+    print("\n── Warstwa 0: kontrola spójności (SQL vs tabele + integralność grafu) ──")
+    import json
+    import sqlite3
+    db = sqlite3.connect(os.path.join(ROOT, "data", "kos", "kos.db"))
+    n = lambda sql, *a: db.execute(sql, a).fetchone()[0]
+
+    def jlen(name):
+        p = os.path.join(ROOT, "tables", name)
+        return len(json.load(open(p, encoding="utf-8"))) if os.path.exists(p) else 0
+
+    # 1) liczby SQL == źródła prawdy tables/*.json (łapie kolizje ID jak Włócznia)
+    for jf, tbl, typ in [("professions.json", "profession_stats", "Profession"),
+                         ("weapons.json", "weapon_stats", "Weapon"),
+                         ("armour.json", "armour_stats", "Armour"),
+                         ("spells.json", "spell_stats", "Spell"),
+                         ("items.json", "item_costs", "Item"),
+                         ("bestiary.json", "bestiary_profiles", "Creature")]:
+        j = jlen(jf); s = n(f"SELECT COUNT(*) FROM {tbl}")
+        nd = n("SELECT COUNT(*) FROM nodes WHERE type=?", typ)
+        check(f"{jf}: json={j} == SQL={s} == węzły={nd}",
+              lambda j=j, s=s, nd=nd: (_ok(j == s == nd, f"{j}/{s}/{nd}")))
+
+    # 2) siatka rozwoju: brak martwych krawędzi (dst pusty i nazwa poza whitelistą)
+    check("graf: 0 martwych krawędzi ADVANCES_TO",
+          lambda: _ok(n("SELECT COUNT(*) FROM edges WHERE rel='ADVANCES_TO' "
+                        "AND dst='' AND dst_name<>''") == 0, "0 dangling"))
+    # 3) każdy czar ma tradycję (BELONGS_TO -> MagicLore)
+    check("graf: każdy czar ma tradycję (BELONGS_TO)",
+          lambda: _ok(n("SELECT COUNT(*) FROM nodes WHERE type='Spell' AND id NOT IN "
+                        "(SELECT src FROM edges WHERE rel='BELONGS_TO')") == 0, "0 bez tradycji"))
+    # 4) każda encja ma źródło (DEFINED_IN -> Book)
+    check("graf: każda encja wskazuje książkę (DEFINED_IN)",
+          lambda: _ok(n("SELECT COUNT(*) FROM nodes WHERE type IN "
+                        "('Profession','Weapon','Armour','Item','Spell','Creature') "
+                        "AND id NOT IN (SELECT src FROM edges WHERE rel='DEFINED_IN')") == 0,
+                      "0 bez źródła"))
+    # 5) brak sierot: każda umiejętność/zdolność ma min. 1 posiadacza
+    check("graf: 0 osieroconych węzłów Skill/Talent",
+          lambda: _ok(n("SELECT COUNT(*) FROM nodes WHERE type IN ('Skill','Talent') "
+                        "AND id NOT IN (SELECT dst FROM edges WHERE rel IN "
+                        "('HAS_SKILL','HAS_TALENT'))") == 0, "0 sierot"))
+    # 6) metadane: każdy węzeł ma stronę lub jest Book/Skill/Talent/MagicLore
+    check("metadane: rekordy strukturalne mają numer strony",
+          lambda: _ok(n("SELECT COUNT(*) FROM nodes WHERE type IN "
+                        "('Profession','Weapon','Armour','Item','Spell','Creature') "
+                        "AND page IS NULL") == 0, "0 bez strony"))
+    db.close()
+
+
+def _ok(cond, detail):
+    if not cond:
+        raise AssertionError(detail)
+    return detail
+
+
 def test_sql_graph():
     print("\n── Warstwa 2/3: SQL + Graf (10 narzędzi, bez klucza) ──")
     from agent import tools as T
@@ -148,6 +205,7 @@ def main():
     args = ap.parse_args()
 
     print("=== KOS SELF-TEST ===")
+    test_consistency()
     test_sql_graph()
     if args.vectors or args.all:
         test_vectors()
