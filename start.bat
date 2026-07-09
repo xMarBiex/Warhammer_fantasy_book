@@ -1,8 +1,24 @@
 @echo off
 REM Uruchomienie lokalne (Windows) - Warhammer Fantasy KOS.
-REM Uzycie:  set ANTHROPIC_API_KEY=sk-ant-...   potem dwuklik na start.bat
+REM Konfiguracja (klucz API, haslo, model) wczytywana z config.bat - patrz
+REM config.example.bat. Bez config.bat mozna tez ustawic zmienne recznie
+REM przed odpaleniem (set ANTHROPIC_API_KEY=sk-ant-...).
 setlocal
 cd /d "%~dp0"
+
+REM 0) lokalna konfiguracja (nie jest w gicie - patrz .gitignore)
+if not exist "config.bat" (
+  copy /y "config.example.bat" "config.bat" >nul
+  echo.
+  echo [i] Utworzylem plik config.bat z szablonu.
+  echo     Otworz go w Notatniku, wpisz swoj ANTHROPIC_API_KEY ^(i opcjonalnie
+  echo     KOS_PASSWORD / KOS_MODEL^), zapisz i uruchom start.bat ponownie.
+  echo.
+  notepad config.bat
+  endlocal
+  exit /b
+)
+call config.bat
 
 REM 1) srodowisko Pythona
 if not exist ".venv\Scripts\python.exe" (
@@ -33,7 +49,11 @@ if not exist "data\chroma\chroma.sqlite3" (
 REM 5) klucz API - tylko do czatu; przegladarka dziala bez niego
 if "%ANTHROPIC_API_KEY%"=="" (
   echo [i] Brak ANTHROPIC_API_KEY - przegladarka zadziala, czat zwroci blad.
-  echo     Ustaw:  set ANTHROPIC_API_KEY=sk-ant-...
+  echo     Uzupelnij go w config.bat.
+)
+if "%ANTHROPIC_API_KEY%"=="sk-ant-wklej-tutaj-swoj-klucz" (
+  echo [!] W config.bat wciaz jest przykladowy klucz - wpisz prawdziwy
+  echo     ANTHROPIC_API_KEY z console.anthropic.com, inaczej czat nie zadziala.
 )
 
 if "%PORT%"=="" set PORT=8000

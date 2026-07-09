@@ -39,11 +39,18 @@ REM złóż i rozpakuj paczkę danych (Windows 10/11 ma wbudowany tar)
 copy /b kos-dane.part-aa + kos-dane.part-ab kos-dane.tar.gz
 tar -xzf kos-dane.tar.gz
 
-set ANTHROPIC_API_KEY=sk-ant-...
 start.bat
 ```
+Za pierwszym razem `start.bat` utworzy plik **`config.bat`** (z szablonu
+`config.example.bat`) i otworzy go w Notatniku — tam wpisujesz `ANTHROPIC_API_KEY`
+oraz opcjonalnie `KOS_MODEL` (np. `claude-sonnet-5`) i `KOS_PASSWORD` (przy
+udostępnianiu przez internet). Zapisz plik, zamknij Notatnik i uruchom
+`start.bat` ponownie — od teraz wystarczy sam dwuklik, bez wpisywania `set` za
+każdym razem. `config.bat` **nie trafia do gita** (zostaje tylko na Twoim
+komputerze), więc `git pull` go nie nadpisze.
+
 `start.bat` sam utworzy środowisko, doinstaluje zależności i wystartuje serwer.
-Potem otwórz `http://127.0.0.1:8000/`. Model przełączysz przez `set KOS_MODEL=claude-sonnet-5`.
+Potem otwórz `http://127.0.0.1:8000/`.
 
 Wymagania Windows: **Python 3.10+** (zaznacz „Add Python to PATH" przy instalacji).
 Jeśli `start.bat` zamyka się od razu — uruchom go z wiersza poleceń (cmd), żeby
