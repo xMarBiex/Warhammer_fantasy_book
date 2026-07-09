@@ -221,6 +221,8 @@
       <div class="sheet-section">
         <div class="label">Cechy główne (rozwój co 5%)</div>
         <div id="sMainWrap"></div>
+        <div class="sheet-note">"Rozwój" to pozostała pula ze schematu profesji (np. +10). W miarę wykupywania
+          punktów za PD wpisz mniejszą wartość — różnica dolicza się do "Aktualnej" (np. z +10 na +5 → Aktualna rośnie o 5).</div>
       </div>
 
       <div class="sheet-section">
@@ -580,12 +582,27 @@ add("bot","Witaj, śmiałku. Jestem twoim Mistrzem Gry dla <b>Warhammer Fantasy 
       +"</tbody></table>";
   }
 
+  // "Rozwój" = pozostała pula punktów do wykupienia w bieżącej karierze (ustawiana
+  // przy wyborze profesji jako pełny schemat, np. +10). W miarę wykupywania punktów
+  // (wpisania mniejszej wartości) różnica dolicza się do "Aktualnej". Jeśli dla danej
+  // cechy nie ma schematu z profesji (pole nigdy nie dostało data-cap), "Rozwój"
+  // działa po staremu jako wprost dodawany bonus.
   function recalcStat(code){
     const i=document.getElementById(`st_${code}_init`), a=document.getElementById(`st_${code}_adv`),
           c=document.getElementById(`st_${code}_cur`);
     if(!i||!a||!c) return;
     const hasAny=i.value.trim()||a.value.trim();
-    c.value=hasAny?String(numVal(i.value)+numVal(a.value)):"";
+    if(!hasAny){ c.value=""; if(code==="Sz") recalcMove(); return; }
+    const capStr=a.dataset.cap;
+    let purchased;
+    if(capStr!==undefined&&capStr!==""){
+      const cap=numVal(capStr);
+      const remaining=a.value.trim()!==""?numVal(a.value):cap;
+      purchased=cap-remaining;
+    }else{
+      purchased=numVal(a.value);
+    }
+    c.value=String(numVal(i.value)+purchased);
     if(code==="Sz") recalcMove();
   }
   function recalcMove(){
@@ -633,15 +650,28 @@ add("bot","Witaj, śmiałku. Jestem twoim Mistrzem Gry dla <b>Warhammer Fantasy 
     return r.json();
   }
 
-  function applyCaps(stats){
-    MAIN_CODES.forEach(c=>{
-      const el=document.getElementById(`st_${c}_adv`);
-      if(el) el.placeholder=(stats.main[c]&&stats.main[c]!=="—")?`maks ${stats.main[c]}`:"";
-    });
-    SEC_CODES.forEach(c=>{
-      const el=document.getElementById(`st_${c}_adv`);
-      if(el) el.placeholder=(stats.secondary[c]&&stats.secondary[c]!=="—")?`maks ${stats.secondary[c]}`:"";
-    });
+  function parseStatMod(v){
+    if(!v||v==="—") return "";
+    const m=String(v).match(/-?\d+/);
+    return m?m[0]:"";
+  }
+
+  // overwrite=true (startowa profesja): wpisuje cechy z profesji wprost do pola
+  // "Rozwój" i przelicza "Aktualną". overwrite=false (awans): zostawia już
+  // wpisane wartości, aktualizuje tylko podpowiedź maksimum danej kariery.
+  function applyStats(stats,overwrite){
+    [...MAIN_CODES.map(c=>[c,stats.main[c]]), ...SEC_CODES.map(c=>[c,stats.secondary[c]])]
+      .forEach(([c,raw])=>{
+        const el=document.getElementById(`st_${c}_adv`);
+        if(!el) return;
+        const capVal=parseStatMod(raw);
+        el.placeholder=capVal?`pula ${capVal}`:"";
+        if(overwrite){
+          if(capVal){ el.dataset.cap=capVal; el.value=capVal; }
+          else{ delete el.dataset.cap; el.value=""; }
+          recalcStat(c);
+        }
+      });
   }
 
   function appendUnique(existing,additions){
@@ -670,9 +700,9 @@ add("bot","Witaj, śmiałku. Jestem twoim Mistrzem Gry dla <b>Warhammer Fantasy 
       sSkills.value=stats.skills||"";
       sTalents.value=stats.talents||"";
       sTrappings.value=stats.trappings||"";
-      applyCaps(stats);
+      applyStats(stats,true);
       renderAdvances(stats.exits);
-      sheetMsg.textContent=`Ustawiono klasę: ${stats.name} (str. ${stats.page}).`;
+      sheetMsg.textContent=`Ustawiono klasę: ${stats.name} (str. ${stats.page}). Cechy z profesji wpisane w wiersz "Rozwój".`;
     }catch(e){sheetMsg.textContent="⚠ nie udało się pobrać profesji z serwera.";}
   });
 
@@ -690,7 +720,7 @@ add("bot","Witaj, śmiałku. Jestem twoim Mistrzem Gry dla <b>Warhammer Fantasy 
       sSkills.value=appendUnique(sSkills.value,stats.skills);
       sTalents.value=appendUnique(sTalents.value,stats.talents);
       sTrappings.value=appendUnique(sTrappings.value,stats.trappings);
-      applyCaps(stats);
+      applyStats(stats,false);
       renderAdvances(stats.exits);
       sheetMsg.textContent=`Awans: ${stats.name} (str. ${stats.page}). Umiejętności/zdolności/wyposażenie dopisane.`;
     }catch(err){sheetMsg.textContent="⚠ nie udało się pobrać profesji z serwera.";}
@@ -729,7 +759,8 @@ add("bot","Witaj, śmiałku. Jestem twoim Mistrzem Gry dla <b>Warhammer Fantasy 
     SKILL_CHECK.forEach(id=>{const el=document.getElementById(id); state[id]=el?el.checked:false;});
     state.stats={};
     [...MAIN_CODES,...SEC_CODES].forEach(c=>{
-      state.stats[c]={init:val(`st_${c}_init`), adv:val(`st_${c}_adv`)};
+      const a=document.getElementById(`st_${c}_adv`);
+      state.stats[c]={init:val(`st_${c}_init`), adv:val(`st_${c}_adv`), cap:(a&&a.dataset.cap)||""};
     });
     return state;
   }
@@ -769,7 +800,11 @@ add("bot","Witaj, śmiałku. Jestem twoim Mistrzem Gry dla <b>Warhammer Fantasy 
       if(state.stats){
         Object.entries(state.stats).forEach(([c,v])=>{
           const i=document.getElementById(`st_${c}_init`), a=document.getElementById(`st_${c}_adv`);
-          if(i) i.value=v.init||""; if(a) a.value=v.adv||"";
+          if(i) i.value=v.init||"";
+          if(a){
+            a.value=v.adv||"";
+            if(v.cap){ a.dataset.cap=v.cap; a.placeholder=`pula ${v.cap}`; } else delete a.dataset.cap;
+          }
           recalcStat(c);
         });
       }
@@ -778,7 +813,7 @@ add("bot","Witaj, śmiałku. Jestem twoim Mistrzem Gry dla <b>Warhammer Fantasy 
       if(currentProfessionId){
         try{
           const stats=await fetchProfession(currentProfessionId);
-          applyCaps(stats); renderAdvances(stats.exits);
+          applyStats(stats,false); renderAdvances(stats.exits);
         }catch(_){/* profesja z pliku niedostępna bez serwera */}
       }
       sheetMsg.textContent="📂 Wczytano z pliku.";
