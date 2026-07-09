@@ -29,17 +29,25 @@ export ANTHROPIC_API_KEY=sk-ant-...
 Skrypt sam utworzy środowisko Pythona, doinstaluje zależności i wystartuje serwer.
 Potem otwórz `http://127.0.0.1:8000/`.
 
-## Windows (PowerShell)
-```powershell
-git clone <adres-repo>; cd Warhammer_fantasy_book
-tar -xzf kos-dane.tar.gz                     # Windows 10/11 ma wbudowany tar
-python -m venv .venv
-.\.venv\Scripts\pip install -r requirements.txt
-$env:ANTHROPIC_API_KEY = "sk-ant-..."
-.\.venv\Scripts\python kos\build_kos.py       # baza SQL/Graf
-.\.venv\Scripts\python kos\export_web.py       # przeglądarka
-.\.venv\Scripts\python agent\server.py         # serwer -> http://127.0.0.1:8000
+## Windows — najprościej (start.bat)
+```cmd
+git clone <adres-repo>
+cd Warhammer_fantasy_book
+git checkout claude/pdf-vector-database-rj4qzp
+
+REM złóż i rozpakuj paczkę danych (Windows 10/11 ma wbudowany tar)
+copy /b kos-dane.part-aa + kos-dane.part-ab kos-dane.tar.gz
+tar -xzf kos-dane.tar.gz
+
+set ANTHROPIC_API_KEY=sk-ant-...
+start.bat
 ```
+`start.bat` sam utworzy środowisko, doinstaluje zależności i wystartuje serwer.
+Potem otwórz `http://127.0.0.1:8000/`. Model przełączysz przez `set KOS_MODEL=claude-sonnet-5`.
+
+Wymagania Windows: **Python 3.10+** (zaznacz „Add Python to PATH" przy instalacji).
+Jeśli `start.bat` zamyka się od razu — uruchom go z wiersza poleceń (cmd), żeby
+zobaczyć komunikat błędu.
 
 ## Bez paczki danych (budowa bazy wektorowej od zera)
 Jeśli nie masz `kos-dane.tar.gz`, ale masz `data/text/chunks.jsonl` (proza z OCR):
