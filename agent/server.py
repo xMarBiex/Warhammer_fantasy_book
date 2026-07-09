@@ -14,14 +14,30 @@ import hmac
 import json
 import os
 import sys
+import threading
 from http.server import BaseHTTPRequestHandler, ThreadingHTTPServer
+from urllib.parse import urlsplit, parse_qs
 
 HERE = os.path.dirname(os.path.abspath(__file__))
 sys.path.insert(0, os.path.dirname(HERE))
 from agent.agent import ask  # noqa: E402
+from kos.query import KOS  # noqa: E402
 
 CHAT_HTML = os.path.join(HERE, "chat.html")
 BROWSER_HTML = os.path.join(os.path.dirname(HERE), "web", "kos.html")
+
+# ThreadingHTTPServer obsługuje żądania w wielu wątkach — sqlite3 wolno używać
+# tylko w wątku, w którym powstało połączenie (patrz agent/tools.py::_get_kos).
+_local = threading.local()
+
+
+def _get_kos():
+    if not hasattr(_local, "kos"):
+        try:
+            _local.kos = KOS()
+        except FileNotFoundError:
+            _local.kos = None
+    return _local.kos
 
 # Hasło dostępu — potrzebne, gdy serwer jest wystawiony do internetu (tunel
 # Cloudflare). Ustaw zmienną KOS_PASSWORD, a przeglądarka poprosi o hasło.
@@ -65,10 +81,12 @@ class Handler(BaseHTTPRequestHandler):
         if not self._authorized():
             self._require_auth()
             return
-        if self.path in ("/", "/index.html"):
+        parsed = urlsplit(self.path)
+        path = parsed.path
+        if path in ("/", "/index.html"):
             with open(CHAT_HTML, encoding="utf-8") as f:
                 self._send(200, f.read(), "text/html; charset=utf-8")
-        elif self.path in ("/przegladarka", "/browse"):
+        elif path in ("/przegladarka", "/browse"):
             # przeglądarka strukturalna (lookupy bez API) — jeśli zbudowana
             if os.path.exists(BROWSER_HTML):
                 with open(BROWSER_HTML, encoding="utf-8") as f:
@@ -76,9 +94,30 @@ class Handler(BaseHTTPRequestHandler):
             else:
                 self._send(404, "Uruchom: python kos/export_web.py",
                            "text/plain; charset=utf-8")
-        elif self.path == "/health":
+        elif path == "/health":
             self._send(200, json.dumps({"ok": True,
                        "key": bool(os.environ.get("ANTHROPIC_API_KEY"))}))
+        elif path == "/api/professions":
+            kos = _get_kos()
+            if kos is None:
+                self._send(503, json.dumps({"error": "baza KOS niedostępna"}))
+                return
+            self._send(200, json.dumps(kos.list_professions(), ensure_ascii=False))
+        elif path == "/api/profession":
+            kos = _get_kos()
+            if kos is None:
+                self._send(503, json.dumps({"error": "baza KOS niedostępna"}))
+                return
+            node_id = parse_qs(parsed.query).get("id", [""])[0]
+            stats = kos.profession_stats(node_id)
+            if not stats:
+                self._send(404, json.dumps({"error": "nie znaleziono profesji"}))
+                return
+            entries, exits = kos.career_neighbors(node_id)
+            stats["node_id"] = node_id
+            stats["entries"] = entries
+            stats["exits"] = exits
+            self._send(200, json.dumps(stats, ensure_ascii=False))
         else:
             self._send(404, json.dumps({"error": "not found"}))
 

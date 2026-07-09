@@ -88,6 +88,11 @@ class KOS:
             return None
         return max(hits, key=lambda r: len(r["name"]))["node_id"]
 
+    def list_professions(self):
+        rows = self.con.execute(
+            "SELECT node_id, name, kind FROM profession_stats ORDER BY kind, name").fetchall()
+        return [dict(r) for r in rows]
+
     # ── Warstwa 3 (SQL): dokładne cechy ───────────────────────────────────
     def profession_stats(self, node_id):
         r = self.con.execute(
