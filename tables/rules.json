@@ -1,0 +1,44 @@
+[
+ {
+  "name": "Rzucanie czaru",
+  "kategoria": "Magia — mechanika",
+  "page": 148,
+  "text": "Rzucając czar, gracz rzuca tyloma kośćmi dziesięciościennymi (k10), ile wynosi wartość cechy Magia jego postaci. Suma wyników to poziom mocy. Jeżeli uzyskany poziom mocy jest równy lub wyższy od Wymaganego Poziomu Mocy podanego w opisie zaklęcia, czar zostaje rzucony pomyślnie. Gracz może rzucić mniejszą liczbą k10. Rzucenie zaklęcia może być akcją przedłużoną (dłużej niż jedną rundę); można je przerwać, tracąc czas przygotowania."
+ },
+ {
+  "name": "Splatanie magii",
+  "kategoria": "Magia — mechanika",
+  "page": 148,
+  "text": "Splatanie magii zwiększa szansę na udane rzucenie czaru. Tuż przed rzuceniem czaru czarodziej lub kapłan wykonuje test umiejętności splatanie magii (kosztuje dodatkową akcję). Udany test pozwala dodać wartość cechy Magia do poziomu mocy rzucanego czaru. Po teście splatania natychmiast wykonuje się akcję rzucenie zaklęcia."
+ },
+ {
+  "name": "Magiczne komponenty (składniki)",
+  "kategoria": "Magia — mechanika",
+  "page": 148,
+  "text": "Jeśli Bohater posiada składnik wymieniony w opisie czaru, może go zużyć, by zwiększyć poziom mocy o +1 do +3, zależnie od dostępności składnika (łatwo dostępny +1, trudniejszy +2, najtrudniejszy +3). Składnik zużywa się bez względu na powodzenie rzutu. Najpotężniejsze czary wymagają składników niedostępnych u kramarzy (egzotyczne rośliny, części ciała potworów)."
+ },
+ {
+  "name": "Natychmiastowa porażka",
+  "kategoria": "Magia — mechanika",
+  "page": 149,
+  "text": "Jeśli na wszystkich kościach użytych do ustalenia poziomu mocy wypadną jedynki, rzucenie czaru automatycznie kończy się porażką. Postać musi wykonać test Siły Woli; nieudany oznacza utratę 1 Punktu Obłędu. Początkujący czarodzieje (niska Magia) są na to najbardziej narażeni."
+ },
+ {
+  "name": "Przekleństwo Tzeentcha",
+  "kategoria": "Magia tajemna — mechanika",
+  "page": 149,
+  "text": "Dotyczy magii tajemnej. Jeśli podczas ustalania poziomu mocy na dwóch lub więcej kościach wypadnie ta sama liczba oczek, wykonaj rzut procentowy: dwie takie same kości = Tabela 7-2 (Pomniejsza manifestacja Chaosu), trzy = Tabela 7-3 (Poważna), cztery lub wielokrotne pary = Tabela 7-4 (Katastrofalna). Jeśli poziom mocy był wystarczający, czar i tak działa."
+ },
+ {
+  "name": "Gniew Boży",
+  "kategoria": "Magia kapłańska — mechanika",
+  "page": 149,
+  "text": "Odpowiednik Przekleństwa Tzeentcha dla kapłanów. Jeśli podczas ustalania poziomu mocy na dwóch lub więcej kościach wypadnie ta sama liczba oczek, wykonaj rzut procentowy i sprawdź wynik w Tabeli 7-5: Gniew Boży. Jeśli uzyskany poziom mocy był równy lub wyższy od wymaganego, zaklęcie działa normalnie, chyba że efekt Gniewu Bożego stanowi inaczej."
+ },
+ {
+  "name": "Ograniczenia podczas rzucania czarów",
+  "kategoria": "Magia — mechanika",
+  "page": 149,
+  "text": "Postać rzucająca zaklęcie musi mieć możliwość swobodnego mówienia, by wypowiedzieć inkantację — jeśli jest zakneblowana lub nie może mówić, nie rzuci czaru. Rzucanie wymaga też skupienia i całkowitego poświęcenia uwagi magicznej formule."
+ }
+]

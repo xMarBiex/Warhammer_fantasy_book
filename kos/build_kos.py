@@ -271,6 +271,24 @@ def build():
                 (cid, "DEFINED_IN", book_id, SOURCE["id"], c["page"], 1.0))
             n_creatures += 1
 
+    # ── Zasady jako węzły Rule (czysty tekst mechanik) ─────────────────────
+    rpath = os.path.join(TABLES, "rules.json")
+    n_rules = 0
+    if os.path.exists(rpath):
+        for r in json.load(open(rpath, encoding="utf-8")):
+            rid = node_id("zasada", r["name"])
+            con.execute(
+                "INSERT OR REPLACE INTO nodes"
+                "(id,type,name,name_fold,data,source_id,page,confidence) "
+                "VALUES(?,?,?,?,?,?,?,?)",
+                (rid, "Rule", r["name"], fold(r["name"]),
+                 json.dumps(r, ensure_ascii=False), SOURCE["id"], r["page"], 0.98))
+            con.execute(
+                "INSERT OR IGNORE INTO edges(src,rel,dst,source_id,page,confidence) "
+                "VALUES(?,?,?,?,?,?)",
+                (rid, "DEFINED_IN", book_id, SOURCE["id"], r["page"], 1.0))
+            n_rules += 1
+
     # indeks nazwa-fold -> id (do rozwiązywania krawędzi po nazwie)
     idx = {fold(p["name"]): node_id("prof", p["name"]) for p in profs}
 

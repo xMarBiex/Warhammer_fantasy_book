@@ -153,9 +153,20 @@ def build_bestiary():
     return out
 
 
+# ── Zasady (czysty tekst mechanik — obejście zaszumionej kursywy w OCR) ─────
+def build_rules():
+    out = []
+    for r in _load("rules.json"):
+        out.append({"type": "zasada", "name": r["name"], "page": r["page"],
+                    "search": f"{r['name']} zasada mechanika {r['kategoria']}",
+                    "fact": f"{r['name']} ({r['kategoria']}, str. {r['page']}). {r['text']}"})
+    return out
+
+
 def main():
     facts = []
     facts += build_professions()
+    facts += build_rules()
     facts += build_weapons()
     facts += build_armour()
     facts += build_spells()
