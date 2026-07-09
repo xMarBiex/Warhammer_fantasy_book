@@ -91,7 +91,11 @@ def ask(messages, on_event=None):
     convo = [{"role": m["role"], "content": m["content"]} for m in messages]
     used = []
 
-    kwargs = dict(model=MODEL, max_tokens=2048, system=SYSTEM,
+    # max_tokens obejmuje ŁĄCZNIE myślenie (adaptive thinking) i tekst
+    # odpowiedzi — przy złożonych pytaniach (np. rozwój postaci, obliczenia)
+    # model może zużyć większość budżetu na rozumowanie. 8192 zostawia
+    # bezpieczny zapas, żeby nie ucinało odpowiedzi w połowie.
+    kwargs = dict(model=MODEL, max_tokens=8192, system=SYSTEM,
                   tools=TOOLS, messages=convo)
     if _THINKING:
         kwargs["thinking"] = _THINKING
@@ -102,6 +106,14 @@ def ask(messages, on_event=None):
 
         if resp.stop_reason != "tool_use":
             text = "".join(b.text for b in resp.content if b.type == "text").strip()
+            if not text:
+                if resp.stop_reason == "max_tokens":
+                    text = ("Odpowiedź była zbyt długa i została ucięta zanim "
+                            "zdążyłem cokolwiek napisać. Spróbuj zawęzić pytanie "
+                            "(np. o mniejszy fragment na raz).")
+                else:
+                    text = ("Nie udało mi się sformułować odpowiedzi na to "
+                            "pytanie — spróbuj przeformułować.")
             return text, used
 
         tool_results = []
