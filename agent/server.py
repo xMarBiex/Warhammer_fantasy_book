@@ -19,6 +19,7 @@ sys.path.insert(0, os.path.dirname(HERE))
 from agent.agent import ask  # noqa: E402
 
 CHAT_HTML = os.path.join(HERE, "chat.html")
+BROWSER_HTML = os.path.join(os.path.dirname(HERE), "web", "kos.html")
 
 
 class Handler(BaseHTTPRequestHandler):
@@ -37,6 +38,14 @@ class Handler(BaseHTTPRequestHandler):
         if self.path in ("/", "/index.html"):
             with open(CHAT_HTML, encoding="utf-8") as f:
                 self._send(200, f.read(), "text/html; charset=utf-8")
+        elif self.path in ("/przegladarka", "/browse"):
+            # przeglądarka strukturalna (lookupy bez API) — jeśli zbudowana
+            if os.path.exists(BROWSER_HTML):
+                with open(BROWSER_HTML, encoding="utf-8") as f:
+                    self._send(200, f.read(), "text/html; charset=utf-8")
+            else:
+                self._send(404, "Uruchom: python kos/export_web.py",
+                           "text/plain; charset=utf-8")
         elif self.path == "/health":
             self._send(200, json.dumps({"ok": True,
                        "key": bool(os.environ.get("ANTHROPIC_API_KEY"))}))

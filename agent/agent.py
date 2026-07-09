@@ -14,7 +14,9 @@ import sys
 sys.path.insert(0, os.path.dirname(os.path.dirname(os.path.abspath(__file__))))
 from agent.tools import TOOLS, run_tool  # noqa: E402
 
-MODEL = "claude-opus-4-8"
+# Model: zmień przez zmienną KOS_MODEL bez edycji kodu
+#   claude-sonnet-5 (tanio, dobra jakość) / claude-opus-4-8 (max jakość)
+MODEL = os.environ.get("KOS_MODEL", "claude-opus-4-8")
 MAX_TOOL_ROUNDS = 6
 
 SYSTEM = """\
