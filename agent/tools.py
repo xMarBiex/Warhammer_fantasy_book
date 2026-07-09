@@ -10,6 +10,7 @@ Każdy wynik niesie ŹRÓDŁO i POZIOM PEWNOŚCI (Confidence Engine).
 """
 import os
 import sys
+import threading
 
 HERE = os.path.dirname(os.path.abspath(__file__))
 ROOT = os.path.dirname(HERE)
@@ -18,16 +19,18 @@ sys.path.insert(0, os.path.join(ROOT, "scripts"))
 
 from kos.query import KOS  # noqa: E402
 
-_kos = None
+# Serwer HTTP obsługuje żądania w wielu wątkach (ThreadingHTTPServer). Połączenie
+# sqlite3 wolno używać tylko w wątku, w którym powstało — stąd osobna instancja
+# KOS (i osobne połączenie z bazą) na wątek zamiast jednego globalnego singletona.
+_local = threading.local()
 _embedder = None
 _collection = None
 
 
 def _get_kos():
-    global _kos
-    if _kos is None:
-        _kos = KOS()
-    return _kos
+    if not hasattr(_local, "kos"):
+        _local.kos = KOS()
+    return _local.kos
 
 
 def _get_vectors():

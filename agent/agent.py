@@ -15,9 +15,20 @@ sys.path.insert(0, os.path.dirname(os.path.dirname(os.path.abspath(__file__))))
 from agent.tools import TOOLS, run_tool  # noqa: E402
 
 # Model: zmień przez zmienną KOS_MODEL bez edycji kodu
-#   claude-sonnet-5 (tanio, dobra jakość) / claude-opus-4-8 (max jakość)
+#   claude-haiku-4-5 (najtaniej) / claude-sonnet-5 (tanio, dobra jakość)
+#   / claude-opus-4-8 (max jakość)
 MODEL = os.environ.get("KOS_MODEL", "claude-opus-4-8")
 MAX_TOOL_ROUNDS = 6
+
+# Adaptive thinking działa tylko na modelach 4.6+ (Opus 4.6/4.7/4.8, Sonnet 4.6/5,
+# Fable 5). Haiku 4.5 (i starsze modele) go nie wspiera — bez tego warunku API
+# zwraca błąd 400 "adaptive thinking is not supported on this model".
+_ADAPTIVE_THINKING_MODELS = {
+    "claude-opus-4-8", "claude-opus-4-7", "claude-opus-4-6",
+    "claude-sonnet-5", "claude-sonnet-4-6",
+    "claude-fable-5", "claude-mythos-5",
+}
+_THINKING = {"type": "adaptive"} if MODEL in _ADAPTIVE_THINKING_MODELS else None
 
 SYSTEM = """\
 Jesteś ekspertem-mistrzem gry (MG) systemu **Warhammer Fantasy Roleplay 2. edycja**.
@@ -39,6 +50,12 @@ narzędzi. Zanim odpowiesz na pytanie o dane z gry, WYWOŁAJ właściwe narzędz
 - zasady, mechaniki, opisy, lore, tło świata → `szukaj_zasad`
 Możesz łączyć narzędzia (najpierw plan, potem wywołania). Jeśli danych brak w
 narzędziach — powiedz to wprost, nie fabrykuj.
+
+Uwaga o tabeli broni: Księga Zasad grupuje broń białą w KATEGORIE, nie pod
+nazwami potocznymi — np. zwykły miecz, topór czy maczuga to w tabeli
+«Broń jednoręczna» (kategoria Zwykła), a nie osobna pozycja «Miecz». Jeśli
+zapytają o typową broń, a `bron_szczegoly` jej nie znajdzie po nazwie
+dosłownej, spróbuj kategorii: «Broń jednoręczna», «Broń dwuręczna».
 
 # ŚCISŁE OGRANICZENIE TEMATU
 Rozmawiasz WYŁĄCZNIE o grze Warhammer Fantasy (mechanika, zasady, profesje, cechy,
@@ -74,12 +91,13 @@ def ask(messages, on_event=None):
     convo = [{"role": m["role"], "content": m["content"]} for m in messages]
     used = []
 
+    kwargs = dict(model=MODEL, max_tokens=2048, system=SYSTEM,
+                  tools=TOOLS, messages=convo)
+    if _THINKING:
+        kwargs["thinking"] = _THINKING
+
     for _ in range(MAX_TOOL_ROUNDS):
-        resp = client.messages.create(
-            model=MODEL, max_tokens=2048, system=SYSTEM,
-            tools=TOOLS, messages=convo,
-            thinking={"type": "adaptive"},
-        )
+        resp = client.messages.create(**kwargs)
         convo.append({"role": "assistant", "content": resp.content})
 
         if resp.stop_reason != "tool_use":
