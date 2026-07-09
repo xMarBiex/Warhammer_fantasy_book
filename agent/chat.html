@@ -146,6 +146,13 @@
   .skills-table td:first-child{text-align:left}
   .skills-table input[type=text]{padding:5px 6px}
   .skills-table input[type=checkbox]{width:16px;height:16px;cursor:pointer}
+  .skills-table td:last-child{width:28px;padding:0}
+  .sk-remove{background:none;border:none;color:var(--faint);font-size:1.1rem;cursor:pointer;
+    padding:0 4px;line-height:1}
+  .sk-remove:hover{color:var(--rust)}
+  .skill-add-btn{margin-top:6px;padding:6px 12px;font-size:.8rem;font-weight:600;
+    background:var(--panel2);color:var(--gold);border:1px solid var(--line2);border-radius:10px;cursor:pointer}
+  .skill-add-btn:hover{border-color:var(--gold)}
   .actions-ref{display:grid;grid-template-columns:1fr 1fr;gap:10px;font-size:.8rem}
   .actions-ref .ar-col{background:var(--panel2);border:1px solid var(--line2);border-radius:10px;padding:10px}
   .actions-ref .ar-col h4{margin:0 0 6px;color:var(--gold);font-size:.78rem}
@@ -228,6 +235,7 @@
       <div class="sheet-section">
         <div class="label">Cechy drugorzędne</div>
         <div id="sSecWrap"></div>
+        <div class="sheet-note">Ta sama zasada puli co przy cechach głównych: "Rozwój" to pozostała pula ze schematu profesji.</div>
         <div class="sheet-grid2" style="margin-top:10px">
           <label>Ruch — chodzenie<input id="sMoveWalk" readonly></label>
           <label>Ruch — bieg<input id="sMoveRun" readonly></label>
@@ -251,18 +259,12 @@
       </div>
 
       <div class="sheet-section">
-        <label class="sheet-full">Umiejętności (z profesji — pełna lista)<textarea id="sSkills" rows="3"></textarea></label>
-
-        <div class="label" style="margin-top:10px">Umiejętności — postęp</div>
+        <div class="label">Umiejętności (wypełniane automatycznie z profesji, edytowalne)</div>
         <table class="skills-table">
-          <thead><tr><th style="text-align:left">Umiejętność</th><th>Wykupione</th><th>+10%</th><th>+20%</th></tr></thead>
-          <tbody>
-            <tr><td><input id="sk1_name" type="text"></td><td><input id="sk1_wyk" type="checkbox"></td><td><input id="sk1_p10" type="checkbox"></td><td><input id="sk1_p20" type="checkbox"></td></tr>
-            <tr><td><input id="sk2_name" type="text"></td><td><input id="sk2_wyk" type="checkbox"></td><td><input id="sk2_p10" type="checkbox"></td><td><input id="sk2_p20" type="checkbox"></td></tr>
-            <tr><td><input id="sk3_name" type="text"></td><td><input id="sk3_wyk" type="checkbox"></td><td><input id="sk3_p10" type="checkbox"></td><td><input id="sk3_p20" type="checkbox"></td></tr>
-            <tr><td><input id="sk4_name" type="text"></td><td><input id="sk4_wyk" type="checkbox"></td><td><input id="sk4_p10" type="checkbox"></td><td><input id="sk4_p20" type="checkbox"></td></tr>
-          </tbody>
+          <thead><tr><th style="text-align:left">Umiejętność</th><th>Wykupione</th><th>+10%</th><th>+20%</th><th></th></tr></thead>
+          <tbody id="skillsBody"></tbody>
         </table>
+        <button id="skillAddBtn" type="button" class="skill-add-btn">+ Dodaj umiejętność</button>
 
         <label class="sheet-full" style="margin-top:10px">Zdolności (Talenty)<textarea id="sTalents" rows="3"></textarea></label>
         <label class="sheet-full">Wyposażenie<textarea id="sTrappings" rows="3"></textarea></label>
@@ -545,23 +547,21 @@ add("bot","Witaj, śmiałku. Jestem twoim Mistrzem Gry dla <b>Warhammer Fantasy 
         sheetSave=document.getElementById("sheetSave"), sheetLoad=document.getElementById("sheetLoad"),
         sheetLock=document.getElementById("sheetLock"),
         sCareerNow=document.getElementById("sCareerNow"), sCareerPrev=document.getElementById("sCareerPrev"),
-        sSkills=document.getElementById("sSkills"), sTalents=document.getElementById("sTalents"),
+        sTalents=document.getElementById("sTalents"),
         sTrappings=document.getElementById("sTrappings"), sName=document.getElementById("sName"),
         sMoveWalk=document.getElementById("sMoveWalk"), sMoveRun=document.getElementById("sMoveRun"),
         sXpTotal=document.getElementById("sXpTotal"), sXpSpent=document.getElementById("sXpSpent"),
-        sXpAvail=document.getElementById("sXpAvail");
+        sXpAvail=document.getElementById("sXpAvail"),
+        skillsBody=document.getElementById("skillsBody"), skillAddBtn=document.getElementById("skillAddBtn");
 
   const MAIN_CODES=["WW","US","K","Odp","Zr","Int","SW","Ogd"];
   const SEC_CODES=["A","Zyw","S","Wt","Sz","Mag","PO","PP"];
   const SEC_LABELS={A:"A",Zyw:"Żyw",S:"S",Wt:"Wt",Sz:"Sz",Mag:"Mag",PO:"PO",PP:"PP"};
   const MAIN_SET=new Set(MAIN_CODES);
   const PZ_FIELDS=["pz_glowa","pz_prawe_ramie","pz_lewe_ramie","pz_korpus","pz_prawa_noga","pz_lewa_noga"];
-  const SKILL_TEXT=["sk1_name","sk2_name","sk3_name","sk4_name"];
-  const SKILL_CHECK=["sk1_wyk","sk1_p10","sk1_p20","sk2_wyk","sk2_p10","sk2_p20",
-    "sk3_wyk","sk3_p10","sk3_p20","sk4_wyk","sk4_p10","sk4_p20"];
   const TEXT_FIELDS=["sName","sRace","sCareerNow","sCareerPrev","sAge","sEyes","sHair","sSign",
-    "sBirth","sMarks","sSkills","sTalents","sTrappings","sGC","sSS","sBP","sXpTotal","sXpSpent","sNotes",
-    ...PZ_FIELDS,...SKILL_TEXT];
+    "sBirth","sMarks","sTalents","sTrappings","sGC","sSS","sBP","sXpTotal","sXpSpent","sNotes",
+    ...PZ_FIELDS];
 
   let professionsCache=null, currentProfessionId=null, statsBuilt=false, locked=false;
 
@@ -657,8 +657,8 @@ add("bot","Witaj, śmiałku. Jestem twoim Mistrzem Gry dla <b>Warhammer Fantasy 
   }
 
   // overwrite=true (startowa profesja): wpisuje cechy z profesji wprost do pola
-  // "Rozwój" i przelicza "Aktualną". overwrite=false (awans): zostawia już
-  // wpisane wartości, aktualizuje tylko podpowiedź maksimum danej kariery.
+  // "Rozwój" (pełna pula) i przelicza "Aktualną". overwrite=false: tylko
+  // odświeża podpowiedź puli, bez ruszania wartości (używane przy wczytaniu z pliku).
   function applyStats(stats,overwrite){
     [...MAIN_CODES.map(c=>[c,stats.main[c]]), ...SEC_CODES.map(c=>[c,stats.secondary[c]])]
       .forEach(([c,raw])=>{
@@ -674,6 +674,37 @@ add("bot","Witaj, śmiałku. Jestem twoim Mistrzem Gry dla <b>Warhammer Fantasy 
       });
   }
 
+  // Awans na kolejną profesję: pułapy NIE sumują się. Jeśli nowa kariera oferuje
+  // wyższy pułap dla danej cechy, wykupione punkty (purchased = stary_pułap -
+  // pozostała_pula) zostają zachowane, a pozostała pula liczy się już względem
+  // nowego, wyższego pułapu (str. 30 — jednorazowo 200 PD za zmianę zapisu +
+  // normalny koszt wykupienia różnicy). Jeśli nowy pułap nie jest wyższy —
+  // nic się nie zmienia.
+  function advanceStats(stats){
+    const upgraded=[];
+    [...MAIN_CODES.map(c=>[c,stats.main[c]]), ...SEC_CODES.map(c=>[c,stats.secondary[c]])]
+      .forEach(([c,raw])=>{
+        const el=document.getElementById(`st_${c}_adv`);
+        if(!el) return;
+        const newCapStr=parseStatMod(raw);
+        if(newCapStr==="") return; // nowa profesja nie rozwija tej cechy — bez zmian
+        const newCap=numVal(newCapStr);
+        const oldCapStr=el.dataset.cap;
+        const oldCap=(oldCapStr!==undefined&&oldCapStr!=="")?numVal(oldCapStr):0;
+        const purchased=(oldCapStr!==undefined&&oldCapStr!=="")
+          ? oldCap-(el.value.trim()!==""?numVal(el.value):oldCap)
+          : (el.value.trim()!==""?numVal(el.value):0);
+        if(newCap>oldCap){
+          el.dataset.cap=String(newCap);
+          el.value=String(Math.max(0,newCap-purchased));
+          el.placeholder=`pula ${newCap}`;
+          recalcStat(c);
+          upgraded.push(`${c}: +${oldCap}→+${newCap}`);
+        }
+      });
+    return upgraded;
+  }
+
   function appendUnique(existing,additions){
     if(!additions) return existing;
     const have=new Set((existing||"").split(",").map(s=>s.trim().toLowerCase()).filter(Boolean));
@@ -681,6 +712,40 @@ add("bot","Witaj, śmiałku. Jestem twoim Mistrzem Gry dla <b>Warhammer Fantasy 
     const base=(existing||"").trim();
     return base?(add.length?base+", "+add.join(", "):base):additions;
   }
+
+  // ── Umiejętności — wiersze dynamiczne (nazwa + Wykupione/+10%/+20%) ────────
+  function addSkillRow(name){
+    const tr=document.createElement("tr");
+    tr.innerHTML=`<td><input type="text" class="sk-name" value="${esc(name||"")}"></td>
+      <td><input type="checkbox" class="sk-wyk"></td>
+      <td><input type="checkbox" class="sk-p10"></td>
+      <td><input type="checkbox" class="sk-p20"></td>
+      <td><button type="button" class="sk-remove" title="Usuń umiejętność" ${locked?"disabled":""}>×</button></td>`;
+    skillsBody.appendChild(tr);
+    return tr;
+  }
+  function ensureMinSkillRows(n){
+    while(skillsBody.children.length<n) addSkillRow("");
+  }
+  // Zastępuje listę umiejętności (startowa profesja).
+  function setSkillsFromProfession(skillsStr){
+    skillsBody.innerHTML="";
+    (skillsStr||"").split(",").map(s=>s.trim()).filter(Boolean).forEach(name=>addSkillRow(name));
+    ensureMinSkillRows(4);
+  }
+  // Dopisuje nowe umiejętności bez ruszania już wykupionych (awans).
+  function addProfessionSkills(skillsStr){
+    if(!skillsStr) return;
+    const existing=new Set([...skillsBody.querySelectorAll(".sk-name")].map(i=>i.value.trim().toLowerCase()).filter(Boolean));
+    skillsStr.split(",").map(s=>s.trim()).filter(Boolean).forEach(name=>{
+      if(!existing.has(name.toLowerCase())){addSkillRow(name); existing.add(name.toLowerCase());}
+    });
+  }
+  skillAddBtn.onclick=()=>{ if(!locked) addSkillRow(""); };
+  skillsBody.addEventListener("click",(e)=>{
+    const btn=e.target.closest(".sk-remove");
+    if(btn&&!btn.disabled) btn.closest("tr").remove();
+  });
 
   function renderAdvances(exits){
     if(!exits||!exits.length){
@@ -697,7 +762,7 @@ add("bot","Witaj, śmiałku. Jestem twoim Mistrzem Gry dla <b>Warhammer Fantasy 
     try{
       const stats=await fetchProfession(id);
       currentProfessionId=id;
-      sSkills.value=stats.skills||"";
+      setSkillsFromProfession(stats.skills);
       sTalents.value=stats.talents||"";
       sTrappings.value=stats.trappings||"";
       applyStats(stats,true);
@@ -717,12 +782,14 @@ add("bot","Witaj, śmiałku. Jestem twoim Mistrzem Gry dla <b>Warhammer Fantasy 
       sCareerPrev.value=prevOpt?prevOpt.text:"";
       sCareerNow.value=target.node_id;
       currentProfessionId=target.node_id;
-      sSkills.value=appendUnique(sSkills.value,stats.skills);
+      addProfessionSkills(stats.skills);
       sTalents.value=appendUnique(sTalents.value,stats.talents);
       sTrappings.value=appendUnique(sTrappings.value,stats.trappings);
-      applyStats(stats,false);
+      const upgraded=advanceStats(stats);
       renderAdvances(stats.exits);
-      sheetMsg.textContent=`Awans: ${stats.name} (str. ${stats.page}). Umiejętności/zdolności/wyposażenie dopisane.`;
+      let msg=`Awans: ${stats.name} (str. ${stats.page}). Umiejętności/zdolności/wyposażenie dopisane.`;
+      if(upgraded.length) msg+=` Wyższy pułap rozwoju (str. 30, jednorazowo 200 PD za zapis): ${upgraded.join(", ")}.`;
+      sheetMsg.textContent=msg;
     }catch(err){sheetMsg.textContent="⚠ nie udało się pobrać profesji z serwera.";}
   });
 
@@ -733,6 +800,7 @@ add("bot","Witaj, śmiałku. Jestem twoim Mistrzem Gry dla <b>Warhammer Fantasy 
     if(!statsBuilt){
       buildStatTable(sMainWrap,MAIN_CODES,Object.fromEntries(MAIN_CODES.map(c=>[c,c])),5);
       buildStatTable(sSecWrap,SEC_CODES,SEC_LABELS,1);
+      ensureMinSkillRows(4);
       statsBuilt=true;
       recalcXp();
     }
@@ -756,7 +824,12 @@ add("bot","Witaj, śmiałku. Jestem twoim Mistrzem Gry dla <b>Warhammer Fantasy 
   function collectState(){
     const state={savedAt:new Date().toISOString(), professionId:currentProfessionId};
     TEXT_FIELDS.forEach(id=>{state[id]=val(id);});
-    SKILL_CHECK.forEach(id=>{const el=document.getElementById(id); state[id]=el?el.checked:false;});
+    state.skills=[...skillsBody.querySelectorAll("tr")].map(tr=>({
+      name: tr.querySelector(".sk-name").value,
+      wyk: tr.querySelector(".sk-wyk").checked,
+      p10: tr.querySelector(".sk-p10").checked,
+      p20: tr.querySelector(".sk-p20").checked,
+    }));
     state.stats={};
     [...MAIN_CODES,...SEC_CODES].forEach(c=>{
       const a=document.getElementById(`st_${c}_adv`);
@@ -794,9 +867,14 @@ add("bot","Witaj, śmiałku. Jestem twoim Mistrzem Gry dla <b>Warhammer Fantasy 
       TEXT_FIELDS.forEach(id=>{
         if(state[id]!==undefined){const el=document.getElementById(id); if(el) el.value=state[id];}
       });
-      SKILL_CHECK.forEach(id=>{
-        const el=document.getElementById(id); if(el) el.checked=!!state[id];
+      skillsBody.innerHTML="";
+      (state.skills||[]).forEach(s=>{
+        const tr=addSkillRow(s.name||"");
+        tr.querySelector(".sk-wyk").checked=!!s.wyk;
+        tr.querySelector(".sk-p10").checked=!!s.p10;
+        tr.querySelector(".sk-p20").checked=!!s.p20;
       });
+      ensureMinSkillRows(4);
       if(state.stats){
         Object.entries(state.stats).forEach(([c,v])=>{
           const i=document.getElementById(`st_${c}_init`), a=document.getElementById(`st_${c}_adv`);
