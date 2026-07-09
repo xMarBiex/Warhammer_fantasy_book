@@ -117,10 +117,11 @@
   .sheet-table{width:100%;border-collapse:collapse;font-size:.82rem;table-layout:fixed}
   .sheet-table th,.sheet-table td{padding:4px 2px;text-align:center}
   .sheet-table th{color:var(--faint);font-weight:600;font-size:.66rem;text-transform:uppercase}
-  .sheet-table td:first-child,.sheet-table th:first-child{width:72px;text-align:left;
-    color:var(--dim);font-size:.72rem;padding-right:6px}
+  .sheet-table td:first-child,.sheet-table th:first-child{width:88px;text-align:left;
+    color:var(--dim);font-size:.7rem;padding-right:6px}
   .sheet-table input{padding:4px 2px;text-align:center;font-size:.8rem}
   .sheet-table .r-cur input{color:var(--gold);font-weight:700;background:transparent;border-color:transparent}
+  .cap-hint{display:block;font-size:.6rem;color:var(--faint);text-align:center;margin-top:2px;line-height:1}
   .sheet-advances{display:flex;flex-wrap:wrap;gap:6px;margin-top:8px}
   .sheet-advances .adv-chip{font-size:.74rem;padding:4px 10px;border-radius:16px;
     border:1px solid var(--line2);background:var(--panel2);color:var(--dim);cursor:pointer;font:inherit}
@@ -228,14 +229,15 @@
       <div class="sheet-section">
         <div class="label">Cechy główne (rozwój co 5%)</div>
         <div id="sMainWrap"></div>
-        <div class="sheet-note">"Rozwój" to pozostała pula ze schematu profesji (np. +10). W miarę wykupywania
-          punktów za PD wpisz mniejszą wartość — różnica dolicza się do "Aktualnej" (np. z +10 na +5 → Aktualna rośnie o 5).</div>
+        <div class="sheet-note">"Schemat Rozwoju" to pozostała pula ze schematu profesji — dopisek w nawiasie
+          pod polem pokazuje pełną wartość z księgi (np. (+10)). W miarę wykupywania punktów za PD wpisz mniejszą
+          wartość — różnica dolicza się do "Aktualnej" (np. z 10 na 5 → Aktualna rośnie o 5).</div>
       </div>
 
       <div class="sheet-section">
         <div class="label">Cechy drugorzędne</div>
         <div id="sSecWrap"></div>
-        <div class="sheet-note">Ta sama zasada puli co przy cechach głównych: "Rozwój" to pozostała pula ze schematu profesji.</div>
+        <div class="sheet-note">Ta sama zasada puli co przy cechach głównych: "Schemat Rozwoju" to pozostała pula ze schematu profesji.</div>
         <div class="sheet-grid2" style="margin-top:10px">
           <label>Ruch — chodzenie<input id="sMoveWalk" readonly></label>
           <label>Ruch — bieg<input id="sMoveRun" readonly></label>
@@ -570,15 +572,16 @@ add("bot","Witaj, śmiałku. Jestem twoim Mistrzem Gry dla <b>Warhammer Fantasy 
 
   function buildStatTable(wrapEl,codes,labels,advStep){
     const thead='<tr><th></th>'+codes.map(c=>`<th>${esc(labels[c]||c)}</th>`).join('')+'</tr>';
-    function row(cls,label,suffix,readonly,step){
+    function row(cls,label,suffix,readonly,step,withCapHint){
       return `<tr class="${cls}"><td>${label}</td>`+codes.map(c=>
-        `<td><input type="number" id="st_${c}_${suffix}" ${readonly?"readonly":""} ${step?`step="${step}"`:""}></td>`
+        `<td><input type="number" id="st_${c}_${suffix}" ${readonly?"readonly":""} ${step?`step="${step}"`:""}>`
+        +(withCapHint?`<small class="cap-hint" id="st_${c}_cap"></small>`:"")+`</td>`
       ).join('')+'</tr>';
     }
     wrapEl.innerHTML=`<table class="sheet-table"><thead>${thead}</thead><tbody>`
-      +row("r-init","Początkowa","init",false,1)
-      +row("r-adv","Rozwój","adv",false,advStep)
-      +row("r-cur","Aktualna","cur",true,1)
+      +row("r-init","Początkowa","init",false,1,false)
+      +row("r-adv","Schemat Rozwoju","adv",false,advStep,true)
+      +row("r-cur","Aktualna","cur",true,1,false)
       +"</tbody></table>";
   }
 
@@ -655,17 +658,25 @@ add("bot","Witaj, śmiałku. Jestem twoim Mistrzem Gry dla <b>Warhammer Fantasy 
     const m=String(v).match(/-?\d+/);
     return m?m[0]:"";
   }
+  function fmtCap(v){
+    if(!v) return "";
+    return String(v).startsWith("-")?`(${v})`:`(+${v})`;
+  }
+  function setCapHint(c,capVal){
+    const lab=document.getElementById(`st_${c}_cap`);
+    if(lab) lab.textContent=fmtCap(capVal);
+  }
 
   // overwrite=true (startowa profesja): wpisuje cechy z profesji wprost do pola
-  // "Rozwój" (pełna pula) i przelicza "Aktualną". overwrite=false: tylko
-  // odświeża podpowiedź puli, bez ruszania wartości (używane przy wczytaniu z pliku).
+  // "Schemat Rozwoju" (pełna pula) i przelicza "Aktualną". overwrite=false: tylko
+  // odświeża dopisek z wartością z książki, bez ruszania wartości (wczytanie z pliku).
   function applyStats(stats,overwrite){
     [...MAIN_CODES.map(c=>[c,stats.main[c]]), ...SEC_CODES.map(c=>[c,stats.secondary[c]])]
       .forEach(([c,raw])=>{
         const el=document.getElementById(`st_${c}_adv`);
         if(!el) return;
         const capVal=parseStatMod(raw);
-        el.placeholder=capVal?`pula ${capVal}`:"";
+        setCapHint(c,capVal);
         if(overwrite){
           if(capVal){ el.dataset.cap=capVal; el.value=capVal; }
           else{ delete el.dataset.cap; el.value=""; }
@@ -697,7 +708,7 @@ add("bot","Witaj, śmiałku. Jestem twoim Mistrzem Gry dla <b>Warhammer Fantasy 
         if(newCap>oldCap){
           el.dataset.cap=String(newCap);
           el.value=String(Math.max(0,newCap-purchased));
-          el.placeholder=`pula ${newCap}`;
+          setCapHint(c,String(newCap));
           recalcStat(c);
           upgraded.push(`${c}: +${oldCap}→+${newCap}`);
         }
@@ -767,7 +778,7 @@ add("bot","Witaj, śmiałku. Jestem twoim Mistrzem Gry dla <b>Warhammer Fantasy 
       sTrappings.value=stats.trappings||"";
       applyStats(stats,true);
       renderAdvances(stats.exits);
-      sheetMsg.textContent=`Ustawiono klasę: ${stats.name} (str. ${stats.page}). Cechy z profesji wpisane w wiersz "Rozwój".`;
+      sheetMsg.textContent=`Ustawiono klasę: ${stats.name} (str. ${stats.page}). Cechy z profesji wpisane w wiersz "Schemat Rozwoju".`;
     }catch(e){sheetMsg.textContent="⚠ nie udało się pobrać profesji z serwera.";}
   });
 
@@ -881,7 +892,8 @@ add("bot","Witaj, śmiałku. Jestem twoim Mistrzem Gry dla <b>Warhammer Fantasy 
           if(i) i.value=v.init||"";
           if(a){
             a.value=v.adv||"";
-            if(v.cap){ a.dataset.cap=v.cap; a.placeholder=`pula ${v.cap}`; } else delete a.dataset.cap;
+            if(v.cap){ a.dataset.cap=v.cap; } else delete a.dataset.cap;
+            setCapHint(c,v.cap||"");
           }
           recalcStat(c);
         });
