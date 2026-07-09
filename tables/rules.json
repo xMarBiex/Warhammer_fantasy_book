@@ -40,5 +40,41 @@
   "kategoria": "Magia — mechanika",
   "page": 149,
   "text": "Postać rzucająca zaklęcie musi mieć możliwość swobodnego mówienia, by wypowiedzieć inkantację — jeśli jest zakneblowana lub nie może mówić, nie rzuci czaru. Rzucanie wymaga też skupienia i całkowitego poświęcenia uwagi magicznej formule."
+ },
+ {
+  "name": "Rzut na trafienie (atak)",
+  "kategoria": "Walka — mechanika",
+  "page": 133,
+  "text": "Aby zadać cios, postać wykonuje jedną z akcji ataku (zwykły, wielokrotny, szaleńczy, ostrożny lub szarża) i musi znajdować się tuż obok celu (broń biała / bez broni) albo mieć wolne pole ostrzału (broń strzelecka/rzucana). Rzut na trafienie: jeśli wynik rzutu k100 jest równy lub mniejszy od odpowiedniej cechy — Walki Wręcz (WW) dla broni białej albo Umiejętności Strzeleckich (US) dla broni strzeleckiej — atak jest udany."
+ },
+ {
+  "name": "Lokacje trafienia",
+  "kategoria": "Walka — mechanika",
+  "page": 133,
+  "text": "Po udanym trafieniu odwróć kolejność cyfr wyniku rzutu na trafienie i sprawdź lokację w tabeli: 01-15 głowa, 16-35 prawe ramię, 36-55 lewe ramię, 56-80 korpus, 81-90 prawa noga, 91-00 lewa noga. Przykład: rzut 37 zamienia się na 73, czyli trafienie w korpus."
+ },
+ {
+  "name": "Rzut na obrażenia",
+  "kategoria": "Walka — mechanika",
+  "page": 133,
+  "text": "Aby ustalić obrażenia, rzuć 1k10 i dodaj Siłę broni. Broń biała lub atak bez broni: do rzutu dodaje się Siłę (S) atakującego z modyfikatorem zależnym od broni (Tabela 5-4). Broń strzelecka: dodaje się Siłę broni (Tabela 5-5). Od uzyskanych obrażeń odejmuje się Wytrzymałość (Wt) trafionego oraz Punkty Zbroi (PZ) trafionej lokacji; pozostałą wartość odejmuje się od Żywotności."
+ },
+ {
+  "name": "Parowanie ciosów",
+  "kategoria": "Walka — mechanika",
+  "page": 134,
+  "text": "Postać może zablokować cios akcją parowania, wykorzystując broń, tarczę lub puklerz. Nie można parować ciosu, którego się nie spodziewa (zasadzka, atak z zaskoczenia). Parowanie rozstrzyga test Walki Wręcz — udany oznacza, że atak kończy się niepowodzeniem. Parowanie to akcja zwykła, ale z tarczą, puklerzem lub bronią w drugiej ręce można sparować akcją natychmiastową. Tylko jedno parowanie na rundę. Nie można parować ataków strzeleckich."
+ },
+ {
+  "name": "Unikanie ciosów",
+  "kategoria": "Walka — mechanika",
+  "page": 134,
+  "text": "Unik to umiejętność zaawansowana. Po udanym rzucie na trafienie, ale przed rzutem na obrażenia, cel ataku może spróbować uniknąć ciosu — rozstrzyga to test uniku; udany oznacza, że atak chybia. Nie można unikać, gdy się ataku nie spodziewa. Unik to akcja natychmiastowa, tylko jeden na rundę. Nie można jednocześnie parować i unikać tego samego ataku, ani unikać/parować ataków strzeleckich."
+ },
+ {
+  "name": "Przyzywanie demonów",
+  "kategoria": "Magia czarnoksięska — mechanika",
+  "page": 168,
+  "text": "Wiele czarów Chaosu przyzywa demony. Po przyzwaniu czarnoksiężnik wykonuje test Siły Woli, by sprawdzić, czy zapanował nad demonem. Nieudany test oznacza, że demon wyrywa się spod władzy — jego poczynaniami kieruje wtedy MG. Demony nie lubią być zmuszane do posłuszeństwa; zwykle są agresywne i próbują zemścić się na tym, który je przyzwał."
  }
 ]
