@@ -113,10 +113,10 @@ def main():
         print("⚠ Brak ANTHROPIC_API_KEY — /api/chat zwróci błąd do czasu ustawienia klucza.",
               file=sys.stderr)
     if PASSWORD:
-        print("🔒 Ochrona hasłem WŁĄCZONA (KOS_PASSWORD) — przeglądarka poprosi o hasło.",
+        print("[LOCK] Ochrona haslem WLACZONA (KOS_PASSWORD) - przegladarka poprosi o haslo.",
               file=sys.stderr)
     else:
-        print("🔓 Bez hasła — OK dla localhost. Do udostępniania w internecie ustaw KOS_PASSWORD.",
+        print("[i] Bez hasla - OK dla localhost. Do udostepniania w internecie ustaw KOS_PASSWORD.",
               file=sys.stderr)
     srv = ThreadingHTTPServer((args.host, args.port), Handler)
     print(f"Agent KOS słucha na http://{args.host}:{args.port}  (Ctrl+C aby zakończyć)")
