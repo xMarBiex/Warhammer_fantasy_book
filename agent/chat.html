@@ -11,6 +11,11 @@
     --faint:#8a7d63; --gold:#c8a24a; --rust:#a2482f; --ok:#6f9d5b;
   }
   *{box-sizing:border-box}
+  *{scrollbar-width:thin;scrollbar-color:var(--line2) var(--bg2)}
+  *::-webkit-scrollbar{width:11px;height:11px}
+  *::-webkit-scrollbar-track{background:var(--bg2)}
+  *::-webkit-scrollbar-thumb{background:var(--line2);border-radius:8px;border:2px solid var(--bg2)}
+  *::-webkit-scrollbar-thumb:hover{background:var(--gold)}
   html,body{height:100%}
   body{margin:0;background:var(--bg);color:var(--ink);
     font:16px/1.55 "Iowan Old Style",Georgia,"Times New Roman",serif;
