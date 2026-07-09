@@ -48,14 +48,84 @@
   .ex{font-size:.78rem;color:var(--dim);background:var(--panel);border:1px solid var(--line);
     padding:4px 10px;border-radius:20px;cursor:pointer}
   .ex:hover{border-color:var(--gold);color:var(--ink)}
+
+  /* — Rzut kością (k10/k100) — */
+  .head-row{display:flex;align-items:center;justify-content:space-between;gap:12px}
+  .dice-trigger{flex:0 0 auto;padding:7px 14px;font-size:1.25rem;line-height:1;
+    background:var(--panel2);color:var(--gold);border:1px solid var(--line2);
+    border-radius:12px;cursor:pointer}
+  .dice-trigger:hover{border-color:var(--gold)}
+  .msg.roll{justify-content:center}
+  .roll-bubble{background:#241d12;border:1px solid var(--gold);color:var(--ink);
+    font-size:.85rem;padding:8px 14px;border-radius:20px;text-align:center}
+  .roll-bubble b{color:var(--gold)}
+  .dice-overlay{position:fixed;inset:0;background:rgba(10,8,4,.72);display:flex;
+    align-items:center;justify-content:center;z-index:50;padding:16px}
+  .dice-overlay.hidden{display:none}
+  .dice-modal{background:var(--panel);border:1px solid var(--line2);border-radius:16px;
+    padding:18px;max-width:420px;width:100%;box-shadow:0 12px 40px rgba(0,0,0,.5)}
+  .dice-modal-head{display:flex;justify-content:space-between;align-items:center;margin-bottom:12px}
+  .dice-modal-head span{color:var(--gold);font-weight:600;font-size:1.05rem}
+  .dice-x{background:none;border:none;color:var(--faint);font-size:1.4rem;cursor:pointer;padding:0 4px}
+  .dice-x:hover{color:var(--ink)}
+  .dice-toggles{display:flex;gap:8px;margin-bottom:14px}
+  .dchip{flex:1;padding:8px;border-radius:10px;border:1px solid var(--line2);
+    background:var(--panel2);color:var(--dim);cursor:pointer;font:inherit;font-weight:600}
+  .dchip.active{border-color:var(--gold);color:var(--gold);background:#2a2110}
+  .dice-stage{display:flex;gap:16px;justify-content:center;flex-wrap:wrap;
+    min-height:110px;align-items:center;margin-bottom:14px}
+  .dice-card{border:1px solid var(--line2);background:var(--panel2);border-radius:14px;
+    padding:12px;display:flex;flex-direction:column;align-items:center;gap:8px;min-width:110px}
+  .dice-card .label{color:var(--faint);font-size:.7rem;text-transform:uppercase;letter-spacing:.6px}
+  .die-row{display:flex;gap:8px}
+  .die-face{width:60px;height:60px;border-radius:14px;
+    background:linear-gradient(145deg,#332a19,#1b1710);border:1px solid var(--line2);
+    display:flex;align-items:center;justify-content:center;font-size:1.7rem;font-weight:700;
+    color:var(--gold);box-shadow:0 2px 6px rgba(0,0,0,.4)}
+  .die-face.small{width:42px;height:42px;font-size:1.05rem}
+  .die-face.rolling{animation:diceShake .12s linear infinite}
+  .die-face.landed{animation:diceLand .35s ease}
+  @keyframes diceShake{0%{transform:rotate(-9deg) scale(1.06)}50%{transform:rotate(9deg) scale(.94)}100%{transform:rotate(-9deg) scale(1.06)}}
+  @keyframes diceLand{0%{transform:scale(1.35)}100%{transform:scale(1)}}
+  .dice-total{font-size:1.5rem;font-weight:700;color:var(--ink)}
+  .dice-total.pulse{animation:dicePulse .4s ease}
+  @keyframes dicePulse{0%{transform:scale(1.35);color:var(--gold)}100%{transform:scale(1);color:var(--ink)}}
+  .dice-roll-btn{width:100%;padding:12px;font:inherit;font-weight:700;color:#1a140a;
+    background:var(--gold);border:none;border-radius:12px;cursor:pointer}
+  .dice-roll-btn:disabled{opacity:.5;cursor:default}
+  .dice-log{margin-top:12px;max-height:110px;overflow-y:auto;font-size:.78rem;
+    color:var(--faint);border-top:1px solid var(--line);padding-top:8px}
+  .dice-log div{padding:2px 0}
+  .dice-log b{color:var(--dim)}
 </style>
 </head>
 <body>
 <header>
-  <h1>⚔️ Mistrz Gry — Warhammer Fantasy Roleplay 2e</h1>
-  <div class="sub">Odpowiadam wyłącznie na pytania o grę, opierając się na Księdze Zasad.
-    &nbsp;·&nbsp; <a href="/przegladarka" style="color:var(--gold)">📖 przeglądarka strukturalna (bez API)</a></div>
+  <div class="head-row">
+    <div>
+      <h1>⚔️ Mistrz Gry — Warhammer Fantasy Roleplay 2e</h1>
+      <div class="sub">Odpowiadam wyłącznie na pytania o grę, opierając się na Księdze Zasad.
+        &nbsp;·&nbsp; <a href="/przegladarka" style="color:var(--gold)">📖 przeglądarka strukturalna (bez API)</a></div>
+    </div>
+    <button id="diceBtn" class="dice-trigger" title="Rzut kością (k10 / k100)" type="button">🎲</button>
+  </div>
 </header>
+
+<div id="diceOverlay" class="dice-overlay hidden">
+  <div class="dice-modal">
+    <div class="dice-modal-head">
+      <span>🎲 Rzut kością</span>
+      <button id="diceClose" class="dice-x" type="button" aria-label="Zamknij">×</button>
+    </div>
+    <div class="dice-toggles">
+      <button class="dchip active" data-die="k10" type="button">k10</button>
+      <button class="dchip active" data-die="k100" type="button">k100</button>
+    </div>
+    <div class="dice-stage" id="diceStage"></div>
+    <button id="diceRoll" class="dice-roll-btn" type="button">Rzuć!</button>
+    <div class="dice-log" id="diceLog"></div>
+  </div>
+</div>
 
 <div id="log"></div>
 
@@ -118,6 +188,147 @@ document.getElementById("ex").innerHTML=EX.map(x=>`<span class="ex">${esc(x)}</s
 document.querySelectorAll(".ex").forEach(el=>el.onclick=()=>{qi.value=el.textContent;send();});
 add("bot","Witaj, śmiałku. Jestem twoim Mistrzem Gry dla <b>Warhammer Fantasy Roleplay</b>. "
   +"Pytaj o profesje, cechy, zasady albo mroczny świat Starego Świata — odpowiem wprost z Księgi Zasad.");
+
+/* ── Rzut kością (k10 / k100) — synteza dźwięku Web Audio, bez plików ── */
+(function(){
+  const overlay=document.getElementById("diceOverlay"), diceBtn=document.getElementById("diceBtn"),
+        diceClose=document.getElementById("diceClose"), stage=document.getElementById("diceStage"),
+        rollBtn=document.getElementById("diceRoll"), diceLog=document.getElementById("diceLog");
+  const active={k10:true,k100:true};
+  let audioCtx=null, rolling=false;
+
+  function ac(){
+    if(!audioCtx) audioCtx=new (window.AudioContext||window.webkitAudioContext)();
+    if(audioCtx.state==="suspended") audioCtx.resume();
+    return audioCtx;
+  }
+  function click(t,freq,vol){
+    const a=ac(), osc=a.createOscillator(), gain=a.createGain();
+    osc.type="square"; osc.frequency.value=freq;
+    gain.gain.setValueAtTime(vol, a.currentTime+t);
+    gain.gain.exponentialRampToValueAtTime(0.0001, a.currentTime+t+0.05);
+    osc.connect(gain).connect(a.destination);
+    osc.start(a.currentTime+t); osc.stop(a.currentTime+t+0.06);
+  }
+  function playRattle(duration){
+    const n=Math.floor(duration/70);
+    for(let i=0;i<n;i++) click(i*0.07, 1200+Math.random()*1600, 0.09+Math.random()*0.07);
+  }
+  function playThud(){
+    const a=ac(), osc=a.createOscillator(), gain=a.createGain();
+    osc.type="sine";
+    osc.frequency.setValueAtTime(180,a.currentTime);
+    osc.frequency.exponentialRampToValueAtTime(60,a.currentTime+0.15);
+    gain.gain.setValueAtTime(0.28,a.currentTime);
+    gain.gain.exponentialRampToValueAtTime(0.0001,a.currentTime+0.2);
+    osc.connect(gain).connect(a.destination);
+    osc.start(); osc.stop(a.currentTime+0.22);
+  }
+
+  function randInt(min,max){return Math.floor(Math.random()*(max-min+1))+min;}
+
+  function rollDie(el,[min,max],fmt,duration,onDone){
+    el.classList.add("rolling");
+    const iv=setInterval(()=>{el.textContent=fmt(randInt(min,max));},55);
+    setTimeout(()=>{
+      clearInterval(iv);
+      el.classList.remove("rolling");
+      const val=randInt(min,max);
+      el.textContent=fmt(val);
+      el.classList.add("landed");
+      setTimeout(()=>el.classList.remove("landed"),380);
+      onDone(val);
+    },duration);
+  }
+
+  function makeCard(label,inner){
+    const d=document.createElement("div");
+    d.className="dice-card";
+    d.innerHTML=`<div class="label">${label}</div>${inner}`;
+    return d;
+  }
+
+  function buildStage(){
+    stage.innerHTML="";
+    if(active.k10){
+      stage.appendChild(makeCard("k10",'<div class="die-face" data-role="k10">–</div>'));
+    }
+    if(active.k100){
+      stage.appendChild(makeCard("k100",
+        '<div class="die-row">'
+        +'<div class="die-face small" data-role="tens">–</div>'
+        +'<div class="die-face small" data-role="units">–</div>'
+        +'</div><div class="dice-total" data-role="total">–</div>'));
+    }
+  }
+
+  document.querySelectorAll(".dchip").forEach(ch=>{
+    ch.onclick=()=>{
+      if(rolling) return;
+      const key=ch.dataset.die;
+      const otherActive=key==="k10"?active.k100:active.k10;
+      if(active[key]&&!otherActive) return; // przynajmniej jedna kość musi zostać wybrana
+      active[key]=!active[key];
+      ch.classList.toggle("active",active[key]);
+      buildStage();
+    };
+  });
+
+  function addRollMessage(html){
+    const wrap=document.createElement("div");
+    wrap.className="msg roll";
+    wrap.innerHTML=`<div class="bubble roll-bubble">${html}</div>`;
+    log.appendChild(wrap); log.scrollTop=log.scrollHeight;
+  }
+
+  rollBtn.onclick=()=>{
+    if(rolling) return;
+    rolling=true; rollBtn.disabled=true;
+    const duration=700+Math.random()*200;
+    playRattle(duration);
+    const tasks=[];
+    if(active.k10){
+      const el=stage.querySelector('[data-role="k10"]');
+      tasks.push(new Promise(res=>{
+        rollDie(el,[1,10],v=>String(v),duration,v=>{playThud(); res(["k10",v]);});
+      }));
+    }
+    if(active.k100){
+      const tEl=stage.querySelector('[data-role="tens"]'),
+            uEl=stage.querySelector('[data-role="units"]'),
+            totalEl=stage.querySelector('[data-role="total"]');
+      tasks.push(new Promise(res=>{
+        let tensVal=0, unitsVal=0, done=0;
+        function finish(){
+          let total=tensVal+unitsVal; if(total===0) total=100;
+          totalEl.textContent=total;
+          totalEl.classList.add("pulse");
+          setTimeout(()=>totalEl.classList.remove("pulse"),400);
+          playThud();
+          res(["k100",total]);
+        }
+        rollDie(tEl,[0,9],v=>String(v*10).padStart(2,"0"),duration,v=>{tensVal=v*10; if(++done===2) finish();});
+        rollDie(uEl,[0,9],v=>String(v),duration+80,v=>{unitsVal=v; if(++done===2) finish();});
+      }));
+    }
+    Promise.all(tasks).then(results=>{
+      rolling=false; rollBtn.disabled=false;
+      const stamp=new Date().toLocaleTimeString("pl-PL",{hour:"2-digit",minute:"2-digit",second:"2-digit"});
+      const parts=results.map(([k,v])=>`<b>${k}:</b> ${v}`).join(" · ");
+      const entry=document.createElement("div");
+      entry.innerHTML=`${parts} <span style="opacity:.6">— ${stamp}</span>`;
+      diceLog.prepend(entry);
+      addRollMessage("🎲 "+results.map(([k,v])=>`${k}: <b>${v}</b>`).join("  ·  "));
+    });
+  };
+
+  diceBtn.onclick=()=>{overlay.classList.remove("hidden"); buildStage();};
+  diceClose.onclick=()=>overlay.classList.add("hidden");
+  overlay.onclick=(e)=>{if(e.target===overlay) overlay.classList.add("hidden");};
+  document.addEventListener("keydown",(e)=>{
+    if(e.key==="Escape"&&!overlay.classList.contains("hidden")) overlay.classList.add("hidden");
+  });
+})();
 </script>
 </body>
 </html>
