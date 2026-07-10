@@ -5,8 +5,11 @@ Serwuje interfejs czatu (agent/chat.html) i endpoint /api/chat, który uruchamia
 Reasoning Engine (agent.ask) z narzędziami KOS. Rozmowa trzymana po stronie
 klienta (pełna historia w każdym żądaniu).
 
-    ANTHROPIC_API_KEY=... python agent/server.py            # http://127.0.0.1:8000
-    ANTHROPIC_API_KEY=... python agent/server.py --port 8080
+Backend LLM wybierany zmienną KOS_BACKEND (domyślnie "ollama" — lokalny
+Bielik). Ustaw KOS_BACKEND=claude, by wrócić na Claude API.
+
+    python agent/server.py                                  # http://127.0.0.1:8000
+    KOS_BACKEND=claude ANTHROPIC_API_KEY=... python agent/server.py
 """
 import argparse
 import base64
@@ -20,7 +23,12 @@ from urllib.parse import urlsplit, parse_qs
 
 HERE = os.path.dirname(os.path.abspath(__file__))
 sys.path.insert(0, os.path.dirname(HERE))
-from agent.agent import ask  # noqa: E402
+
+BACKEND = os.environ.get("KOS_BACKEND", "ollama")
+if BACKEND == "claude":
+    from agent.agent import ask  # noqa: E402
+else:
+    from agent.ollama_agent import ask  # noqa: E402
 from kos.query import KOS  # noqa: E402
 
 CHAT_HTML = os.path.join(HERE, "chat.html")
@@ -95,8 +103,9 @@ class Handler(BaseHTTPRequestHandler):
                 self._send(404, "Uruchom: python kos/export_web.py",
                            "text/plain; charset=utf-8")
         elif path == "/health":
-            self._send(200, json.dumps({"ok": True,
-                       "key": bool(os.environ.get("ANTHROPIC_API_KEY"))}))
+            ready = (bool(os.environ.get("ANTHROPIC_API_KEY")) if BACKEND == "claude"
+                     else True)  # ollama: gotowość sprawdza się dopiero przy /api/chat
+            self._send(200, json.dumps({"ok": True, "backend": BACKEND, "key": ready}))
         elif path == "/api/professions":
             kos = _get_kos()
             if kos is None:
@@ -148,8 +157,14 @@ def main():
     ap.add_argument("--port", type=int, default=8000)
     ap.add_argument("--host", default="127.0.0.1")
     args = ap.parse_args()
-    if not os.environ.get("ANTHROPIC_API_KEY"):
-        print("⚠ Brak ANTHROPIC_API_KEY — /api/chat zwróci błąd do czasu ustawienia klucza.",
+    if BACKEND == "claude":
+        if not os.environ.get("ANTHROPIC_API_KEY"):
+            print("⚠ Brak ANTHROPIC_API_KEY — /api/chat zwróci błąd do czasu ustawienia klucza.",
+                  file=sys.stderr)
+    else:
+        from agent.ollama_agent import MODEL as _OLLAMA_MODEL
+        print(f"[i] Backend: Ollama, model={_OLLAMA_MODEL}. "
+              "Upewnij się, że `ollama serve` działa i model jest pobrany.",
               file=sys.stderr)
     if PASSWORD:
         print("[LOCK] Ochrona haslem WLACZONA (KOS_PASSWORD) - przegladarka poprosi o haslo.",

@@ -17,7 +17,7 @@ Pełne mapowanie na technologie: `docs/ARCHITECTURE.md`.
 | 2. Knowledge Graph | relacje/znaczenie | SQLite `nodes`/`edges` | `kos/` |
 | 3. Relational (SQL) | dokładne liczby | SQLite `profession_stats` | `kos/` |
 | 4. Semantic Memory | proza / lore | ChromaDB + e5-large | `scripts/embedder.py` |
-| 5. Reasoning Engine | plan + odpowiedź | Claude API + narzędzia | `agent/` |
+| 5. Reasoning Engine | plan + odpowiedź | Bielik (Ollama, lokalnie) + narzędzia | `agent/` |
 | Metadata / Confidence | źródło, strona, pewność | kolumny na każdym rekordzie | wszędzie |
 
 ## Agent w oknie dialogowym (główny produkt)
@@ -28,8 +28,9 @@ pip install -r requirements.txt
 
 python kos/build_kos.py                 # zbuduj warstwę Graf+SQL z tabel
 
-export ANTHROPIC_API_KEY=sk-ant-...     # wymagane — klucz do Claude API
-python agent/server.py                  # http://127.0.0.1:8000
+ollama pull hf.co/speakleash/Bielik-1.5B-v3.0-Instruct-GGUF:Q8_0   # raz, ~1.7GB
+ollama serve                             # jeśli jeszcze nie działa w tle
+python agent/server.py                   # http://127.0.0.1:8000
 ```
 
 Otwórz `http://127.0.0.1:8000` i pytaj po polsku, np. *„Jakie są cechy akolity
@@ -38,14 +39,21 @@ punkty przeznaczenia?"*. Pytania spoza świata gry agent **grzecznie odrzuca**.
 
 Test z terminala (bez UI):
 ```bash
-python agent/agent.py "statystyki zabójcy demonów"
-python kos/query.py  "największa krzepa"      # sama warstwa SQL/Graf, bez API
+python agent/ollama_agent.py "statystyki zabójcy demonów"
+python kos/query.py  "największa krzepa"      # sama warstwa SQL/Graf, bez modelu
 ```
 
 Jak to działa (Warstwa 5): agent klasyfikuje pytanie i wywołuje narzędzia —
 `profesja_szczegoly` (SQL+Graf), `porownaj_ceche` (SQL), `szukaj_zasad`
-(wektory) — po czym odpowiada z cytowaniem strony i pewności. Model:
-`claude-opus-4-8`, myślenie adaptacyjne.
+(wektory) — po czym odpowiada z cytowaniem strony i pewności. Model domyślny:
+`Bielik-1.5B-v3.0-Instruct` przez Ollamę (lokalnie, bez API/kosztów) — na CPU
+bez GPU zdecydowanie najszybszy z testowanych wariantów (1.5B/4.5B/11B),
+a dzięki wymuszonemu schematowi JSON (`RESPONSE_SCHEMA` w
+`agent/ollama_agent.py`, `enum` na nazwach narzędzi) trzyma się narzędzi tak
+samo niezawodnie jak większe modele. Większe warianty (4.5B, 11B) dostępne
+przez `KOS_MODEL` kosztem czasu odpowiedzi — patrz `config.bat`. Backend
+Claude API nadal dostępny jako opcja: `KOS_BACKEND=claude` (patrz
+`agent/agent.py`).
 
 ## Warstwa danych (jak zbudowana)
 
@@ -72,7 +80,11 @@ wskazane w rozwoju, których jeszcze nie wpisano).
 - **HuggingFace zablokowany** → model e5-large z Google Cloud Storage
   (`scripts/embedder.py`), ładowany przez `specific_model_path`.
 - **Duże pliki** (PDF 143 MB) → GitHub Release asset (Drive/Dropbox zablokowane).
-- **Agent wymaga `ANTHROPIC_API_KEY`** (własny klucz Claude API).
+- **Agent wymaga uruchomionej Ollamy** (`ollama serve`) i pobranego modelu.
+  Wywoływanie narzędzi idzie własnym protokołem JSON wymuszonym schematem
+  (nie natywnym `tools` API Ollamy), więc działa z dowolnym modelem Bielika —
+  nie tylko z v3.0. Backend Claude API (opcjonalny) wymaga własnego
+  `ANTHROPIC_API_KEY`.
 - **venv obowiązkowy** (konflikt z systemowym PyYAML na Debianie).
 
 ## Stan i plan

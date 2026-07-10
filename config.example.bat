@@ -6,12 +6,27 @@ REM 2) Wpisz swoje wartości ponizej.
 REM 3) config.bat NIE trafia do gita (jest w .gitignore) — klucz zostaje tylko
 REM    na Twoim komputerze. start.bat wczytuje go automatycznie, jesli istnieje.
 
-REM Klucz Claude API z console.anthropic.com — wymagany do czatu.
-set ANTHROPIC_API_KEY=sk-ant-wklej-tutaj-swoj-klucz
+REM Backend LLM: "ollama" = lokalny Bielik (domyslnie), "claude" = Claude API.
+set KOS_BACKEND=ollama
 
-REM Model agenta: claude-haiku-4-5 (najtaniej) / claude-sonnet-5 (tanio, dobra
-REM jakosc) / claude-opus-4-8 (max jakosc, drozej).
-set KOS_MODEL=claude-sonnet-5
+REM --- Backend ollama (lokalny) ---
+REM Model musi byc pobrany:
+REM   ollama pull hf.co/speakleash/Bielik-1.5B-v3.0-Instruct-GGUF:Q8_0
+REM 1.5B = najszybszy przetestowany wariant na CPU bez GPU. Wywolywanie
+REM narzedzi idzie wlasnym protokolem JSON wymuszonym schematem (JSON Schema
+REM z enum na nazwach narzedzi - patrz agent/ollama_agent.py, RESPONSE_SCHEMA),
+REM wiec dziala z kazdym modelem, nie tylko z 11B, ktory jako jedyny ma
+REM natywne wsparcie "tools" w Ollamie.
+REM Chcesz wyzsza jakosc kosztem wiekszej wolnosci?
+REM   set KOS_MODEL=SpeakLeash/bielik-4.5b-v3.0-instruct:Q8_0    (8K kontekstu, ~1-8 min/pytanie)
+REM   set KOS_MODEL=SpeakLeash/bielik-11b-v3.0-instruct:Q4_K_M   (32K kontekstu, bardzo wolny na CPU)
+set KOS_MODEL=hf.co/speakleash/Bielik-1.5B-v3.0-Instruct-GGUF:Q8_0
+set OLLAMA_URL=http://127.0.0.1:11434
+
+REM --- Backend claude (opcjonalny, KOS_BACKEND=claude) ---
+REM Klucz Claude API z console.anthropic.com — wymagany tylko dla tego backendu.
+REM set ANTHROPIC_API_KEY=sk-ant-wklej-tutaj-swoj-klucz
+REM set KOS_MODEL=claude-sonnet-5
 
 REM Haslo dostepu — WYMAGANE, jesli udostepniasz serwer przez internet (np.
 REM tunel Cloudflare). Zostaw puste (usun linie albo wpisz nic po "=") dla

@@ -223,7 +223,16 @@ def kto_zna(nazwa: str) -> dict:
 
 
 # ── Warstwa 4: proza / lore / zasady ───────────────────────────────────────
-def szukaj_zasad(pytanie: str, k: int = 5) -> dict:
+# k=3 i obcięcie do 500 zn. (zamiast 5 x 700) — dobrane pod lokalny model 1.5B
+# (8K kontekstu, CPU): czas przetwarzania promptu na tym sprzęcie rośnie z
+# liczbą tokenów, a wyszukiwanie wektorowe samo w sobie jest tanie (<0.3s) —
+# oszczędność bierze się z mniejszej ilości tekstu oddawanej modelowi, nie
+# z samego wyszukiwania. Wywołujący (model) może zażądać więcej przez `k`.
+def szukaj_zasad(pytanie: str, k: int = 3) -> dict:
+    # słabszy model bywa niedokładny w argumentach liczbowych (np. k=0) —
+    # Chroma rzuca wyjątkiem na n_results<=0, więc zabezpieczamy zakres,
+    # zamiast dać temu eskalować do błędu narzędzia.
+    k = min(max(int(k or 3), 1), 8)
     embedder, col = _get_vectors()
     from embedder import embed_query
     qemb = embed_query(embedder, pytanie).tolist()
@@ -236,7 +245,7 @@ def szukaj_zasad(pytanie: str, k: int = 5) -> dict:
         fragmenty.append({
             "strona": f"str. {a}" if a == b else f"str. {a}–{b}",
             "podobienstwo": round(sim, 3),
-            "tekst": " ".join(doc.split())[:700],
+            "tekst": " ".join(doc.split())[:500],
             # pewność ~ podobieństwo (proza = interpretacja, nie twarda tabela)
             "pewnosc": round(min(0.9, max(0.3, sim)), 2),
         })
@@ -379,7 +388,7 @@ TOOLS = [
             "type": "object",
             "properties": {
                 "pytanie": {"type": "string", "description": "zapytanie po polsku"},
-                "k": {"type": "integer", "description": "ile fragmentów (domyślnie 5)"},
+                "k": {"type": "integer", "description": "ile fragmentów (domyślnie 3)"},
             },
             "required": ["pytanie"],
         },
@@ -403,7 +412,14 @@ DISPATCH = {
 def run_tool(name: str, args: dict) -> dict:
     fn = DISPATCH.get(name)
     if not fn:
-        return {"blad": f"nieznane narzędzie: {name}"}
+        # słabszy model bywa niedokładny w nazwach narzędzi (np.
+        # "cena_ekwipunkowu" zamiast "cena_ekwipunku") — zamiast twardo
+        # zawodzić, spróbuj najbliższej znanej nazwy.
+        import difflib
+        close = difflib.get_close_matches(name or "", DISPATCH.keys(), n=1, cutoff=0.6)
+        fn = DISPATCH.get(close[0]) if close else None
+        if not fn:
+            return {"blad": f"nieznane narzędzie: {name}"}
     try:
         return fn(**args)
     except Exception as e:  # noqa: BLE001

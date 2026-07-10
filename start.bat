@@ -1,8 +1,7 @@
 @echo off
 REM Uruchomienie lokalne (Windows) - Warhammer Fantasy KOS.
-REM Konfiguracja (klucz API, haslo, model) wczytywana z config.bat - patrz
-REM config.example.bat. Bez config.bat mozna tez ustawic zmienne recznie
-REM przed odpaleniem (set ANTHROPIC_API_KEY=sk-ant-...).
+REM Konfiguracja (backend LLM, haslo, model) wczytywana z config.bat - patrz
+REM config.example.bat. Domyslny backend to lokalny Bielik przez Ollame.
 setlocal
 cd /d "%~dp0"
 
@@ -46,14 +45,25 @@ if not exist "data\chroma\chroma.sqlite3" (
   echo     albo zbuduj raz:  %PY% scripts\04_build_vectordb.py
 )
 
-REM 5) klucz API - tylko do czatu; przegladarka dziala bez niego
-if "%ANTHROPIC_API_KEY%"=="" (
-  echo [i] Brak ANTHROPIC_API_KEY - przegladarka zadziala, czat zwroci blad.
-  echo     Uzupelnij go w config.bat.
-)
-if "%ANTHROPIC_API_KEY%"=="sk-ant-wklej-tutaj-swoj-klucz" (
-  echo [!] W config.bat wciaz jest przykladowy klucz - wpisz prawdziwy
-  echo     ANTHROPIC_API_KEY z console.anthropic.com, inaczej czat nie zadziala.
+REM 5) backend LLM - ollama (domyslnie) albo claude, patrz config.bat
+if "%KOS_BACKEND%"=="" set KOS_BACKEND=ollama
+if "%KOS_BACKEND%"=="claude" (
+  if "%ANTHROPIC_API_KEY%"=="" (
+    echo [i] Brak ANTHROPIC_API_KEY - przegladarka zadziala, czat zwroci blad.
+    echo     Uzupelnij go w config.bat.
+  )
+) else (
+  where ollama >nul 2>nul
+  if errorlevel 1 (
+    echo [!] Nie znaleziono komendy "ollama" w PATH - zainstaluj z ollama.com,
+    echo     albo przelacz KOS_BACKEND=claude w config.bat.
+  ) else (
+    ollama list | findstr /i "bielik" >nul 2>nul
+    if errorlevel 1 (
+      echo [!] Model %KOS_MODEL% nie jest jeszcze pobrany. Uruchom:
+      echo       ollama pull %KOS_MODEL%
+    )
+  )
 )
 
 if "%PORT%"=="" set PORT=8000

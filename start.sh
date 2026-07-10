@@ -1,6 +1,7 @@
 #!/usr/bin/env bash
 # Uruchomienie lokalne (tylko dla Ciebie, na localhost) — Warhammer Fantasy KOS.
-# Użycie:  ANTHROPIC_API_KEY=sk-ant-...  ./start.sh
+# Użycie:  ./start.sh                          (backend domyślny: Ollama/Bielik)
+#          KOS_BACKEND=claude ANTHROPIC_API_KEY=sk-ant-... ./start.sh
 set -e
 cd "$(dirname "$0")"
 
@@ -30,10 +31,16 @@ if [ ! -f data/chroma/chroma.sqlite3 ]; then
   echo "  albo zbuduj raz:  $PY scripts/04_build_vectordb.py   (potrzebny data/text/chunks.jsonl)"
 fi
 
-# 5) klucz API — potrzebny TYLKO do czatu z agentem (przeglądarka działa bez niego)
-if [ -z "$ANTHROPIC_API_KEY" ]; then
-  echo "ℹ Brak ANTHROPIC_API_KEY — przeglądarka zadziała, czat zwróci błąd."
-  echo "  Ustaw klucz:  export ANTHROPIC_API_KEY=sk-ant-…   (z console.anthropic.com)"
+# 5) backend LLM — ollama (domyślny) albo claude, patrz config.bat/README
+KOS_BACKEND="${KOS_BACKEND:-ollama}"
+if [ "$KOS_BACKEND" = "claude" ]; then
+  if [ -z "$ANTHROPIC_API_KEY" ]; then
+    echo "ℹ Brak ANTHROPIC_API_KEY — przeglądarka zadziała, czat zwróci błąd."
+    echo "  Ustaw klucz:  export ANTHROPIC_API_KEY=sk-ant-…   (z console.anthropic.com)"
+  fi
+elif ! command -v ollama >/dev/null 2>&1; then
+  echo "⚠ Nie znaleziono komendy 'ollama' — zainstaluj z ollama.com albo"
+  echo "  przełącz KOS_BACKEND=claude."
 fi
 
 PORT="${PORT:-8000}"

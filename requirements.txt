@@ -11,6 +11,9 @@ fastembed>=0.8       # embeddingi ONNX (bez torcha); model multilingual-e5-large
 # by uniknąć konfliktu z systemowym PyYAML (Debian).
 
 # --- Agent / Reasoning Engine (Warstwa 5 KOS) ---
-anthropic>=0.69      # Claude API (agent w oknie dialogowym; model claude-opus-4-8)
+# Backend domyślny: lokalny Bielik przez Ollamę (agent/ollama_agent.py) — mówi
+# do REST API Ollamy przez stdlib urllib, bez dodatkowej zależności pip.
+# Wymaga zainstalowanej Ollamy (ollama.com) i pobranego modelu:
+#   ollama pull SpeakLeash/bielik-11b-v3.0-instruct:Q4_K_M
+anthropic>=0.69      # opcjonalnie: backend Claude API (KOS_BACKEND=claude)
 # Warstwa Graf+SQL (Warstwa 2+3) używa sqlite3 ze stdlib — bez zależności.
-# Uruchomienie agenta wymaga zmiennej ANTHROPIC_API_KEY.

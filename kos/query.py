@@ -14,6 +14,7 @@ Import w agencie:
     from kos.query import KOS
     kos = KOS(); kos.answer("statystyki akolita")
 """
+import difflib
 import json
 import os
 import re
@@ -54,6 +55,26 @@ def fold(s):
     return "".join(c for c in s if not unicodedata.combining(c))
 
 
+def _fuzzy_match(f, names_folded, cutoff=0.85):
+    """Ostatnia deska ratunku po dopasowaniu podciągowym: literówki i błędna
+    odmiana z LLM (np. 'Akalit' zamiast 'Akolita', ratio 0.77) łapane przez
+    podobieństwo znakowe.
+
+    UWAGA na próg: SequenceMatcher zawyża podobieństwo, gdy dwie frazy dzielą
+    jedno długie słowo, nawet jeśli reszta jest zupełnie inna — np. zapytanie
+    o mechanikę 'punkty przeznaczenia' (nie ma jej w żadnej tabeli) trafiało
+    fałszywie w istniejący, ale niepowiązany czar 'Akceptacja przeznaczenia'
+    (ratio 0.73), bo oba dzielą słowo 'przeznaczenia'. Model dostawał wtedy
+    PEWNE, ustrukturyzowane dane o złym bycie i podawał je jako fakt ze stroną —
+    gorszy skutek niż zwrócenie "nie znaleziono" (od czego jest fallback:
+    szukaj_zasad / prośba o doprecyzowanie). Fałszywy trafienie jest więc
+    kosztowniejsze niż nietrafienie literówki — stąd wysoki, konserwatywny
+    próg kosztem części literówek, których tier 1/2 (dopasowanie podciągowe)
+    nie złapią."""
+    matches = difflib.get_close_matches(f, names_folded, n=1, cutoff=cutoff)
+    return matches[0] if matches else None
+
+
 def stat_key(v):
     """'+10'->10, '+5'->5, '—'/''->None. Do porównań liczbowych."""
     if not v or v == "—":
@@ -84,6 +105,15 @@ class KOS:
         rows = self.con.execute(
             "SELECT node_id,name FROM profession_stats").fetchall()
         hits = [r for r in rows if fold(r["name"]) in f]
+        if not hits and len(f) >= 3:
+            # zapytanie bywa skróconą/odmienioną formą nazwy (odmiana przez
+            # przypadki po polsku, albo LLM ucina końcówkę) — spróbuj w drugą
+            # stronę: czy zapytanie jest rdzeniem/prefiksem nazwy profesji.
+            hits = [r for r in rows if f in fold(r["name"])]
+        if not hits and len(f) >= 3:
+            m = _fuzzy_match(f, [fold(r["name"]) for r in rows])
+            if m:
+                hits = [r for r in rows if fold(r["name"]) == m]
         if not hits:
             return None
         return max(hits, key=lambda r: len(r["name"]))["node_id"]
@@ -124,6 +154,12 @@ class KOS:
         f = fold(q)
         rows = self.con.execute("SELECT node_id,name FROM weapon_stats").fetchall()
         hits = [r for r in rows if fold(r["name"]) in f]
+        if not hits and len(f) >= 3:
+            hits = [r for r in rows if f in fold(r["name"])]
+        if not hits and len(f) >= 3:
+            m = _fuzzy_match(f, [fold(r["name"]) for r in rows])
+            if m:
+                hits = [r for r in rows if fold(r["name"]) == m]
         if not hits:
             return None
         return max(hits, key=lambda r: len(r["name"]))["node_id"]
@@ -146,6 +182,12 @@ class KOS:
         rows = self.con.execute(
             "SELECT node_id,name,material FROM armour_stats").fetchall()
         hits = [r for r in rows if fold(r["name"]) in f]
+        if not hits and len(f) >= 3:
+            hits = [r for r in rows if f in fold(r["name"])]
+        if not hits and len(f) >= 3:
+            m = _fuzzy_match(f, [fold(r["name"]) for r in rows])
+            if m:
+                hits = [r for r in rows if fold(r["name"]) == m]
         # jeśli pytanie wskazuje materiał, zawęź
         mats = [m for m in ("skorzan", "kolcz", "plytow") if m in f]
         if mats:
@@ -166,6 +208,12 @@ class KOS:
         f = fold(q)
         rows = self.con.execute("SELECT node_id,name FROM spell_stats").fetchall()
         hits = [r for r in rows if fold(r["name"]) in f]
+        if not hits and len(f) >= 3:
+            hits = [r for r in rows if f in fold(r["name"])]
+        if not hits and len(f) >= 3:
+            m = _fuzzy_match(f, [fold(r["name"]) for r in rows])
+            if m:
+                hits = [r for r in rows if fold(r["name"]) == m]
         if not hits:
             return None
         return max(hits, key=lambda r: len(r["name"]))["node_id"]
@@ -241,6 +289,12 @@ class KOS:
         f = fold(q)
         rows = self.con.execute("SELECT node_id,name FROM bestiary_profiles").fetchall()
         hits = [r for r in rows if fold(r["name"]) in f]
+        if not hits and len(f) >= 3:
+            hits = [r for r in rows if f in fold(r["name"])]
+        if not hits and len(f) >= 3:
+            m = _fuzzy_match(f, [fold(r["name"]) for r in rows])
+            if m:
+                hits = [r for r in rows if fold(r["name"]) == m]
         if not hits:
             return None
         return max(hits, key=lambda r: len(r["name"]))["node_id"]

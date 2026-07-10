@@ -21,6 +21,13 @@ models/
 
 # Spakowane archiwum danych (generowane przez scripts/package_data.sh)
 *.tar.gz
+kosdane.part*
+
+# Narzędzia pobierane osobno (nie są kodem projektu)
+cloudflared.exe
+
+# Lokalna konfiguracja Claude Code (uprawnienia, launch config per maszyna)
+.claude/
 
 # Wygenerowana strona mobilna (zawiera treść księgi = dane)
 web/search_mobile.html
