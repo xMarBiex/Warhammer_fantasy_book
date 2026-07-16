@@ -11,16 +11,17 @@ set KOS_BACKEND=ollama
 
 REM --- Backend ollama (lokalny) ---
 REM Model musi byc pobrany:
-REM   ollama pull hf.co/speakleash/Bielik-1.5B-v3.0-Instruct-GGUF:Q8_0
-REM 1.5B = najszybszy przetestowany wariant na CPU bez GPU. Wywolywanie
-REM narzedzi idzie wlasnym protokolem JSON wymuszonym schematem (JSON Schema
-REM z enum na nazwach narzedzi - patrz agent/ollama_agent.py, RESPONSE_SCHEMA),
-REM wiec dziala z kazdym modelem, nie tylko z 11B, ktory jako jedyny ma
-REM natywne wsparcie "tools" w Ollamie.
-REM Chcesz wyzsza jakosc kosztem wiekszej wolnosci?
-REM   set KOS_MODEL=SpeakLeash/bielik-4.5b-v3.0-instruct:Q8_0    (8K kontekstu, ~1-8 min/pytanie)
+REM   ollama pull SpeakLeash/bielik-4.5b-v3.0-instruct:Q8_0
+REM 4.5B = wybrany po tescie 20 pytan (16/20 poprawnych vs 9/20 na 1.5B),
+REM kosztem ~7x dluzszego czasu odpowiedzi (~1-5 min/pytanie na CPU bez GPU).
+REM Wywolywanie narzedzi idzie wlasnym protokolem JSON wymuszonym schematem
+REM (JSON Schema z enum na nazwach narzedzi - patrz agent/ollama_agent.py,
+REM RESPONSE_SCHEMA), wiec dziala z kazdym modelem.
+REM Zalezy Ci na szybkosci kosztem trafnosci?
+REM   set KOS_MODEL=hf.co/speakleash/Bielik-1.5B-v3.0-Instruct-GGUF:Q8_0   (~30-100s/pytanie)
+REM Chcesz jeszcze wyzsza jakosc (nieprzetestowana rownie dokladnie)?
 REM   set KOS_MODEL=SpeakLeash/bielik-11b-v3.0-instruct:Q4_K_M   (32K kontekstu, bardzo wolny na CPU)
-set KOS_MODEL=hf.co/speakleash/Bielik-1.5B-v3.0-Instruct-GGUF:Q8_0
+set KOS_MODEL=SpeakLeash/bielik-4.5b-v3.0-instruct:Q8_0
 set OLLAMA_URL=http://127.0.0.1:11434
 
 REM --- Backend claude (opcjonalny, KOS_BACKEND=claude) ---

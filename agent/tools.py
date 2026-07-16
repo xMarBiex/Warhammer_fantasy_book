@@ -17,7 +17,7 @@ ROOT = os.path.dirname(HERE)
 sys.path.insert(0, ROOT)
 sys.path.insert(0, os.path.join(ROOT, "scripts"))
 
-from kos.query import KOS  # noqa: E402
+from kos.query import KOS, STAT_ALIASES, fold  # noqa: E402
 
 # Serwer HTTP obsługuje żądania w wielu wątkach (ThreadingHTTPServer). Połączenie
 # sqlite3 wolno używać tylko w wątku, w którym powstało — stąd osobna instancja
@@ -47,6 +47,18 @@ def _get_vectors():
 
 # ── Warstwa 3+2: profesja ──────────────────────────────────────────────────
 def profesja_szczegoly(nazwa: str) -> dict:
+    # słabszy model czasem myli "profesja z najwyższą cechą X" z "podaj mi
+    # profesję X", wołając to narzędzie z samą nazwą/skrótem cechy (np. "US")
+    # zamiast porownaj_ceche. Zamiast liczyć na to, że model poprawnie
+    # zareaguje na podpowiedź i sam wykona drugie wywołanie (w praktyce mały
+    # model często się poddaje) — po prostu wykonujemy za niego właściwe
+    # zapytanie i zwracamy realne dane, oznaczone jako auto-przekierowane.
+    if fold(nazwa) in STAT_ALIASES:
+        wynik = porownaj_ceche(nazwa, "max")
+        wynik["przekierowano_z"] = "profesja_szczegoly"
+        wynik["info"] = (f"«{nazwa}» to skrót cechy, nie nazwa profesji — automatycznie "
+                          "użyto porownaj_ceche (tryb max) zamiast profesja_szczegoly.")
+        return wynik
     kos = _get_kos()
     nid = kos.resolve_profession(nazwa)
     if not nid:
@@ -222,6 +234,57 @@ def kto_zna(nazwa: str) -> dict:
     return out
 
 
+# ── Strażnik tematu (twardy filtr w kodzie) ────────────────────────────────
+# Testy na żywo (1.5B i 4.5B) pokazały, że OBA modele czasem odpowiadają
+# wprost na pytania spoza gry (np. "jaka jest stolica Polski?") mimo
+# jednoznacznej instrukcji w system prompcie — poleganie wyłącznie na tym,
+# że LLM sam odmówi, jest niewystarczające. Ten filtr działa PRZED
+# wywołaniem modelu, więc nie da się go "przegadać".
+_DOMAIN_KEYWORDS = (
+    "warhammer", "wfrp", "ksiega zasad", "mistrz gry", "gracz", "bohater",
+    "postac", "profesj", "karier", "cech", "test cechy", "k10", "k100", "kostk",
+    "rzut kostk", "przeznaczeni", "zywotnos", "walk", "atak", "obrazeni",
+    "parowani", "unik", "inicjatyw", "pancerz", "zbroj", "bron", "orez",
+    "ekwipunek", "magi", "czar", "tradycj", "wiatr", "potwor", "bestiariusz",
+    "umiejetnosc", "zdolnosc", "stary swiat", "starego swiata", "starym swiecie",
+    "cesarstw", "chaos", "sigmar",
+    "reikland", "altdorf", "kislev", "bretoni", "elf", "krasnolud", "gobli",
+    "ork", "skaven", "norsk", "tilea", "estalia", "araby", "cathay", "middenheim",
+    "nuln", "marienburg", "npc", "sesj", "kampani", "przygod", "fabul", "lochu",
+    "rpg", "erpeg", "akolit", "ile kosztuje", "cena", "wierzchow",
+)
+
+_entity_names_cache = None
+
+
+def _entity_names():
+    global _entity_names_cache
+    if _entity_names_cache is None:
+        kos = _get_kos()
+        names = set()
+        for tbl in ("profession_stats", "weapon_stats", "armour_stats",
+                    "spell_stats", "item_costs", "bestiary_profiles"):
+            for (n,) in kos.con.execute(f"SELECT name FROM {tbl}"):
+                names.add(fold(n))
+        for (n,) in kos.con.execute(
+                "SELECT name FROM nodes WHERE type IN ('Skill','Talent')"):
+            names.add(fold(n))
+        _entity_names_cache = names
+    return _entity_names_cache
+
+
+def w_temacie_gry(pytanie: str) -> bool:
+    """True, jeśli pytanie wygląda na związane z Warhammer Fantasy Roleplay.
+    Dwa sygnały (dowolny wystarczy): słowo-klucz domeny albo nazwa realnej
+    encji z bazy. Podobieństwo semantyczne (ChromaDB) NIE nadaje się jako
+    sygnał — zmierzone: pytania spoza tematu i o grze dostają podobne wyniki
+    (0.77-0.84 na tym korpusie), embedding e5 nie rozróżnia tu tematyki."""
+    f = fold(pytanie)
+    if any(kw in f for kw in _DOMAIN_KEYWORDS):
+        return True
+    return any(len(n) >= 4 and (n in f or f in n) for n in _entity_names())
+
+
 # ── Warstwa 4: proza / lore / zasady ───────────────────────────────────────
 # k=3 i obcięcie do 500 zn. (zamiast 5 x 700) — dobrane pod lokalny model 1.5B
 # (8K kontekstu, CPU): czas przetwarzania promptu na tym sprzęcie rośnie z
@@ -273,7 +336,12 @@ TOOLS = [
         "name": "porownaj_ceche",
         "description": "Znajduje profesję(-e) z największą lub najmniejszą modyfikacją danej "
                        "cechy (WW, US, K, Odp, Zr, Int, SW, Ogd, A, Żyw, S, Wt, Sz, Mag, PO, PP). "
-                       "Liczone z tabel SQL. Używaj do pytań «która profesja ma największą…».",
+                       "Liczone z tabel SQL — NIGDY nie zgaduj tego z pamięci ani z prozy. "
+                       "Używaj ZAWSZE, gdy pytanie łączy nazwę cechy (np. „WW”) ze słowem "
+                       "wskazującym ekstremum: «która/jaka profesja ma największą/najwyższą/"
+                       "najlepszą/najmniejszą…», «podaj profesje z najwyższym…», «kto ma "
+                       "najwięcej…». Cecha (np. „WW”) to NIE jest nazwa profesji — nie wołaj "
+                       "tu profesja_szczegoly.",
         "input_schema": {
             "type": "object",
             "properties": {

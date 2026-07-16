@@ -28,14 +28,17 @@ pip install -r requirements.txt
 
 python kos/build_kos.py                 # zbuduj warstwę Graf+SQL z tabel
 
-ollama pull hf.co/speakleash/Bielik-1.5B-v3.0-Instruct-GGUF:Q8_0   # raz, ~1.7GB
+ollama pull SpeakLeash/bielik-4.5b-v3.0-instruct:Q8_0   # raz, ~5GB
 ollama serve                             # jeśli jeszcze nie działa w tle
 python agent/server.py                   # http://127.0.0.1:8000
 ```
 
 Otwórz `http://127.0.0.1:8000` i pytaj po polsku, np. *„Jakie są cechy akolity
 i do czego może awansować?"*, *„Która profesja ma największą WW?"*, *„Jak działają
-punkty przeznaczenia?"*. Pytania spoza świata gry agent **grzecznie odrzuca**.
+punkty przeznaczenia?"*. Pytania spoza świata gry agent **odrzuca twardym
+filtrem w kodzie** (`agent/tools.py:w_temacie_gry`) — testy pokazały, że sam
+model (nawet z instrukcją w prompt-cie) czasem odpowiada wprost na pytania
+spoza gry, więc temat jest wymuszony przed wywołaniem modelu, nie przez niego.
 
 Test z terminala (bez UI):
 ```bash
@@ -46,14 +49,15 @@ python kos/query.py  "największa krzepa"      # sama warstwa SQL/Graf, bez mode
 Jak to działa (Warstwa 5): agent klasyfikuje pytanie i wywołuje narzędzia —
 `profesja_szczegoly` (SQL+Graf), `porownaj_ceche` (SQL), `szukaj_zasad`
 (wektory) — po czym odpowiada z cytowaniem strony i pewności. Model domyślny:
-`Bielik-1.5B-v3.0-Instruct` przez Ollamę (lokalnie, bez API/kosztów) — na CPU
-bez GPU zdecydowanie najszybszy z testowanych wariantów (1.5B/4.5B/11B),
-a dzięki wymuszonemu schematowi JSON (`RESPONSE_SCHEMA` w
-`agent/ollama_agent.py`, `enum` na nazwach narzędzi) trzyma się narzędzi tak
-samo niezawodnie jak większe modele. Większe warianty (4.5B, 11B) dostępne
-przez `KOS_MODEL` kosztem czasu odpowiedzi — patrz `config.bat`. Backend
-Claude API nadal dostępny jako opcja: `KOS_BACKEND=claude` (patrz
-`agent/agent.py`).
+`Bielik-4.5B-v3.0-Instruct` przez Ollamę (lokalnie, bez API/kosztów) — test 20
+zróżnicowanych pytań pokazał wyraźnie lepszą trafność niż 1.5B (16/20 vs 9/20
+poprawnych odpowiedzi), kosztem ~7x dłuższego czasu (ok. 1-5 min/pytanie na
+CPU bez GPU zamiast 30-100s). Dzięki wymuszonemu schematowi JSON
+(`RESPONSE_SCHEMA` w `agent/ollama_agent.py`, `enum` na nazwach narzędzi)
+model fizycznie nie może wygenerować nieistniejącej nazwy narzędzia. Mniejszy
+wariant (1.5B) i większy (11B, bardzo wolny na CPU) dostępne przez `KOS_MODEL`
+— patrz `config.bat`. Backend Claude API nadal dostępny jako opcja:
+`KOS_BACKEND=claude` (patrz `agent/agent.py`).
 
 ## Warstwa danych (jak zbudowana)
 
